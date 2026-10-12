@@ -2,29 +2,34 @@ openapi: 3.1.0
 info:
   title: Iraqi Digital ID Prototype — Verifier Service (C2-B)
   version: 1.1.0-draft
-  description: 'TEST ONLY. INT-11..INT-13 for the verifier front-end. OpenID4VP endpoints (STD-08..STD-10) follow
+  description: 'TEST ONLY. INT-11..INT-13 for the verifier front-end. OpenID4VP
+    endpoints (STD-08..STD-10) follow
 
-    OpenID4VP 1.0 and are not redefined. Client identifier: x509_hash (DR-14 amended; W14 evidence).
+    OpenID4VP 1.0 and are not redefined. Client identifier: x509_hash (DR-14
+    amended; W14 evidence).
 
-    Disclosed values are held in memory only, returned once, erased after one read or 60 s (PRV-05, DR-41).
+    Disclosed values are held in memory only, returned once, erased after one
+    read or 60 s (PRV-05, DR-41).
 
 
-    TASK-3 REVIEW CANDIDATE. Not owner-approved and not a service implementation. See docs/task3/G1a_Open_Decisions.md.
-    Existing DR proposals retain their original status.
+    TASK-3 REVIEW CANDIDATE. Not owner-approved and not a service
+    implementation. See docs/task3/G1a_Open_Decisions.md. Existing DR proposals
+    retain their original status.
 
     '
   x-environment: TEST
 servers:
-- url: https://verifier.digital-id.test
+  - url: https://verifier.digital-id.test
 security: &id001
-- staffSession: []
+  - staffSession: []
 paths:
   /verifier/v1/services:
     get:
       operationId: listServices
-      summary: INT-11 — services of the staff member's organisation (fields come from policy; staff cannot edit)
+      summary: INT-11 — services of the staff member's organisation (fields come from
+        policy; staff cannot edit)
       x-roles:
-      - verifier-staff
+        - verifier-staff
       responses:
         '200':
           description: Services
@@ -36,12 +41,12 @@ paths:
                   type: object
                   additionalProperties: false
                   required:
-                  - service_id
-                  - name_ar
-                  - name_en
-                  - purpose_text
-                  - requested_fields
-                  - declared_retention
+                    - service_id
+                    - name_ar
+                    - name_en
+                    - purpose_text
+                    - requested_fields
+                    - declared_retention
                   properties:
                     service_id:
                       type: string
@@ -57,8 +62,8 @@ paths:
                         type: object
                         additionalProperties: false
                         required:
-                        - path
-                        - class
+                          - path
+                          - class
                         properties:
                           path:
                             type: array
@@ -68,9 +73,9 @@ paths:
                           class:
                             type: string
                             enum:
-                            - OPTIONAL
-                            - SERVICE_REQUIRED
-                            - LEGAL_REQUIRED
+                              - OPTIONAL
+                              - SERVICE_REQUIRED
+                              - LEGAL_REQUIRED
                     declared_retention:
                       type: string
           headers:
@@ -87,23 +92,27 @@ paths:
       security: *id001
       description: '
 
-        Authenticate before resource lookup or replay. Require one of these roles: verifier-staff. Enforce resource/organisation
-        permissions from verified server-side identity; x-roles alone is not enforcement. 401 for invalid credentials;
-        403 for insufficient role. Never expose foreign resource details.'
+        Authenticate before resource lookup or replay. Require one of these
+        roles: verifier-staff. Enforce resource/organisation permissions from
+        verified server-side identity; x-roles alone is not enforcement. 401 for
+        invalid credentials; 403 for insufficient role. Never expose foreign
+        resource details.'
+      tags:
+        - verification
   /verifier/v1/sessions:
     post:
       operationId: createSession
       summary: INT-12 — start a verification session (120 s) and return the QR payload
       x-roles:
-      - verifier-staff
+        - verifier-staff
       x-audit-event: verifier.session.created
       parameters:
-      - name: Idempotency-Key
-        in: header
-        required: true
-        schema:
-          type: string
-          format: uuid
+        - name: Idempotency-Key
+          in: header
+          required: true
+          schema:
+            type: string
+            format: uuid
       requestBody:
         required: true
         content:
@@ -112,7 +121,7 @@ paths:
               type: object
               additionalProperties: false
               required:
-              - service_id
+                - service_id
               properties:
                 service_id:
                   type: string
@@ -134,10 +143,10 @@ paths:
                 type: object
                 additionalProperties: false
                 required:
-                - session_id
-                - qr_payload
-                - expires_at
-                - short_code
+                  - session_id
+                  - qr_payload
+                  - expires_at
+                  - short_code
                 properties:
                   session_id:
                     type: string
@@ -151,9 +160,10 @@ paths:
                   short_code:
                     type: string
                     pattern: ^[0-9]{4}$
-                    description: Spoken verification code (UX-09, THM-47). Not an authentication credential.
+                    description: Spoken verification code (UX-09, THM-47). Not an authentication
+                      credential.
                     examples:
-                    - '0123'
+                      - '0123'
         '404':
           $ref: '#/components/responses/Error'
         '429':
@@ -169,37 +179,46 @@ paths:
       security: *id001
       description: '
 
-        Authenticate before resource lookup or replay. Require one of these roles: verifier-staff. Enforce resource/organisation
-        permissions from verified server-side identity; x-roles alone is not enforcement. 401 for invalid credentials;
-        403 for insufficient role. Never expose foreign resource details. Resolve service_id only within the authenticated
-        organisation and registered service policy; unknown/foreign service returns 404. Session expiry is creation
-        +120 seconds. Idempotent replay does not extend expiry. Session UUID and short_code are not access credentials.'
+        Authenticate before resource lookup or replay. Require one of these
+        roles: verifier-staff. Enforce resource/organisation permissions from
+        verified server-side identity; x-roles alone is not enforcement. 401 for
+        invalid credentials; 403 for insufficient role. Never expose foreign
+        resource details. Resolve service_id only within the authenticated
+        organisation and registered service policy; unknown/foreign service
+        returns 404. Session expiry is creation +120 seconds. Idempotent replay
+        does not extend expiry. Session UUID and short_code are not access
+        credentials.'
       x-idempotency:
         status: proposed OD-03
         scope:
-        - verified organisation
-        - verified subject
-        - operationId
-        - canonical resource path
-        - Idempotency-Key
+          - verified organisation
+          - verified subject
+          - operationId
+          - canonical resource path
+          - Idempotency-Key
         retention_seconds: 86400
-        request_comparison: Canonical validated semantic JSON; distinguish absent and null; include operation target.
-        replay: 'Re-authenticate and re-authorize first; serialize concurrent uses atomically; never repeat side
-          effects or return erased/one-time secrets. Different request: 409 API-4090. In-flight: 409 API-4090 with
-          Retry-After. After record expiry never resurrect expired resources; enforce independent business uniqueness.'
+        request_comparison: Canonical validated semantic JSON; distinguish absent and
+          null; include operation target.
+        replay: 'Re-authenticate and re-authorize first; serialize concurrent uses
+          atomically; never repeat side effects or return erased/one-time
+          secrets. Different request: 409 API-4090. In-flight: 409 API-4090 with
+          Retry-After. After record expiry never resurrect expired resources;
+          enforce independent business uniqueness.'
+      tags:
+        - verification
   /verifier/v1/sessions/{session_id}:
     get:
       operationId: getSessionResult
       summary: INT-13 — poll state / read result (values returned once)
       x-roles:
-      - verifier-staff
+        - verifier-staff
       parameters:
-      - name: session_id
-        in: path
-        required: true
-        schema:
-          type: string
-          format: uuid
+        - name: session_id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
       responses:
         '200':
           description: Session state
@@ -218,23 +237,23 @@ paths:
                 type: object
                 additionalProperties: false
                 required:
-                - state
+                  - state
                 properties:
                   state:
                     type: string
                     enum:
-                    - CREATED
-                    - FETCHED
-                    - RESPONSE_RECEIVED
-                    - ACCEPTED
-                    - REJECTED
-                    - EXPIRED
+                      - CREATED
+                      - FETCHED
+                      - RESPONSE_RECEIVED
+                      - ACCEPTED
+                      - REJECTED
+                      - EXPIRED
                   result:
                     type: object
                     additionalProperties: false
                     required:
-                    - code
-                    - computed
+                      - code
+                      - computed
                     properties:
                       code:
                         type: string
@@ -247,10 +266,10 @@ paths:
                         description: Only on ACCEPTED, first read within 60 s; then omitted
                         additionalProperties:
                           type:
-                          - string
-                          - number
-                          - boolean
-                          - 'null'
+                            - string
+                            - number
+                            - boolean
+                            - 'null'
                       status_freshness:
                         type: object
                         additionalProperties: false
@@ -260,21 +279,21 @@ paths:
                           valid_until:
                             type: integer
                 allOf:
-                - if:
-                    properties:
-                      state:
-                        not:
-                          const: ACCEPTED
-                    required:
-                    - state
-                  then:
-                    properties:
-                      result:
-                        not:
-                          required:
-                          - disclosed
-                          properties:
-                            disclosed: {}
+                  - if:
+                      properties:
+                        state:
+                          not:
+                            const: ACCEPTED
+                      required:
+                        - state
+                    then:
+                      properties:
+                        result:
+                          not:
+                            required:
+                              - disclosed
+                            properties:
+                              disclosed: {}
         '404':
           $ref: '#/components/responses/Error'
         '400':
@@ -286,12 +305,16 @@ paths:
       security: *id001
       description: '
 
-        Authenticate before resource lookup or replay. Require one of these roles: verifier-staff. Enforce resource/organisation
-        permissions from verified server-side identity; x-roles alone is not enforcement. 401 for invalid credentials;
-        403 for insufficient role. Never expose foreign resource details. Proposed OD-01: session organisation AND
-        creator subject must match the authenticated staff principal. No implicit auditor/admin override. Unknown
-        and foreign/other-owner session both return 404 with the same generic shape; do not consume their result.
-        Authorize before atomic read-and-delete. No values in logs, caches, idempotency storage, or subsequent reads.'
+        Authenticate before resource lookup or replay. Require one of these
+        roles: verifier-staff. Enforce resource/organisation permissions from
+        verified server-side identity; x-roles alone is not enforcement. 401 for
+        invalid credentials; 403 for insufficient role. Never expose foreign
+        resource details. Proposed OD-01: session organisation AND creator
+        subject must match the authenticated staff principal. No implicit
+        auditor/admin override. Unknown and foreign/other-owner session both
+        return 404 with the same generic shape; do not consume their result.
+        Authorize before atomic read-and-delete. No values in logs, caches,
+        idempotency storage, or subsequent reads.'
       x-resource-authorization:
         status: proposed OD-01
         organisation: session.organisation_id == principal.organisation_id
@@ -302,20 +325,27 @@ paths:
         session_ttl_seconds: 120
         values_ttl_seconds: 60
         values_ttl_origin: verified result acceptance
-        consume: first authorized response construction; atomic across concurrent readers
+        consume: first authorized response construction; atomic across concurrent
+          readers
         expired_or_consumed: state metadata may remain, disclosed MUST be omitted
         failed_delivery: no redisclosure; start a new consent/session
         cache: no-store
+      tags:
+        - verification
 components:
   securitySchemes:
     staffSession:
       type: http
       scheme: bearer
       bearerFormat: JWT
-      description: 'Proposed TEST AuthProvider bearer contract (DR-05 source missing): validate signature, configured
-        algorithm allowlist, issuer, audience, exp/nbf and revocation/session state. Trusted subject, organisation
-        and roles come from verified identity only; never from request body. Exact issuer/audience/claims remain
-        OD-02.'
+      description: 'Proposed TEST AuthProvider bearer contract (DR-05 recovered, not
+        approved): validate signature, configured algorithm allowlist, issuer,
+        audience, exp/nbf and revocation/session state. Trusted subject,
+        organisation and roles come from verified identity only; never from
+        request body. Exact issuer/audience/claims remain OD-02. JWT profile
+        details remain OD-02: reject alg=none and key/algorithm confusion; kid
+        selects only configured trusted keys, never arbitrary network
+        retrieval.'
   responses:
     Error:
       description: Generic error; no personal values, tokens or internal stack traces.
@@ -329,7 +359,8 @@ components:
             type: string
             const: TEST
     BadRequest:
-      description: 'Malformed syntax, invalid schema, identifier or required header: API-4001.'
+      description: 'Malformed syntax, invalid schema, identifier or required header:
+        API-4001.'
       content:
         application/json:
           schema:
@@ -365,7 +396,8 @@ components:
             type: string
             const: TEST
     Forbidden:
-      description: 'Authenticated principal lacks operation role or approved resource permission: API-4030.'
+      description: 'Authenticated principal lacks operation role or approved resource
+        permission: API-4030.'
       content:
         application/json:
           schema:
@@ -381,8 +413,8 @@ components:
             type: string
             const: TEST
     Conflict:
-      description: 'Idempotency key conflicts with another request, or state conflict: API-4090 unless a documented
-        service code applies.'
+      description: 'Idempotency key conflicts with another request, or state conflict:
+        API-4090 unless a documented service code applies.'
       content:
         application/json:
           schema:
@@ -401,21 +433,22 @@ components:
           schema:
             type: integer
             minimum: 1
-          description: Present for an in-flight duplicate only; not an instruction to retry a changed payload.
+          description: Present for an in-flight duplicate only; not an instruction to
+            retry a changed payload.
   schemas:
     ErrorResponse:
       type: object
       additionalProperties: false
       required:
-      - error
+        - error
       properties:
         error:
           type: object
           additionalProperties: false
           required:
-          - code
-          - message
-          - request_id
+            - code
+            - message
+            - request_id
           properties:
             code:
               type: string
@@ -429,3 +462,6 @@ components:
               minLength: 1
               maxLength: 64
 x-review-status: proposed-not-approved
+tags:
+  - name: verification
+    description: TEST draft verification operations

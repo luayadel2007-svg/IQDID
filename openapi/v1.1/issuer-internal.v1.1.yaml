@@ -2,45 +2,49 @@ openapi: 3.1.0
 info:
   title: Iraqi Digital ID Prototype — Issuer Service (internal)
   version: 1.1.0-draft
-  description: 'TEST ONLY. Prototype; synthetic data and test keys only. Not an official system.
+  description: 'TEST ONLY. Prototype; synthetic data and test keys only. Not an
+    official system.
 
-    Source of truth: API_Contracts §4 (INT-01..INT-07), Enhanced_Architecture §9 (OAS-01..OAS-08).
+    Source of truth: API_Contracts §4 (INT-01..INT-07), Enhanced_Architecture §9
+    (OAS-01..OAS-08).
 
-    Standard protocol endpoints (OpenID4VCI STD-02..STD-07) are NOT redefined here (OAS-02).
+    Standard protocol endpoints (OpenID4VCI STD-02..STD-07) are NOT redefined
+    here (OAS-02).
 
 
-    TASK-3 REVIEW CANDIDATE. Not owner-approved and not a service implementation. See docs/task3/G1a_Open_Decisions.md.
-    Existing DR proposals retain their original status.
+    TASK-3 REVIEW CANDIDATE. Not owner-approved and not a service
+    implementation. See docs/task3/G1a_Open_Decisions.md. Existing DR proposals
+    retain their original status.
 
     '
   x-environment: TEST
 servers:
-- url: https://issuer.digital-id.test
-  description: Local test environment (.test reserved TLD)
+  - url: https://issuer.digital-id.test
+    description: Local test environment (.test reserved TLD)
 security: &id001
-- serviceToken: []
+  - serviceToken: []
 tags:
-- name: offers
-  description: Credential offers (slice)
-- name: credentials
-  description: Credential lifecycle (phase 3 — documented, not built in the slice)
+  - name: offers
+    description: Credential offers (slice)
+  - name: credentials
+    description: Credential lifecycle (phase 3 — documented, not built in the slice)
 paths:
   /internal/v1/offers:
     post:
       operationId: createOffer
       tags:
-      - offers
+        - offers
       summary: INT-01 — create a pre-authorized credential offer
       x-requirements:
-      - UC-01
-      - T-A01
-      - LC-06
+        - UC-01
+        - T-A01
+        - LC-06
       x-roles:
-      - issuer-operator
+        - issuer-operator
       x-audit-event: offer.created
       parameters:
-      - $ref: '#/components/parameters/IdempotencyKey'
-      - $ref: '#/components/parameters/RequestId'
+        - $ref: '#/components/parameters/IdempotencyKey'
+        - $ref: '#/components/parameters/RequestId'
       requestBody:
         required: true
         content:
@@ -80,36 +84,41 @@ paths:
       security: *id001
       description: '
 
-        Authenticate before resource lookup or replay. Require one of these roles: issuer-operator. Enforce resource/organisation
-        permissions from verified server-side identity; x-roles alone is not enforcement. 401 for invalid credentials;
-        403 for insufficient role. Never expose foreign resource details.'
+        Authenticate before resource lookup or replay. Require one of these
+        roles: issuer-operator. Enforce resource/organisation permissions from
+        verified server-side identity; x-roles alone is not enforcement. 401 for
+        invalid credentials; 403 for insufficient role. Never expose foreign
+        resource details.'
       x-idempotency:
         status: proposed OD-03
         scope:
-        - verified organisation
-        - verified subject
-        - operationId
-        - canonical resource path
-        - Idempotency-Key
+          - verified organisation
+          - verified subject
+          - operationId
+          - canonical resource path
+          - Idempotency-Key
         retention_seconds: 86400
-        request_comparison: Canonical validated semantic JSON; distinguish absent and null; include operation target.
-        replay: 'Re-authenticate and re-authorize first; serialize concurrent uses atomically; never repeat side
-          effects or return erased/one-time secrets. Different request: 409 API-4090. In-flight: 409 API-4090 with
-          Retry-After. After record expiry never resurrect expired resources; enforce independent business uniqueness.'
+        request_comparison: Canonical validated semantic JSON; distinguish absent and
+          null; include operation target.
+        replay: 'Re-authenticate and re-authorize first; serialize concurrent uses
+          atomically; never repeat side effects or return erased/one-time
+          secrets. Different request: 409 API-4090. In-flight: 409 API-4090 with
+          Retry-After. After record expiry never resurrect expired resources;
+          enforce independent business uniqueness.'
   /internal/v1/offers/{offer_id}:
     get:
       operationId: getOffer
       tags:
-      - offers
+        - offers
       summary: INT-02 — read offer state (no tokens, no values)
       x-requirements:
-      - UC-01
+        - UC-01
       x-roles:
-      - issuer-operator
-      - auditor
+        - issuer-operator
+        - auditor
       parameters:
-      - $ref: '#/components/parameters/OfferId'
-      - $ref: '#/components/parameters/RequestId'
+        - $ref: '#/components/parameters/OfferId'
+        - $ref: '#/components/parameters/RequestId'
       responses:
         '200':
           description: Offer state
@@ -133,24 +142,26 @@ paths:
       security: *id001
       description: '
 
-        Authenticate before resource lookup or replay. Require one of these roles: issuer-operator, auditor. Enforce
-        resource/organisation permissions from verified server-side identity; x-roles alone is not enforcement.
-        401 for invalid credentials; 403 for insufficient role. Never expose foreign resource details.'
+        Authenticate before resource lookup or replay. Require one of these
+        roles: issuer-operator, auditor. Enforce resource/organisation
+        permissions from verified server-side identity; x-roles alone is not
+        enforcement. 401 for invalid credentials; 403 for insufficient role.
+        Never expose foreign resource details.'
   /internal/v1/offers/{offer_id}/cancel:
     post:
       operationId: cancelOffer
       tags:
-      - offers
+        - offers
       summary: INT-03 — cancel an unused offer
       x-requirements:
-      - T-A03
+        - T-A03
       x-roles:
-      - issuer-operator
+        - issuer-operator
       x-audit-event: offer.cancelled
       parameters:
-      - $ref: '#/components/parameters/OfferId'
-      - $ref: '#/components/parameters/IdempotencyKey'
-      - $ref: '#/components/parameters/RequestId'
+        - $ref: '#/components/parameters/OfferId'
+        - $ref: '#/components/parameters/IdempotencyKey'
+        - $ref: '#/components/parameters/RequestId'
       requestBody:
         required: false
         content:
@@ -162,9 +173,9 @@ paths:
                 reason_code:
                   type: string
                   enum:
-                  - operator_request
-                  - data_error
-                  - expired_manually
+                    - operator_request
+                    - data_error
+                    - expired_manually
                   pattern: ^[a-z][a-z0-9]*(?:_[a-z0-9]+)*$
                   minLength: 1
                   maxLength: 64
@@ -184,39 +195,48 @@ paths:
           $ref: '#/components/responses/Unauthorized'
         '403':
           $ref: '#/components/responses/Forbidden'
+        "404":
+          $ref: "#/components/responses/NotFound"
       security: *id001
       description: '
 
-        Authenticate before resource lookup or replay. Require one of these roles: issuer-operator. Enforce resource/organisation
-        permissions from verified server-side identity; x-roles alone is not enforcement. 401 for invalid credentials;
-        403 for insufficient role. Never expose foreign resource details.'
+        Authenticate before resource lookup or replay. Require one of these
+        roles: issuer-operator. Enforce resource/organisation permissions from
+        verified server-side identity; x-roles alone is not enforcement. 401 for
+        invalid credentials; 403 for insufficient role. Never expose foreign
+        resource details. Unknown resource returns generic 404. For protected
+        operations, foreign resources use the same 404 shape after
+        operation-role validation (proposed OD-01); do not reveal existence.'
       x-idempotency:
         status: proposed OD-03
         scope:
-        - verified organisation
-        - verified subject
-        - operationId
-        - canonical resource path
-        - Idempotency-Key
+          - verified organisation
+          - verified subject
+          - operationId
+          - canonical resource path
+          - Idempotency-Key
         retention_seconds: 86400
-        request_comparison: Canonical validated semantic JSON; distinguish absent and null; include operation target.
-        replay: 'Re-authenticate and re-authorize first; serialize concurrent uses atomically; never repeat side
-          effects or return erased/one-time secrets. Different request: 409 API-4090. In-flight: 409 API-4090 with
-          Retry-After. After record expiry never resurrect expired resources; enforce independent business uniqueness.'
+        request_comparison: Canonical validated semantic JSON; distinguish absent and
+          null; include operation target.
+        replay: 'Re-authenticate and re-authorize first; serialize concurrent uses
+          atomically; never repeat side effects or return erased/one-time
+          secrets. Different request: 409 API-4090. In-flight: 409 API-4090 with
+          Retry-After. After record expiry never resurrect expired resources;
+          enforce independent business uniqueness.'
   /internal/v1/credentials/{credential_id}:
     get:
       operationId: getCredentialRecord
       tags:
-      - credentials
+        - credentials
       summary: INT-04 — credential metadata record (phase 3)
       x-phase: 3
       x-roles:
-      - issuer-operator
-      - issuer-authority
-      - auditor
+        - issuer-operator
+        - issuer-authority
+        - auditor
       parameters:
-      - $ref: '#/components/parameters/CredentialId'
-      - $ref: '#/components/parameters/RequestId'
+        - $ref: '#/components/parameters/CredentialId'
+        - $ref: '#/components/parameters/RequestId'
       responses:
         '200':
           description: Metadata only — no claims, no disclosures, no national ID
@@ -224,8 +244,8 @@ paths:
             application/json:
               schema:
                 anyOf:
-                - $ref: '#/components/schemas/CredentialRecord'
-                - $ref: '#/components/schemas/CredentialRecordAuthority'
+                  - $ref: '#/components/schemas/CredentialRecord'
+                  - $ref: '#/components/schemas/CredentialRecordAuthority'
           headers:
             X-Environment:
               schema:
@@ -242,34 +262,62 @@ paths:
       security: *id001
       description: '
 
-        Authenticate before resource lookup or replay. Require one of these roles: issuer-operator, issuer-authority,
-        auditor. Enforce resource/organisation permissions from verified server-side identity; x-roles alone is
-        not enforcement. 401 for invalid credentials; 403 for insufficient role. Never expose foreign resource details.
-        OD-05: operator/auditor use CredentialRecord; only authorized issuer-authority may use CredentialRecordAuthority.
-        JSON Schema cannot determine caller role. This does not remove protocol status index from the signed credential
-        or internal allocator response.'
+        Authenticate before resource lookup or replay. Require one of these
+        roles: issuer-operator, issuer-authority, auditor. Enforce
+        resource/organisation permissions from verified server-side identity;
+        x-roles alone is not enforcement. 401 for invalid credentials; 403 for
+        insufficient role. Never expose foreign resource details. OD-05:
+        operator/auditor use CredentialRecord; only authorized issuer-authority
+        may use CredentialRecordAuthority. JSON Schema cannot determine caller
+        role. This does not remove protocol status index from the signed
+        credential or internal allocator response.'
   /internal/v1/credentials/{credential_id}/suspend:
     post:
       operationId: suspendCredential
       tags:
-      - credentials
+        - credentials
       summary: INT-05 — suspend (status value 2; requires 2-bit list)
       x-phase: 3
       x-requirements:
-      - T-S01
-      - DR-17
-      - DR-29
+        - T-S01
+        - DR-17
+        - DR-29
       x-roles:
-      - issuer-authority
+        - issuer-authority
       x-audit-event: status.suspended
       parameters:
-      - $ref: '#/components/parameters/CredentialId'
-      - $ref: '#/components/parameters/IdempotencyKey'
+        - $ref: '#/components/parameters/CredentialId'
+        - $ref: '#/components/parameters/IdempotencyKey'
       requestBody:
         $ref: '#/components/requestBodies/StatusChange'
       responses:
         '200':
-          $ref: '#/components/responses/StatusChanged'
+          description: Successful suspendCredential returns SUSPENDED only; does not
+            assert runtime implementation.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: false
+                required:
+                  - credential_id
+                  - state
+                  - status_published_at
+                properties:
+                  credential_id:
+                    type: string
+                    format: uuid
+                  state:
+                    type: string
+                    const: SUSPENDED
+                  status_published_at:
+                    type: string
+                    format: date-time
+          headers:
+            X-Environment:
+              schema:
+                type: string
+                const: TEST
         '409':
           $ref: '#/components/responses/Conflict'
         '422':
@@ -282,45 +330,58 @@ paths:
           $ref: '#/components/responses/Unauthorized'
         '403':
           $ref: '#/components/responses/Forbidden'
+        "404":
+          $ref: "#/components/responses/NotFound"
       security: *id001
       description: '
 
-        Authenticate before resource lookup or replay. Require one of these roles: issuer-authority. Enforce resource/organisation
-        permissions from verified server-side identity; x-roles alone is not enforcement. 401 for invalid credentials;
-        403 for insufficient role. Never expose foreign resource details.'
+        Authenticate before resource lookup or replay. Require one of these
+        roles: issuer-authority. Enforce resource/organisation permissions from
+        verified server-side identity; x-roles alone is not enforcement. 401 for
+        invalid credentials; 403 for insufficient role. Never expose foreign
+        resource details. Unknown resource returns generic 404. For protected
+        operations, foreign resources use the same 404 shape after
+        operation-role validation (proposed OD-01); do not reveal existence.'
       x-idempotency:
         status: proposed OD-03
         scope:
-        - verified organisation
-        - verified subject
-        - operationId
-        - canonical resource path
-        - Idempotency-Key
+          - verified organisation
+          - verified subject
+          - operationId
+          - canonical resource path
+          - Idempotency-Key
         retention_seconds: 86400
-        request_comparison: Canonical validated semantic JSON; distinguish absent and null; include operation target.
-        replay: 'Re-authenticate and re-authorize first; serialize concurrent uses atomically; never repeat side
-          effects or return erased/one-time secrets. Different request: 409 API-4090. In-flight: 409 API-4090 with
-          Retry-After. After record expiry never resurrect expired resources; enforce independent business uniqueness.'
+        request_comparison: Canonical validated semantic JSON; distinguish absent and
+          null; include operation target.
+        replay: 'Re-authenticate and re-authorize first; serialize concurrent uses
+          atomically; never repeat side effects or return erased/one-time
+          secrets. Different request: 409 API-4090. In-flight: 409 API-4090 with
+          Retry-After. After record expiry never resurrect expired resources;
+          enforce independent business uniqueness.'
       x-approval-policy:
         status: pending-owner OD-06
-        reference: DR-29 original text unavailable
-        proposal: require independent human approval on suspend/reinstate/revoke; exact scope must be approved
+        reference: "DR-29 recovered: issuer alone, two approvals, irreversible
+          revocation and holder re-authentication for reinstatement; remains
+          unapproved"
+        proposal: require independent human approval on suspend/reinstate/revoke; exact
+          scope must be approved
   /internal/v1/credentials/{credential_id}/reinstate:
     post:
       operationId: reinstateCredential
       tags:
-      - credentials
-      summary: INT-06 — lift suspension (from SUSPENDED only, after holder re-authentication)
+        - credentials
+      summary: INT-06 — lift suspension (from SUSPENDED only, after holder
+        re-authentication)
       x-phase: 3
       x-requirements:
-      - T-S02
-      - LC-03
+        - T-S02
+        - LC-03
       x-roles:
-      - issuer-authority
+        - issuer-authority
       x-audit-event: status.reinstated
       parameters:
-      - $ref: '#/components/parameters/CredentialId'
-      - $ref: '#/components/parameters/IdempotencyKey'
+        - $ref: '#/components/parameters/CredentialId'
+        - $ref: '#/components/parameters/IdempotencyKey'
       requestBody:
         required: true
         content:
@@ -329,27 +390,54 @@ paths:
               type: object
               additionalProperties: false
               required:
-              - reason_code
+                - reason_code
               properties:
                 reason_code:
                   type: string
                   enum:
-                  - reinstated
+                    - reinstated
                   pattern: ^[a-z][a-z0-9]*(?:_[a-z0-9]+)*$
                   minLength: 1
                   maxLength: 64
                 approval_ref:
                   type: string
                   maxLength: 64
-                  description: 'Pending OD-06 / DR-29: opaque reference, never proof by mere presence. Proposed
-                    enforcement resolves an unexpired, unused approval by a distinct authorised human, bound to
-                    organisation, target, action and request digest; consume atomically. Missing/invalid required
-                    approval => 403 API-4030. Exact required operations await owner decision; not required by this
-                    draft schema.'
+                  description: 'Pending OD-06 / DR-29: opaque reference, never proof by mere
+                    presence. Proposed enforcement resolves an unexpired, unused
+                    approval by a distinct authorised human, bound to
+                    organisation, target, action and request digest; consume
+                    atomically. Missing/invalid required approval => 403
+                    API-4030. Exact required operations await owner decision;
+                    not required by this draft schema.'
                   minLength: 1
       responses:
         '200':
-          $ref: '#/components/responses/StatusChanged'
+          description: Successful reinstateCredential returns ACTIVE only; does not assert
+            runtime implementation.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: false
+                required:
+                  - credential_id
+                  - state
+                  - status_published_at
+                properties:
+                  credential_id:
+                    type: string
+                    format: uuid
+                  state:
+                    type: string
+                    const: ACTIVE
+                  status_published_at:
+                    type: string
+                    format: date-time
+          headers:
+            X-Environment:
+              schema:
+                type: string
+                const: TEST
         '409':
           $ref: '#/components/responses/Conflict'
         '400':
@@ -358,52 +446,90 @@ paths:
           $ref: '#/components/responses/Unauthorized'
         '403':
           $ref: '#/components/responses/Forbidden'
+        "404":
+          $ref: "#/components/responses/NotFound"
       security: *id001
       description: '
 
-        Authenticate before resource lookup or replay. Require one of these roles: issuer-authority. Enforce resource/organisation
-        permissions from verified server-side identity; x-roles alone is not enforcement. 401 for invalid credentials;
-        403 for insufficient role. Never expose foreign resource details. Proposed reason_code reinstated denotes
-        lifting suspension; holder re-authentication must be verified server-side.'
+        Authenticate before resource lookup or replay. Require one of these
+        roles: issuer-authority. Enforce resource/organisation permissions from
+        verified server-side identity; x-roles alone is not enforcement. 401 for
+        invalid credentials; 403 for insufficient role. Never expose foreign
+        resource details. Proposed reason_code reinstated denotes lifting
+        suspension; holder re-authentication must be verified server-side.
+        Unknown resource returns generic 404. For protected operations, foreign
+        resources use the same 404 shape after operation-role validation
+        (proposed OD-01); do not reveal existence.'
       x-idempotency:
         status: proposed OD-03
         scope:
-        - verified organisation
-        - verified subject
-        - operationId
-        - canonical resource path
-        - Idempotency-Key
+          - verified organisation
+          - verified subject
+          - operationId
+          - canonical resource path
+          - Idempotency-Key
         retention_seconds: 86400
-        request_comparison: Canonical validated semantic JSON; distinguish absent and null; include operation target.
-        replay: 'Re-authenticate and re-authorize first; serialize concurrent uses atomically; never repeat side
-          effects or return erased/one-time secrets. Different request: 409 API-4090. In-flight: 409 API-4090 with
-          Retry-After. After record expiry never resurrect expired resources; enforce independent business uniqueness.'
+        request_comparison: Canonical validated semantic JSON; distinguish absent and
+          null; include operation target.
+        replay: 'Re-authenticate and re-authorize first; serialize concurrent uses
+          atomically; never repeat side effects or return erased/one-time
+          secrets. Different request: 409 API-4090. In-flight: 409 API-4090 with
+          Retry-After. After record expiry never resurrect expired resources;
+          enforce independent business uniqueness.'
       x-approval-policy:
         status: pending-owner OD-06
-        reference: DR-29 original text unavailable
-        proposal: require independent human approval on suspend/reinstate/revoke; exact scope must be approved
+        reference: "DR-29 recovered: issuer alone, two approvals, irreversible
+          revocation and holder re-authentication for reinstatement; remains
+          unapproved"
+        proposal: require independent human approval on suspend/reinstate/revoke; exact
+          scope must be approved
   /internal/v1/credentials/{credential_id}/revoke:
     post:
       operationId: revokeCredential
       tags:
-      - credentials
+        - credentials
       summary: INT-07 — revoke (final; status value 1; never reversed)
       x-phase: 3
       x-requirements:
-      - T-S03
-      - T-S04
-      - LC-02
+        - T-S03
+        - T-S04
+        - LC-02
       x-roles:
-      - issuer-authority
+        - issuer-authority
       x-audit-event: status.revoked
       parameters:
-      - $ref: '#/components/parameters/CredentialId'
-      - $ref: '#/components/parameters/IdempotencyKey'
+        - $ref: '#/components/parameters/CredentialId'
+        - $ref: '#/components/parameters/IdempotencyKey'
       requestBody:
         $ref: '#/components/requestBodies/StatusChange'
       responses:
         '200':
-          $ref: '#/components/responses/StatusChanged'
+          description: Successful revokeCredential returns REVOKED only; does not assert
+            runtime implementation.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: false
+                required:
+                  - credential_id
+                  - state
+                  - status_published_at
+                properties:
+                  credential_id:
+                    type: string
+                    format: uuid
+                  state:
+                    type: string
+                    const: REVOKED
+                  status_published_at:
+                    type: string
+                    format: date-time
+          headers:
+            X-Environment:
+              schema:
+                type: string
+                const: TEST
         '409':
           $ref: '#/components/responses/Conflict'
         '503':
@@ -414,46 +540,62 @@ paths:
           $ref: '#/components/responses/Unauthorized'
         '403':
           $ref: '#/components/responses/Forbidden'
+        "404":
+          $ref: "#/components/responses/NotFound"
       security: *id001
       description: '
 
-        Authenticate before resource lookup or replay. Require one of these roles: issuer-authority. Enforce resource/organisation
-        permissions from verified server-side identity; x-roles alone is not enforcement. 401 for invalid credentials;
-        403 for insufficient role. Never expose foreign resource details.'
+        Authenticate before resource lookup or replay. Require one of these
+        roles: issuer-authority. Enforce resource/organisation permissions from
+        verified server-side identity; x-roles alone is not enforcement. 401 for
+        invalid credentials; 403 for insufficient role. Never expose foreign
+        resource details. Unknown resource returns generic 404. For protected
+        operations, foreign resources use the same 404 shape after
+        operation-role validation (proposed OD-01); do not reveal existence.'
       x-idempotency:
         status: proposed OD-03
         scope:
-        - verified organisation
-        - verified subject
-        - operationId
-        - canonical resource path
-        - Idempotency-Key
+          - verified organisation
+          - verified subject
+          - operationId
+          - canonical resource path
+          - Idempotency-Key
         retention_seconds: 86400
-        request_comparison: Canonical validated semantic JSON; distinguish absent and null; include operation target.
-        replay: 'Re-authenticate and re-authorize first; serialize concurrent uses atomically; never repeat side
-          effects or return erased/one-time secrets. Different request: 409 API-4090. In-flight: 409 API-4090 with
-          Retry-After. After record expiry never resurrect expired resources; enforce independent business uniqueness.'
+        request_comparison: Canonical validated semantic JSON; distinguish absent and
+          null; include operation target.
+        replay: 'Re-authenticate and re-authorize first; serialize concurrent uses
+          atomically; never repeat side effects or return erased/one-time
+          secrets. Different request: 409 API-4090. In-flight: 409 API-4090 with
+          Retry-After. After record expiry never resurrect expired resources;
+          enforce independent business uniqueness.'
       x-approval-policy:
         status: pending-owner OD-06
-        reference: DR-29 original text unavailable
-        proposal: require independent human approval on suspend/reinstate/revoke; exact scope must be approved
+        reference: "DR-29 recovered: issuer alone, two approvals, irreversible
+          revocation and holder re-authentication for reinstatement; remains
+          unapproved"
+        proposal: require independent human approval on suspend/reinstate/revoke; exact
+          scope must be approved
 components:
   securitySchemes:
     serviceToken:
       type: http
       scheme: bearer
       bearerFormat: JWT
-      description: 'Proposed TEST AuthProvider bearer contract (DR-05 source missing): validate signature, configured
-        algorithm allowlist, issuer, audience, exp/nbf and revocation/session state. Trusted subject, organisation
-        and roles come from verified identity only; never from request body. Exact issuer/audience/claims remain
-        OD-02.'
+      description: 'Proposed TEST AuthProvider bearer contract (DR-05 recovered, not
+        approved): validate signature, configured algorithm allowlist, issuer,
+        audience, exp/nbf and revocation/session state. Trusted subject,
+        organisation and roles come from verified identity only; never from
+        request body. Exact issuer/audience/claims remain OD-02. JWT profile
+        details remain OD-02: reject alg=none and key/algorithm confusion; kid
+        selects only configured trusted keys, never arbitrary network
+        retrieval.'
   parameters:
     IdempotencyKey:
       name: Idempotency-Key
       in: header
       required: true
-      description: Proposed OD-03. See operation x-idempotency. Required UUID; 24-hour metadata retention; no replay
-        of one-time values.
+      description: Proposed OD-03. See operation x-idempotency. Required UUID; 24-hour
+        metadata retention; no replay of one-time values.
       schema:
         type: string
         format: uuid
@@ -492,27 +634,30 @@ components:
             type: object
             additionalProperties: false
             required:
-            - reason_code
+              - reason_code
             properties:
               reason_code:
                 type: string
                 enum:
-                - device_loss
-                - compromise
-                - data_error
-                - superseded
-                - holder_request
-                - investigation
+                  - device_loss
+                  - compromise
+                  - data_error
+                  - superseded
+                  - holder_request
+                  - investigation
                 pattern: ^[a-z][a-z0-9]*(?:_[a-z0-9]+)*$
                 minLength: 1
                 maxLength: 64
               approval_ref:
                 type: string
                 maxLength: 64
-                description: 'Pending OD-06 / DR-29: opaque reference, never proof by mere presence. Proposed enforcement
-                  resolves an unexpired, unused approval by a distinct authorised human, bound to organisation,
-                  target, action and request digest; consume atomically. Missing/invalid required approval => 403
-                  API-4030. Exact required operations await owner decision; not required by this draft schema.'
+                description: 'Pending OD-06 / DR-29: opaque reference, never proof by mere
+                  presence. Proposed enforcement resolves an unexpired, unused
+                  approval by a distinct authorised human, bound to
+                  organisation, target, action and request digest; consume
+                  atomically. Missing/invalid required approval => 403 API-4030.
+                  Exact required operations await owner decision; not required
+                  by this draft schema.'
                 minLength: 1
   responses:
     Error:
@@ -541,37 +686,9 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    StatusChanged:
-      description: New state published
-      content:
-        application/json:
-          schema:
-            type: object
-            additionalProperties: false
-            required:
-            - credential_id
-            - state
-            - status_published_at
-            properties:
-              credential_id:
-                type: string
-                format: uuid
-              state:
-                type: string
-                enum:
-                - ACTIVE
-                - SUSPENDED
-                - REVOKED
-              status_published_at:
-                type: string
-                format: date-time
-      headers:
-        X-Environment:
-          schema:
-            type: string
-            const: TEST
     BadRequest:
-      description: 'Malformed syntax, invalid schema, identifier or required header: API-4001.'
+      description: 'Malformed syntax, invalid schema, identifier or required header:
+        API-4001.'
       content:
         application/json:
           schema:
@@ -607,7 +724,8 @@ components:
             type: string
             const: TEST
     Forbidden:
-      description: 'Authenticated principal lacks operation role or approved resource permission: API-4030.'
+      description: 'Authenticated principal lacks operation role or approved resource
+        permission: API-4030.'
       content:
         application/json:
           schema:
@@ -623,8 +741,8 @@ components:
             type: string
             const: TEST
     Conflict:
-      description: 'Idempotency key conflicts with another request, or state conflict: API-4090 unless a documented
-        service code applies.'
+      description: 'Idempotency key conflicts with another request, or state conflict:
+        API-4090 unless a documented service code applies.'
       content:
         application/json:
           schema:
@@ -643,14 +761,32 @@ components:
           schema:
             type: integer
             minimum: 1
-          description: Present for an in-flight duplicate only; not an instruction to retry a changed payload.
+          description: Present for an in-flight duplicate only; not an instruction to
+            retry a changed payload.
+    NotFound:
+      description: Unknown resource; protected foreign resources are indistinguishable
+        (proposed OD-01). No identifier echoed.
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorResponse"
+          example:
+            error:
+              code: API-4040
+              message: Not found
+              request_id: test-request-1
+      headers:
+        X-Environment:
+          schema:
+            type: string
+            const: TEST
   schemas:
     CreateOfferRequest:
       type: object
       additionalProperties: false
       required:
-      - citizen_ref
-      - configuration_id
+        - citizen_ref
+        - configuration_id
       properties:
         citizen_ref:
           type: string
@@ -659,11 +795,11 @@ components:
         configuration_id:
           type: string
           enum:
-          - national_id_test
+            - national_id_test
         renewal_of:
           type:
-          - string
-          - 'null'
+            - string
+            - 'null'
           format: uuid
         replace_existing:
           type: boolean
@@ -672,9 +808,9 @@ components:
       type: object
       additionalProperties: false
       required:
-      - offer_id
-      - offer_uri
-      - expires_at
+        - offer_id
+        - offer_uri
+        - expires_at
       properties:
         offer_id:
           type: string
@@ -693,10 +829,10 @@ components:
       type: object
       additionalProperties: false
       required:
-      - offer_id
-      - state
-      - created_at
-      - expires_at
+        - offer_id
+        - state
+        - created_at
+        - expires_at
       properties:
         offer_id:
           type: string
@@ -704,12 +840,12 @@ components:
         state:
           type: string
           enum:
-          - OFFERED
-          - ISSUING
-          - COMPLETED
-          - EXPIRED
-          - CANCELLED
-          - FAILED
+            - OFFERED
+            - ISSUING
+            - COMPLETED
+            - EXPIRED
+            - CANCELLED
+            - FAILED
         created_at:
           type: string
           format: date-time
@@ -722,11 +858,11 @@ components:
       type: object
       additionalProperties: false
       required:
-      - credential_id
-      - vct
-      - state
-      - iat
-      - exp
+        - credential_id
+        - vct
+        - state
+        - iat
+        - exp
       properties:
         credential_id:
           type: string
@@ -736,10 +872,10 @@ components:
         state:
           type: string
           enum:
-          - ACTIVE
-          - SUSPENDED
-          - REVOKED
-          - EXPIRED
+            - ACTIVE
+            - SUSPENDED
+            - REVOKED
+            - EXPIRED
         iat:
           type: integer
         exp:
@@ -767,20 +903,21 @@ components:
                 pattern: ^[a-z][a-z0-9]*(?:_[a-z0-9]+)*$
                 minLength: 1
                 maxLength: 64
-      description: Default metadata projection for operator/auditor. idx forbidden. Proposed OD-05.
+      description: Default metadata projection for operator/auditor. idx forbidden.
+        Proposed OD-05.
     ErrorResponse:
       type: object
       additionalProperties: false
       required:
-      - error
+        - error
       properties:
         error:
           type: object
           additionalProperties: false
           required:
-          - code
-          - message
-          - request_id
+            - code
+            - message
+            - request_id
           properties:
             code:
               type: string
@@ -797,11 +934,11 @@ components:
       type: object
       additionalProperties: false
       required:
-      - credential_id
-      - vct
-      - state
-      - iat
-      - exp
+        - credential_id
+        - vct
+        - state
+        - iat
+        - exp
       properties:
         credential_id:
           type: string
@@ -811,10 +948,10 @@ components:
         state:
           type: string
           enum:
-          - ACTIVE
-          - SUSPENDED
-          - REVOKED
-          - EXPIRED
+            - ACTIVE
+            - SUSPENDED
+            - REVOKED
+            - EXPIRED
         iat:
           type: integer
         exp:
@@ -845,6 +982,6 @@ components:
                 pattern: ^[a-z][a-z0-9]*(?:_[a-z0-9]+)*$
                 minLength: 1
                 maxLength: 64
-      description: 'Proposed OD-05: only issuer-authority with resource permission may receive idx; omit if not
-        necessary.'
+      description: 'Proposed OD-05: only issuer-authority with resource permission may
+        receive idx; omit if not necessary.'
 x-review-status: proposed-not-approved

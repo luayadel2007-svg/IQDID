@@ -2,38 +2,40 @@ openapi: 3.1.0
 info:
   title: Iraqi Digital ID Prototype — Status Service (internal + public status list)
   version: 1.1.0-draft
-  description: 'TEST ONLY. INT-08/INT-09 plus the public Token Status List endpoint (STD-11, documented by reference
-    to
+  description: 'TEST ONLY. INT-08/INT-09 plus the public Token Status List
+    endpoint (STD-11, documented by reference to
 
-    draft-ietf-oauth-status-list-21; not redefined). Status list: 2 bits, >= 8192 entries, signed by a
+    draft-ietf-oauth-status-list-21; not redefined). Status list: 2 bits, >=
+    8192 entries, signed by a
 
     dedicated STATUS key with x5c (anchor excluded) — DR-17 as amended, SEC-03.
 
 
-    TASK-3 REVIEW CANDIDATE. Not owner-approved and not a service implementation. See docs/task3/G1a_Open_Decisions.md.
-    Existing DR proposals retain their original status.
+    TASK-3 REVIEW CANDIDATE. Not owner-approved and not a service
+    implementation. See docs/task3/G1a_Open_Decisions.md. Existing DR proposals
+    retain their original status.
 
     '
   x-environment: TEST
 servers:
-- url: https://status.digital-id.test
+  - url: https://status.digital-id.test
 paths:
   /internal/v1/status/allocations:
     post:
       operationId: allocateStatusIndex
       summary: INT-08 — reserve a random, never-reused index with value VALID
       x-requirements:
-      - T-A04
-      - DR-03
-      - DR-17
-      - REV-12
+        - T-A04
+        - DR-03
+        - DR-17
+        - REV-12
       x-roles:
-      - status-allocator
+        - status-allocator
       x-audit-event: status.allocated
       security:
-      - serviceToken: []
+        - serviceToken: []
       parameters:
-      - $ref: '#/components/parameters/IdempotencyKey'
+        - $ref: '#/components/parameters/IdempotencyKey'
       requestBody:
         required: true
         content:
@@ -42,12 +44,13 @@ paths:
               type: object
               additionalProperties: false
               required:
-              - credential_ref
+                - credential_ref
               properties:
                 credential_ref:
                   type: string
                   format: uuid
-                  description: Random internal id — the status service never learns citizen identity
+                  description: Random internal id — the status service never learns citizen
+                    identity
       responses:
         '201':
           description: Allocated
@@ -62,8 +65,8 @@ paths:
                 type: object
                 additionalProperties: false
                 required:
-                - list_uri
-                - idx
+                  - list_uri
+                  - idx
                 properties:
                   list_uri:
                     type: string
@@ -84,53 +87,60 @@ paths:
           $ref: '#/components/responses/Conflict'
       description: '
 
-        Authenticate before resource lookup or replay. Require one of these roles: status-allocator. Enforce resource/organisation
-        permissions from verified server-side identity; x-roles alone is not enforcement. 401 for invalid credentials;
-        403 for insufficient role. Never expose foreign resource details.'
+        Authenticate before resource lookup or replay. Require one of these
+        roles: status-allocator. Enforce resource/organisation permissions from
+        verified server-side identity; x-roles alone is not enforcement. 401 for
+        invalid credentials; 403 for insufficient role. Never expose foreign
+        resource details.'
       x-idempotency:
         status: proposed OD-03
         scope:
-        - verified organisation
-        - verified subject
-        - operationId
-        - canonical resource path
-        - Idempotency-Key
+          - verified organisation
+          - verified subject
+          - operationId
+          - canonical resource path
+          - Idempotency-Key
         retention_seconds: 86400
-        request_comparison: Canonical validated semantic JSON; distinguish absent and null; include operation target.
-        replay: 'Re-authenticate and re-authorize first; serialize concurrent uses atomically; never repeat side
-          effects or return erased/one-time secrets. Different request: 409 API-4090. In-flight: 409 API-4090 with
-          Retry-After. After record expiry never resurrect expired resources; enforce independent business uniqueness.'
+        request_comparison: Canonical validated semantic JSON; distinguish absent and
+          null; include operation target.
+        replay: 'Re-authenticate and re-authorize first; serialize concurrent uses
+          atomically; never repeat side effects or return erased/one-time
+          secrets. Different request: 409 API-4090. In-flight: 409 API-4090 with
+          Retry-After. After record expiry never resurrect expired resources;
+          enforce independent business uniqueness.'
+      tags:
+        - status
   /internal/v1/status/entries/{list_id}/{idx}:
     put:
       operationId: setStatusValue
       summary: INT-09 — set value and publish a new list (phase 3)
       x-phase: 3
       x-requirements:
-      - DR-17
-      - DR-29
-      - LC-02
+        - DR-17
+        - DR-29
+        - LC-02
       x-roles:
-      - status-allocator
+        - status-allocator
       x-audit-event: status.list_published
       x-rules:
-      - value 1 (INVALID) is final; any change away from 1 -> 409 STA-4091
-      - value 2 (SUSPENDED) requires bits=2 -> otherwise 422 STA-4221
+        - value 1 (INVALID) is final; any change away from 1 -> 409 STA-4091
+        - value 2 (SUSPENDED) requires bits=2 -> otherwise 422 STA-4221
       security:
-      - serviceToken: []
+        - serviceToken: []
       parameters:
-      - name: list_id
-        in: path
-        required: true
-        schema:
-          type: string
-          pattern: ^[a-z0-9-]{1,32}$
-      - name: idx
-        in: path
-        required: true
-        schema:
-          type: integer
-          minimum: 0
-      - $ref: '#/components/parameters/IdempotencyKey'
+        - name: list_id
+          in: path
+          required: true
+          schema:
+            type: string
+            pattern: ^[a-z0-9-]{1,32}$
+        - name: idx
+          in: path
+          required: true
+          schema:
+            type: integer
+            minimum: 0
+        - $ref: '#/components/parameters/IdempotencyKey'
       requestBody:
         required: true
         content:
@@ -139,36 +149,38 @@ paths:
               type: object
               additionalProperties: false
               required:
-              - value
-              - reason_code
+                - value
+                - reason_code
               properties:
                 value:
                   type: integer
                   enum:
-                  - 0
-                  - 1
-                  - 2
+                    - 0
+                    - 1
+                    - 2
                 reason_code:
                   type: string
                   enum:
-                  - device_loss
-                  - compromise
-                  - data_error
-                  - superseded
-                  - holder_request
-                  - investigation
-                  - reinstated
+                    - device_loss
+                    - compromise
+                    - data_error
+                    - superseded
+                    - holder_request
+                    - investigation
+                    - reinstated
                   pattern: ^[a-z][a-z0-9]*(?:_[a-z0-9]+)*$
                   minLength: 1
                   maxLength: 64
                 approval_ref:
                   type: string
                   maxLength: 64
-                  description: 'Pending OD-06 / DR-29: opaque reference, never proof by mere presence. Proposed
-                    enforcement resolves an unexpired, unused approval by a distinct authorised human, bound to
-                    organisation, target, action and request digest; consume atomically. Missing/invalid required
-                    approval => 403 API-4030. Exact required operations await owner decision; not required by this
-                    draft schema.'
+                  description: 'Pending OD-06 / DR-29: opaque reference, never proof by mere
+                    presence. Proposed enforcement resolves an unexpired, unused
+                    approval by a distinct authorised human, bound to
+                    organisation, target, action and request digest; consume
+                    atomically. Missing/invalid required approval => 403
+                    API-4030. Exact required operations await owner decision;
+                    not required by this draft schema.'
                   minLength: 1
       responses:
         '200':
@@ -179,16 +191,16 @@ paths:
                 type: object
                 additionalProperties: false
                 required:
-                - value
-                - list_version
-                - published_at
+                  - value
+                  - list_version
+                  - published_at
                 properties:
                   value:
                     type: integer
                     enum:
-                    - 0
-                    - 1
-                    - 2
+                      - 0
+                      - 1
+                      - 2
                   list_version:
                     type: integer
                     minimum: 1
@@ -203,8 +215,8 @@ paths:
         '404':
           $ref: '#/components/responses/Error'
         '409':
-          description: 'STA-4091: attempted transition from final revoked state 1 to 0 or 2. API-4090: idempotency
-            conflict.'
+          description: 'STA-4091: attempted transition from final revoked state 1 to 0 or
+            2. API-4090: idempotency conflict.'
           content:
             application/json:
               schema:
@@ -237,45 +249,55 @@ paths:
           $ref: '#/components/responses/Forbidden'
       description: '
 
-        Authenticate before resource lookup or replay. Require one of these roles: status-allocator. Enforce resource/organisation
-        permissions from verified server-side identity; x-roles alone is not enforcement. 401 for invalid credentials;
-        403 for insufficient role. Never expose foreign resource details. Proposed RP-03 / DR-66: read current state
-        and publish mutation atomically. Once current value is 1, requests for 0 or 2 return 409 STA-4091 without
-        version increment or publication. 1 -> 1 is a no-op (same version). Replays must not restore earlier state.
-        Concurrent revoke/reinstate must serialize. Human-approval forwarding/validation remains OD-06.'
+        Authenticate before resource lookup or replay. Require one of these
+        roles: status-allocator. Enforce resource/organisation permissions from
+        verified server-side identity; x-roles alone is not enforcement. 401 for
+        invalid credentials; 403 for insufficient role. Never expose foreign
+        resource details. Proposed RP-03 / DR-66: read current state and publish
+        mutation atomically. Once current value is 1, requests for 0 or 2 return
+        409 STA-4091 without version increment or publication. 1 -> 1 is a no-op
+        (same version). Replays must not restore earlier state. Concurrent
+        revoke/reinstate must serialize. Human-approval forwarding/validation
+        remains OD-06.'
       x-idempotency:
         status: proposed OD-03
         scope:
-        - verified organisation
-        - verified subject
-        - operationId
-        - canonical resource path
-        - Idempotency-Key
+          - verified organisation
+          - verified subject
+          - operationId
+          - canonical resource path
+          - Idempotency-Key
         retention_seconds: 86400
-        request_comparison: Canonical validated semantic JSON; distinguish absent and null; include operation target.
-        replay: 'Re-authenticate and re-authorize first; serialize concurrent uses atomically; never repeat side
-          effects or return erased/one-time secrets. Different request: 409 API-4090. In-flight: 409 API-4090 with
-          Retry-After. After record expiry never resurrect expired resources; enforce independent business uniqueness.'
+        request_comparison: Canonical validated semantic JSON; distinguish absent and
+          null; include operation target.
+        replay: 'Re-authenticate and re-authorize first; serialize concurrent uses
+          atomically; never repeat side effects or return erased/one-time
+          secrets. Different request: 409 API-4090. In-flight: 409 API-4090 with
+          Retry-After. After record expiry never resurrect expired resources;
+          enforce independent business uniqueness.'
+      tags:
+        - status
   /lists/{list_id}:
     get:
       operationId: getStatusListToken
-      summary: STD-11 — Status List Token (public; format defined by draft-ietf-oauth-status-list-21)
+      summary: STD-11 — Status List Token (public; format defined by
+        draft-ietf-oauth-status-list-21)
       x-standard: draft-ietf-oauth-status-list-21
       x-verifier-checks:
-      - typ=statuslist+jwt
-      - signature by STATUS key via x5c
-      - sub==uri
-      - iat present
-      - exp/ttl freshness <= 15 min (M-08)
-      - idx within list
+        - typ=statuslist+jwt
+        - signature by STATUS key via x5c
+        - sub==uri
+        - iat present
+        - exp/ttl freshness <= 15 min (M-08)
+        - idx within list
       security: []
       parameters:
-      - name: list_id
-        in: path
-        required: true
-        schema:
-          type: string
-          pattern: ^[a-z0-9-]{1,32}$
+        - name: list_id
+          in: path
+          required: true
+          schema:
+            type: string
+            pattern: ^[a-z0-9-]{1,32}$
       responses:
         '200':
           description: Signed status list token
@@ -295,20 +317,31 @@ paths:
                 pattern: ^[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+$
         '400':
           $ref: '#/components/responses/BadRequest'
+        "404":
+          $ref: "#/components/responses/NotFound"
       description: '
 
-        Public read: no bearer required; 401/403 are not part of this operation. Consumers must validate signed
-        data independently.'
+        Public read: no bearer required; 401/403 are not part of this operation.
+        Consumers must validate signed data independently. Unknown resource
+        returns generic 404. For protected operations, foreign resources use the
+        same 404 shape after operation-role validation (proposed OD-01); do not
+        reveal existence.'
+      tags:
+        - status
 components:
   securitySchemes:
     serviceToken:
       type: http
       scheme: bearer
       bearerFormat: JWT
-      description: 'Proposed TEST AuthProvider bearer contract (DR-05 source missing): validate signature, configured
-        algorithm allowlist, issuer, audience, exp/nbf and revocation/session state. Trusted subject, organisation
-        and roles come from verified identity only; never from request body. Exact issuer/audience/claims remain
-        OD-02.'
+      description: 'Proposed TEST AuthProvider bearer contract (DR-05 recovered, not
+        approved): validate signature, configured algorithm allowlist, issuer,
+        audience, exp/nbf and revocation/session state. Trusted subject,
+        organisation and roles come from verified identity only; never from
+        request body. Exact issuer/audience/claims remain OD-02. JWT profile
+        details remain OD-02: reject alg=none and key/algorithm confusion; kid
+        selects only configured trusted keys, never arbitrary network
+        retrieval.'
   parameters:
     IdempotencyKey:
       name: Idempotency-Key
@@ -317,8 +350,8 @@ components:
       schema:
         type: string
         format: uuid
-      description: Proposed OD-03. See operation x-idempotency. Required UUID; 24-hour metadata retention; no replay
-        of one-time values.
+      description: Proposed OD-03. See operation x-idempotency. Required UUID; 24-hour
+        metadata retention; no replay of one-time values.
   headers: {}
   responses:
     Error:
@@ -333,7 +366,8 @@ components:
             type: string
             const: TEST
     BadRequest:
-      description: 'Malformed syntax, invalid schema, identifier or required header: API-4001.'
+      description: 'Malformed syntax, invalid schema, identifier or required header:
+        API-4001.'
       content:
         application/json:
           schema:
@@ -369,7 +403,8 @@ components:
             type: string
             const: TEST
     Forbidden:
-      description: 'Authenticated principal lacks operation role or approved resource permission: API-4030.'
+      description: 'Authenticated principal lacks operation role or approved resource
+        permission: API-4030.'
       content:
         application/json:
           schema:
@@ -385,8 +420,8 @@ components:
             type: string
             const: TEST
     Conflict:
-      description: 'Idempotency key conflicts with another request, or state conflict: API-4090 unless a documented
-        service code applies.'
+      description: 'Idempotency key conflicts with another request, or state conflict:
+        API-4090 unless a documented service code applies.'
       content:
         application/json:
           schema:
@@ -405,21 +440,39 @@ components:
           schema:
             type: integer
             minimum: 1
-          description: Present for an in-flight duplicate only; not an instruction to retry a changed payload.
+          description: Present for an in-flight duplicate only; not an instruction to
+            retry a changed payload.
+    NotFound:
+      description: Unknown resource; protected foreign resources are indistinguishable
+        (proposed OD-01). No identifier echoed.
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorResponse"
+          example:
+            error:
+              code: API-4040
+              message: Not found
+              request_id: test-request-1
+      headers:
+        X-Environment:
+          schema:
+            type: string
+            const: TEST
   schemas:
     ErrorResponse:
       type: object
       additionalProperties: false
       required:
-      - error
+        - error
       properties:
         error:
           type: object
           additionalProperties: false
           required:
-          - code
-          - message
-          - request_id
+            - code
+            - message
+            - request_id
           properties:
             code:
               type: string
@@ -433,3 +486,6 @@ components:
               minLength: 1
               maxLength: 64
 x-review-status: proposed-not-approved
+tags:
+  - name: status
+    description: TEST draft status operations

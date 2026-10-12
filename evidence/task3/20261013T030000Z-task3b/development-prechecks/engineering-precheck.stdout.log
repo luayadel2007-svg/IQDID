@@ -1,0 +1,224 @@
+{
+  "scope": "Static guards, schemas and explicitly proposed models only. HTTP, storage, TTL, races NOT RUN.",
+  "passed": 53,
+  "total": 54,
+  "tests": [
+    {
+      "id": "guard-actual-four-documents",
+      "pass": false,
+      "error": "ROLE_MISMATCH\n+ actual - expected\n\n+ [\n+   'status-allocator'\n+ ]\n- undefined\n"
+    },
+    {
+      "id": "M01-unexpected-root-key",
+      "pass": true
+    },
+    {
+      "id": "M02-duplicate-yaml-key",
+      "pass": true
+    },
+    {
+      "id": "N03-response-wrong-type",
+      "pass": true
+    },
+    {
+      "id": "M04-missing-401",
+      "pass": true
+    },
+    {
+      "id": "M05-schema-unknown-key",
+      "pass": true
+    },
+    {
+      "id": "M06-sensitive-idx",
+      "pass": true
+    },
+    {
+      "id": "N07-missing-request-field",
+      "pass": true
+    },
+    {
+      "id": "N08-wrong-request-type",
+      "pass": true
+    },
+    {
+      "id": "M09-wrong-role",
+      "pass": true
+    },
+    {
+      "id": "M10-missing-404",
+      "pass": true
+    },
+    {
+      "id": "M11-reason-drift",
+      "pass": true
+    },
+    {
+      "id": "M12-reason-duplicate",
+      "pass": true
+    },
+    {
+      "id": "M13-idempotency-scope-drift",
+      "pass": true
+    },
+    {
+      "id": "M14-state-permissive",
+      "pass": true
+    },
+    {
+      "id": "M15-error-cross-service-drift",
+      "pass": true
+    },
+    {
+      "id": "M16-approval-implicitly-approved",
+      "pass": true
+    },
+    {
+      "id": "M17-host-policy-implicitly-approved",
+      "pass": true
+    },
+    {
+      "id": "state-suspend-positive",
+      "pass": true
+    },
+    {
+      "id": "state-suspend-reject-ACTIVE",
+      "pass": true
+    },
+    {
+      "id": "state-suspend-reject-REVOKED",
+      "pass": true
+    },
+    {
+      "id": "state-reinstate-positive",
+      "pass": true
+    },
+    {
+      "id": "state-reinstate-reject-SUSPENDED",
+      "pass": true
+    },
+    {
+      "id": "state-reinstate-reject-REVOKED",
+      "pass": true
+    },
+    {
+      "id": "state-revoke-positive",
+      "pass": true
+    },
+    {
+      "id": "state-revoke-reject-ACTIVE",
+      "pass": true
+    },
+    {
+      "id": "state-revoke-reject-SUSPENDED",
+      "pass": true
+    },
+    {
+      "id": "OD01-model-same-owner",
+      "pass": true
+    },
+    {
+      "id": "OD01-model-missing-auth",
+      "pass": true
+    },
+    {
+      "id": "OD01-model-wrong-role",
+      "pass": true
+    },
+    {
+      "id": "OD01-model-foreign-org",
+      "pass": true
+    },
+    {
+      "id": "OD01-model-foreign-owner",
+      "pass": true
+    },
+    {
+      "id": "OD01-model-missing",
+      "pass": true
+    },
+    {
+      "id": "OD06-active-optional",
+      "pass": true
+    },
+    {
+      "id": "OD06-proposed-required-negative",
+      "pass": true
+    },
+    {
+      "id": "OD06-proposed-positive",
+      "pass": true
+    },
+    {
+      "id": "OD07-active-optional",
+      "pass": true
+    },
+    {
+      "id": "OD07-overlay-missing",
+      "pass": true
+    },
+    {
+      "id": "OD07-overlay-empty",
+      "pass": true
+    },
+    {
+      "id": "OD07-overlay-positive",
+      "pass": true
+    },
+    {
+      "id": "OD07-proposed-host-exact",
+      "pass": true
+    },
+    {
+      "id": "OD07-proposed-host-case",
+      "pass": true
+    },
+    {
+      "id": "OD07-proposed-host-suffix",
+      "pass": true
+    },
+    {
+      "id": "OD07-proposed-host-userinfo",
+      "pass": true
+    },
+    {
+      "id": "OD07-proposed-host-wildcard",
+      "pass": true
+    },
+    {
+      "id": "OD07-proposed-host-port",
+      "pass": true
+    },
+    {
+      "id": "OD07-proposed-host-trailing-dot",
+      "pass": true
+    },
+    {
+      "id": "OD03-collision-model",
+      "pass": true
+    },
+    {
+      "id": "OD03-inflight-model",
+      "pass": true
+    },
+    {
+      "id": "OD03-other-org-model",
+      "pass": true
+    },
+    {
+      "id": "OD03-replay-model-no-values",
+      "pass": true
+    },
+    {
+      "id": "error-reject-secret-field",
+      "pass": true
+    },
+    {
+      "id": "all-contract-examples-no-secret-patterns",
+      "pass": true
+    },
+    {
+      "id": "M18-secret-like-example-detected",
+      "pass": true
+    }
+  ]
+}

@@ -1,0 +1,85 @@
+{
+  "status": "FAIL",
+  "p04_completion": "PARTIAL",
+  "scope": "Library decoding and independent disclosure-digest checks only. Signature verification and complete interoperability NOT RUN.",
+  "source": "https://www.ietf.org/archive/id/draft-ietf-oauth-sd-jwt-vc-19.html",
+  "source_sha256": "45bebb1ff4c806724005b27ea47b7bed7a8e4d1fd8763fc39521dd32dee977a8",
+  "library": "@sd-jwt/sd-jwt-vc 0.22.0",
+  "passed": 17,
+  "total": 18,
+  "tests": [
+    {
+      "id": "draft19-6-library-decode",
+      "pass": true
+    },
+    {
+      "id": "draft19-6-typ",
+      "pass": true
+    },
+    {
+      "id": "draft19-6-digest-binding",
+      "pass": true
+    },
+    {
+      "id": "draft19-7-library-decode",
+      "pass": true
+    },
+    {
+      "id": "draft19-7-typ",
+      "pass": true
+    },
+    {
+      "id": "draft19-7-digest-binding",
+      "pass": true
+    },
+    {
+      "id": "draft19-9-library-decode",
+      "pass": true
+    },
+    {
+      "id": "draft19-9-typ",
+      "pass": true
+    },
+    {
+      "id": "draft19-9-digest-binding",
+      "pass": true
+    },
+    {
+      "id": "draft19-23-library-decode",
+      "pass": true
+    },
+    {
+      "id": "draft19-23-typ",
+      "pass": true
+    },
+    {
+      "id": "draft19-23-digest-binding",
+      "pass": false,
+      "error_code": "ASSERTION_FAILED"
+    },
+    {
+      "id": "draft19-25-library-decode",
+      "pass": true
+    },
+    {
+      "id": "draft19-25-typ",
+      "pass": true
+    },
+    {
+      "id": "draft19-25-digest-binding",
+      "pass": true
+    },
+    {
+      "id": "draft19-mutated-disclosure-detected",
+      "pass": true
+    },
+    {
+      "id": "draft19-truncated-compact-rejected",
+      "pass": true
+    },
+    {
+      "id": "draft19-selective-claims",
+      "pass": true
+    }
+  ]
+}

@@ -23,3 +23,14 @@
 ## مراجعة المعنى مقابل الأدوات
 
 Swagger Parser/AJV يختبران الشكل والمراجع والأمثلة؛ لا يثبتان صحة السياسة أو التفويض أو الزمن. Spectral/Redocly اختبارات lint مع تحذيرات غير مخفية. المقترحات الوصفية الموسومة OD تحتاج موافقة واختبارات خدمة قبل الإغلاق.
+
+## TASK3B — 2026-10-13
+
+- B-E1: حالات رد suspend/reinstate/revoke مقيدة بـSUSPENDED/ACTIVE/REVOKED بدلاً من enum مشترك متناقض؛ حذف component غير المستخدم بعد inline projections.
+- B-E2: 404 موثق لـcancel/lifecycle mutation وقائمة الحالة المفقودة، وفق قواعد الموارد في المسودة؛ لا إضافة 401/403 للعمليات العامة.
+- B-E3: tags تحريرية لكل العمليات؛ لا تغيير أدوار.
+- B-E4: compact JWS pattern وربط x-payload-schema للثقة، وتوضيح أن 304 لا يمدد exp أو rollback protection.
+- B-E5: توصيف DR-05/29 محدث بأن النص الأصلي مستعاد وغير معتمد؛ approval_ref/hosts بقيا اختياريين.
+- B-T1: guard مع actual-document mutations وسبب رفض محدد؛ منع تحويل عملية محمية إلى public أو إضافة anonymous OR alternative.
+- B-T2: أدلة جديدة حصراً؛ runner يرفض مجلداً سابقاً، P04 جزئي فقط.
+- لا تعديل APIs معيارية أو إصدار Node أو dependencies الأساسية أو workflow أو أداة TASK2.

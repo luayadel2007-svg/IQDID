@@ -1,0 +1,9 @@
+{
+  "schema": 1,
+  "status": "PASS",
+  "exit_code": 0,
+  "mode": "all-index",
+  "scanned_files": 177,
+  "findings": [],
+  "errors": []
+}

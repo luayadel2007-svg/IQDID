@@ -1,0 +1,14 @@
+{
+  "command": "node TASK2/tools/secret-scanner.mjs --repo <isolated final TASK3 index snapshot> --all-index",
+  "exit_code": 0,
+  "report": {
+    "schema": 1,
+    "status": "PASS",
+    "exit_code": 0,
+    "mode": "all-index",
+    "scanned_files": 180,
+    "findings": [],
+    "errors": []
+  },
+  "stderr_empty": true
+}

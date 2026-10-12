@@ -1,0 +1,234 @@
+{
+  "scope": "Static OpenAPI contracts and schema examples only; no HTTP/runtime authorization tested",
+  "operations": 14,
+  "examples": 68,
+  "passed": 56,
+  "total": 56,
+  "tests": [
+    {
+      "id": "issuer-internal-swagger-validate",
+      "pass": true
+    },
+    {
+      "id": "status-internal-swagger-validate",
+      "pass": true
+    },
+    {
+      "id": "trust-swagger-validate",
+      "pass": true
+    },
+    {
+      "id": "verifier-swagger-validate",
+      "pass": true
+    },
+    {
+      "id": "createOffer-auth-contract",
+      "pass": true
+    },
+    {
+      "id": "createOffer-idempotency",
+      "pass": true
+    },
+    {
+      "id": "getOffer-auth-contract",
+      "pass": true
+    },
+    {
+      "id": "cancelOffer-auth-contract",
+      "pass": true
+    },
+    {
+      "id": "cancelOffer-idempotency",
+      "pass": true
+    },
+    {
+      "id": "getCredentialRecord-auth-contract",
+      "pass": true
+    },
+    {
+      "id": "suspendCredential-auth-contract",
+      "pass": true
+    },
+    {
+      "id": "suspendCredential-idempotency",
+      "pass": true
+    },
+    {
+      "id": "reinstateCredential-auth-contract",
+      "pass": true
+    },
+    {
+      "id": "reinstateCredential-idempotency",
+      "pass": true
+    },
+    {
+      "id": "revokeCredential-auth-contract",
+      "pass": true
+    },
+    {
+      "id": "revokeCredential-idempotency",
+      "pass": true
+    },
+    {
+      "id": "allocateStatusIndex-auth-contract",
+      "pass": true
+    },
+    {
+      "id": "allocateStatusIndex-idempotency",
+      "pass": true
+    },
+    {
+      "id": "setStatusValue-auth-contract",
+      "pass": true
+    },
+    {
+      "id": "setStatusValue-idempotency",
+      "pass": true
+    },
+    {
+      "id": "getStatusListToken-auth-contract",
+      "pass": true
+    },
+    {
+      "id": "getTrustList-auth-contract",
+      "pass": true
+    },
+    {
+      "id": "listServices-auth-contract",
+      "pass": true
+    },
+    {
+      "id": "createSession-auth-contract",
+      "pass": true
+    },
+    {
+      "id": "createSession-idempotency",
+      "pass": true
+    },
+    {
+      "id": "getSessionResult-auth-contract",
+      "pass": true
+    },
+    {
+      "id": "14-operations",
+      "pass": true
+    },
+    {
+      "id": "short-code-valid-leading-zero",
+      "pass": true
+    },
+    {
+      "id": "short-code-reject-integer",
+      "pass": true
+    },
+    {
+      "id": "short-code-reject-short",
+      "pass": true
+    },
+    {
+      "id": "short-code-reject-letters",
+      "pass": true
+    },
+    {
+      "id": "short-code-description-parsed",
+      "pass": true
+    },
+    {
+      "id": "error-valid",
+      "pass": true
+    },
+    {
+      "id": "error-reject-bad-code",
+      "pass": true
+    },
+    {
+      "id": "error-reject-extra-data",
+      "pass": true
+    },
+    {
+      "id": "error-reject-missing-id",
+      "pass": true
+    },
+    {
+      "id": "operator-schema-reject-idx",
+      "pass": true
+    },
+    {
+      "id": "authority-schema-allows-idx",
+      "pass": true
+    },
+    {
+      "id": "accepted-disclosure",
+      "pass": true
+    },
+    {
+      "id": "reject-disclosure-CREATED",
+      "pass": true
+    },
+    {
+      "id": "reject-disclosure-FETCHED",
+      "pass": true
+    },
+    {
+      "id": "reject-disclosure-RESPONSE_RECEIVED",
+      "pass": true
+    },
+    {
+      "id": "reject-disclosure-REJECTED",
+      "pass": true
+    },
+    {
+      "id": "reject-disclosure-EXPIRED",
+      "pass": true
+    },
+    {
+      "id": "consumed-accepted-no-values",
+      "pass": true
+    },
+    {
+      "id": "foreign-session-denial-contract",
+      "pass": true
+    },
+    {
+      "id": "ttl-contract",
+      "pass": true
+    },
+    {
+      "id": "reason-valid",
+      "pass": true
+    },
+    {
+      "id": "reason-reject-free-text",
+      "pass": true
+    },
+    {
+      "id": "status-reject-3",
+      "pass": true
+    },
+    {
+      "id": "approval-not-silently-required",
+      "pass": true
+    },
+    {
+      "id": "allowlist-not-silently-required",
+      "pass": true
+    },
+    {
+      "id": "all-embedded-examples",
+      "pass": true
+    },
+    {
+      "id": "negative-missing-auth-response-detected",
+      "pass": true
+    },
+    {
+      "id": "negative-short-code-mutation-detected",
+      "pass": true
+    },
+    {
+      "id": "negative-unresolved-ref",
+      "pass": true,
+      "reason": "MissingPointerError"
+    }
+  ]
+}
