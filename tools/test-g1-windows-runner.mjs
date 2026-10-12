@@ -61,7 +61,7 @@ function run(name,root,expected,seed) {
  let command='';
 
  if(seed)command+=`$env:MUTATE = ${quote(seed)}; `;
- command+=`& ${quote(join(root,'tools',runnerName))}; $code=$LASTEXITCODE; if (Test-Path Env:MUTATE) { Write-Error 'MUTATE leaked'; exit 99 }; Write-Host 'MUTATE_AFTER=ABSENT'; exit $code`;
+ command+=`& ${name==='normal-cmd' ? '$env:ComSpec /d /c '+quote(join(root,'tools','run-g1-suite.cmd')) : quote(join(root,'tools',runnerName))}; $code=$LASTEXITCODE; if (Test-Path Env:MUTATE) { Write-Error 'MUTATE leaked'; exit 99 }; Write-Host 'MUTATE_AFTER=ABSENT'; exit $code`;
  const env={...process.env}; delete env.MUTATE;
  if(name==='missing-node') {env.PATH='';env.Path='';}
  const p=spawnSync(ps,['-NoProfile','-ExecutionPolicy','Bypass','-Command',command],{cwd:root,env,encoding:'utf8',timeout:180000,maxBuffer:8*1024*1024});
@@ -87,6 +87,7 @@ function run(name,root,expected,seed) {
 try {
  run('normal-1',repo,['PASS',0],'skip-chain');
  run('normal-2',repo,['PASS',0],'skip-role');
+ if(windows)run('normal-cmd',repo,['PASS',0]);
  for(const name of ['counter','forged-reason','duplicate','malformed','missing-node','npm-error','manifest-mismatch','node-error','hash-observation-mismatch']) {
   const root=makeCase(name);inject(root,name);run(name,root,name==='missing-node'?['BLOCKED',2]:['FAIL',1]);
  }

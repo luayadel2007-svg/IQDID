@@ -9,6 +9,9 @@ on:
       - .github/workflows/**
       - .gitattributes
   workflow_dispatch:
+concurrency:
+  group: task1-windows-${{ github.ref }}
+  cancel-in-progress: true
 permissions:
   contents: read
 jobs:
