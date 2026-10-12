@@ -1,0 +1,130 @@
+openapi: 3.1.0
+info:
+  title: Iraqi Digital ID Prototype — Status Service (internal + public status list)
+  version: 1.0.0-draft
+  description: |
+    TEST ONLY. INT-08/INT-09 plus the public Token Status List endpoint (STD-11, documented by reference to
+    draft-ietf-oauth-status-list-21; not redefined). Status list: 2 bits, >= 8192 entries, signed by a
+    dedicated STATUS key with x5c (anchor excluded) — DR-17 as amended, SEC-03.
+  x-environment: TEST
+servers:
+  - url: https://status.digital-id.test
+paths:
+  /internal/v1/status/allocations:
+    post:
+      operationId: allocateStatusIndex
+      summary: INT-08 — reserve a random, never-reused index with value VALID
+      x-requirements: [T-A04, DR-03, DR-17, REV-12]
+      x-roles: [status-allocator]
+      x-audit-event: status.allocated
+      security: [ { serviceToken: [] } ]
+      parameters: [ { $ref: '#/components/parameters/IdempotencyKey' } ]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              required: [credential_ref]
+              properties:
+                credential_ref: { type: string, format: uuid, description: Random internal id — the status service never learns citizen identity }
+      responses:
+        '201':
+          description: Allocated
+          headers: { X-Environment: { $ref: '#/components/headers/XEnvironment' } }
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: false
+                required: [list_uri, idx]
+                properties:
+                  list_uri: { type: string, format: uri, pattern: '^https://' }
+                  idx: { type: integer, minimum: 0 }
+        '503': { $ref: '#/components/responses/Error' }
+  /internal/v1/status/entries/{list_id}/{idx}:
+    put:
+      operationId: setStatusValue
+      summary: INT-09 — set value and publish a new list (phase 3)
+      x-phase: 3
+      x-requirements: [DR-17, DR-29, LC-02]
+      x-roles: [status-allocator]
+      x-audit-event: status.list_published
+      x-rules:
+        - value 1 (INVALID) is final; any change away from 1 -> 409 STA-4091
+        - value 2 (SUSPENDED) requires bits=2 -> otherwise 422 STA-4221
+      security: [ { serviceToken: [] } ]
+      parameters:
+        - { name: list_id, in: path, required: true, schema: { type: string, pattern: '^[a-z0-9-]{1,32}$' } }
+        - { name: idx, in: path, required: true, schema: { type: integer, minimum: 0 } }
+        - $ref: '#/components/parameters/IdempotencyKey'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              required: [value, reason_code]
+              properties:
+                value: { type: integer, enum: [0, 1, 2] }
+                reason_code: { type: string, enum: [device_loss, compromise, data_error, superseded, holder_request, investigation, reinstated] }
+      responses:
+        '200':
+          description: Published
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: false
+                required: [value, list_version, published_at]
+                properties:
+                  value: { type: integer, enum: [0, 1, 2] }
+                  list_version: { type: integer, minimum: 1 }
+                  published_at: { type: string, format: date-time }
+        '404': { $ref: '#/components/responses/Error' }
+        '409': { $ref: '#/components/responses/Error' }
+        '422': { $ref: '#/components/responses/Error' }
+  /lists/{list_id}:
+    get:
+      operationId: getStatusListToken
+      summary: STD-11 — Status List Token (public; format defined by draft-ietf-oauth-status-list-21)
+      x-standard: draft-ietf-oauth-status-list-21
+      x-verifier-checks: [typ=statuslist+jwt, signature by STATUS key via x5c, sub==uri, iat present, exp/ttl freshness <= 15 min (M-08), idx within list]
+      security: []
+      parameters:
+        - { name: list_id, in: path, required: true, schema: { type: string, pattern: '^[a-z0-9-]{1,32}$' } }
+      responses:
+        '200':
+          description: Signed status list token
+          headers:
+            Cache-Control: { schema: { type: string }, description: 'max-age aligned with ttl' }
+          content:
+            application/statuslist+jwt:
+              schema: { type: string, pattern: '^[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+$' }
+components:
+  securitySchemes:
+    serviceToken: { type: http, scheme: bearer, bearerFormat: JWT }
+  parameters:
+    IdempotencyKey: { name: Idempotency-Key, in: header, required: true, schema: { type: string } }
+  headers:
+    XEnvironment: { schema: { type: string, const: TEST } }
+  responses:
+    Error:
+      description: Error
+      content:
+        application/json:
+          schema:
+            type: object
+            additionalProperties: false
+            required: [error]
+            properties:
+              error:
+                type: object
+                additionalProperties: false
+                required: [code, message, request_id]
+                properties:
+                  code: { type: string, pattern: '^(API|STA)-[0-9]{4}$', examples: [STA-4091, STA-4221, STA-5031] }
+                  message: { type: string, maxLength: 200 }
+                  request_id: { type: string }

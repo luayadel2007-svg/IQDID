@@ -1,0 +1,28 @@
+# --- dependencies / build ---
+node_modules/
+dist/
+coverage/
+.work/
+
+# --- secrets & keys: never committed (keys live in %LOCALAPPDATA%\iqdid-test\keys) ---
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+*.jks
+*.keystore
+*.jwk
+keys/
+secrets/
+
+# --- OS / editor ---
+Thumbs.db
+desktop.ini
+.DS_Store
+.vscode/*
+!.vscode/extensions.json
+*.log
+!evidence/**/*.log

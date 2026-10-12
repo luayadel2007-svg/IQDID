@@ -1,0 +1,130 @@
+openapi: 3.1.0
+info:
+  title: Iraqi Digital ID Prototype — Verifier Service (C2-B)
+  version: 1.0.0-draft
+  description: |
+    TEST ONLY. INT-11..INT-13 for the verifier front-end. OpenID4VP endpoints (STD-08..STD-10) follow
+    OpenID4VP 1.0 and are not redefined. Client identifier: x509_hash (DR-14 amended; W14 evidence).
+    Disclosed values are held in memory only, returned once, erased after one read or 60 s (PRV-05, DR-41).
+  x-environment: TEST
+servers:
+  - url: https://verifier.digital-id.test
+security:
+  - staffSession: []
+paths:
+  /verifier/v1/services:
+    get:
+      operationId: listServices
+      summary: INT-11 — services of the staff member's organisation (fields come from policy; staff cannot edit)
+      x-roles: [verifier-staff]
+      responses:
+        '200':
+          description: Services
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  additionalProperties: false
+                  required: [service_id, name_ar, name_en, purpose_text, requested_fields, declared_retention]
+                  properties:
+                    service_id: { type: string }
+                    name_ar: { type: string }
+                    name_en: { type: string }
+                    purpose_text: { type: string }
+                    requested_fields:
+                      type: array
+                      items:
+                        type: object
+                        additionalProperties: false
+                        required: [path, class]
+                        properties:
+                          path: { type: array, items: { type: string }, minItems: 1 }
+                          class: { type: string, enum: [OPTIONAL, SERVICE_REQUIRED, LEGAL_REQUIRED] }
+                    declared_retention: { type: string }
+  /verifier/v1/sessions:
+    post:
+      operationId: createSession
+      summary: INT-12 — start a verification session (120 s) and return the QR payload
+      x-roles: [verifier-staff]
+      x-audit-event: verifier.session.created
+      parameters:
+        - { name: Idempotency-Key, in: header, required: true, schema: { type: string } }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { type: object, additionalProperties: false, required: [service_id], properties: { service_id: { type: string } } }
+      responses:
+        '201':
+          description: Session created
+          headers:
+            Cache-Control: { schema: { type: string, const: no-store } }
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: false
+                required: [session_id, qr_payload, expires_at, short_code]
+                properties:
+                  session_id: { type: string, format: uuid }
+                  qr_payload: { type: string, pattern: '^openid4vp://\?client_id=x509_hash%3A' }
+                  expires_at: { type: string, format: date-time }
+                  short_code: { type: string, pattern: '^[0-9]{4}$', description: Spoken verification code (UX-09, THM-47) }
+        '404': { $ref: '#/components/responses/Error' }
+        '429': { $ref: '#/components/responses/Error' }
+  /verifier/v1/sessions/{session_id}:
+    get:
+      operationId: getSessionResult
+      summary: INT-13 — poll state / read result (values returned once)
+      x-roles: [verifier-staff]
+      parameters:
+        - { name: session_id, in: path, required: true, schema: { type: string, format: uuid } }
+      responses:
+        '200':
+          description: Session state
+          headers:
+            Cache-Control: { schema: { type: string, const: no-store } }
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: false
+                required: [state]
+                properties:
+                  state: { type: string, enum: [CREATED, FETCHED, RESPONSE_RECEIVED, ACCEPTED, REJECTED, EXPIRED] }
+                  result:
+                    type: object
+                    additionalProperties: false
+                    required: [code, computed]
+                    properties:
+                      code: { type: string, pattern: '^R-(0[1-9]|1[0-3])$' }
+                      computed: { type: boolean, const: true }
+                      disclosed: { type: object, description: 'Only on ACCEPTED, first read within 60 s; then omitted' }
+                      status_freshness:
+                        type: object
+                        additionalProperties: false
+                        properties: { list_iat: { type: integer }, valid_until: { type: integer } }
+        '404': { $ref: '#/components/responses/Error' }
+components:
+  securitySchemes:
+    staffSession: { type: http, scheme: bearer, bearerFormat: JWT }
+  responses:
+    Error:
+      description: Error
+      content:
+        application/json:
+          schema:
+            type: object
+            additionalProperties: false
+            required: [error]
+            properties:
+              error:
+                type: object
+                additionalProperties: false
+                required: [code, message, request_id]
+                properties:
+                  code: { type: string, pattern: '^(API|VER)-[0-9]{4}$' }
+                  message: { type: string, maxLength: 200 }
+                  request_id: { type: string }

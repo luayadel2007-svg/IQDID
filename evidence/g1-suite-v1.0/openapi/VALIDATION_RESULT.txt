@@ -1,0 +1,5 @@
+VALID  issuer-internal.v1.yaml  openapi=3.1.0 paths=7 operations=7
+VALID  status-internal.v1.yaml  openapi=3.1.0 paths=3 operations=3
+VALID  trust.v1.yaml  openapi=3.1.0 paths=1 operations=1
+VALID  verifier.v1.yaml  openapi=3.1.0 paths=3 operations=3
+4 valid

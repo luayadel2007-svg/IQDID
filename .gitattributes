@@ -1,0 +1,13 @@
+# Default: normalise text to LF in the repository
+* text=auto eol=lf
+
+# Windows scripts keep CRLF in the working tree
+*.ps1 text eol=crlf
+*.cmd text eol=crlf
+
+# Lockfiles must stay byte-identical (their SHA-256 is part of the evidence)
+package-lock.json -text
+
+# Frozen G1 evidence package: never normalise, never diff-merge (byte-identical)
+evidence/g1-suite-v1.0/** -text -diff merge=binary
+evidence/g1-suite-v1.0.SHA256SUMS -text

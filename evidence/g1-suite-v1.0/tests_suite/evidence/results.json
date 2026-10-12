@@ -1,0 +1,646 @@
+{
+  "env": {
+    "run_at_utc": "2026-10-11T22:50:12.380Z",
+    "node": "v22.22.2",
+    "platform": "linux-x64",
+    "packages": {
+      "@openid4vc/oauth2": "0.7.0",
+      "@openid4vc/openid4vp": "0.7.0",
+      "@owf/token-status-list": "0.4.2",
+      "@peculiar/x509": "2.1.0",
+      "@sd-jwt/core": "0.22.0",
+      "@sd-jwt/crypto-nodejs": "0.19.0",
+      "@sd-jwt/sd-jwt-vc": "0.22.0",
+      "asn1js": "3.0.10",
+      "jose": "6.2.12",
+      "pkijs": "3.4.1",
+      "reflect-metadata": "0.2.2"
+    },
+    "package_lock_sha256": "d3af25764d221d4bdca94dc49335deca8514a21e20d0611515aa297828fbe524",
+    "conditions": "in-process; no HTTP/TLS; synthetic data; TEST keys generated per run; not a device or system test"
+  },
+  "total": 62,
+  "passed": 62,
+  "results": [
+    {
+      "id": "SIG-01",
+      "group": "SIG",
+      "title": "ES256 signature is raw R||S, 64 bytes",
+      "expected": "accept",
+      "observed": "accept",
+      "pass": true,
+      "detail": "len=64",
+      "reasonCheck": "n/a"
+    },
+    {
+      "id": "SIG-02",
+      "group": "SIG",
+      "title": "DER-encoded ECDSA signature is rejected",
+      "expected": "reject",
+      "observed": "reject",
+      "pass": true,
+      "detail": "DER len=71 rejected",
+      "reasonCheck": "match"
+    },
+    {
+      "id": "SIG-03",
+      "group": "SIG",
+      "title": "alg=none header is rejected",
+      "expected": "reject",
+      "observed": "reject",
+      "pass": true,
+      "detail": "[INVALID_JWT_SIGNATURE] Verify Error: alg \"none\" is not allowed",
+      "reasonCheck": "match"
+    },
+    {
+      "id": "SIG-04",
+      "group": "SIG",
+      "title": "HS256-signed credential is rejected",
+      "expected": "reject",
+      "observed": "reject",
+      "pass": true,
+      "detail": "[INVALID_JWT_SIGNATURE] Verify Error: Disallowed alg HS256",
+      "reasonCheck": "match"
+    },
+    {
+      "id": "SIG-05",
+      "group": "SIG",
+      "title": "Payload altered under a valid signature is rejected",
+      "expected": "reject",
+      "observed": "reject",
+      "pass": true,
+      "detail": "signature invalid",
+      "reasonCheck": "match"
+    },
+    {
+      "id": "SIG-06",
+      "group": "SIG",
+      "title": "Signed with a key that does not match the x5c leaf is rejected",
+      "expected": "reject",
+      "observed": "reject",
+      "pass": true,
+      "detail": "signature invalid",
+      "reasonCheck": "match"
+    },
+    {
+      "id": "CRD-01",
+      "group": "CRD",
+      "title": "Header: alg=ES256, typ=dc+sd-jwt, x5c of 2 certs (anchor excluded)",
+      "expected": "accept",
+      "observed": "accept",
+      "pass": true,
+      "detail": "typ=dc+sd-jwt x5c=2",
+      "reasonCheck": "n/a"
+    },
+    {
+      "id": "CRD-02",
+      "group": "CRD",
+      "title": "Always-visible claims present; personal claims only as digests",
+      "expected": "accept",
+      "observed": "accept",
+      "pass": true,
+      "detail": "_sd=5",
+      "reasonCheck": "n/a"
+    },
+    {
+      "id": "CRD-03",
+      "group": "CRD",
+      "title": "Every salt is >= 128 bits (SEC-07)",
+      "expected": "accept",
+      "observed": "accept",
+      "pass": true,
+      "detail": "salt bytes=16",
+      "reasonCheck": "n/a"
+    },
+    {
+      "id": "CRD-04",
+      "group": "CRD",
+      "title": "cnf.jwk has exactly kty,crv,x,y (SEC-07)",
+      "expected": "accept",
+      "observed": "accept",
+      "pass": true,
+      "detail": "crv,kty,x,y",
+      "reasonCheck": "n/a"
+    },
+    {
+      "id": "CRD-05",
+      "group": "CRD",
+      "title": "Making iss selectively disclosable is refused by the library",
+      "expected": "reject",
+      "observed": "reject",
+      "pass": true,
+      "detail": "Cannot disclose protected field",
+      "reasonCheck": "match"
+    },
+    {
+      "id": "CRD-06",
+      "group": "CRD",
+      "title": "Decoy digests hide the real claim count (DM-14)",
+      "expected": "accept",
+      "observed": "accept",
+      "pass": true,
+      "detail": "_sd=10 real=5; verifies",
+      "reasonCheck": "n/a"
+    },
+    {
+      "id": "CRD-07",
+      "group": "CRD",
+      "title": "Credential validity = 30 days (DR-18)",
+      "expected": "accept",
+      "observed": "accept",
+      "pass": true,
+      "detail": "days=30",
+      "reasonCheck": "n/a"
+    },
+    {
+      "id": "VER-01",
+      "group": "VER",
+      "title": "Valid presentation (name+age_over_18) is accepted",
+      "expected": "accept",
+      "observed": "accept",
+      "pass": true,
+      "detail": "claims: name,age_over_18",
+      "reasonCheck": "n/a"
+    },
+    {
+      "id": "VER-02",
+      "group": "VER",
+      "title": "Undisclosed claims (birthdate, national_id, sex) are absent",
+      "expected": "accept",
+      "observed": "accept",
+      "pass": true,
+      "detail": "only name, age_over_18",
+      "reasonCheck": "n/a"
+    },
+    {
+      "id": "VER-03",
+      "group": "VER",
+      "title": "Wrong nonce is rejected",
+      "expected": "reject",
+      "observed": "reject",
+      "pass": true,
+      "detail": "Verify Error: Invalid Nonce",
+      "reasonCheck": "match"
+    },
+    {
+      "id": "VER-04",
+      "group": "VER",
+      "title": "Wrong KB audience is rejected",
+      "expected": "reject",
+      "observed": "reject",
+      "pass": true,
+      "detail": "Verify Error: Invalid Key Binding audience",
+      "reasonCheck": "match"
+    },
+    {
+      "id": "VER-05",
+      "group": "VER",
+      "title": "Presentation without KB-JWT is rejected",
+      "expected": "reject",
+      "observed": "reject",
+      "pass": true,
+      "detail": "Key Binding JWT not exist",
+      "reasonCheck": "match"
+    },
+    {
+      "id": "VER-06",
+      "group": "VER",
+      "title": "Tampered disclosure value is rejected",
+      "expected": "reject",
+      "observed": "reject",
+      "pass": true,
+      "detail": "Unreferenced disclosure(s) detected in SD-JWT",
+      "reasonCheck": "match"
+    },
+    {
+      "id": "VER-07",
+      "group": "VER",
+      "title": "Expired credential is rejected (verifier clock past exp)",
+      "expected": "reject",
+      "observed": "reject",
+      "pass": true,
+      "detail": "[JWT_EXPIRED] Verify Error: JWT is expired",
+      "reasonCheck": "match"
+    },
+    {
+      "id": "VER-08",
+      "group": "VER",
+      "title": "KB-JWT signed by a key other than cnf is rejected",
+      "expected": "reject",
+      "observed": "reject",
+      "pass": true,
+      "detail": "[INVALID_JWT_SIGNATURE] Verify Error: Invalid JWT Signature",
+      "reasonCheck": "match"
+    },
+    {
+      "id": "VER-09",
+      "group": "VER",
+      "title": "KB-JWT older than 60 s is rejected",
+      "expected": "reject",
+      "observed": "reject",
+      "pass": true,
+      "detail": "[KEY_BINDING_JWT_TOO_OLD] Verify Error: Key Binding JWT is too old",
+      "reasonCheck": "match"
+    },
+    {
+      "id": "VER-10",
+      "group": "VER",
+      "title": "Unexpected vct is rejected",
+      "expected": "reject",
+      "observed": "reject",
+      "pass": true,
+      "detail": "[INVALID_VCT] Verify Error: Invalid VCT",
+      "reasonCheck": "match"
+    },
+    {
+      "id": "VER-11",
+      "group": "VER",
+      "title": "ES384 issuer algorithm is rejected by allow-list",
+      "expected": "reject",
+      "observed": "reject",
+      "pass": true,
+      "detail": "[INVALID_JWT_SIGNATURE] Verify Error: Disallowed alg ES384",
+      "reasonCheck": "match"
+    },
+    {
+      "id": "VER-12",
+      "group": "VER",
+      "title": "iss host not matching leaf SAN is rejected",
+      "expected": "reject",
+      "observed": "reject",
+      "pass": true,
+      "detail": "x5c rejected (issuer): SAN does not match (evil.digital-id.test)",
+      "reasonCheck": "match"
+    },
+    {
+      "id": "VER-13",
+      "group": "VER",
+      "title": "Same presentation replayed to a new session (new nonce) is rejected",
+      "expected": "reject",
+      "observed": "reject",
+      "pass": true,
+      "detail": "Verify Error: Invalid Nonce",
+      "reasonCheck": "match"
+    },
+    {
+      "id": "X-01",
+      "group": "X509",
+      "title": "Valid chain leaf->intermediate->pinned root accepted",
+      "expected": "accept",
+      "observed": "accept",
+      "pass": true,
+      "detail": "chain ok",
+      "reasonCheck": "n/a"
+    },
+    {
+      "id": "X-03",
+      "group": "X509",
+      "title": "Valid chain but SAN != iss host rejected",
+      "expected": "reject",
+      "observed": "reject",
+      "pass": true,
+      "detail": "SAN does not match (other.digital-id.test)",
+      "reasonCheck": "match"
+    },
+    {
+      "id": "X-04",
+      "group": "X509",
+      "title": "Chain missing intermediate rejected",
+      "expected": "reject",
+      "observed": "reject",
+      "pass": true,
+      "detail": "pkijs: No valid certificate paths found",
+      "reasonCheck": "match"
+    },
+    {
+      "id": "X-05",
+      "group": "X509",
+      "title": "Chain anchored in a different root rejected",
+      "expected": "reject",
+      "observed": "reject",
+      "pass": true,
+      "detail": "pkijs: No valid certificate paths found",
+      "reasonCheck": "match"
+    },
+    {
+      "id": "X-06",
+      "group": "X509",
+      "title": "Expired leaf rejected",
+      "expected": "reject",
+      "observed": "reject",
+      "pass": true,
+      "detail": "pkijs: The certificate is either not yet valid or expired",
+      "reasonCheck": "match"
+    },
+    {
+      "id": "X-09",
+      "group": "X509",
+      "title": "Intermediate CA used as signing leaf rejected",
+      "expected": "reject",
+      "observed": "reject",
+      "pass": true,
+      "detail": "leaf is a CA certificate",
+      "reasonCheck": "match"
+    },
+    {
+      "id": "X-11",
+      "group": "X509",
+      "title": "Extra CA below a pathLen=0 intermediate rejected",
+      "expected": "reject",
+      "observed": "reject",
+      "pass": true,
+      "detail": "pathLenConstraint exceeded at depth 2",
+      "reasonCheck": "match"
+    },
+    {
+      "id": "X-12",
+      "group": "X509",
+      "title": "Leaf without digitalSignature keyUsage rejected",
+      "expected": "reject",
+      "observed": "reject",
+      "pass": true,
+      "detail": "leaf keyUsage lacks digitalSignature",
+      "reasonCheck": "match"
+    },
+    {
+      "id": "X-13",
+      "group": "X509",
+      "title": "Intermediate without basicConstraints cA=true rejected",
+      "expected": "reject",
+      "observed": "reject",
+      "pass": true,
+      "detail": "pkijs: One of intermediate certificates is not a CA certificate",
+      "reasonCheck": "match"
+    },
+    {
+      "id": "X-14",
+      "group": "X509",
+      "title": "Leaf before notBefore rejected",
+      "expected": "reject",
+      "observed": "reject",
+      "pass": true,
+      "detail": "pkijs: The certificate is either not yet valid or expired",
+      "reasonCheck": "match"
+    },
+    {
+      "id": "X-15",
+      "group": "X509",
+      "title": "Trust anchor included in x5c rejected (HAIP 6.1.1)",
+      "expected": "reject",
+      "observed": "reject",
+      "pass": true,
+      "detail": "trust anchor included in x5c",
+      "reasonCheck": "match"
+    },
+    {
+      "id": "X-16",
+      "group": "X509",
+      "title": "Self-signed leaf rejected",
+      "expected": "reject",
+      "observed": "reject",
+      "pass": true,
+      "detail": "leaf is self-signed",
+      "reasonCheck": "match"
+    },
+    {
+      "id": "X-18",
+      "group": "X509",
+      "title": "Leaf signed by an unrelated CA but presented with the legitimate intermediate rejected",
+      "expected": "reject",
+      "observed": "reject",
+      "pass": true,
+      "detail": "pkijs: No valid certificate paths found",
+      "reasonCheck": "match"
+    },
+    {
+      "id": "X-17",
+      "group": "X509",
+      "title": "Credential with x5c from untrusted root rejected end-to-end",
+      "expected": "reject",
+      "observed": "reject",
+      "pass": true,
+      "detail": "x5c rejected (issuer): pkijs: No valid certificate paths found",
+      "reasonCheck": "match"
+    },
+    {
+      "id": "REV-01",
+      "group": "REV",
+      "title": "Status VALID (0) accepted",
+      "expected": "accept",
+      "observed": "accept",
+      "pass": true,
+      "detail": "status=0",
+      "reasonCheck": "n/a"
+    },
+    {
+      "id": "REV-02",
+      "group": "REV",
+      "title": "Status INVALID/revoked (1) rejected",
+      "expected": "reject",
+      "observed": "reject",
+      "pass": true,
+      "detail": "[STATUS_INVALID] Status is not valid",
+      "reasonCheck": "match"
+    },
+    {
+      "id": "REV-03",
+      "group": "REV",
+      "title": "Status SUSPENDED (2) rejected (requires 2-bit list)",
+      "expected": "reject",
+      "observed": "reject",
+      "pass": true,
+      "detail": "[STATUS_INVALID] Status is not valid",
+      "reasonCheck": "match"
+    },
+    {
+      "id": "REV-04",
+      "group": "REV",
+      "title": "Reinstate: suspended (2) -> valid (0) accepted again",
+      "expected": "accept",
+      "observed": "accept",
+      "pass": true,
+      "detail": "rejected while 2, accepted after 0",
+      "reasonCheck": "n/a"
+    },
+    {
+      "id": "REV-05",
+      "group": "REV",
+      "title": "Status list token signed by ISSUER key (not status key) rejected (SEC-03)",
+      "expected": "reject",
+      "observed": "reject",
+      "pass": true,
+      "detail": "Status List JWT verification failed: x5c rejected (status): SAN does not match (status.digital-id.test)",
+      "reasonCheck": "match"
+    },
+    {
+      "id": "REV-06",
+      "group": "REV",
+      "title": "Status list token whose sub != uri rejected",
+      "expected": "reject",
+      "observed": "reject",
+      "pass": true,
+      "detail": "The subject claim 'https://status.digital-id.test/lists/2' must be equal to the uri 'https://status.digital-id.test/lists/1'",
+      "reasonCheck": "match"
+    },
+    {
+      "id": "REV-07",
+      "group": "REV",
+      "title": "Expired status list token rejected",
+      "expected": "reject",
+      "observed": "reject",
+      "pass": true,
+      "detail": "Status List JWT verification failed: Verify Error: JWT is expired",
+      "reasonCheck": "match"
+    },
+    {
+      "id": "REV-08",
+      "group": "REV",
+      "title": "Tampered lst under the original signature rejected",
+      "expected": "reject",
+      "observed": "reject",
+      "pass": true,
+      "detail": "Status List JWT verification failed: signature invalid",
+      "reasonCheck": "match"
+    },
+    {
+      "id": "REV-09",
+      "group": "REV",
+      "title": "Wrong typ on status list token rejected",
+      "expected": "reject",
+      "observed": "reject",
+      "pass": true,
+      "detail": "The typ header 'JWT' must be equal to 'statuslist+jwt'",
+      "reasonCheck": "match"
+    },
+    {
+      "id": "REV-10",
+      "group": "REV",
+      "title": "Index outside the list rejected",
+      "expected": "reject",
+      "observed": "reject",
+      "pass": true,
+      "detail": "Index out of bounds",
+      "reasonCheck": "match"
+    },
+    {
+      "id": "REV-11",
+      "group": "REV",
+      "title": "Status list unavailable -> verification fails closed (R-12)",
+      "expected": "reject",
+      "observed": "reject",
+      "pass": true,
+      "detail": "timeout",
+      "reasonCheck": "match"
+    },
+    {
+      "id": "REV-12",
+      "group": "REV",
+      "title": "Allocator: 8192 unique, non-sequential indices; exhaustion detected",
+      "expected": "accept",
+      "observed": "accept",
+      "pass": true,
+      "detail": "unique=8192 sequentialSteps=1 exhaustedThrows=true",
+      "reasonCheck": "n/a"
+    },
+    {
+      "id": "REV-13",
+      "group": "REV",
+      "title": "Status list token carries x5c without the trust anchor (HAIP 6.1)",
+      "expected": "accept",
+      "observed": "accept",
+      "pass": true,
+      "detail": "typ=statuslist+jwt x5c=2",
+      "reasonCheck": "n/a"
+    },
+    {
+      "id": "W14-a",
+      "group": "VP",
+      "title": "Signed request with x509_hash (correct leaf hash) accepted",
+      "expected": "accept",
+      "observed": "accept",
+      "pass": true,
+      "detail": "prefix=x509_hash qrParams=client_id,request_uri",
+      "reasonCheck": "n/a"
+    },
+    {
+      "id": "W14-b",
+      "group": "VP",
+      "title": "x509_hash of a different certificate rejected",
+      "expected": "reject",
+      "observed": "reject",
+      "pass": true,
+      "detail": "Invalid client identifier. Expected the base64url encoded sha-256 hash of the leaf x5c certificate ('FtLOXktUBI4vTSD0J44LIBSXoASX9m2cmUGHgW7Kz1A') to match the client identifier 'bqY5oEIsH1Z4mHkjkD_PeA5uf3zrK3N0QUR7WSXql",
+      "reasonCheck": "match"
+    },
+    {
+      "id": "W14-c",
+      "group": "VP",
+      "title": "x509_hash correct but chain from untrusted root rejected",
+      "expected": "reject",
+      "observed": "reject",
+      "pass": true,
+      "detail": "Error during verification of jwt. x5c rejected: pkijs: No valid certificate paths found",
+      "reasonCheck": "match"
+    },
+    {
+      "id": "W16-a",
+      "group": "VP",
+      "title": "FINDING: library alone accepts x509_hash with an unregistered response_uri host",
+      "expected": "accept",
+      "observed": "accept",
+      "pass": true,
+      "detail": "prefix=x509_hash qrParams=client_id,request_uri",
+      "reasonCheck": "n/a"
+    },
+    {
+      "id": "W16-b",
+      "group": "VP",
+      "title": "Trust-list policy rejects x509_hash with an unregistered response_uri host (THM-48)",
+      "expected": "reject",
+      "observed": "reject",
+      "pass": true,
+      "detail": "response_uri host evil.example not allowed for this verifier",
+      "reasonCheck": "match"
+    },
+    {
+      "id": "W16-c",
+      "group": "VP",
+      "title": "Trust-list policy accepts the registered verifier, host and claims",
+      "expected": "accept",
+      "observed": "accept",
+      "pass": true,
+      "detail": "prefix=x509_hash qrParams=client_id,request_uri",
+      "reasonCheck": "n/a"
+    },
+    {
+      "id": "W08-r",
+      "group": "VP",
+      "title": "x509_san_dns with SAN != client_id rejected (regression of W08)",
+      "expected": "reject",
+      "observed": "reject",
+      "pass": true,
+      "detail": "Invalid client identifier. One of the leaf certificates san dns names [verifier.digital-id.test] must match the client identifier 'other.digital-id.test'. \n{\n  \"error\": \"invalid_request\",\n  \"error_description\": \"Invalid ",
+      "reasonCheck": "match"
+    },
+    {
+      "id": "W02-r",
+      "group": "VP",
+      "title": "x509_san_dns with matching SAN and response_uri host accepted (regression of W02)",
+      "expected": "accept",
+      "observed": "accept",
+      "pass": true,
+      "detail": "prefix=x509_san_dns qrParams=client_id,request_uri",
+      "reasonCheck": "n/a"
+    },
+    {
+      "id": "W-RU",
+      "group": "VP",
+      "title": "Signed request using redirect_uri: prefix rejected",
+      "expected": "reject",
+      "observed": "reject",
+      "pass": true,
+      "detail": "Unable to extract signer method from jwt. Found 1 signer method(s) that are not allowed:\nSUCCEEDED: method x5c",
+      "reasonCheck": "match"
+    }
+  ]
+}

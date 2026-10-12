@@ -1,0 +1,287 @@
+openapi: 3.1.0
+info:
+  title: Iraqi Digital ID Prototype — Issuer Service (internal)
+  version: 1.0.0-draft
+  description: |
+    TEST ONLY. Prototype; synthetic data and test keys only. Not an official system.
+    Source of truth: API_Contracts §4 (INT-01..INT-07), Enhanced_Architecture §9 (OAS-01..OAS-08).
+    Standard protocol endpoints (OpenID4VCI STD-02..STD-07) are NOT redefined here (OAS-02).
+  x-environment: TEST
+servers:
+  - url: https://issuer.digital-id.test
+    description: Local test environment (.test reserved TLD)
+security:
+  - serviceToken: []
+tags:
+  - name: offers
+    description: Credential offers (slice)
+  - name: credentials
+    description: Credential lifecycle (phase 3 — documented, not built in the slice)
+paths:
+  /internal/v1/offers:
+    post:
+      operationId: createOffer
+      tags: [offers]
+      summary: INT-01 — create a pre-authorized credential offer
+      x-requirements: [UC-01, T-A01, LC-06]
+      x-roles: [issuer-operator]
+      x-audit-event: offer.created
+      parameters:
+        - $ref: '#/components/parameters/IdempotencyKey'
+        - $ref: '#/components/parameters/RequestId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/CreateOfferRequest' }
+      responses:
+        '201':
+          description: Offer created. tx_code is returned ONCE and never logged.
+          headers:
+            X-Environment: { $ref: '#/components/headers/XEnvironment' }
+            Cache-Control: { $ref: '#/components/headers/NoStore' }
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/CreateOfferResponse' }
+        '404': { $ref: '#/components/responses/Error' }
+        '409': { $ref: '#/components/responses/Error' }
+        '422': { $ref: '#/components/responses/Error' }
+        '429': { $ref: '#/components/responses/TooManyRequests' }
+        '503': { $ref: '#/components/responses/Error' }
+  /internal/v1/offers/{offer_id}:
+    get:
+      operationId: getOffer
+      tags: [offers]
+      summary: INT-02 — read offer state (no tokens, no values)
+      x-requirements: [UC-01]
+      x-roles: [issuer-operator, auditor]
+      parameters:
+        - $ref: '#/components/parameters/OfferId'
+        - $ref: '#/components/parameters/RequestId'
+      responses:
+        '200':
+          description: Offer state
+          headers:
+            X-Environment: { $ref: '#/components/headers/XEnvironment' }
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/OfferState' }
+        '404': { $ref: '#/components/responses/Error' }
+  /internal/v1/offers/{offer_id}/cancel:
+    post:
+      operationId: cancelOffer
+      tags: [offers]
+      summary: INT-03 — cancel an unused offer
+      x-requirements: [T-A03]
+      x-roles: [issuer-operator]
+      x-audit-event: offer.cancelled
+      parameters:
+        - $ref: '#/components/parameters/OfferId'
+        - $ref: '#/components/parameters/IdempotencyKey'
+        - $ref: '#/components/parameters/RequestId'
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              properties:
+                reason_code: { type: string, enum: [operator_request, data_error, expired_manually] }
+      responses:
+        '204':
+          description: Cancelled (repeat on a cancelled offer also returns 204)
+          headers:
+            X-Environment: { $ref: '#/components/headers/XEnvironment' }
+        '409': { $ref: '#/components/responses/Error' }
+  /internal/v1/credentials/{credential_id}:
+    get:
+      operationId: getCredentialRecord
+      tags: [credentials]
+      summary: INT-04 — credential metadata record (phase 3)
+      x-phase: 3
+      x-roles: [issuer-operator, issuer-authority, auditor]
+      parameters:
+        - $ref: '#/components/parameters/CredentialId'
+        - $ref: '#/components/parameters/RequestId'
+      responses:
+        '200':
+          description: Metadata only — no claims, no disclosures, no national ID
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/CredentialRecord' }
+        '404': { $ref: '#/components/responses/Error' }
+  /internal/v1/credentials/{credential_id}/suspend:
+    post:
+      operationId: suspendCredential
+      tags: [credentials]
+      summary: INT-05 — suspend (status value 2; requires 2-bit list)
+      x-phase: 3
+      x-requirements: [T-S01, DR-17, DR-29]
+      x-roles: [issuer-authority]
+      x-audit-event: status.suspended
+      parameters: [ { $ref: '#/components/parameters/CredentialId' }, { $ref: '#/components/parameters/IdempotencyKey' } ]
+      requestBody: { $ref: '#/components/requestBodies/StatusChange' }
+      responses:
+        '200': { $ref: '#/components/responses/StatusChanged' }
+        '409': { $ref: '#/components/responses/Error' }
+        '422': { $ref: '#/components/responses/Error' }
+        '503': { $ref: '#/components/responses/Error' }
+  /internal/v1/credentials/{credential_id}/reinstate:
+    post:
+      operationId: reinstateCredential
+      tags: [credentials]
+      summary: INT-06 — lift suspension (from SUSPENDED only, after holder re-authentication)
+      x-phase: 3
+      x-requirements: [T-S02, LC-03]
+      x-roles: [issuer-authority]
+      x-audit-event: status.reinstated
+      parameters: [ { $ref: '#/components/parameters/CredentialId' }, { $ref: '#/components/parameters/IdempotencyKey' } ]
+      requestBody: { $ref: '#/components/requestBodies/StatusChange' }
+      responses:
+        '200': { $ref: '#/components/responses/StatusChanged' }
+        '409': { $ref: '#/components/responses/Error' }
+  /internal/v1/credentials/{credential_id}/revoke:
+    post:
+      operationId: revokeCredential
+      tags: [credentials]
+      summary: INT-07 — revoke (final; status value 1; never reversed)
+      x-phase: 3
+      x-requirements: [T-S03, T-S04, LC-02]
+      x-roles: [issuer-authority]
+      x-audit-event: status.revoked
+      parameters: [ { $ref: '#/components/parameters/CredentialId' }, { $ref: '#/components/parameters/IdempotencyKey' } ]
+      requestBody: { $ref: '#/components/requestBodies/StatusChange' }
+      responses:
+        '200': { $ref: '#/components/responses/StatusChanged' }
+        '409': { $ref: '#/components/responses/Error' }
+        '503': { $ref: '#/components/responses/Error' }
+components:
+  securitySchemes:
+    serviceToken:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Short-lived service/staff token carrying a role (DR-05). TEST AuthProvider.
+  parameters:
+    IdempotencyKey:
+      name: Idempotency-Key
+      in: header
+      required: true
+      description: Kept 24 h. Same key + same body returns the same result (without tx_code); different body -> 409 API-4090.
+      schema: { type: string, format: uuid }
+    RequestId:
+      name: X-Request-Id
+      in: header
+      required: false
+      schema: { type: string, maxLength: 64 }
+    OfferId:
+      name: offer_id
+      in: path
+      required: true
+      schema: { type: string, format: uuid }
+    CredentialId:
+      name: credential_id
+      in: path
+      required: true
+      schema: { type: string, format: uuid }
+  headers:
+    XEnvironment:
+      description: Always TEST (DR-47)
+      schema: { type: string, const: TEST }
+    NoStore:
+      schema: { type: string, const: no-store }
+  requestBodies:
+    StatusChange:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            additionalProperties: false
+            required: [reason_code]
+            properties:
+              reason_code: { type: string, enum: [device_loss, compromise, data_error, superseded, holder_request, investigation] }
+              approval_ref: { type: string, maxLength: 64, description: Second approval reference (DR-29) }
+  responses:
+    Error:
+      description: Error (generic message, no citizen data)
+      headers:
+        X-Environment: { $ref: '#/components/headers/XEnvironment' }
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/ErrorResponse' }
+    TooManyRequests:
+      description: Rate limited
+      headers:
+        Retry-After: { schema: { type: integer, minimum: 1 } }
+        X-Environment: { $ref: '#/components/headers/XEnvironment' }
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/ErrorResponse' }
+    StatusChanged:
+      description: New state published
+      content:
+        application/json:
+          schema:
+            type: object
+            additionalProperties: false
+            required: [credential_id, state, status_published_at]
+            properties:
+              credential_id: { type: string, format: uuid }
+              state: { type: string, enum: [ACTIVE, SUSPENDED, REVOKED] }
+              status_published_at: { type: string, format: date-time }
+  schemas:
+    CreateOfferRequest:
+      type: object
+      additionalProperties: false
+      required: [citizen_ref, configuration_id]
+      properties:
+        citizen_ref: { type: string, pattern: '^test-citizen-[0-9]{4,}$', description: Opaque key into the SYNTHETIC registry — never the national ID }
+        configuration_id: { type: string, enum: [national_id_test] }
+        renewal_of: { type: [string, 'null'], format: uuid }
+        replace_existing: { type: boolean, default: false }
+    CreateOfferResponse:
+      type: object
+      additionalProperties: false
+      required: [offer_id, offer_uri, expires_at]
+      properties:
+        offer_id: { type: string, format: uuid }
+        offer_uri: { type: string, pattern: '^openid-credential-offer://\?credential_offer_uri=' }
+        expires_at: { type: string, format: date-time }
+        tx_code: { type: string, pattern: '^[0-9]{6}$', description: Present only on first creation; omitted on idempotent replay }
+    OfferState:
+      type: object
+      additionalProperties: false
+      required: [offer_id, state, created_at, expires_at]
+      properties:
+        offer_id: { type: string, format: uuid }
+        state: { type: string, enum: [OFFERED, ISSUING, COMPLETED, EXPIRED, CANCELLED, FAILED] }
+        created_at: { type: string, format: date-time }
+        expires_at: { type: string, format: date-time }
+        failure_code: { type: string }
+    CredentialRecord:
+      type: object
+      additionalProperties: false
+      required: [credential_id, vct, state, iat, exp]
+      properties:
+        credential_id: { type: string, format: uuid }
+        vct: { type: string }
+        state: { type: string, enum: [ACTIVE, SUSPENDED, REVOKED, EXPIRED] }
+        iat: { type: integer }
+        exp: { type: integer }
+        status_ref: { type: object, additionalProperties: false, properties: { uri: { type: string, format: uri }, idx: { type: integer, description: issuer-authority only } } }
+        history: { type: array, items: { type: object, additionalProperties: false, properties: { at: { type: string, format: date-time }, to: { type: string }, reason_code: { type: string } } } }
+    ErrorResponse:
+      type: object
+      additionalProperties: false
+      required: [error]
+      properties:
+        error:
+          type: object
+          additionalProperties: false
+          required: [code, message, request_id]
+          properties:
+            code: { type: string, pattern: '^(API|ISS|STA)-[0-9]{4}$', examples: [API-4001, ISS-4001, ISS-4091, ISS-4092, ISS-5033] }
+            message: { type: string, maxLength: 200 }
+            request_id: { type: string }
