@@ -1,0 +1,27 @@
+{
+  "frozen_files": 18,
+  "all_sha256_unchanged": true,
+  "all_match_remote_base_blob_ids": true,
+  "blob_matches": {
+    "evidence/g1-suite-v1.0/README.md": true,
+    "evidence/g1-suite-v1.0/openapi/trust.v1.yaml": true,
+    "evidence/g1-suite-v1.0/openapi/issuer-internal.v1.yaml": true,
+    "evidence/g1-suite-v1.0/openapi/status-internal.v1.yaml": true,
+    "evidence/g1-suite-v1.0/openapi/verifier.v1.yaml": true,
+    "evidence/g1-suite-v1.0/openapi/VALIDATION_RESULT.txt": true,
+    "evidence/g1-suite-v1.0/tests_suite/package-lock.json": true,
+    "evidence/g1-suite-v1.0/tests_suite/package.json": true,
+    "evidence/g1-suite-v1.0/tests_suite/run.mjs": true,
+    "evidence/g1-suite-v1.0/tests_suite/lib/harness.mjs": true,
+    "evidence/g1-suite-v1.0/tests_suite/lib/pki.mjs": true,
+    "evidence/g1-suite-v1.0/tests_suite/tests/core.test.mjs": true,
+    "evidence/g1-suite-v1.0/tests_suite/tests/vp.test.mjs": true,
+    "evidence/g1-suite-v1.0/tests_suite/evidence/run_main.log": true,
+    "evidence/g1-suite-v1.0/tests_suite/evidence/mutation_skip-chain.log": true,
+    "evidence/g1-suite-v1.0/tests_suite/evidence/results.json": true,
+    "evidence/g1-suite-v1.0/tests_suite/evidence/mutation_skip-role.log": true,
+    "evidence/g1-suite-v1.0/tests_suite/evidence/results.md": true
+  },
+  "no_mutations_to_tools_workflows_hooks": true,
+  "mechanism": "Create a new Git tree from pinned base using only new openapi/v1.1, docs/task3, tests/contracts/task3, evidence/task3 paths; remote tree diff must verify."
+}

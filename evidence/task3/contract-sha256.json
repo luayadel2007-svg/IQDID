@@ -1,0 +1,6 @@
+{
+  "openapi/v1.1/trust.v1.1.yaml": "33a7d6f96ec7013f892463b08c70eed78bfd746ca6ed532eac9484c6f407c03f",
+  "openapi/v1.1/verifier.v1.1.yaml": "a83e5b726a14a0e988f3dd71594a9683013515d36468a445052c54ff6ecd6a09",
+  "openapi/v1.1/issuer-internal.v1.1.yaml": "b083eb97d931e2d63d5647bdf6bcdd55c9a3c664be80fc8672175b3cee872649",
+  "openapi/v1.1/status-internal.v1.1.yaml": "b84fec761385830150a0f2e4d645563d663d791451bb0307f44f251b95550840"
+}

@@ -1,0 +1,1 @@
+{"name":"iqdid-task3-contract-validation","private":true,"version":"1.0.0","description":"Isolated validation tools; no production dependency changes","dependencies":{"@apidevtools/swagger-parser":"12.1.0","@stoplight/spectral-cli":"6.15.0","@redocly/cli":"2.5.0","ajv":"8.17.1","ajv-formats":"3.0.1","yaml":"2.8.1"}}

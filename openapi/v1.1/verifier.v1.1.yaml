@@ -1,0 +1,431 @@
+openapi: 3.1.0
+info:
+  title: Iraqi Digital ID Prototype — Verifier Service (C2-B)
+  version: 1.1.0-draft
+  description: 'TEST ONLY. INT-11..INT-13 for the verifier front-end. OpenID4VP endpoints (STD-08..STD-10) follow
+
+    OpenID4VP 1.0 and are not redefined. Client identifier: x509_hash (DR-14 amended; W14 evidence).
+
+    Disclosed values are held in memory only, returned once, erased after one read or 60 s (PRV-05, DR-41).
+
+
+    TASK-3 REVIEW CANDIDATE. Not owner-approved and not a service implementation. See docs/task3/G1a_Open_Decisions.md.
+    Existing DR proposals retain their original status.
+
+    '
+  x-environment: TEST
+servers:
+- url: https://verifier.digital-id.test
+security: &id001
+- staffSession: []
+paths:
+  /verifier/v1/services:
+    get:
+      operationId: listServices
+      summary: INT-11 — services of the staff member's organisation (fields come from policy; staff cannot edit)
+      x-roles:
+      - verifier-staff
+      responses:
+        '200':
+          description: Services
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  additionalProperties: false
+                  required:
+                  - service_id
+                  - name_ar
+                  - name_en
+                  - purpose_text
+                  - requested_fields
+                  - declared_retention
+                  properties:
+                    service_id:
+                      type: string
+                    name_ar:
+                      type: string
+                    name_en:
+                      type: string
+                    purpose_text:
+                      type: string
+                    requested_fields:
+                      type: array
+                      items:
+                        type: object
+                        additionalProperties: false
+                        required:
+                        - path
+                        - class
+                        properties:
+                          path:
+                            type: array
+                            items:
+                              type: string
+                            minItems: 1
+                          class:
+                            type: string
+                            enum:
+                            - OPTIONAL
+                            - SERVICE_REQUIRED
+                            - LEGAL_REQUIRED
+                    declared_retention:
+                      type: string
+          headers:
+            X-Environment:
+              schema:
+                type: string
+                const: TEST
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+      security: *id001
+      description: '
+
+        Authenticate before resource lookup or replay. Require one of these roles: verifier-staff. Enforce resource/organisation
+        permissions from verified server-side identity; x-roles alone is not enforcement. 401 for invalid credentials;
+        403 for insufficient role. Never expose foreign resource details.'
+  /verifier/v1/sessions:
+    post:
+      operationId: createSession
+      summary: INT-12 — start a verification session (120 s) and return the QR payload
+      x-roles:
+      - verifier-staff
+      x-audit-event: verifier.session.created
+      parameters:
+      - name: Idempotency-Key
+        in: header
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              required:
+              - service_id
+              properties:
+                service_id:
+                  type: string
+      responses:
+        '201':
+          description: Session created
+          headers:
+            Cache-Control:
+              schema:
+                type: string
+                const: no-store
+            X-Environment:
+              schema:
+                type: string
+                const: TEST
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: false
+                required:
+                - session_id
+                - qr_payload
+                - expires_at
+                - short_code
+                properties:
+                  session_id:
+                    type: string
+                    format: uuid
+                  qr_payload:
+                    type: string
+                    pattern: ^openid4vp://\?client_id=x509_hash%3A
+                  expires_at:
+                    type: string
+                    format: date-time
+                  short_code:
+                    type: string
+                    pattern: ^[0-9]{4}$
+                    description: Spoken verification code (UX-09, THM-47). Not an authentication credential.
+                    examples:
+                    - '0123'
+        '404':
+          $ref: '#/components/responses/Error'
+        '429':
+          $ref: '#/components/responses/Error'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '409':
+          $ref: '#/components/responses/Conflict'
+      security: *id001
+      description: '
+
+        Authenticate before resource lookup or replay. Require one of these roles: verifier-staff. Enforce resource/organisation
+        permissions from verified server-side identity; x-roles alone is not enforcement. 401 for invalid credentials;
+        403 for insufficient role. Never expose foreign resource details. Resolve service_id only within the authenticated
+        organisation and registered service policy; unknown/foreign service returns 404. Session expiry is creation
+        +120 seconds. Idempotent replay does not extend expiry. Session UUID and short_code are not access credentials.'
+      x-idempotency:
+        status: proposed OD-03
+        scope:
+        - verified organisation
+        - verified subject
+        - operationId
+        - canonical resource path
+        - Idempotency-Key
+        retention_seconds: 86400
+        request_comparison: Canonical validated semantic JSON; distinguish absent and null; include operation target.
+        replay: 'Re-authenticate and re-authorize first; serialize concurrent uses atomically; never repeat side
+          effects or return erased/one-time secrets. Different request: 409 API-4090. In-flight: 409 API-4090 with
+          Retry-After. After record expiry never resurrect expired resources; enforce independent business uniqueness.'
+  /verifier/v1/sessions/{session_id}:
+    get:
+      operationId: getSessionResult
+      summary: INT-13 — poll state / read result (values returned once)
+      x-roles:
+      - verifier-staff
+      parameters:
+      - name: session_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: Session state
+          headers:
+            Cache-Control:
+              schema:
+                type: string
+                const: no-store
+            X-Environment:
+              schema:
+                type: string
+                const: TEST
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: false
+                required:
+                - state
+                properties:
+                  state:
+                    type: string
+                    enum:
+                    - CREATED
+                    - FETCHED
+                    - RESPONSE_RECEIVED
+                    - ACCEPTED
+                    - REJECTED
+                    - EXPIRED
+                  result:
+                    type: object
+                    additionalProperties: false
+                    required:
+                    - code
+                    - computed
+                    properties:
+                      code:
+                        type: string
+                        pattern: ^R-(0[1-9]|1[0-3])$
+                      computed:
+                        type: boolean
+                        const: true
+                      disclosed:
+                        type: object
+                        description: Only on ACCEPTED, first read within 60 s; then omitted
+                        additionalProperties:
+                          type:
+                          - string
+                          - number
+                          - boolean
+                          - 'null'
+                      status_freshness:
+                        type: object
+                        additionalProperties: false
+                        properties:
+                          list_iat:
+                            type: integer
+                          valid_until:
+                            type: integer
+                allOf:
+                - if:
+                    properties:
+                      state:
+                        not:
+                          const: ACCEPTED
+                    required:
+                    - state
+                  then:
+                    properties:
+                      result:
+                        not:
+                          required:
+                          - disclosed
+                          properties:
+                            disclosed: {}
+        '404':
+          $ref: '#/components/responses/Error'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+      security: *id001
+      description: '
+
+        Authenticate before resource lookup or replay. Require one of these roles: verifier-staff. Enforce resource/organisation
+        permissions from verified server-side identity; x-roles alone is not enforcement. 401 for invalid credentials;
+        403 for insufficient role. Never expose foreign resource details. Proposed OD-01: session organisation AND
+        creator subject must match the authenticated staff principal. No implicit auditor/admin override. Unknown
+        and foreign/other-owner session both return 404 with the same generic shape; do not consume their result.
+        Authorize before atomic read-and-delete. No values in logs, caches, idempotency storage, or subsequent reads.'
+      x-resource-authorization:
+        status: proposed OD-01
+        organisation: session.organisation_id == principal.organisation_id
+        owner: session.created_by == principal.subject
+        mismatch_http: 404
+      x-disclosure-lifecycle:
+        status: proposed OD-04; REQ-PRV-04
+        session_ttl_seconds: 120
+        values_ttl_seconds: 60
+        values_ttl_origin: verified result acceptance
+        consume: first authorized response construction; atomic across concurrent readers
+        expired_or_consumed: state metadata may remain, disclosed MUST be omitted
+        failed_delivery: no redisclosure; start a new consent/session
+        cache: no-store
+components:
+  securitySchemes:
+    staffSession:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: 'Proposed TEST AuthProvider bearer contract (DR-05 source missing): validate signature, configured
+        algorithm allowlist, issuer, audience, exp/nbf and revocation/session state. Trusted subject, organisation
+        and roles come from verified identity only; never from request body. Exact issuer/audience/claims remain
+        OD-02.'
+  responses:
+    Error:
+      description: Generic error; no personal values, tokens or internal stack traces.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+      headers:
+        X-Environment:
+          schema:
+            type: string
+            const: TEST
+    BadRequest:
+      description: 'Malformed syntax, invalid schema, identifier or required header: API-4001.'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            error:
+              code: API-4001
+              message: BadRequest
+              request_id: test-request-1
+      headers:
+        X-Environment:
+          schema:
+            type: string
+            const: TEST
+    Unauthorized:
+      description: 'Missing, expired or invalid bearer credential: API-4010.'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            error:
+              code: API-4010
+              message: Unauthorized
+              request_id: test-request-1
+      headers:
+        WWW-Authenticate:
+          schema:
+            type: string
+          description: Bearer challenge; no token content.
+        X-Environment:
+          schema:
+            type: string
+            const: TEST
+    Forbidden:
+      description: 'Authenticated principal lacks operation role or approved resource permission: API-4030.'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            error:
+              code: API-4030
+              message: Forbidden
+              request_id: test-request-1
+      headers:
+        X-Environment:
+          schema:
+            type: string
+            const: TEST
+    Conflict:
+      description: 'Idempotency key conflicts with another request, or state conflict: API-4090 unless a documented
+        service code applies.'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            error:
+              code: API-4090
+              message: Conflict
+              request_id: test-request-1
+      headers:
+        X-Environment:
+          schema:
+            type: string
+            const: TEST
+        Retry-After:
+          schema:
+            type: integer
+            minimum: 1
+          description: Present for an in-flight duplicate only; not an instruction to retry a changed payload.
+  schemas:
+    ErrorResponse:
+      type: object
+      additionalProperties: false
+      required:
+      - error
+      properties:
+        error:
+          type: object
+          additionalProperties: false
+          required:
+          - code
+          - message
+          - request_id
+          properties:
+            code:
+              type: string
+              pattern: ^(API|ISS|STA|VER|TRU)-[0-9]{4}$
+            message:
+              type: string
+              minLength: 1
+              maxLength: 200
+            request_id:
+              type: string
+              minLength: 1
+              maxLength: 64
+x-review-status: proposed-not-approved
