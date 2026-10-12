@@ -2,6 +2,12 @@ name: TASK1 Windows PowerShell 5.1 validation
 on:
   push:
     branches: [task1/windows-validation]
+    paths:
+      - tools/**
+      - evidence/g1-suite-v1.0/**
+      - evidence/g1-suite-v1.0.SHA256SUMS
+      - .github/workflows/**
+      - .gitattributes
   workflow_dispatch:
 permissions:
   contents: read

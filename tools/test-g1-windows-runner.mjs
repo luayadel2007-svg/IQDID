@@ -48,13 +48,18 @@ function inject(root,name) {
   const slot='  $ciCode = Invoke-Logged';
   script=script.replace(slot,`  # TEST: make npm ci reject this disposable package.json against its lock.\n  $p = Join-Path $Work 'package.json'\n  $j = Get-Content -LiteralPath $p -Raw | ConvertFrom-Json\n  $j.dependencies.jose = '0.0.0-iqdid-test-invalid'\n  $j | ConvertTo-Json -Depth 10 | Set-Content -LiteralPath $p -Encoding UTF8\n${slot}`);
  }
+ if(name==='hash-observation-mismatch') {
+  const hashSlot="  return (Get-FileHash -Algorithm SHA256 -LiteralPath $Path).Hash.ToLowerInvariant()";
+  if(!script.includes(hashSlot))throw Error('Hash observation injection slot changed');
+  script=script.replace(hashSlot,"  if ($Path -like '*g1-suite-v1.0*README.md') { return ('0' * 64) }\n"+hashSlot);
+ }
  if(name==='manifest-mismatch') { const p=join(root,'evidence','g1-suite-v1.0.SHA256SUMS'); const t=readFileSync(p,'utf8'); writeFileSync(p,(t[0]==='0'?'1':'0')+t.slice(1)); }
  if(script!==runnerText)writeFileSync(join(root,'tools',runnerName),script,'utf8');
 }
 function run(name,root,expected,seed) {
  const ev=join(root,'evidence','runs'); const before=new Set(readdirSync(ev));
  let command='';
- if(name==='hash-observation-mismatch') command=`function global:Get-FileHash { param([string]$Algorithm,[string]$LiteralPath) $h=Microsoft.PowerShell.Utility\\Get-FileHash -Algorithm $Algorithm -LiteralPath $LiteralPath; if ($LiteralPath -like '*g1-suite-v1.0*README.md') { $h.Hash = ('0' * 64) }; return $h }; `;
+
  if(seed)command+=`$env:MUTATE = ${quote(seed)}; `;
  command+=`& ${quote(join(root,'tools',runnerName))}; $code=$LASTEXITCODE; if (Test-Path Env:MUTATE) { Write-Error 'MUTATE leaked'; exit 99 }; Write-Host 'MUTATE_AFTER=ABSENT'; exit $code`;
  const env={...process.env}; delete env.MUTATE;
