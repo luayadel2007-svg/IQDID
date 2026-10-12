@@ -1,6 +1,6 @@
 # IQDID — DR-13 Reconstructed Candidate Register
 
-**Status:** SOURCE-EXTRACTED / NOT APPROVED / NOT VERIFIED AGAINST STANDARDS  
+**Status:** REVIEW SCOPE APPROVED / SOURCE-EXTRACTED / ENGINEERING PARTIAL / NO GATE APPROVAL  
 **Prepared:** 13 October 2026  
 **Source:** `Phase_2_Consolidated_Architecture_v1.1.md`, Chapter 6, reproducing original `API_Contracts_v1.0` without substantive changes.  
 **Method:** Extract explicit `[غ]` markers within the original API-contract chapter; distinguish actual requirements from the legend, general warning, duplicated references, and decision index. The historical claim of “17 items” is **not substantiated** by 17 distinct enumerated rows in the recovered file.
@@ -47,3 +47,7 @@
 ## Next action for Claude or Work
 
 Review the twelve C-items and the two cross-references against the project-pinned normative standard text. Record per item: exact source quotation (short), standard identifier/version/section, normative vs project choice, observed claim, conformity verdict, required fix, test case ID, evidence path, and reviewer. Separately search for the historical 17-entry list and reconcile **without inventing missing items**. Generate a decision-ready traceability matrix; leave G1a unpassed until its acceptance criteria are independently met.
+
+## Owner-approved review scope and executable evidence — 2026-10-13
+
+Owner approved C01–C12 review scope only. Historical original17 list remains unrecovered. C01 clarification: DR13_C01_Clarification.md. T01–T14 executed:43 cases,37PASS,6FAIL,14HTTP NOTRUN. Read DR13_Test_Execution_Report.md and DR13_Engineering_Closure_Report.md. OD policies, full conformance and G1a were not approved.

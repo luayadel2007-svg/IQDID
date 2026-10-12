@@ -1,0 +1,15 @@
+validating openapi/v1.1/issuer-internal.v1.1.yaml...
+openapi/v1.1/issuer-internal.v1.1.yaml: validated in 50ms
+
+validating openapi/v1.1/status-internal.v1.1.yaml...
+openapi/v1.1/status-internal.v1.1.yaml: validated in 19ms
+
+validating openapi/v1.1/trust.v1.1.yaml...
+openapi/v1.1/trust.v1.1.yaml: validated in 18ms
+
+validating openapi/v1.1/verifier.v1.1.yaml...
+openapi/v1.1/verifier.v1.1.yaml: validated in 17ms
+
+Woohoo! Your API descriptions are valid. 🎉
+You have 5 warnings.
+

@@ -24,3 +24,7 @@ PR#2 بقي Draft على task3/g1a-openapi-review فوق task1/windows-validatio
 التسليم: SOURCE_INVENTORY_AND_PROVENANCE، G1A_ACCEPTANCE_TRACEABILITY_MATRIX، G1A_OWNER_DECISION_PACKAGE، OpenAPI_v1.1_Final_Review، OpenAPI_v1.1_ChangeLog، G1A_SECURITY_FINDINGS، G1A_BLOCKERS_AND_RESIDUAL_RISKS، TASK3_TEST_EXECUTION_REPORT، TASK3_INDEPENDENT_REVIEW، TASK3_GIT_CHANGE_REPORT، وأربعة YAML وأدوات tests/contracts/task3. جميع الأدلة الجديدة تحت evidence/task3 في مجلدات مستقلة؛ المجمد والأدلة الأصلية لم تُستبدل.
 
 المطلوب من المالك مرة واحدة: G1_Decision_Recommendations_v1.0 §3/الدفعة أ؛ جدول DR13 الأصلي17 أو مرجع تطابقه؛ مراجعة خياراتOD01…09 وتحديد الموافق عليه، خصوصاً معنى موافقتينDR29 وملفJWT وcatalog mapping. لا قرارات أمنية أخرى ثبتت بصفة نهائية. التوقف بعد التسليم حتى مراجعتك، دون بناءC3/C4/C5/C2-B أو مهام4…7 أو merge.
+
+## تحديث DR-13 — 13 أكتوبر2026
+
+المالك اعتمد نطاقالسجل المعادبناؤهC01…C12فقط؛نقص استعادةالقائمةالتاريخية17لميُخفَ. انظرDR13_Owner_Scope_Approval.md. مراجعةC01واختباراتT01…T14أنجزت،ونتيجتها43حالة:37PASS/6FAILمع14HTTP NOTRUN. DR13يبقىPARTIAL بسببنتائجالمكتبة؛هذاالتحديثيتقدم علىوصف«نطاقإعادةالبناء غيرمعتمد»،ولا يحول أيOD أوالدفعةأإلىمعتمد أوG1aإلىPASS. التقريرالأحدث:DR13_Engineering_Closure_Report.md.

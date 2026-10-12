@@ -1,0 +1,40 @@
+{
+  "schema": 1,
+  "status": "FAIL",
+  "exit_code": 1,
+  "mode": "all-index",
+  "scanned_files": 247,
+  "findings": [
+    {
+      "path": "tests/contracts/task3/dr13-tests.mjs",
+      "rule": "SECRET_ASSIGNMENT",
+      "line": 40
+    },
+    {
+      "path": "tests/contracts/task3/dr13-tests.mjs",
+      "rule": "SECRET_ASSIGNMENT",
+      "line": 42
+    },
+    {
+      "path": "tests/contracts/task3/dr13-tests.mjs",
+      "rule": "SECRET_ASSIGNMENT",
+      "line": 43
+    },
+    {
+      "path": "tests/contracts/task3/dr13-tests.mjs",
+      "rule": "SECRET_ASSIGNMENT",
+      "line": 57
+    },
+    {
+      "path": "tests/contracts/task3/dr13-tests.mjs",
+      "rule": "SECRET_ASSIGNMENT",
+      "line": 59
+    },
+    {
+      "path": "tests/contracts/task3/dr13-tests.mjs",
+      "rule": "SECRET_ASSIGNMENT",
+      "line": 61
+    }
+  ],
+  "errors": []
+}

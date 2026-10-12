@@ -1,0 +1,338 @@
+{
+  "base_commit": "904a2b59c222f211b98135ed9b8dada62d108802",
+  "files": [
+    {
+      "path": "docs/task3/DR13_Owner_Scope_Approval.md",
+      "sha256": "6225e21003e84483d59a5417a427435109ac4bc6bcb8e414fe1c96d7a55510bf"
+    },
+    {
+      "path": "docs/task3/DR13_Test_Execution_Report.md",
+      "sha256": "bb906245bbc5dd71090228cb031b42e4963c9685a10888852a3a78e20b79a06f"
+    },
+    {
+      "path": "docs/task3/DR13_C01_Clarification.md",
+      "sha256": "ae0f36e42ab790fad852fb40c460ed2464c589622db4131c82fbb6ffdd3ea91c"
+    },
+    {
+      "path": "docs/task3/G1A_BLOCKERS_AND_RESIDUAL_RISKS.md",
+      "sha256": "10f024c9e93656bba01056b21ec81dd81e389f9ac9a900b931788d54a443bb49"
+    },
+    {
+      "path": "docs/task3/G1A_ACCEPTANCE_TRACEABILITY_MATRIX.md",
+      "sha256": "01cb1662663a4f69d499b21e15e4adec78909a20651925df0075a9511ce0c18d"
+    },
+    {
+      "path": "docs/task3/TASK3_GIT_CHANGE_REPORT.md",
+      "sha256": "150c08b589f26b865c55ef9e7ce37d81535bbb30468ea7d233704d7ce30b8e5d"
+    },
+    {
+      "path": "docs/task3/DR13_Engineering_Closure_Report.md",
+      "sha256": "c8cdf48053b392c61ff544ebeed48694e0f95ba03b027551407caa12b8064b9b"
+    },
+    {
+      "path": "docs/task3/DR13_Independent_Review.md",
+      "sha256": "a3559813775b66c4b0414adad3ad29d4882546534da5a6ad028bdae7954279ec"
+    },
+    {
+      "path": "docs/task3/TASK3_INDEPENDENT_REVIEW.md",
+      "sha256": "5382b700e2acd9e8650eb26b13e2f4cde727f3026a8bb2bb8d373eee39cada82"
+    },
+    {
+      "path": "docs/task3/TASK3_TEST_EXECUTION_REPORT.md",
+      "sha256": "712578a2d22bf808d052f2c11c498d0f338dae45c0476949cdc2fcc6cf5c3ae8"
+    },
+    {
+      "path": "docs/task3/DR13_Library_Findings.md",
+      "sha256": "008ef6ec70b4c586ba58b452106fdadec4cb81525a442211397478290f7fb562"
+    },
+    {
+      "path": "docs/task3/TASK3_Final_Engineering_Report.md",
+      "sha256": "cf357cf0db39ee43cea35f6bf4f75ed2f1a918ba71b9e1071bace29d0f65baf9"
+    },
+    {
+      "path": "docs/task3/DR13_Reconstructed_Candidate_Register.md",
+      "sha256": "0a6e885ba2713b9ac52a6faf5b3ab7f470e8e4d7a03b736418e9da9fbfb37482"
+    },
+    {
+      "path": "tests/contracts/task3/run-dr13.py",
+      "sha256": "c23ce38a0362e166111cf8f81fd500b51bad14f95a8531b426bcfbabee46e0c2"
+    },
+    {
+      "path": "tests/contracts/task3/dr13-tests.mjs",
+      "sha256": "c87c997f783c30430af907b4df5fdc12839b59940c18d74655afd8d6b3767760"
+    },
+    {
+      "path": "tests/contracts/task3/dr13-contracts.cjs",
+      "sha256": "777fe692cef2d928accf682e4341a53974e4deec5521a130f0bdd44048051915"
+    },
+    {
+      "path": "tests/contracts/task3/README.md",
+      "sha256": "0a5d875495a7cb82575cefe8a23655cd8a8a7319b58e169c0c7e42da9172cca1"
+    },
+    {
+      "path": "tests/contracts/task3/dr13-sdk/package.json",
+      "sha256": "20e9d80874175235704a0183d892ae65bda3d06dda35077e9a9f47d084d28c0b"
+    },
+    {
+      "path": "tests/contracts/task3/dr13-sdk/package-lock.json",
+      "sha256": "59912e1d4684e0143508154b14dd18e5b3cee47348091619892986d8702455f5"
+    },
+    {
+      "path": "evidence/task3/dr13-independent-review-20261013-03/stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence/task3/dr13-independent-review-20261013-03/independent-command.json",
+      "sha256": "5b3b96eab0459ff57b74818d0988fe58208bca34c81160b9c791741c6d8e03d0"
+    },
+    {
+      "path": "evidence/task3/dr13-independent-review-20261013-03/stdout.log",
+      "sha256": "7bedfd24e57d752d8d0487a09b0a2c8f8dfe83043d7626e365e3f76a2c35b906"
+    },
+    {
+      "path": "evidence/task3/dr13-independent-review-20261013-03/summary.json",
+      "sha256": "5f9ef3074a8bd0043025d74b9f32dc363c7ad2a1b9b70970bf2678f60260e969"
+    },
+    {
+      "path": "evidence/task3/dr13-independent-review-20261013-02/summary.json",
+      "sha256": "60563c9f4f95addc756b353b576e3c62cc03fc47b65ccfa95adc8fea83c3a522"
+    },
+    {
+      "path": "evidence/task3/dr13-final-20261012T233854Z-34ba006a/commands.json",
+      "sha256": "8b4c93131fa25d8d1b675cb73ed999be1faf8894573fc5e708a701e28184da42"
+    },
+    {
+      "path": "evidence/task3/dr13-final-20261012T233854Z-34ba006a/task2-scan.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence/task3/dr13-final-20261012T233854Z-34ba006a/sdk-provenance.json",
+      "sha256": "2ff8c19ecf238a9a0b3a3fcffa1c0194d053de2fcbf3f097c8c49fb7503f49cd"
+    },
+    {
+      "path": "evidence/task3/dr13-final-20261012T233854Z-34ba006a/stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence/task3/dr13-final-20261012T233854Z-34ba006a/stdout.log",
+      "sha256": "fc940ce5409aa10076872e2dfa0b536ad10fb97be15730deb3cdd4bb0d983d6e"
+    },
+    {
+      "path": "evidence/task3/dr13-final-20261012T233854Z-34ba006a/task2-scan.stdout.log",
+      "sha256": "1705faae8316e6f88d1266a0b25867b5740a67e16dd238906a60b7add035475c"
+    },
+    {
+      "path": "evidence/task3/dr13-final-20261012T233854Z-34ba006a/tested-source-sha256.json",
+      "sha256": "781e3adcc718eeaa7e4f95225f7dc8ce20f518b8a3cf31a323bb63780b4b7e83"
+    },
+    {
+      "path": "evidence/task3/dr13-final-20261012T233854Z-34ba006a/preservation.json",
+      "sha256": "a33c569dd0564de9bbb078a4411d3b6b8784f64b851ee940c1d1bae86f8884e4"
+    },
+    {
+      "path": "evidence/task3/dr13-final-20261012T233459Z-66bb978e/commands.json",
+      "sha256": "a270bed8b4a7cb4e380b14f173d67fcabcef56cb6c4ad139a7779ca9eac4477d"
+    },
+    {
+      "path": "evidence/task3/dr13-final-20261012T233459Z-66bb978e/sdk-provenance.json",
+      "sha256": "2ff8c19ecf238a9a0b3a3fcffa1c0194d053de2fcbf3f097c8c49fb7503f49cd"
+    },
+    {
+      "path": "evidence/task3/dr13-final-20261012T233459Z-66bb978e/stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence/task3/dr13-final-20261012T233459Z-66bb978e/stdout.log",
+      "sha256": "897576e8fe5c2f17675fb5e40a39168ab43a5f7c754204f2a837bd8cb8216d7a"
+    },
+    {
+      "path": "evidence/task3/dr13-tests-attempt4-20261013/summary.json",
+      "sha256": "2944afc071632fb3c1009fe5affa51ce30c78cb5d6e4d317b0964b2e058293ca"
+    },
+    {
+      "path": "evidence/task3/dr13-tests-attempt3-20261013/summary.json",
+      "sha256": "3505c299b3b6b8ebedea6797a661233a029ec5131aae6b16c0a192b70fb2da4f"
+    },
+    {
+      "path": "evidence/task3/20261012T233250Z-f7dd1849/commands.json",
+      "sha256": "7651f8a1179f365aeec17ca84e51663e6e7aff630ca32ecd34be16526271481a"
+    },
+    {
+      "path": "evidence/task3/20261012T233250Z-f7dd1849/spectral.stdout.log",
+      "sha256": "7e69c9a2f5a47c5b3c54c99020f6aea3e9baffcfca4377601b966f04ba09936e"
+    },
+    {
+      "path": "evidence/task3/20261012T233250Z-f7dd1849/engineering.stdout.log",
+      "sha256": "7f33039584e3110403271eab5a0b509f338e4ae4ed7dd4c561d76e14cfaf3115"
+    },
+    {
+      "path": "evidence/task3/20261012T233250Z-f7dd1849/npm-version.stderr.log",
+      "sha256": "7125f194612fcff2f454c05d848e7cb71facc1967b4d5017e25b34fdee3ba74f"
+    },
+    {
+      "path": "evidence/task3/20261012T233250Z-f7dd1849/p04-structure.stdout.log",
+      "sha256": "815e9a783e868bf8c1d03822d0e82ddda3b8d3c26aa3cb93e4305b3c9cfa28d5"
+    },
+    {
+      "path": "evidence/task3/20261012T233250Z-f7dd1849/engineering.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence/task3/20261012T233250Z-f7dd1849/tool-versions.stderr.log",
+      "sha256": "7125f194612fcff2f454c05d848e7cb71facc1967b4d5017e25b34fdee3ba74f"
+    },
+    {
+      "path": "evidence/task3/20261012T233250Z-f7dd1849/node-version.stdout.log",
+      "sha256": "b7677d3ec37ee1897ba07dc2cfe8292fe421c9ac93396cca5bbece486d1a2a41"
+    },
+    {
+      "path": "evidence/task3/20261012T233250Z-f7dd1849/spectral-version.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence/task3/20261012T233250Z-f7dd1849/spectral.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence/task3/20261012T233250Z-f7dd1849/redocly.stderr.log",
+      "sha256": "e66c7e7933da2a6ad923cca4280750e93818abe932880ace56fd73676424881e"
+    },
+    {
+      "path": "evidence/task3/20261012T233250Z-f7dd1849/p04-structure.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence/task3/20261012T233250Z-f7dd1849/redocly.stdout.log",
+      "sha256": "f8d090be5c4ffa65f77ff52f344eeed1e27368cde73f5275b5443fbb65dff564"
+    },
+    {
+      "path": "evidence/task3/20261012T233250Z-f7dd1849/contracts.stdout.log",
+      "sha256": "29f170d50057cf1ccbc6cb50a114b72c983cc5f342070d269dde2341367caf8a"
+    },
+    {
+      "path": "evidence/task3/20261012T233250Z-f7dd1849/spectral-version.stdout.log",
+      "sha256": "74894f400eb8ebea956cfbfcbe7d2947afcb5d42992ea2b45f90ad0bebfe141b"
+    },
+    {
+      "path": "evidence/task3/20261012T233250Z-f7dd1849/npm-version.stdout.log",
+      "sha256": "d9f29f5aab43c8c1a8d6acc856e258b89735f541aa5e1f07b39a62f28bfa8d06"
+    },
+    {
+      "path": "evidence/task3/20261012T233250Z-f7dd1849/policy-model.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence/task3/20261012T233250Z-f7dd1849/policy-model.stdout.log",
+      "sha256": "9bdd261a2f38231b5daac86e5b6b9709480f29de3d372db25ef824e40c44afe3"
+    },
+    {
+      "path": "evidence/task3/20261012T233250Z-f7dd1849/tool-versions.stdout.log",
+      "sha256": "15beabdec7675c37da32c6cd29753806ac3cde88038db810938b0f05b9c28d5e"
+    },
+    {
+      "path": "evidence/task3/20261012T233250Z-f7dd1849/contracts.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence/task3/20261012T233250Z-f7dd1849/node-version.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence/task3/dr13-final-20261012T233202Z-c7b35e40/commands.json",
+      "sha256": "86f30b2a7c945483c489b8ae8b6bd9920e76dac0cf381edb3fdf29eb90c4cdc9"
+    },
+    {
+      "path": "evidence/task3/dr13-final-20261012T233202Z-c7b35e40/stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence/task3/dr13-final-20261012T233202Z-c7b35e40/stdout.log",
+      "sha256": "ac18e15b6e27dbd05a69957cf7823603452a37f83a35adfa43d8cf71b00d0b81"
+    },
+    {
+      "path": "evidence/task3/dr13-independent-review-20261013-01/summary.json",
+      "sha256": "13b70e192ed4a286b7e00c884e3eb4e3c4f10eccdd65e16002b41b3f2bae98c6"
+    },
+    {
+      "path": "evidence/task3/dr13-final-20261012T233423Z-d072ace5/commands.json",
+      "sha256": "7ec585525043212c8d9cd2a78fbf74dbe2d89df983b90830c717dd86e0bd2850"
+    },
+    {
+      "path": "evidence/task3/dr13-final-20261012T233423Z-d072ace5/stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence/task3/dr13-final-20261012T233423Z-d072ace5/stdout.log",
+      "sha256": "49a483525317c876b411dc6e0cb7f66e81f8ded7c454db1fd4de1591cc9f5ca7"
+    },
+    {
+      "path": "evidence/task3/dr13-final-20261012T233854Z-34ba006a/development/dr13-sdk-install.stderr.log",
+      "sha256": "7125f194612fcff2f454c05d848e7cb71facc1967b4d5017e25b34fdee3ba74f"
+    },
+    {
+      "path": "evidence/task3/dr13-final-20261012T233854Z-34ba006a/development/dr13-sdk-install.stdout.log",
+      "sha256": "5c309e8868f5c1c66e24d0c256353695a2bb79498947a7203c4418a5d3c5bc5f"
+    },
+    {
+      "path": "evidence/task3/dr13-final-20261012T233854Z-34ba006a/development/dr13-first-scan.json",
+      "sha256": "bcbc835df65cb23f61a5d88234cc603ce588fed5c019c427a5b07949a61b9ec6"
+    },
+    {
+      "path": "evidence/task3/dr13-final-20261012T233854Z-34ba006a/tests/summary.json",
+      "sha256": "990020b954d99d4f5b45213e62fe6225980f83d57fae8e639aaa2d0fc9d58bd5"
+    },
+    {
+      "path": "evidence/task3/dr13-final-20261012T233459Z-66bb978e/development/dr13-sdk-install.stderr.log",
+      "sha256": "7125f194612fcff2f454c05d848e7cb71facc1967b4d5017e25b34fdee3ba74f"
+    },
+    {
+      "path": "evidence/task3/dr13-final-20261012T233459Z-66bb978e/development/dr13-sdk-install.stdout.log",
+      "sha256": "5c309e8868f5c1c66e24d0c256353695a2bb79498947a7203c4418a5d3c5bc5f"
+    },
+    {
+      "path": "evidence/task3/dr13-final-20261012T233459Z-66bb978e/development/dr13-attempt4.stdout.log",
+      "sha256": "b1741973a7a8957df3f9b040945ff372b3211f210959b2be5d6b605347da0213"
+    },
+    {
+      "path": "evidence/task3/dr13-final-20261012T233459Z-66bb978e/development/dr13-attempt2.stdout.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence/task3/dr13-final-20261012T233459Z-66bb978e/development/dr13-attempt3.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence/task3/dr13-final-20261012T233459Z-66bb978e/development/dr13-attempt3.stdout.log",
+      "sha256": "342d1cd5d2298708054fba010bfabb8021cdc90b7f83d1cbaeb9bd888994b7d3"
+    },
+    {
+      "path": "evidence/task3/dr13-final-20261012T233459Z-66bb978e/development/dr13-attempt4.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence/task3/dr13-final-20261012T233459Z-66bb978e/development/dr13-attempt1.stderr.log",
+      "sha256": "88398ad1f6bed734ffb5c0467cb7ab28879d23469141a5ee0d7b2d02481a9c44"
+    },
+    {
+      "path": "evidence/task3/dr13-final-20261012T233459Z-66bb978e/development/dr13-attempt2.stderr.log",
+      "sha256": "88398ad1f6bed734ffb5c0467cb7ab28879d23469141a5ee0d7b2d02481a9c44"
+    },
+    {
+      "path": "evidence/task3/dr13-final-20261012T233459Z-66bb978e/development/dr13-attempt1.stdout.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence/task3/dr13-final-20261012T233459Z-66bb978e/tests/summary.json",
+      "sha256": "d77d781ac1d6327471eec4709b5e6c1bbf327beaf6ad3299f7f067bf394dad4d"
+    },
+    {
+      "path": "evidence/task3/dr13-final-20261012T233202Z-c7b35e40/tests/summary.json",
+      "sha256": "8a711bd5f13afd957955a4ddbb5692b524df10e75a2d2e99fadfca3bc3d2783d"
+    },
+    {
+      "path": "evidence/task3/dr13-final-20261012T233423Z-d072ace5/tests/summary.json",
+      "sha256": "2af706209f7c4a4a84fc8ae4bbe3b38d2e72c0217dff3fcc5f442419ebc73cc3"
+    }
+  ],
+  "note": "Manifest omits itself, all writes are permitted TASK3 paths. Tests bind their own source hashes; no other branches modified."
+}

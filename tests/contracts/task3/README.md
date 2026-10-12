@@ -25,3 +25,7 @@ Use the existing pinned tool installs or independent scratch installs via TASK3_
 The runner now creates a new UTC/UUID subdirectory under evidence/task3 and refuses an existing directory. An optional TASK3_EVIDENCE_DIR must be a fresh child of that directory.
 
 engineering-tests.cjs runs the actual shared contract-guard.cjs against complete dereferenced documents and corrupted clones. Baseline failure blocks mutation counting, and every guard mutation checks its expected diagnostic. Proposed OD models and overlays do not activate policies in the four draft contracts. P04 is explicitly PARTIAL: draft-19 examples decode with sd-jwt-vc 0.22.0; selected disclosure digests and malformed inputs are checked. No issuer/KB signature, trust or complete compliance validation is claimed. Official example code components are subject to the IETF Trust Revised BSD terms linked in the source specification.
+
+## DR13 tests
+
+Copy the dr13-sdk package manifests to an isolated scratch directory, run npm ci --ignore-scripts there, then set DR13_SDK_ROOT and run python tests/contracts/task3/run-dr13.py from repository root. SDK versions remain0.7.0 and jose6.2.12; only test-tool manifests were added. The runner creates a fresh evidence directory. Current expected actual outcome is process exit1 with six library-boundary failures; do not turn these into passing conformance tests. Contract oracles are limited tests, not production validators. Mock Response/fetch is explicitly not real IQDID HTTP.

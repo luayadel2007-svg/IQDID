@@ -1,0 +1,19 @@
+{
+  "reviewer": "task3_independent_review",
+  "timestamp_utc": "2026-10-12T23:39:17.743474+00:00",
+  "argv": [
+    "node",
+    "tests/contracts/task3/dr13-tests.mjs",
+    "evidence/task3/dr13-independent-review-20261013-03"
+  ],
+  "cwd": "/workspace/scratch/e5c8f9cdae15/dr13-work",
+  "env_overrides": {
+    "DR13_SDK_ROOT": "/workspace/scratch/e5c8f9cdae15/dr13-sdk"
+  },
+  "exit_code": 1,
+  "source_sha256": {
+    "tests/contracts/task3/dr13-tests.mjs": "c87c997f783c30430af907b4df5fdc12839b59940c18d74655afd8d6b3767760",
+    "tests/contracts/task3/dr13-contracts.cjs": "777fe692cef2d928accf682e4341a53974e4deec5521a130f0bdd44048051915",
+    "tests/contracts/task3/dr13-sdk/package-lock.json": "59912e1d4684e0143508154b14dd18e5b3cee47348091619892986d8702455f5"
+  }
+}

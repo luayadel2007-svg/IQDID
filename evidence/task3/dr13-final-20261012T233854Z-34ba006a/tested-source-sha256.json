@@ -1,0 +1,5 @@
+{
+  "tests/contracts/task3/run-dr13.py": "c23ce38a0362e166111cf8f81fd500b51bad14f95a8531b426bcfbabee46e0c2",
+  "tests/contracts/task3/dr13-tests.mjs": "c87c997f783c30430af907b4df5fdc12839b59940c18d74655afd8d6b3767760",
+  "tests/contracts/task3/dr13-contracts.cjs": "777fe692cef2d928accf682e4341a53974e4deec5521a130f0bdd44048051915"
+}

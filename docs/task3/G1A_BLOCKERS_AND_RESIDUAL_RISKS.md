@@ -16,3 +16,7 @@ Engineering completion = PARTIAL. Owner approval = BLOCKED pending named decisio
 | TrustListPayload lint | EXPLAINED | extension لا يحسبه Redocly؛ نمط JWS محفوظ | لا تعطيل lint ولا content JSON زائف |
 
 مصادر كانت BLOCKED واستُعيدت: Decision_Register وDR05/29/16/41 وAPI الأصلي في الوثيقة المجمعة. الملفات التاريخية B01/B02 تبقى كما كانت؛ هذا التقرير الأحدث يصحح الحالة ولا يطمس السجل. لا تغيير لخصوصية GitHub أو الفرع الرئيسي أو فروع الآخرين.
+
+## تحديث DR-13 — 13 أكتوبر2026
+
+المالك اعتمد نطاقالسجل المعادبناؤهC01…C12فقط؛نقص استعادةالقائمةالتاريخية17لميُخفَ. انظرDR13_Owner_Scope_Approval.md. مراجعةC01واختباراتT01…T14أنجزت،ونتيجتها43حالة:37PASS/6FAILمع14HTTP NOTRUN. DR13يبقىPARTIAL بسببنتائجالمكتبة؛هذاالتحديثيتقدم علىوصف«نطاقإعادةالبناء غيرمعتمد»،ولا يحول أيOD أوالدفعةأإلىمعتمد أوG1aإلىPASS. التقريرالأحدث:DR13_Engineering_Closure_Report.md.

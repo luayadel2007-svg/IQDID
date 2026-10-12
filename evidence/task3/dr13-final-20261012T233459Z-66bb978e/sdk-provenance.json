@@ -1,0 +1,27 @@
+{
+  "install_command": "npm install --prefix dr13-sdk --ignore-scripts --save-exact @openid4vc/openid4vci@0.7.0 @openid4vc/oauth2@0.7.0 @openid4vc/openid4vp@0.7.0 jose@6.2.12",
+  "install_exit_code": 0,
+  "packages": {
+    "@openid4vc/openid4vci": {
+      "version": "0.7.0",
+      "license": "Apache-2.0",
+      "package_sha256": "f3434c64f05fc26cae977d342b5a6649c400e3c28f17b7f21f56087bb4ba0b71"
+    },
+    "@openid4vc/openid4vp": {
+      "version": "0.7.0",
+      "license": "Apache-2.0",
+      "package_sha256": "3bd12a0cca1dba17dcca41587d58f22df19ced6039038a773a462548d4d40b6d"
+    },
+    "@openid4vc/oauth2": {
+      "version": "0.7.0",
+      "license": "Apache-2.0",
+      "package_sha256": "fa5541af0dd20bad188d15c401976c4c52dc50fe59387704117987bbbbae6094"
+    },
+    "jose": {
+      "version": "6.2.12",
+      "license": "MIT",
+      "package_sha256": "faa28d9e4362c02c81ce4c7a3b62443495343830c53de2efcbd8c1088e4ba931"
+    }
+  },
+  "lock_sha256": "59912e1d4684e0143508154b14dd18e5b3cee47348091619892986d8702455f5"
+}

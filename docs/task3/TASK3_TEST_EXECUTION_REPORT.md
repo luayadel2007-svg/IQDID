@@ -24,3 +24,7 @@
 الأخطاء أثناء التطوير محفوظة أيضاً: engineering-precheck الأول53/54 بسبب اسم operationId خاطئ في جدول test، ثم corrected؛ P04 أول17/18 بسبب traversal ترتيب nested disclosure غير مناسب، عولج بجمع digests قبل membership. المراجعة المستقلة اكتشفت auth-removal mutation وكانت مقبولة في نسخة guard أولية؛ أضيف رفض public/anonymous البدائل وأسباب محددة، ثم إعادة التشغيل النهائي56/56. هذه إخفاقات harness حقيقية وليست نتائج إنتاج أو نجاحات معاد تصنيفها.
 
 TASK2 scanner استُخدم من شجرة TASK2 المثبتة150084192b1a6d3f68eed0f56d5c0e5b1248df30؛ rules أضيفت إلى Git Index مؤقت خارج TASK3، فلا تعديل .security أو tools أو Index المشروع. فحص153 يمثل snapshot عند التشغيل، قبل إضافة التقارير النهائية؛ يعاد staged-only بعد تجهيز التسليم. لا نتائج GitHub Actions خاصة بـTASK3B ادُعيت: لا workflow أضيف أو عُدّل لأن النطاق يمنعه. الاختبارات هنا Linux محلية، Windows السابق TASK1/2 أدلة سابقة فقط.
+
+## تحديث DR-13 — 13 أكتوبر2026
+
+المالك اعتمد نطاقالسجل المعادبناؤهC01…C12فقط؛نقص استعادةالقائمةالتاريخية17لميُخفَ. انظرDR13_Owner_Scope_Approval.md. مراجعةC01واختباراتT01…T14أنجزت،ونتيجتها43حالة:37PASS/6FAILمع14HTTP NOTRUN. DR13يبقىPARTIAL بسببنتائجالمكتبة؛هذاالتحديثيتقدم علىوصف«نطاقإعادةالبناء غيرمعتمد»،ولا يحول أيOD أوالدفعةأإلىمعتمد أوG1aإلىPASS. التقريرالأحدث:DR13_Engineering_Closure_Report.md.
