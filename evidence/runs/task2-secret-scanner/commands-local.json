@@ -1,0 +1,19 @@
+{
+  "os": "Ubuntu 24.04.3 / Linux x64",
+  "node": "24.19.0",
+  "commands": [
+    {
+      "command": "node tools/test-secret-scanner.mjs <isolated-repo>",
+      "exit": 0
+    },
+    {
+      "command": "node tools/secret-scanner.mjs --repo <isolated-repo> --all-index",
+      "exit": 0
+    },
+    {
+      "command": "node tools/verify-task2-integrity.mjs <isolated-repo>",
+      "exit": 0
+    }
+  ],
+  "notes": "Temporary Git repositories contain synthetic fixtures only; fixture bytes are not saved as evidence."
+}
