@@ -1,0 +1,178 @@
+{
+  "tested_blob_snapshot": "8ab860494f22192ddaa72bf5bb305ca29825bf1c",
+  "commands": [
+    {
+      "command": "node tools/test-secret-scanner.mjs .",
+      "exit": 0,
+      "tests": 37,
+      "passed": 37
+    },
+    {
+      "command": "node tools/secret-scanner.mjs --all-index",
+      "exit": 0,
+      "files": 66
+    },
+    {
+      "command": "node tools/verify-task2-integrity.mjs .",
+      "exit": 0,
+      "frozen": 18
+    }
+  ],
+  "ci_run": 38291792389,
+  "ci_jobs": {
+    "jobs": [
+      {
+        "id": 114953384380,
+        "name": "scanner (ubuntu-24.04)",
+        "status": "completed",
+        "conclusion": "success",
+        "run_id": 38291792389,
+        "logs_url": null,
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1
+          },
+          {
+            "name": "Checkout PR contents without persisted credentials",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 2
+          },
+          {
+            "name": "Existing Node 22 baseline",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3
+          },
+          {
+            "name": "Scan Git Index, including bounded ZIP members",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 4
+          },
+          {
+            "name": "Verify installation command on Windows PowerShell 5.1",
+            "status": "completed",
+            "conclusion": "skipped",
+            "number": 5
+          },
+          {
+            "name": "Real index and pre-commit integration tests",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 6
+          },
+          {
+            "name": "Verify frozen G1 package and capture read-only repository scan",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 7
+          },
+          {
+            "name": "Retain redacted test evidence",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 8
+          },
+          {
+            "name": "Post Existing Node 22 baseline",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 15
+          },
+          {
+            "name": "Post Checkout PR contents without persisted credentials",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 16
+          },
+          {
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 17
+          }
+        ]
+      },
+      {
+        "id": 114953384635,
+        "name": "scanner (windows-2022)",
+        "status": "completed",
+        "conclusion": "success",
+        "run_id": 38291792389,
+        "logs_url": null,
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1
+          },
+          {
+            "name": "Checkout PR contents without persisted credentials",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 2
+          },
+          {
+            "name": "Existing Node 22 baseline",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3
+          },
+          {
+            "name": "Scan Git Index, including bounded ZIP members",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 4
+          },
+          {
+            "name": "Verify installation command on Windows PowerShell 5.1",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 5
+          },
+          {
+            "name": "Real index and pre-commit integration tests",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 6
+          },
+          {
+            "name": "Verify frozen G1 package and capture read-only repository scan",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 7
+          },
+          {
+            "name": "Retain redacted test evidence",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 8
+          },
+          {
+            "name": "Post Existing Node 22 baseline",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 15
+          },
+          {
+            "name": "Post Checkout PR contents without persisted credentials",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 16
+          },
+          {
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 17
+          }
+        ]
+      }
+    ]
+  }
+}
