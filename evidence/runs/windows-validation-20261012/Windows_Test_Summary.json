@@ -1,0 +1,263 @@
+{
+  "status": "PASS",
+  "windows_validation": "EXECUTED",
+  "source_commit": "d51693945677525978e0b26785b25d8a52a41620",
+  "source_branch": "task1/windows-validation",
+  "node": "v22.22.2",
+  "npm": "10.9.7",
+  "frozen_and_prior_evidence_unchanged": true,
+  "records": [
+    {
+      "case": "normal-1",
+      "status": "PASS",
+      "exit": 0,
+      "expected_status": "PASS",
+      "expected_exit": 0,
+      "frozen_unchanged": true,
+      "mutate_after_absent": true,
+      "run_dir": "evidence/runs/20261012T105358082Z-e9dcfd32-win32-x64",
+      "fault_injection": false,
+      "pass": true,
+      "windows_powershell_5_1": true,
+      "env": {
+        "run_id": "20261012T105358082Z-e9dcfd32-win32-x64",
+        "started_utc": "2026-10-12T10:53:58.0977196Z",
+        "platform": "win32",
+        "arch": "x64",
+        "os": "Microsoft Windows NT 10.0.20348.0",
+        "powershell": "5.1.20348.5622",
+        "powershell_edition": "Desktop",
+        "node": "v22.22.2",
+        "npm": "10.9.7",
+        "node_path": "C:\\hostedtoolcache\\windows\\node\\22.22.2\\x64\\node.exe",
+        "npm_path": "C:\\hostedtoolcache\\windows\\node\\22.22.2\\x64\\npm.cmd",
+        "git_commit": "d51693945677525978e0b26785b25d8a52a41620",
+        "requested_node": "24.21.0",
+        "requested_npm": "11.19.0",
+        "requested_toolchain_match": false,
+        "windows_validation": "AVAILABLE: see run results",
+        "baseline_node_major": 22,
+        "environment_conformance": "CONFORMS",
+        "conditions": "in-process library tests; no HTTP/TLS; synthetic data; TEST keys; not a system, device or security test"
+      },
+      "counts": [
+        [
+          62,
+          62
+        ],
+        [
+          56,
+          62
+        ],
+        [
+          60,
+          62
+        ]
+      ]
+    },
+    {
+      "case": "normal-2",
+      "status": "PASS",
+      "exit": 0,
+      "expected_status": "PASS",
+      "expected_exit": 0,
+      "frozen_unchanged": true,
+      "mutate_after_absent": true,
+      "run_dir": "evidence/runs/20261012T105417405Z-614bf323-win32-x64",
+      "fault_injection": false,
+      "pass": true,
+      "windows_powershell_5_1": true,
+      "env": {
+        "run_id": "20261012T105417405Z-614bf323-win32-x64",
+        "started_utc": "2026-10-12T10:54:17.4051921Z",
+        "platform": "win32",
+        "arch": "x64",
+        "os": "Microsoft Windows NT 10.0.20348.0",
+        "powershell": "5.1.20348.5622",
+        "powershell_edition": "Desktop",
+        "node": "v22.22.2",
+        "npm": "10.9.7",
+        "node_path": "C:\\hostedtoolcache\\windows\\node\\22.22.2\\x64\\node.exe",
+        "npm_path": "C:\\hostedtoolcache\\windows\\node\\22.22.2\\x64\\npm.cmd",
+        "git_commit": "d51693945677525978e0b26785b25d8a52a41620",
+        "requested_node": "24.21.0",
+        "requested_npm": "11.19.0",
+        "requested_toolchain_match": false,
+        "windows_validation": "AVAILABLE: see run results",
+        "baseline_node_major": 22,
+        "environment_conformance": "CONFORMS",
+        "conditions": "in-process library tests; no HTTP/TLS; synthetic data; TEST keys; not a system, device or security test"
+      },
+      "counts": [
+        [
+          62,
+          62
+        ],
+        [
+          56,
+          62
+        ],
+        [
+          60,
+          62
+        ]
+      ]
+    },
+    {
+      "case": "normal-cmd",
+      "status": "PASS",
+      "exit": 0,
+      "expected_status": "PASS",
+      "expected_exit": 0,
+      "frozen_unchanged": true,
+      "mutate_after_absent": true,
+      "run_dir": "evidence/runs/20261012T105434486Z-274e434a-win32-x64",
+      "fault_injection": false,
+      "pass": true,
+      "windows_powershell_5_1": true,
+      "env": {
+        "run_id": "20261012T105434486Z-274e434a-win32-x64",
+        "started_utc": "2026-10-12T10:54:34.4862789Z",
+        "platform": "win32",
+        "arch": "x64",
+        "os": "Microsoft Windows NT 10.0.20348.0",
+        "powershell": "5.1.20348.5622",
+        "powershell_edition": "Desktop",
+        "node": "v22.22.2",
+        "npm": "10.9.7",
+        "node_path": "C:\\hostedtoolcache\\windows\\node\\22.22.2\\x64\\node.exe",
+        "npm_path": "C:\\hostedtoolcache\\windows\\node\\22.22.2\\x64\\npm.cmd",
+        "git_commit": "d51693945677525978e0b26785b25d8a52a41620",
+        "requested_node": "24.21.0",
+        "requested_npm": "11.19.0",
+        "requested_toolchain_match": false,
+        "windows_validation": "AVAILABLE: see run results",
+        "baseline_node_major": 22,
+        "environment_conformance": "CONFORMS",
+        "conditions": "in-process library tests; no HTTP/TLS; synthetic data; TEST keys; not a system, device or security test"
+      },
+      "counts": [
+        [
+          62,
+          62
+        ],
+        [
+          56,
+          62
+        ],
+        [
+          60,
+          62
+        ]
+      ]
+    },
+    {
+      "case": "counter",
+      "status": "FAIL",
+      "exit": 1,
+      "expected_status": "FAIL",
+      "expected_exit": 1,
+      "frozen_unchanged": true,
+      "mutate_after_absent": true,
+      "run_dir": ".work/windows-ci/2026-10-12T10-53-56-487Z-windows-ci/counter/evidence/runs/20261012T105451712Z-426939c1-win32-x64",
+      "fault_injection": true,
+      "pass": true
+    },
+    {
+      "case": "forged-reason",
+      "status": "FAIL",
+      "exit": 1,
+      "expected_status": "FAIL",
+      "expected_exit": 1,
+      "frozen_unchanged": true,
+      "mutate_after_absent": true,
+      "run_dir": ".work/windows-ci/2026-10-12T10-53-56-487Z-windows-ci/forged-reason/evidence/runs/20261012T105508795Z-d0eed8da-win32-x64",
+      "fault_injection": true,
+      "pass": true
+    },
+    {
+      "case": "duplicate",
+      "status": "FAIL",
+      "exit": 1,
+      "expected_status": "FAIL",
+      "expected_exit": 1,
+      "frozen_unchanged": true,
+      "mutate_after_absent": true,
+      "run_dir": ".work/windows-ci/2026-10-12T10-53-56-487Z-windows-ci/duplicate/evidence/runs/20261012T105525857Z-8af6eec0-win32-x64",
+      "fault_injection": true,
+      "pass": true
+    },
+    {
+      "case": "malformed",
+      "status": "FAIL",
+      "exit": 1,
+      "expected_status": "FAIL",
+      "expected_exit": 1,
+      "frozen_unchanged": true,
+      "mutate_after_absent": true,
+      "run_dir": ".work/windows-ci/2026-10-12T10-53-56-487Z-windows-ci/malformed/evidence/runs/20261012T105542927Z-7367a73f-win32-x64",
+      "fault_injection": true,
+      "pass": true
+    },
+    {
+      "case": "missing-node",
+      "status": "BLOCKED",
+      "exit": 2,
+      "expected_status": "BLOCKED",
+      "expected_exit": 2,
+      "frozen_unchanged": true,
+      "mutate_after_absent": true,
+      "run_dir": ".work/windows-ci/2026-10-12T10-53-56-487Z-windows-ci/missing-node/evidence/runs/20261012T105552922Z-6b615081-win32-x64",
+      "fault_injection": true,
+      "pass": true
+    },
+    {
+      "case": "npm-error",
+      "status": "FAIL",
+      "exit": 1,
+      "expected_status": "FAIL",
+      "expected_exit": 1,
+      "frozen_unchanged": true,
+      "mutate_after_absent": true,
+      "run_dir": ".work/windows-ci/2026-10-12T10-53-56-487Z-windows-ci/npm-error/evidence/runs/20261012T105554706Z-cceaa651-win32-x64",
+      "fault_injection": true,
+      "pass": true
+    },
+    {
+      "case": "manifest-mismatch",
+      "status": "FAIL",
+      "exit": 1,
+      "expected_status": "FAIL",
+      "expected_exit": 1,
+      "frozen_unchanged": true,
+      "mutate_after_absent": true,
+      "run_dir": ".work/windows-ci/2026-10-12T10-53-56-487Z-windows-ci/manifest-mismatch/evidence/runs/20261012T105559594Z-82235771-win32-x64",
+      "fault_injection": true,
+      "pass": true
+    },
+    {
+      "case": "node-error",
+      "status": "FAIL",
+      "exit": 1,
+      "expected_status": "FAIL",
+      "expected_exit": 1,
+      "frozen_unchanged": true,
+      "mutate_after_absent": true,
+      "run_dir": ".work/windows-ci/2026-10-12T10-53-56-487Z-windows-ci/node-error/evidence/runs/20261012T105600282Z-a037c0e8-win32-x64",
+      "fault_injection": true,
+      "pass": true
+    },
+    {
+      "case": "hash-observation-mismatch",
+      "status": "FAIL",
+      "exit": 1,
+      "expected_status": "FAIL",
+      "expected_exit": 1,
+      "frozen_unchanged": true,
+      "mutate_after_absent": true,
+      "run_dir": ".work/windows-ci/2026-10-12T10-53-56-487Z-windows-ci/hash-observation-mismatch/evidence/runs/20261012T105617378Z-2859552e-win32-x64",
+      "fault_injection": true,
+      "pass": true
+    }
+  ]
+}

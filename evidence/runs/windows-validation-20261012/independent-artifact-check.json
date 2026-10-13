@@ -1,0 +1,103 @@
+{
+  "status": "PASS",
+  "artifact_sha256": "27033790842a839ee503fcab00b18a98b1cd17765dd66dcfdff03eb53b98a4c5",
+  "cases": 12,
+  "frozen_files": 18,
+  "frozen_anchor_match": true,
+  "result_checks": [
+    {
+      "case": "normal-1",
+      "mode": "main",
+      "passed": 62,
+      "failed": [],
+      "independent_validator_exit": 0
+    },
+    {
+      "case": "normal-1",
+      "mode": "mutation_skip-chain",
+      "passed": 56,
+      "failed": [
+        "REV-05",
+        "REV-08",
+        "SIG-05",
+        "SIG-06",
+        "VER-12",
+        "X-17"
+      ],
+      "independent_validator_exit": 0
+    },
+    {
+      "case": "normal-1",
+      "mode": "mutation_skip-role",
+      "passed": 60,
+      "failed": [
+        "REV-05",
+        "VER-12"
+      ],
+      "independent_validator_exit": 0
+    },
+    {
+      "case": "normal-2",
+      "mode": "main",
+      "passed": 62,
+      "failed": [],
+      "independent_validator_exit": 0
+    },
+    {
+      "case": "normal-2",
+      "mode": "mutation_skip-chain",
+      "passed": 56,
+      "failed": [
+        "REV-05",
+        "REV-08",
+        "SIG-05",
+        "SIG-06",
+        "VER-12",
+        "X-17"
+      ],
+      "independent_validator_exit": 0
+    },
+    {
+      "case": "normal-2",
+      "mode": "mutation_skip-role",
+      "passed": 60,
+      "failed": [
+        "REV-05",
+        "VER-12"
+      ],
+      "independent_validator_exit": 0
+    },
+    {
+      "case": "normal-cmd",
+      "mode": "main",
+      "passed": 62,
+      "failed": [],
+      "independent_validator_exit": 0
+    },
+    {
+      "case": "normal-cmd",
+      "mode": "mutation_skip-chain",
+      "passed": 56,
+      "failed": [
+        "REV-05",
+        "REV-08",
+        "SIG-05",
+        "SIG-06",
+        "VER-12",
+        "X-17"
+      ],
+      "independent_validator_exit": 0
+    },
+    {
+      "case": "normal-cmd",
+      "mode": "mutation_skip-role",
+      "passed": 60,
+      "failed": [
+        "REV-05",
+        "VER-12"
+      ],
+      "independent_validator_exit": 0
+    }
+  ],
+  "summary_path": "windows-validation/final-raw/2026-10-12T10-53-56-487Z-windows-ci/test-summary.json"
+}

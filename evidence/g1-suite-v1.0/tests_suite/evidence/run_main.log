@@ -1,0 +1,65 @@
+PASS  SIG-01  expected=accept observed=accept  len=64
+PASS  SIG-02  expected=reject observed=reject  DER len=71 rejected
+PASS  SIG-03  expected=reject observed=reject  [INVALID_JWT_SIGNATURE] Verify Error: alg "none" is not allowed
+PASS  SIG-04  expected=reject observed=reject  [INVALID_JWT_SIGNATURE] Verify Error: Disallowed alg HS256
+PASS  SIG-05  expected=reject observed=reject  signature invalid
+PASS  SIG-06  expected=reject observed=reject  signature invalid
+PASS  CRD-01  expected=accept observed=accept  typ=dc+sd-jwt x5c=2
+PASS  CRD-02  expected=accept observed=accept  _sd=5
+PASS  CRD-03  expected=accept observed=accept  salt bytes=16
+PASS  CRD-04  expected=accept observed=accept  crv,kty,x,y
+PASS  CRD-05  expected=reject observed=reject  Cannot disclose protected field
+PASS  CRD-06  expected=accept observed=accept  _sd=10 real=5; verifies
+PASS  CRD-07  expected=accept observed=accept  days=30
+PASS  VER-01  expected=accept observed=accept  claims: name,age_over_18
+PASS  VER-02  expected=accept observed=accept  only name, age_over_18
+PASS  VER-03  expected=reject observed=reject  Verify Error: Invalid Nonce
+PASS  VER-04  expected=reject observed=reject  Verify Error: Invalid Key Binding audience
+PASS  VER-05  expected=reject observed=reject  Key Binding JWT not exist
+PASS  VER-06  expected=reject observed=reject  Unreferenced disclosure(s) detected in SD-JWT
+PASS  VER-07  expected=reject observed=reject  [JWT_EXPIRED] Verify Error: JWT is expired
+PASS  VER-08  expected=reject observed=reject  [INVALID_JWT_SIGNATURE] Verify Error: Invalid JWT Signature
+PASS  VER-09  expected=reject observed=reject  [KEY_BINDING_JWT_TOO_OLD] Verify Error: Key Binding JWT is too old
+PASS  VER-10  expected=reject observed=reject  [INVALID_VCT] Verify Error: Invalid VCT
+PASS  VER-11  expected=reject observed=reject  [INVALID_JWT_SIGNATURE] Verify Error: Disallowed alg ES384
+PASS  VER-12  expected=reject observed=reject  x5c rejected (issuer): SAN does not match (evil.digital-id.test)
+PASS  VER-13  expected=reject observed=reject  Verify Error: Invalid Nonce
+PASS  X-01  expected=accept observed=accept  chain ok
+PASS  X-03  expected=reject observed=reject  SAN does not match (other.digital-id.test)
+PASS  X-04  expected=reject observed=reject  pkijs: No valid certificate paths found
+PASS  X-05  expected=reject observed=reject  pkijs: No valid certificate paths found
+PASS  X-06  expected=reject observed=reject  pkijs: The certificate is either not yet valid or expired
+PASS  X-09  expected=reject observed=reject  leaf is a CA certificate
+PASS  X-11  expected=reject observed=reject  pathLenConstraint exceeded at depth 2
+PASS  X-12  expected=reject observed=reject  leaf keyUsage lacks digitalSignature
+PASS  X-13  expected=reject observed=reject  pkijs: One of intermediate certificates is not a CA certificate
+PASS  X-14  expected=reject observed=reject  pkijs: The certificate is either not yet valid or expired
+PASS  X-15  expected=reject observed=reject  trust anchor included in x5c
+PASS  X-16  expected=reject observed=reject  leaf is self-signed
+PASS  X-18  expected=reject observed=reject  pkijs: No valid certificate paths found
+PASS  X-17  expected=reject observed=reject  x5c rejected (issuer): pkijs: No valid certificate paths found
+PASS  REV-01  expected=accept observed=accept  status=0
+PASS  REV-02  expected=reject observed=reject  [STATUS_INVALID] Status is not valid
+PASS  REV-03  expected=reject observed=reject  [STATUS_INVALID] Status is not valid
+PASS  REV-04  expected=accept observed=accept  rejected while 2, accepted after 0
+PASS  REV-05  expected=reject observed=reject  Status List JWT verification failed: x5c rejected (status): SAN does not match (status.digital-id.test)
+PASS  REV-06  expected=reject observed=reject  The subject claim 'https://status.digital-id.test/lists/2' must be equal to the uri 'https://status.digital-id.test/lists/1'
+PASS  REV-07  expected=reject observed=reject  Status List JWT verification failed: Verify Error: JWT is expired
+PASS  REV-08  expected=reject observed=reject  Status List JWT verification failed: signature invalid
+PASS  REV-09  expected=reject observed=reject  The typ header 'JWT' must be equal to 'statuslist+jwt'
+PASS  REV-10  expected=reject observed=reject  Index out of bounds
+PASS  REV-11  expected=reject observed=reject  timeout
+PASS  REV-12  expected=accept observed=accept  unique=8192 sequentialSteps=1 exhaustedThrows=true
+PASS  REV-13  expected=accept observed=accept  typ=statuslist+jwt x5c=2
+PASS  W14-a  expected=accept observed=accept  prefix=x509_hash qrParams=client_id,request_uri
+PASS  W14-b  expected=reject observed=reject  Invalid client identifier. Expected the base64url encoded sha-256 hash of the leaf x5c certificate ('FtLOXktUBI4vTSD0J44LIBSXoASX9m2cmUGHgW7
+PASS  W14-c  expected=reject observed=reject  Error during verification of jwt. x5c rejected: pkijs: No valid certificate paths found
+PASS  W16-a  expected=accept observed=accept  prefix=x509_hash qrParams=client_id,request_uri
+PASS  W16-b  expected=reject observed=reject  response_uri host evil.example not allowed for this verifier
+PASS  W16-c  expected=accept observed=accept  prefix=x509_hash qrParams=client_id,request_uri
+PASS  W08-r  expected=reject observed=reject  Invalid client identifier. One of the leaf certificates san dns names [verifier.digital-id.test] must match the client identifier 'other.dig
+PASS  W02-r  expected=accept observed=accept  prefix=x509_san_dns qrParams=client_id,request_uri
+PASS  W-RU  expected=reject observed=reject  Unable to extract signer method from jwt. Found 1 signer method(s) that are not allowed:
+SUCCEEDED: method x5c
+
+TOTAL 62/62 passed
