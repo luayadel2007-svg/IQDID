@@ -1,0 +1,868 @@
+{
+  "run_at_utc": "2026-10-12T23:54:14.660Z",
+  "node": "v24.19.0",
+  "platform": "linux",
+  "scope": "Synthetic in-memory contracts and pinned library behavior. Mock Response/fetch != actual service HTTP. Keys ephemeral and never written.",
+  "status": "FAIL",
+  "exit_code": 1,
+  "executed": 43,
+  "passed": 37,
+  "failed": 6,
+  "http_not_run": 14,
+  "groups": [
+    {
+      "id": "T01",
+      "status": "FAIL",
+      "contract": [
+        {
+          "id": "T01",
+          "layer": "contract",
+          "label": "metadata distinct proof/credential/display fields and dependencies",
+          "status": "PASS",
+          "exit_code": 0
+        }
+      ],
+      "library": [
+        {
+          "id": "T01",
+          "layer": "library",
+          "label": "SDK accepts correct literal metadata",
+          "status": "PASS",
+          "exit_code": 0
+        },
+        {
+          "id": "T01",
+          "layer": "library",
+          "label": "SDK must reject empty proof algorithm array",
+          "status": "FAIL",
+          "exit_code": 1,
+          "error_code": "ERR_ASSERTION"
+        },
+        {
+          "id": "T01",
+          "layer": "library",
+          "label": "SDK must enforce proof/binding dependency",
+          "status": "FAIL",
+          "exit_code": 1,
+          "error_code": "ERR_ASSERTION"
+        },
+        {
+          "id": "T01",
+          "layer": "library",
+          "label": "SDK must reject empty credential display array",
+          "status": "FAIL",
+          "exit_code": 1,
+          "error_code": "ERR_ASSERTION"
+        }
+      ],
+      "policy_model": [],
+      "http": "NOT RUN"
+    },
+    {
+      "id": "T02",
+      "status": "FAIL",
+      "contract": [
+        {
+          "id": "T02",
+          "layer": "contract",
+          "label": "mutually exclusive offer params and HTTPS",
+          "status": "PASS",
+          "exit_code": 0
+        }
+      ],
+      "library": [
+        {
+          "id": "T02",
+          "layer": "library",
+          "label": "by-reference URL passed to mock transport",
+          "status": "PASS",
+          "exit_code": 0
+        },
+        {
+          "id": "T02",
+          "layer": "library",
+          "label": "SDK must reject simultaneous offer value/reference",
+          "status": "FAIL",
+          "exit_code": 1,
+          "error_code": "ERR_ASSERTION"
+        }
+      ],
+      "policy_model": [],
+      "http": "NOT RUN"
+    },
+    {
+      "id": "T03",
+      "status": "PASS",
+      "contract": [
+        {
+          "id": "T03",
+          "layer": "contract",
+          "label": "configuration IDs exact name",
+          "status": "PASS",
+          "exit_code": 0
+        }
+      ],
+      "library": [
+        {
+          "id": "T03",
+          "layer": "library",
+          "label": "offer schema accepts proper IDs and rejects missing required name",
+          "status": "PASS",
+          "exit_code": 0
+        }
+      ],
+      "policy_model": [],
+      "http": "NOT RUN"
+    },
+    {
+      "id": "T04",
+      "status": "PASS",
+      "contract": [
+        {
+          "id": "T04",
+          "layer": "contract",
+          "label": "AS exact issuer match",
+          "status": "PASS",
+          "exit_code": 0
+        }
+      ],
+      "library": [
+        {
+          "id": "T04",
+          "layer": "library",
+          "label": "metadata discovery through mock fetch with issuer fallback",
+          "status": "PASS",
+          "exit_code": 0
+        },
+        {
+          "id": "T04",
+          "layer": "library",
+          "label": "SDK rejects mismatched discovered issuer",
+          "status": "PASS",
+          "exit_code": 0
+        }
+      ],
+      "policy_model": [],
+      "http": "NOT RUN"
+    },
+    {
+      "id": "T05",
+      "status": "PASS",
+      "contract": [
+        {
+          "id": "T05",
+          "layer": "contract",
+          "label": "access_token/token_type required and lifetime optional",
+          "status": "PASS",
+          "exit_code": 0
+        }
+      ],
+      "library": [
+        {
+          "id": "T05",
+          "layer": "library",
+          "label": "token response without expires_in accepted",
+          "status": "PASS",
+          "exit_code": 0
+        },
+        {
+          "id": "T05",
+          "layer": "library",
+          "label": "missing token_type rejected",
+          "status": "PASS",
+          "exit_code": 0
+        }
+      ],
+      "policy_model": [],
+      "http": "NOT RUN"
+    },
+    {
+      "id": "T06",
+      "status": "PASS",
+      "contract": [
+        {
+          "id": "T06",
+          "layer": "contract",
+          "label": "JWT NumericDate and aud-string",
+          "status": "PASS",
+          "exit_code": 0
+        }
+      ],
+      "library": [
+        {
+          "id": "T06",
+          "layer": "library",
+          "label": "real ES256 proof signature verified",
+          "status": "PASS",
+          "exit_code": 0
+        },
+        {
+          "id": "T06",
+          "layer": "library",
+          "label": "missing iat rejected as invalid_proof",
+          "status": "PASS",
+          "exit_code": 0
+        },
+        {
+          "id": "T06",
+          "layer": "library",
+          "label": "tampered signed payload rejected as invalid_proof",
+          "status": "PASS",
+          "exit_code": 0
+        },
+        {
+          "id": "T06",
+          "layer": "library",
+          "label": "fractional NumericDate accepted",
+          "status": "PASS",
+          "exit_code": 0
+        }
+      ],
+      "policy_model": [],
+      "http": "NOT RUN"
+    },
+    {
+      "id": "T07",
+      "status": "FAIL",
+      "contract": [
+        {
+          "id": "T07",
+          "layer": "contract",
+          "label": "immediate/deferred response shapes",
+          "status": "PASS",
+          "exit_code": 0
+        }
+      ],
+      "library": [
+        {
+          "id": "T07",
+          "layer": "library",
+          "label": "SDK returns credentials element name",
+          "status": "PASS",
+          "exit_code": 0
+        },
+        {
+          "id": "T07",
+          "layer": "library",
+          "label": "SDK rejects empty credentials array",
+          "status": "FAIL",
+          "exit_code": 1,
+          "error_code": "ERR_ASSERTION"
+        },
+        {
+          "id": "T07",
+          "layer": "library",
+          "label": "SDK rejects immediate/deferred collision",
+          "status": "PASS",
+          "exit_code": 0
+        },
+        {
+          "id": "T07",
+          "layer": "library",
+          "label": "valid deferred response includes positive interval",
+          "status": "PASS",
+          "exit_code": 0
+        },
+        {
+          "id": "T07",
+          "layer": "library",
+          "label": "SDK must reject missing deferred interval",
+          "status": "PASS",
+          "exit_code": 0
+        }
+      ],
+      "policy_model": [],
+      "http": "NOT RUN"
+    },
+    {
+      "id": "T08",
+      "status": "PASS",
+      "contract": [
+        {
+          "id": "T08",
+          "layer": "contract",
+          "label": "recommended Bearer statuses distinguished",
+          "status": "PASS",
+          "exit_code": 0
+        }
+      ],
+      "library": [
+        {
+          "id": "T08",
+          "layer": "library-mocked-transport",
+          "label": "resourceRequest preserves 401 and challenge",
+          "status": "PASS",
+          "exit_code": 0
+        }
+      ],
+      "policy_model": [],
+      "http": "NOT RUN"
+    },
+    {
+      "id": "T09",
+      "status": "PASS",
+      "contract": [
+        {
+          "id": "T09",
+          "layer": "contract",
+          "label": "2xx success, 204 recommended not exclusive",
+          "status": "PASS",
+          "exit_code": 0
+        }
+      ],
+      "library": [
+        {
+          "id": "T09",
+          "layer": "library-mocked-transport",
+          "label": "notification accepts 200",
+          "status": "PASS",
+          "exit_code": 0
+        },
+        {
+          "id": "T09",
+          "layer": "library-mocked-transport",
+          "label": "notification accepts 201",
+          "status": "PASS",
+          "exit_code": 0
+        },
+        {
+          "id": "T09",
+          "layer": "library-mocked-transport",
+          "label": "notification accepts 204",
+          "status": "PASS",
+          "exit_code": 0
+        }
+      ],
+      "policy_model": [],
+      "http": "NOT RUN"
+    },
+    {
+      "id": "T10",
+      "status": "PASS",
+      "contract": [
+        {
+          "id": "T10",
+          "layer": "contract",
+          "label": "notification error shape and auth separation",
+          "status": "PASS",
+          "exit_code": 0
+        }
+      ],
+      "library": [
+        {
+          "id": "T10",
+          "layer": "library-mocked-transport",
+          "label": "notification error code parsed from 400",
+          "status": "PASS",
+          "exit_code": 0
+        }
+      ],
+      "policy_model": [],
+      "http": "NOT RUN"
+    },
+    {
+      "id": "T11",
+      "status": "FAIL",
+      "contract": [
+        {
+          "id": "T11",
+          "layer": "contract",
+          "label": "form JSON metadata and nonce binding",
+          "status": "PASS",
+          "exit_code": 0
+        }
+      ],
+      "library": [
+        {
+          "id": "T11",
+          "layer": "library-mocked-transport",
+          "label": "SDK POST emits wallet_metadata and wallet_nonce when both supplied",
+          "status": "FAIL",
+          "exit_code": 1,
+          "error_code": "WALLET_POST_FIELDS"
+        }
+      ],
+      "policy_model": [],
+      "http": "NOT RUN"
+    },
+    {
+      "id": "T12",
+      "status": "PASS",
+      "contract": [
+        {
+          "id": "T12",
+          "layer": "contract",
+          "label": "signed redirect prefix forbidden",
+          "status": "PASS",
+          "exit_code": 0
+        }
+      ],
+      "library": [
+        {
+          "id": "T12",
+          "layer": "library",
+          "label": "synthetically signed redirect request rejected by prefix/signer rules before trust callback",
+          "status": "PASS",
+          "exit_code": 0
+        }
+      ],
+      "policy_model": [],
+      "http": "NOT RUN"
+    },
+    {
+      "id": "T13",
+      "status": "PASS",
+      "contract": [
+        {
+          "id": "T13",
+          "layer": "contract",
+          "label": "tx_code error mapping uses 1.0 profile",
+          "status": "PASS",
+          "exit_code": 0
+        }
+      ],
+      "library": [
+        {
+          "id": "T13",
+          "layer": "library-mocked-transport",
+          "label": "OAuth client preserves invalid_grant",
+          "status": "PASS",
+          "exit_code": 0
+        }
+      ],
+      "policy_model": [],
+      "http": "NOT RUN"
+    },
+    {
+      "id": "T14",
+      "status": "PASS",
+      "contract": [],
+      "library": [
+        {
+          "id": "T14",
+          "layer": "library",
+          "label": "expired nonce rejected; active nonce accepted",
+          "status": "PASS",
+          "exit_code": 0
+        }
+      ],
+      "policy_model": [
+        {
+          "id": "T14",
+          "layer": "proposed-policy-model",
+          "label": "60s timing boundaries kept separate",
+          "status": "PASS",
+          "exit_code": 0
+        }
+      ],
+      "http": "NOT RUN"
+    }
+  ],
+  "cases": [
+    {
+      "id": "T01",
+      "layer": "contract",
+      "label": "metadata distinct proof/credential/display fields and dependencies",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "id": "T01",
+      "layer": "library",
+      "label": "SDK accepts correct literal metadata",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "id": "T01",
+      "layer": "library",
+      "label": "SDK must reject empty proof algorithm array",
+      "status": "FAIL",
+      "exit_code": 1,
+      "error_code": "ERR_ASSERTION"
+    },
+    {
+      "id": "T01",
+      "layer": "library",
+      "label": "SDK must enforce proof/binding dependency",
+      "status": "FAIL",
+      "exit_code": 1,
+      "error_code": "ERR_ASSERTION"
+    },
+    {
+      "id": "T01",
+      "layer": "library",
+      "label": "SDK must reject empty credential display array",
+      "status": "FAIL",
+      "exit_code": 1,
+      "error_code": "ERR_ASSERTION"
+    },
+    {
+      "id": "T02",
+      "layer": "contract",
+      "label": "mutually exclusive offer params and HTTPS",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "id": "T02",
+      "layer": "library",
+      "label": "by-reference URL passed to mock transport",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "id": "T02",
+      "layer": "library",
+      "label": "SDK must reject simultaneous offer value/reference",
+      "status": "FAIL",
+      "exit_code": 1,
+      "error_code": "ERR_ASSERTION"
+    },
+    {
+      "id": "T03",
+      "layer": "contract",
+      "label": "configuration IDs exact name",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "id": "T03",
+      "layer": "library",
+      "label": "offer schema accepts proper IDs and rejects missing required name",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "id": "T04",
+      "layer": "contract",
+      "label": "AS exact issuer match",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "id": "T04",
+      "layer": "library",
+      "label": "metadata discovery through mock fetch with issuer fallback",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "id": "T04",
+      "layer": "library",
+      "label": "SDK rejects mismatched discovered issuer",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "id": "T05",
+      "layer": "contract",
+      "label": "access_token/token_type required and lifetime optional",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "id": "T05",
+      "layer": "library",
+      "label": "token response without expires_in accepted",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "id": "T05",
+      "layer": "library",
+      "label": "missing token_type rejected",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "id": "T06",
+      "layer": "contract",
+      "label": "JWT NumericDate and aud-string",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "id": "T06",
+      "layer": "library",
+      "label": "real ES256 proof signature verified",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "id": "T06",
+      "layer": "library",
+      "label": "missing iat rejected as invalid_proof",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "id": "T06",
+      "layer": "library",
+      "label": "tampered signed payload rejected as invalid_proof",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "id": "T06",
+      "layer": "library",
+      "label": "fractional NumericDate accepted",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "id": "T07",
+      "layer": "contract",
+      "label": "immediate/deferred response shapes",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "id": "T07",
+      "layer": "library",
+      "label": "SDK returns credentials element name",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "id": "T07",
+      "layer": "library",
+      "label": "SDK rejects empty credentials array",
+      "status": "FAIL",
+      "exit_code": 1,
+      "error_code": "ERR_ASSERTION"
+    },
+    {
+      "id": "T07",
+      "layer": "library",
+      "label": "SDK rejects immediate/deferred collision",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "id": "T07",
+      "layer": "library",
+      "label": "valid deferred response includes positive interval",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "id": "T07",
+      "layer": "library",
+      "label": "SDK must reject missing deferred interval",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "id": "T08",
+      "layer": "contract",
+      "label": "recommended Bearer statuses distinguished",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "id": "T08",
+      "layer": "library-mocked-transport",
+      "label": "resourceRequest preserves 401 and challenge",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "id": "T09",
+      "layer": "contract",
+      "label": "2xx success, 204 recommended not exclusive",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "id": "T09",
+      "layer": "library-mocked-transport",
+      "label": "notification accepts 200",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "id": "T09",
+      "layer": "library-mocked-transport",
+      "label": "notification accepts 201",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "id": "T09",
+      "layer": "library-mocked-transport",
+      "label": "notification accepts 204",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "id": "T10",
+      "layer": "contract",
+      "label": "notification error shape and auth separation",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "id": "T10",
+      "layer": "library-mocked-transport",
+      "label": "notification error code parsed from 400",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "id": "T11",
+      "layer": "contract",
+      "label": "form JSON metadata and nonce binding",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "id": "T11",
+      "layer": "library-mocked-transport",
+      "label": "SDK POST emits wallet_metadata and wallet_nonce when both supplied",
+      "status": "FAIL",
+      "exit_code": 1,
+      "error_code": "WALLET_POST_FIELDS"
+    },
+    {
+      "id": "T12",
+      "layer": "contract",
+      "label": "signed redirect prefix forbidden",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "id": "T12",
+      "layer": "library",
+      "label": "synthetically signed redirect request rejected by prefix/signer rules before trust callback",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "id": "T13",
+      "layer": "contract",
+      "label": "tx_code error mapping uses 1.0 profile",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "id": "T13",
+      "layer": "library-mocked-transport",
+      "label": "OAuth client preserves invalid_grant",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "id": "T14",
+      "layer": "proposed-policy-model",
+      "label": "60s timing boundaries kept separate",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "id": "T14",
+      "layer": "library",
+      "label": "expired nonce rejected; active nonce accepted",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "id": "T01",
+      "layer": "HTTP-service",
+      "label": "Actual IQDID endpoints/auth/storage unavailable",
+      "status": "NOT RUN",
+      "exit_code": null
+    },
+    {
+      "id": "T02",
+      "layer": "HTTP-service",
+      "label": "Actual IQDID endpoints/auth/storage unavailable",
+      "status": "NOT RUN",
+      "exit_code": null
+    },
+    {
+      "id": "T03",
+      "layer": "HTTP-service",
+      "label": "Actual IQDID endpoints/auth/storage unavailable",
+      "status": "NOT RUN",
+      "exit_code": null
+    },
+    {
+      "id": "T04",
+      "layer": "HTTP-service",
+      "label": "Actual IQDID endpoints/auth/storage unavailable",
+      "status": "NOT RUN",
+      "exit_code": null
+    },
+    {
+      "id": "T05",
+      "layer": "HTTP-service",
+      "label": "Actual IQDID endpoints/auth/storage unavailable",
+      "status": "NOT RUN",
+      "exit_code": null
+    },
+    {
+      "id": "T06",
+      "layer": "HTTP-service",
+      "label": "Actual IQDID endpoints/auth/storage unavailable",
+      "status": "NOT RUN",
+      "exit_code": null
+    },
+    {
+      "id": "T07",
+      "layer": "HTTP-service",
+      "label": "Actual IQDID endpoints/auth/storage unavailable",
+      "status": "NOT RUN",
+      "exit_code": null
+    },
+    {
+      "id": "T08",
+      "layer": "HTTP-service",
+      "label": "Actual IQDID endpoints/auth/storage unavailable",
+      "status": "NOT RUN",
+      "exit_code": null
+    },
+    {
+      "id": "T09",
+      "layer": "HTTP-service",
+      "label": "Actual IQDID endpoints/auth/storage unavailable",
+      "status": "NOT RUN",
+      "exit_code": null
+    },
+    {
+      "id": "T10",
+      "layer": "HTTP-service",
+      "label": "Actual IQDID endpoints/auth/storage unavailable",
+      "status": "NOT RUN",
+      "exit_code": null
+    },
+    {
+      "id": "T11",
+      "layer": "HTTP-service",
+      "label": "Actual IQDID endpoints/auth/storage unavailable",
+      "status": "NOT RUN",
+      "exit_code": null
+    },
+    {
+      "id": "T12",
+      "layer": "HTTP-service",
+      "label": "Actual IQDID endpoints/auth/storage unavailable",
+      "status": "NOT RUN",
+      "exit_code": null
+    },
+    {
+      "id": "T13",
+      "layer": "HTTP-service",
+      "label": "Actual IQDID endpoints/auth/storage unavailable",
+      "status": "NOT RUN",
+      "exit_code": null
+    },
+    {
+      "id": "T14",
+      "layer": "HTTP-service",
+      "label": "Actual IQDID endpoints/auth/storage unavailable",
+      "status": "NOT RUN",
+      "exit_code": null
+    }
+  ]
+}

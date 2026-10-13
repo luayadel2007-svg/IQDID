@@ -1,0 +1,305 @@
+{
+  "layer": "ADAPTER_GUARD",
+  "status": "PASS",
+  "exit_code": 0,
+  "executed": 42,
+  "passed": 42,
+  "failed": 0,
+  "HTTP_SERVICE": "NOT RUN",
+  "cases": [
+    {
+      "id": "F01",
+      "layer": "ADAPTER_GUARD",
+      "label": "valid proof algorithms pass pinned SDK without input mutation",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "id": "F01",
+      "layer": "ADAPTER_GUARD",
+      "label": "empty/malformed algorithms stop before SDK",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "id": "F01",
+      "layer": "ADAPTER_GUARD",
+      "label": "empty/malformed algorithms stop before SDK",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "id": "F01",
+      "layer": "ADAPTER_GUARD",
+      "label": "empty/malformed algorithms stop before SDK",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "id": "F01",
+      "layer": "ADAPTER_GUARD",
+      "label": "unknown proof type still guarded",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "id": "F01",
+      "layer": "ADAPTER_GUARD",
+      "label": "numeric algorithm identifiers not globally banned by cardinality guard",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "id": "F02",
+      "layer": "ADAPTER_GUARD",
+      "label": "dependency rejected in both directions: proof_types_supported",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "id": "F02",
+      "layer": "ADAPTER_GUARD",
+      "label": "dependency rejected in both directions: cryptographic_binding_methods_supported",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "id": "F02",
+      "layer": "ADAPTER_GUARD",
+      "label": "both optional fields absent accepted",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "id": "F02",
+      "layer": "ADAPTER_GUARD",
+      "label": "present pair accepted",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "id": "F03",
+      "layer": "ADAPTER_GUARD",
+      "label": "empty display rejected",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "id": "F03",
+      "layer": "ADAPTER_GUARD",
+      "label": "optional omission accepted: display",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "id": "F03",
+      "layer": "ADAPTER_GUARD",
+      "label": "optional omission accepted: credential_metadata",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "id": "F03",
+      "layer": "ADAPTER_GUARD",
+      "label": "display with name accepted",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "id": "F03",
+      "layer": "ADAPTER_GUARD",
+      "label": "missing display name rejected",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "id": "F04",
+      "layer": "ADAPTER_GUARD",
+      "label": "by-value passes real SDK",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "id": "F04",
+      "layer": "ADAPTER_GUARD",
+      "label": "by-reference passes real SDK and mock transport",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "id": "F04",
+      "layer": "ADAPTER_GUARD",
+      "label": "conflicting inputs stop before SDK and transport",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "id": "F04",
+      "layer": "ADAPTER_GUARD",
+      "label": "conflicting inputs stop before SDK and transport",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "id": "F04",
+      "layer": "ADAPTER_GUARD",
+      "label": "malformed offer rejected: OFFER_PARAMETER_COUNT",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "id": "F04",
+      "layer": "ADAPTER_GUARD",
+      "label": "malformed offer rejected: OFFER_PARAMETER_COUNT",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "id": "F04",
+      "layer": "ADAPTER_GUARD",
+      "label": "malformed offer rejected: OFFER_EMPTY",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "id": "F04",
+      "layer": "ADAPTER_GUARD",
+      "label": "malformed offer rejected: OFFER_HTTPS",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "id": "F04",
+      "layer": "ADAPTER_GUARD",
+      "label": "SDK error propagates unchanged",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "id": "F05",
+      "layer": "ADAPTER_GUARD",
+      "label": "empty input stops before issuer SDK",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "id": "F05",
+      "layer": "ADAPTER_GUARD",
+      "label": "additional payload cannot override with empty credentials before SDK",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "id": "F05",
+      "layer": "ADAPTER_GUARD",
+      "label": "empty output from delegate also rejected",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "id": "F05",
+      "layer": "ADAPTER_GUARD",
+      "label": "nonempty credentials accepted for string/object representation",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "id": "F05",
+      "layer": "ADAPTER_GUARD",
+      "label": "nonempty credentials accepted for string/object representation",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "id": "F05",
+      "layer": "ADAPTER_GUARD",
+      "label": "valid deferred response preserved",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "id": "F05",
+      "layer": "ADAPTER_GUARD",
+      "label": "SDK immediate/deferred collision still rejected",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "id": "F05",
+      "layer": "ADAPTER_GUARD",
+      "label": "missing credential element rejected",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "id": "F06",
+      "layer": "ADAPTER_GUARD",
+      "label": "real SDK mock POST UTF-8 round-trip: both",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "id": "F06",
+      "layer": "ADAPTER_GUARD",
+      "label": "real SDK mock POST UTF-8 round-trip: metadata-only",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "id": "F06",
+      "layer": "ADAPTER_GUARD",
+      "label": "real SDK mock POST UTF-8 round-trip: nonce-only",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "id": "F06",
+      "layer": "ADAPTER_GUARD",
+      "label": "real SDK mock POST UTF-8 round-trip: neither",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "id": "F06",
+      "layer": "ADAPTER_GUARD",
+      "label": "non-HTTPS request stops before SDK",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "id": "F06",
+      "layer": "ADAPTER_GUARD",
+      "label": "invalid wallet metadata rejected",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "id": "F06",
+      "layer": "ADAPTER_GUARD",
+      "label": "invalid nonce type rejected",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "id": "F06",
+      "layer": "ADAPTER_GUARD",
+      "label": "redirect prefix signing metadata not sent",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "id": "F06",
+      "layer": "ADAPTER_GUARD",
+      "label": "transport exception remains rejection",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "id": "F06",
+      "layer": "ADAPTER_GUARD",
+      "label": "unrelated SDK fetch unchanged and response delegated",
+      "status": "PASS",
+      "exit_code": 0
+    }
+  ]
+}
