@@ -6,4 +6,9 @@ M5-trust-version-not-monotonic | exit=1 | failing=[DB-TRU-03] | expected=DB-TRU-
 M6-no-capacity-bound | exit=1 | failing=[DB-STA-03] | expected=DB-STA-03 | KILLED
 M8-session-refetch | exit=1 | failing=[DB-VER-04] | expected=DB-VER-04 | KILLED
 M9-audit-update-allowed | exit=1 | failing=[DB-AUD-02,DB-AUD-03] | expected=DB-AUD-02 | KILLED
+M10-approval-reset-allowed | exit=1 | failing=[DB-APR-12] | expected=DB-APR-12 | KILLED
+M11-executor-may-be-requester | exit=1 | failing=[DB-APR-10,DB-APR-13] | expected=DB-APR-10 | KILLED
+M12-key-purpose-mutable | exit=1 | failing=[DB-TRU-08,DB-TRU-11] | expected=DB-TRU-08 | KILLED
+M13-direct-status-update | exit=1 | failing=[DB-STA-16] | expected=DB-STA-16 | KILLED
+M14-session-expiry-ignored | exit=1 | failing=[DB-VER-11] | expected=DB-VER-11 | KILLED
 M7-status-reads-issuer | exit=1 | failing=[DB-STA-14] | expected=DB-STA-14 | KILLED

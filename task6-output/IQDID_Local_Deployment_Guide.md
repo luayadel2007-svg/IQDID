@@ -21,8 +21,9 @@ Windows 11، PowerShell 7، Node.js 22 LTS، Git مع `core.autocrlf=false` (`.g
 bash task6-output/tools/run_db_tests.sh task6-output/evidence
 bash task6-output/tools/run_db_mutations.sh $env:TEMP\iqdid-mut task6-output/evidence/db-mutation-results.txt
 # 2) قاعدة تطوير (مدير PG):
-createdb -h localhost iqdid_dev
-psql -h localhost -d iqdid_dev -v ON_ERROR_STOP=1 -f task6-output/sql/001_schema.sql
+# يتطلب superuser (CREATE ROLE وSET ROLE iqdid_owner وCREATE SCHEMA AUTHORIZATION)
+createdb -h localhost -U postgres iqdid_dev
+psql -h localhost -U postgres -d iqdid_dev -v ON_ERROR_STOP=1 -f task6-output/sql/001_schema.sql
 # لا تطبق 090_pending_proposals.sql قبل اعتماد OD-06/OD-07.
 ```
 
@@ -67,4 +68,4 @@ docker compose down                   # down -v يحذف البيانات
 |---|---|
 | `runuser: … Permission denied` في `run_db_tests.sh` | مسار ثنائيات PostgreSQL أو صلاحيات المجلد المؤقت |
 | `IQDID_DB_IMAGE` غير معرف | لم يُنسخ `.env.example` إلى `.env` |
-| فشل `db-migrate-check` بالمصادقة | ملف السر به سطر جديد — استعمل `-NoNewline` |
+| فشل تهيئة `db` بقراءة السر | entrypoint يقرأ `POSTGRES_PASSWORD_FILE` بعد التحول إلى uid 70؛ على Linux يجب أن يكون الملف قابلاً للقراءة (لا 0600 لمالك آخر). استعمل `-NoNewline` للنظافة فقط |

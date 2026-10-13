@@ -1,0 +1,37 @@
+[
+ {
+  "id": "tool-versions",
+  "cmd": "bash -c python3 --version; docker compose version; ls -d /usr/lib/postgresql/*/bin",
+  "exit": 0,
+  "log": "evidence/tool-versions.log",
+  "log_sha256": "9f61a93f6e808b961acf769eeb892674cceb93e9a14cbf8b4b50889d734ebcaa"
+ },
+ {
+  "id": "run-compose-config",
+  "cmd": "docker compose -f compose.yaml --env-file .env.example config -q",
+  "exit": 0,
+  "log": "evidence/run-compose-config.log",
+  "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+ },
+ {
+  "id": "run-db-tests",
+  "cmd": "tools/run_db_tests.sh /home/user/IQDID/task6-output/evidence",
+  "exit": 0,
+  "log": "evidence/run-db-tests.log",
+  "log_sha256": "307977007524c8437d7e6dd5905cad50d4b29e8f6a94d13dc5e469328a19ccd3"
+ },
+ {
+  "id": "run-db-mutations",
+  "cmd": "tools/run_db_mutations.sh /tmp/claude-0/-home-user-IQDID/d4886548-b415-562e-a56e-a8281ff2367a/scratchpad/mut /home/user/IQDID/task6-output/evidence/db-mutation-results.txt",
+  "exit": 0,
+  "log": "evidence/run-db-mutations.log",
+  "log_sha256": "84c6da6ba021b36157a366f84b1c1c69e962385e7512c4f5959bf9d1cc5ccdb2"
+ },
+ {
+  "id": "run-static-checks",
+  "cmd": "python3 -I tools/task6_checks.py /home/user/IQDID/task6-output /home/user/IQDID/task6-output/evidence/task6-checks.json",
+  "exit": 0,
+  "log": "evidence/run-static-checks.log",
+  "log_sha256": "4e859c8b105e5cfa764f01b16db556c5e860f0ba733d5712188a162954e00a3c"
+ }
+]

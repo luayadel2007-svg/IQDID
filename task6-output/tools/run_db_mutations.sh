@@ -20,5 +20,10 @@ run_mut M5-trust-version-not-monotonic "WHERE version >= NEW.version=>WHERE fals
 run_mut M6-no-capacity-bound "IF NEW.idx >= v_cap THEN=>IF false THEN" DB-STA-03
 run_mut M8-session-refetch "IF OLD.request_fetched_at IS NOT NULL AND=>IF false AND" DB-VER-04
 run_mut M9-audit-update-allowed "RAISE EXCEPTION 'audit events are append-only';=>RETURN NEW;" DB-AUD-02
+run_mut M10-approval-reset-allowed "IF OLD.consumed_at IS NOT NULL THEN RAISE EXCEPTION 'approval already consumed'; END IF;=>" DB-APR-12
+run_mut M11-executor-may-be-requester "CHECK (consumed_by IS NULL OR consumed_by <> requested_by)=>CHECK (true)" DB-APR-10
+run_mut M12-key-purpose-mutable "IF (NEW.key_id, NEW.cert_sha256, NEW.entry_id, NEW.purpose,=>IF false AND (NEW.key_id, NEW.cert_sha256, NEW.entry_id, NEW.purpose," DB-TRU-08
+run_mut M13-direct-status-update "-- no direct UPDATE on status_entry or INSERT on status_transition: set_value=>GRANT UPDATE (value, row_version) ON status.status_entry TO svc_status; --" DB-STA-16
+run_mut M14-session-expiry-ignored "IF now() > OLD.expires_at AND=>IF false AND" DB-VER-11
 run_mut M7-status-reads-issuer "GRANT USAGE ON SCHEMA status, ops, audit TO svc_status;=>GRANT USAGE ON SCHEMA status, ops, audit, issuer TO svc_status; GRANT SELECT ON ALL TABLES IN SCHEMA issuer TO svc_status;" DB-STA-14
 ! grep -q SURVIVED "$OUT"

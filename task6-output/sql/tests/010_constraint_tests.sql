@@ -46,27 +46,31 @@ INSERT INTO iam.principal VALUES
  ('00000000-0000-4000-8000-0000000000a1','00000000-0000-4000-8000-00000000a001','test-sub-op','human','active',now()),
  ('00000000-0000-4000-8000-0000000000a2','00000000-0000-4000-8000-00000000a001','test-sub-auth','human','active',now()),
  ('00000000-0000-4000-8000-0000000000a3','00000000-0000-4000-8000-00000000a001','test-sub-appr','human','active',now()),
+ ('00000000-0000-4000-8000-0000000000a4','00000000-0000-4000-8000-00000000a001','test-sub-exec','human','active',now()),
+ ('00000000-0000-4000-8000-0000000000b2','00000000-0000-4000-8000-00000000b001','test-sub-vb2','human','active',now()),
  ('00000000-0000-4000-8000-0000000000b1','00000000-0000-4000-8000-00000000b001','test-sub-vb','human','active',now()),
  ('00000000-0000-4000-8000-0000000000c1','00000000-0000-4000-8000-00000000c001','test-sub-vc','human','active',now());
 INSERT INTO iam.role_grant (org_id, principal_id, role) VALUES
  ('00000000-0000-4000-8000-00000000a001','00000000-0000-4000-8000-0000000000a1','issuer-operator'),
  ('00000000-0000-4000-8000-00000000a001','00000000-0000-4000-8000-0000000000a2','issuer-authority'),
- ('00000000-0000-4000-8000-00000000a001','00000000-0000-4000-8000-0000000000a3','issuer-approver');
+ ('00000000-0000-4000-8000-00000000a001','00000000-0000-4000-8000-0000000000a3','issuer-approver'),
+ ('00000000-0000-4000-8000-00000000a001','00000000-0000-4000-8000-0000000000a4','issuer-authority'),
+ ('00000000-0000-4000-8000-00000000b001','00000000-0000-4000-8000-0000000000b2','issuer-approver');
 INSERT INTO issuer.offer (offer_id, org_id, created_by, citizen_ref_hmac, configuration_id, expires_at) VALUES
  ('00000000-0000-4000-8000-0000000000f1','00000000-0000-4000-8000-00000000a001','00000000-0000-4000-8000-0000000000a1',
-  sha256('TEST-citizen-1'::bytea),'CRT-01', now() + interval '10 minutes'),
+  sha256('TEST-citizen-1'::bytea),'national_id_test', now() + interval '10 minutes'),
  ('00000000-0000-4000-8000-0000000000f2','00000000-0000-4000-8000-00000000a001','00000000-0000-4000-8000-0000000000a1',
-  sha256('TEST-citizen-2'::bytea),'CRT-01', now() + interval '10 minutes');
+  sha256('TEST-citizen-2'::bytea),'national_id_test', now() + interval '10 minutes');
 INSERT INTO status.status_list (list_id, list_uri, bits, capacity) VALUES
- ('L1','https://status.digital-id.test/lists/L1',2,8192),
- ('L1BIT','https://status.digital-id.test/lists/L1BIT',1,8192);
+ ('l1','https://status.digital-id.test/lists/l1',2,8192),
+ ('l1bit','https://status.digital-id.test/lists/l1bit',1,8192);
 INSERT INTO status.status_entry (list_id, idx, credential_ref) VALUES
- ('L1',4711,'00000000-0000-4000-8000-0000000000e1'),
- ('L1',  93,'00000000-0000-4000-8000-0000000000e2'),
- ('L1BIT',5,'00000000-0000-4000-8000-0000000000e3');
+ ('l1',4711,'00000000-0000-4000-8000-0000000000e1'),
+ ('l1',  93,'00000000-0000-4000-8000-0000000000e2'),
+ ('l1bit',5,'00000000-0000-4000-8000-0000000000e3');
 INSERT INTO issuer.credential (credential_id, org_id, offer_id, vct, iat, exp, status_list_id, status_idx) VALUES
  ('00000000-0000-4000-8000-0000000000e1','00000000-0000-4000-8000-00000000a001','00000000-0000-4000-8000-0000000000f1',
-  'urn:test:CRT-01', now(), now() + interval '30 days','L1',4711);
+  'urn:test:CRT-01', extract(epoch from now())::bigint, extract(epoch from now())::bigint + 30*86400,'l1',4711);
 INSERT INTO trust.trust_entry (entry_id, role, identifier, display_name_ar, display_name_en, state, valid_from, valid_to) VALUES
  ('E-ISS','issuer','https://issuer.digital-id.test','جهة إصدار اختبارية','Test issuer','active',1,2000000000),
  ('E-STA','status','status.digital-id.test','حالة اختبارية','Test status','active',1,2000000000);
@@ -78,43 +82,60 @@ INSERT INTO verifier.verification_session (session_id, org_id, created_by, servi
 
 -- ---------------------------------------------------------------- status / revocation
 SELECT t.expect_error('DB-STA-01 duplicate index allocation',
- $q$INSERT INTO status.status_entry (list_id, idx, credential_ref) VALUES ('L1',4711,'00000000-0000-4000-8000-0000000000e9')$q$,
+ $q$INSERT INTO status.status_entry (list_id, idx, credential_ref) VALUES ('l1',4711,'00000000-0000-4000-8000-0000000000e9')$q$,
  'duplicate key.*status_entry_pkey');
 SELECT t.expect_error('DB-STA-02 second index for same credential',
- $q$INSERT INTO status.status_entry (list_id, idx, credential_ref) VALUES ('L1',5000,'00000000-0000-4000-8000-0000000000e1')$q$,
+ $q$INSERT INTO status.status_entry (list_id, idx, credential_ref) VALUES ('l1',5000,'00000000-0000-4000-8000-0000000000e1')$q$,
  'duplicate key.*credential_ref');
 SELECT t.expect_error('DB-STA-03 idx beyond capacity',
- $q$INSERT INTO status.status_entry (list_id, idx, credential_ref) VALUES ('L1',8192,'00000000-0000-4000-8000-0000000000e8')$q$,
+ $q$INSERT INTO status.status_entry (list_id, idx, credential_ref) VALUES ('l1',8192,'00000000-0000-4000-8000-0000000000e8')$q$,
  'outside list capacity');
 SELECT t.expect_ok('DB-STA-04 valid->suspended via CAS',
- $q$SELECT status.set_value('L1',4711,2::smallint,1,'investigation','APR-T-1')$q$, 'svc_status');
+ $q$SELECT status.set_value('l1',4711,2::smallint,1,'investigation','APR-T-1')$q$, 'svc_status');
 SELECT t.expect_error('DB-STA-05 stale CAS rejected (T-LC-02/03)',
- $q$SELECT status.set_value('L1',4711,0::smallint,1,'reinstated','APR-T-2')$q$, 'CAS-4090', 'svc_status');
+ $q$SELECT status.set_value('l1',4711,0::smallint,1,'reinstated','APR-T-2')$q$, 'CAS-4090', 'svc_status');
 SELECT t.expect_ok('DB-STA-06 suspended->revoked',
- $q$SELECT status.set_value('L1',4711,1::smallint,2,'compromise','APR-T-3')$q$, 'svc_status');
+ $q$SELECT status.set_value('l1',4711,1::smallint,2,'compromise','APR-T-3')$q$, 'svc_status');
 SELECT t.expect_error('DB-STA-07 revoked->valid rejected (DR-66/OD-09)',
- $q$SELECT status.set_value('L1',4711,0::smallint,3,'reinstated','APR-T-4')$q$, 'STA-4091', 'svc_status');
+ $q$SELECT status.set_value('l1',4711,0::smallint,3,'reinstated','APR-T-4')$q$, 'STA-4091', 'svc_status');
 SELECT t.expect_error('DB-STA-08 revoked->suspended direct UPDATE rejected',
- $q$UPDATE status.status_entry SET value = 2 WHERE list_id='L1' AND idx=4711$q$, 'STA-4091');
+ $q$UPDATE status.status_entry SET value = 2 WHERE list_id='l1' AND idx=4711$q$, 'STA-4091');
 DO $$
 DECLARE v_before bigint; v_after bigint;
 BEGIN
-  SELECT list_version INTO v_before FROM status.status_list WHERE list_id='L1';
-  PERFORM status.set_value('L1',4711,1::smallint,3,'compromise',NULL);
-  SELECT list_version INTO v_after FROM status.status_list WHERE list_id='L1';
+  SELECT list_version INTO v_before FROM status.status_list WHERE list_id='l1';
+  PERFORM status.set_value('l1',4711,1::smallint,3,'compromise',NULL);
+  SELECT list_version INTO v_after FROM status.status_list WHERE list_id='l1';
   INSERT INTO t.result VALUES ('DB-STA-09 revoked->revoked is no-op without version bump',
     CASE WHEN v_before = v_after THEN 'PASS' ELSE 'FAIL' END, v_before || '->' || v_after);
 EXCEPTION WHEN OTHERS THEN
   INSERT INTO t.result VALUES ('DB-STA-09 revoked->revoked is no-op without version bump', 'FAIL', SQLERRM);
 END $$;
 SELECT t.expect_error('DB-STA-10 approval_ref reuse at C5 rejected (T-LC-04)',
- $q$SELECT status.set_value('L1',93,2::smallint,1,'investigation','APR-T-1')$q$, 'duplicate key.*approval_ref', 'svc_status');
+ $q$SELECT status.set_value('l1',93,2::smallint,1,'investigation','APR-T-1')$q$, 'duplicate key.*approval_ref', 'svc_status');
 SELECT t.expect_error('DB-STA-11 suspended on 1-bit list rejected',
- $q$SELECT status.set_value('L1BIT',5,2::smallint,1,'investigation','APR-T-5')$q$, 'STA-4221', 'svc_status');
+ $q$SELECT status.set_value('l1bit',5,2::smallint,1,'investigation','APR-T-5')$q$, 'STA-4221', 'svc_status');
 SELECT t.expect_error('DB-STA-12 list_version cannot go backwards',
- $q$UPDATE status.status_list SET list_version = 0 WHERE list_id='L1'$q$, 'monotonic');
+ $q$UPDATE status.status_list SET list_version = 0 WHERE list_id='l1'$q$, 'monotonic');
 SELECT t.expect_error('DB-STA-13 published_version cannot exceed list_version',
- $q$UPDATE status.status_list SET published_version = list_version + 1 WHERE list_id='L1'$q$, 'published_le_list');
+ $q$UPDATE status.status_list SET published_version = list_version + 1 WHERE list_id='l1'$q$, 'published_le_list');
+SELECT t.expect_error('DB-STA-16 svc_status cannot UPDATE value directly (bypass set_value)',
+ $q$UPDATE status.status_entry SET value = 0, row_version = 1 WHERE list_id='l1' AND idx=4711$q$, 'permission denied', 'svc_status');
+SELECT t.expect_error('DB-STA-17 allocation cannot start revoked/suspended',
+ $q$INSERT INTO status.status_entry (list_id, idx, credential_ref, value) VALUES ('l1bit',6,'00000000-0000-4000-8000-0000000000e7',2)$q$, 'must start VALID', 'svc_status');
+SELECT t.expect_error('DB-STA-19 svc_status cannot move list_version directly',
+ $q$UPDATE status.status_list SET list_version = list_version + 5 WHERE list_id='l1'$q$, 'permission denied', 'svc_status');
+DO $$
+DECLARE v_before bigint; v_after bigint;
+BEGIN
+  SELECT list_version INTO v_before FROM status.status_list WHERE list_id='l1';
+  PERFORM status.set_value('l1',93,0::smallint,1,'investigation',NULL);
+  SELECT list_version INTO v_after FROM status.status_list WHERE list_id='l1';
+  INSERT INTO t.result VALUES ('DB-STA-18 repeating current value (0->0) is a no-op',
+    CASE WHEN v_before = v_after THEN 'PASS' ELSE 'FAIL' END, v_before || '->' || v_after);
+EXCEPTION WHEN OTHERS THEN
+  INSERT INTO t.result VALUES ('DB-STA-18 repeating current value (0->0) is a no-op', 'FAIL', SQLERRM);
+END $$;
 SELECT t.expect_error('DB-STA-14 svc_status cannot read issuer data (privacy)',
  $q$SELECT * FROM issuer.credential$q$, 'permission denied', 'svc_status');
 SELECT t.expect_error('DB-STA-15 svc_status cannot DELETE entries',
@@ -148,38 +169,66 @@ SELECT t.expect_error('DB-APR-05 approval with other request digest rejected',
      '00000000-0000-4000-8000-0000000000e1', sha256('r2'::bytea),'00000000-0000-4000-8000-0000000000a2')$q$, 'API-4030', 'svc_issuer');
 SELECT t.expect_ok('DB-APR-06 matching approval consumed once',
  $q$SELECT issuer.consume_approval('APR-OK-1','00000000-0000-4000-8000-00000000a001','revoke',
-     '00000000-0000-4000-8000-0000000000e1', sha256('r1'::bytea),'00000000-0000-4000-8000-0000000000a2')$q$, 'svc_issuer');
+     '00000000-0000-4000-8000-0000000000e1', sha256('r1'::bytea),'00000000-0000-4000-8000-0000000000a4')$q$, 'svc_issuer');
 SELECT t.expect_error('DB-APR-07 approval replay rejected',
  $q$SELECT issuer.consume_approval('APR-OK-1','00000000-0000-4000-8000-00000000a001','revoke',
-     '00000000-0000-4000-8000-0000000000e1', sha256('r1'::bytea),'00000000-0000-4000-8000-0000000000a2')$q$, 'API-4030', 'svc_issuer');
+     '00000000-0000-4000-8000-0000000000e1', sha256('r1'::bytea),'00000000-0000-4000-8000-0000000000a4')$q$, 'API-4030', 'svc_issuer');
+INSERT INTO issuer.approval (approval_id, approval_ref, org_id, action, credential_id, request_digest, requested_by, approved_by, expires_at)
+ VALUES ('00000000-0000-4000-8000-0000000000d2','APR-OK-2','00000000-0000-4000-8000-00000000a001','suspend',
+         '00000000-0000-4000-8000-0000000000e1', sha256('r3'::bytea),
+         '00000000-0000-4000-8000-0000000000a2','00000000-0000-4000-8000-0000000000a3', now()+interval '10 minutes');
 SELECT t.expect_error('DB-APR-08 executor equal to approver rejected',
- $q$UPDATE issuer.approval SET consumed_at = NULL, consumed_by = NULL WHERE approval_ref='APR-OK-1';
-    UPDATE issuer.approval SET consumed_at = now(), consumed_by = approved_by WHERE approval_ref='APR-OK-1'$q$, 'approval_executor_not_approver');
+ $q$SELECT issuer.consume_approval('APR-OK-2','00000000-0000-4000-8000-00000000a001','suspend',
+     '00000000-0000-4000-8000-0000000000e1', sha256('r3'::bytea),'00000000-0000-4000-8000-0000000000a3')$q$, 'approval_executor_not_approver', 'svc_issuer');
+SELECT t.expect_error('DB-APR-10 executor equal to requester rejected',
+ $q$SELECT issuer.consume_approval('APR-OK-2','00000000-0000-4000-8000-00000000a001','suspend',
+     '00000000-0000-4000-8000-0000000000e1', sha256('r3'::bytea),'00000000-0000-4000-8000-0000000000a2')$q$, 'approval_executor_not_requester', 'svc_issuer');
+SELECT t.expect_error('DB-APR-11 svc_issuer cannot reset a consumed approval',
+ $q$UPDATE issuer.approval SET consumed_at = NULL, consumed_by = NULL WHERE approval_ref='APR-OK-1'$q$, 'permission denied', 'svc_issuer');
+SELECT t.expect_error('DB-APR-12 consumed approval immutable even for owner',
+ $q$UPDATE issuer.approval SET consumed_at = NULL, consumed_by = NULL WHERE approval_ref='APR-OK-1'$q$, 'already consumed');
+SELECT t.expect_error('DB-APR-13 unconsumed approval fields immutable (no lifetime extension)',
+ $q$UPDATE issuer.approval SET expires_at = expires_at + interval '1 minute' WHERE approval_ref='APR-OK-2'$q$, 'approval is immutable');
+SELECT t.expect_error('DB-APR-14 approval cannot target another org credential',
+ $q$INSERT INTO issuer.approval (approval_id, approval_ref, org_id, action, credential_id, request_digest, requested_by, approved_by, expires_at)
+    VALUES (gen_random_uuid(),'APR-XORG','00000000-0000-4000-8000-00000000b001','revoke','00000000-0000-4000-8000-0000000000e1',
+            sha256('r1'::bytea),'00000000-0000-4000-8000-0000000000b1','00000000-0000-4000-8000-0000000000b2', now()+interval '10 minutes')$q$,
+ 'approval_org_id_credential_id_fkey');
 INSERT INTO issuer.credential_transition (credential_id, from_state, to_state, reason_code, approval_id, actor_id)
  VALUES ('00000000-0000-4000-8000-0000000000e1','valid','revoked','compromise','00000000-0000-4000-8000-0000000000d1','00000000-0000-4000-8000-0000000000a2');
 SELECT t.expect_error('DB-APR-09 same approval on two transitions rejected',
  $q$INSERT INTO issuer.credential_transition (credential_id, from_state, to_state, reason_code, approval_id, actor_id)
     VALUES ('00000000-0000-4000-8000-0000000000e1','valid','suspended','investigation','00000000-0000-4000-8000-0000000000d1','00000000-0000-4000-8000-0000000000a2')$q$,
  'duplicate key.*approval_id');
-UPDATE issuer.credential SET state = 'revoked' WHERE credential_id = '00000000-0000-4000-8000-0000000000e1';
+UPDATE issuer.credential SET state = 'REVOKED' WHERE credential_id = '00000000-0000-4000-8000-0000000000e1';
 SELECT t.expect_error('DB-ISS-01 issuer revoked->valid rejected',
- $q$UPDATE issuer.credential SET state='valid' WHERE credential_id='00000000-0000-4000-8000-0000000000e1'$q$, 'revoked is final');
+ $q$UPDATE issuer.credential SET state='ACTIVE' WHERE credential_id='00000000-0000-4000-8000-0000000000e1'$q$, 'revoked is final');
 SELECT t.expect_error('DB-ISS-02 second credential for same offer rejected',
  $q$INSERT INTO issuer.credential (credential_id, org_id, offer_id, vct, iat, exp, status_list_id, status_idx)
-    VALUES (gen_random_uuid(),'00000000-0000-4000-8000-00000000a001','00000000-0000-4000-8000-0000000000f1','urn:test:CRT-01',now(),now()+interval '1 day','L1',93)$q$,
+    VALUES (gen_random_uuid(),'00000000-0000-4000-8000-00000000a001','00000000-0000-4000-8000-0000000000f1','urn:test:CRT-01',1000,1000+86400,'l1',93)$q$,
  'duplicate key.*offer_id');
 SELECT t.expect_error('DB-ISS-03 credential validity > 30 days rejected',
  $q$INSERT INTO issuer.credential (credential_id, org_id, offer_id, vct, iat, exp, status_list_id, status_idx)
-    VALUES (gen_random_uuid(),'00000000-0000-4000-8000-00000000a001','00000000-0000-4000-8000-0000000000f2','urn:test:CRT-01',now(),now()+interval '31 days','L1',93)$q$,
+    VALUES (gen_random_uuid(),'00000000-0000-4000-8000-00000000a001','00000000-0000-4000-8000-0000000000f2','urn:test:CRT-01',1000,1000+31*86400,'l1',93)$q$,
  'credential_validity');
 SELECT t.expect_error('DB-ISS-04 offer lifetime > 10 min rejected',
  $q$INSERT INTO issuer.offer (offer_id, org_id, created_by, citizen_ref_hmac, configuration_id, expires_at)
-    VALUES (gen_random_uuid(),'00000000-0000-4000-8000-00000000a001','00000000-0000-4000-8000-0000000000a1',sha256('x'::bytea),'CRT-01',now()+interval '1 hour')$q$,
+    VALUES (gen_random_uuid(),'00000000-0000-4000-8000-00000000a001','00000000-0000-4000-8000-0000000000a1',sha256('x'::bytea),'national_id_test',now()+interval '1 hour')$q$,
  'offer_lifetime');
 SELECT t.expect_error('DB-ISS-05 cross-tenant creator rejected (composite FK)',
  $q$INSERT INTO issuer.offer (offer_id, org_id, created_by, citizen_ref_hmac, configuration_id, expires_at)
-    VALUES (gen_random_uuid(),'00000000-0000-4000-8000-00000000a001','00000000-0000-4000-8000-0000000000b1',sha256('x'::bytea),'CRT-01',now()+interval '5 minutes')$q$,
+    VALUES (gen_random_uuid(),'00000000-0000-4000-8000-00000000a001','00000000-0000-4000-8000-0000000000b1',sha256('x'::bytea),'national_id_test',now()+interval '5 minutes')$q$,
  'foreign key');
+
+SELECT t.expect_error('DB-ISS-06 credential cannot reference another org offer',
+ $q$INSERT INTO issuer.credential (credential_id, org_id, offer_id, vct, iat, exp, status_list_id, status_idx)
+    VALUES (gen_random_uuid(),'00000000-0000-4000-8000-00000000b001','00000000-0000-4000-8000-0000000000f2','urn:test:CRT-01',1000,2000,'l1',93)$q$,
+ 'credential_org_id_offer_id_fkey');
+SELECT t.expect_error('DB-ISS-07 tx_attempts cannot decrease',
+ $q$UPDATE issuer.offer SET tx_attempts = 3 WHERE offer_id='00000000-0000-4000-8000-0000000000f2';
+    UPDATE issuer.offer SET tx_attempts = 0 WHERE offer_id='00000000-0000-4000-8000-0000000000f2'$q$, 'can only increase', 'svc_issuer');
+SELECT t.expect_error('DB-ISS-08 offer lifetime cannot be extended',
+ $q$UPDATE issuer.offer SET expires_at = expires_at + interval '1 minute' WHERE offer_id='00000000-0000-4000-8000-0000000000f2'$q$, 'immutable');
 
 -- ---------------------------------------------------------------- idempotency
 INSERT INTO ops.idempotency_record VALUES ('issuer','00000000-0000-4000-8000-00000000a001','test-sub-op','createOffer','offers',
@@ -201,6 +250,16 @@ SELECT t.expect_error('DB-TRU-01 same key identity in second role rejected (OD-0
 SELECT t.expect_error('DB-TRU-02 same certificate under new key_id rejected',
  $q$INSERT INTO trust.trust_key VALUES (repeat('B',43), sha256('cert-iss'::bytea),'E-STA','status_list_signing',now(),now()+interval '1 year',NULL)$q$,
  'duplicate key.*cert_sha256');
+SELECT t.expect_error('DB-TRU-07 svc_trust cannot change key purpose',
+ $q$UPDATE trust.trust_key SET purpose='status_list_signing' WHERE key_id=repeat('A',43)$q$, 'permission denied', 'svc_trust');
+SELECT t.expect_error('DB-TRU-08 key purpose immutable even for owner',
+ $q$UPDATE trust.trust_key SET purpose='status_list_signing' WHERE key_id=repeat('A',43)$q$, 'identity is immutable');
+SELECT t.expect_ok('DB-TRU-09 key can be retired',
+ $q$UPDATE trust.trust_key SET retired_at = now() WHERE key_id=repeat('A',43)$q$, 'svc_trust');
+SELECT t.expect_error('DB-TRU-10 retirement cannot be undone',
+ $q$UPDATE trust.trust_key SET retired_at = NULL WHERE key_id=repeat('A',43)$q$, 'retirement is final', 'svc_trust');
+SELECT t.expect_error('DB-TRU-11 key rows cannot be deleted',
+ $q$DELETE FROM trust.trust_key WHERE key_id=repeat('A',43)$q$, 'identity is immutable');
 INSERT INTO trust.trust_list_version (version, iat, exp, payload_sha256) VALUES (5, 100, 200, sha256('tl5'::bytea));
 SELECT t.expect_error('DB-TRU-03 older trust list version rejected (T-TRU-02)',
  $q$INSERT INTO trust.trust_list_version (version, iat, exp, payload_sha256) VALUES (4, 100, 200, sha256('tl4'::bytea))$q$, 'must increase');
@@ -234,6 +293,16 @@ SELECT t.expect_error('DB-VER-07 rollback to created rejected',
 SELECT t.expect_error('DB-VER-08 session owner cannot be reassigned (T-BOLA-01 support)',
  $q$UPDATE verifier.verification_session SET org_id='00000000-0000-4000-8000-00000000c001', created_by='00000000-0000-4000-8000-0000000000c1'
     WHERE session_id='00000000-0000-4000-8000-0000000005e1'$q$, 'ownership is immutable');
+SELECT t.expect_error('DB-VER-09 svc_verifier cannot extend session lifetime',
+ $q$UPDATE verifier.verification_session SET expires_at = expires_at + interval '60 seconds' WHERE session_id='00000000-0000-4000-8000-0000000005e1'$q$, 'permission denied', 'svc_verifier');
+SELECT t.expect_error('DB-VER-10 session lifetime immutable even for owner',
+ $q$UPDATE verifier.verification_session SET created_at = created_at + interval '60 seconds', expires_at = expires_at + interval '60 seconds'
+    WHERE session_id='00000000-0000-4000-8000-0000000005e1'$q$, 'lifetime/nonce is immutable');
+INSERT INTO verifier.verification_session (session_id, org_id, created_by, service_id, nonce_sha256, created_at, expires_at) VALUES
+ ('00000000-0000-4000-8000-0000000005e2','00000000-0000-4000-8000-00000000b001','00000000-0000-4000-8000-0000000000b1',
+  'svc-age', sha256('nonce-old'::bytea), now() - interval '200 seconds', now() - interval '100 seconds');
+SELECT t.expect_error('DB-VER-11 expired session cannot progress',
+ $q$UPDATE verifier.verification_session SET state='request_fetched', request_fetched_at=now() WHERE session_id='00000000-0000-4000-8000-0000000005e2'$q$, 'session expired', 'svc_verifier');
 DO $$
 BEGIN
   INSERT INTO t.result VALUES ('DB-PRV-01 no disclosed-value columns in verifier schema',
@@ -256,7 +325,7 @@ DO $$
 DECLARE ok boolean;
 BEGIN
   SELECT bool_and(e.prev_hash = COALESCE(p.hash, '\x00'::bytea)) INTO ok
-    FROM audit.audit_event e LEFT JOIN audit.audit_event p ON p.seq = (SELECT max(seq) FROM audit.audit_event WHERE seq < e.seq);
+    FROM audit.audit_event e LEFT JOIN audit.audit_event p ON p.chain_pos = e.chain_pos - 1;
   INSERT INTO t.result VALUES ('DB-AUD-05 hash chain links every event', CASE WHEN ok THEN 'PASS' ELSE 'FAIL' END, 'prev_hash = previous hash');
 END $$;
 SELECT t.expect_ok('DB-AUD-06 retention purge runs as svc_retention', $q$SELECT ops.purge_expired()$q$, 'svc_retention');
@@ -267,7 +336,7 @@ SELECT t.expect_error('DB-PND-01 OD-07: verifier without hosts rejected when app
  $q$INSERT INTO trust.trust_entry (entry_id, role, identifier, display_name_ar, display_name_en, state, valid_from, valid_to)
     VALUES ('E-V-NOHOST','verifier','x509_hash:' || repeat('C',43),'م','V','active',1,2)$q$, 'od07_verifier_hosts_required');
 SELECT t.expect_error('DB-PND-02 OD-06: status change without approval rejected when applied',
- $q$SELECT status.set_value('L1',93,2::smallint,1,'investigation',NULL)$q$, 'od06_approval_required', 'svc_status');
+ $q$SELECT status.set_value('l1',93,2::smallint,1,'investigation',NULL)$q$, 'od06_approval_required', 'svc_status');
 
 \pset footer off
 SELECT outcome, count(*) FROM t.result GROUP BY outcome ORDER BY outcome;

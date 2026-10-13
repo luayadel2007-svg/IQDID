@@ -14,6 +14,7 @@ ALTER TABLE status.status_transition ADD CONSTRAINT od06_approval_required
 
 -- D-06 (PENDING): separate status-writer from status-allocator.
 -- Applied as role split at deployment: svc_status_alloc gets INSERT on
--- status_entry only; svc_status_write gets EXECUTE on status.set_value only.
+-- status_entry only; svc_status_write gets EXECUTE on status.set_value only
+-- (works because set_value is SECURITY DEFINER and is the sole write path).
 
 COMMIT;

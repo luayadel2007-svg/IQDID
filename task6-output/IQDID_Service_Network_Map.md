@@ -52,10 +52,10 @@ C2-B egress: عبر proxy خروج بقائمة سماح مضيفات الحال
 
 | الكيان | يملك | لا يملك |
 |---|---|---|
-| svc_issuer | issuer.* (بلا DELETE)، قراءة iam، INSERT تدقيق | status.*، trust.*، قراءة التدقيق |
-| svc_status | status_entry INSERT + UPDATE(value,row_version)، status_list UPDATE(versions) | iam.*، issuer.* (مُختبر DB-STA-14)، DELETE (DB-STA-15) |
-| svc_trust | trust.* | issuer/status/verifier |
-| svc_verifier | verification_session (بيانات وصفية)، قراءة principal/role | أي جدول لقيم الإفصاح (غير موجود — DB-PRV-01) |
+| svc_issuer | INSERT/SELECT في issuer.*؛ UPDATE أعمدة الحالة فقط؛ `consume_approval`؛ قراءة iam؛ INSERT تدقيق | UPDATE على approval، DELETE، status.*، trust.*، قراءة التدقيق |
+| svc_status | status_entry INSERT (يبدأ بـ0)؛ `set_value` (المسار الوحيد للقيم وlist_version)؛ UPDATE(published_version, published_at) | UPDATE مباشر للقيم (DB-STA-16)، list_version (DB-STA-19)، iam/issuer (DB-STA-14)، DELETE (DB-STA-15) |
+| svc_trust | trust.*؛ في trust_key: INSERT وUPDATE(retired_at) فقط | تغيير غرض/مالك مفتاح (DB-TRU-07/08)، issuer/status/verifier |
+| svc_verifier | verification_session INSERT + UPDATE(state, *_at, result_code)، قراءة principal/role | تمديد العمر (DB-VER-09)، أي جدول لقيم الإفصاح (غير موجود — DB-PRV-01) |
 | audit_reader | SELECT تدقيق | كتابة |
 | svc_retention | `ops.purge_expired()` فقط | جداول مباشرة |
 

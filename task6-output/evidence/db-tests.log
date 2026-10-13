@@ -93,41 +93,6 @@
  
 (1 row)
 
- expect_ok 
------------
- 
-(1 row)
-
- expect_error 
---------------
- 
-(1 row)
-
- expect_error 
---------------
- 
-(1 row)
-
- expect_error 
---------------
- 
-(1 row)
-
- expect_error 
---------------
- 
-(1 row)
-
- expect_error 
---------------
- 
-(1 row)
-
- expect_error 
---------------
- 
-(1 row)
-
  expect_error 
 --------------
  
@@ -193,6 +158,121 @@
  
 (1 row)
 
+ expect_error 
+--------------
+ 
+(1 row)
+
+ expect_error 
+--------------
+ 
+(1 row)
+
+ expect_error 
+--------------
+ 
+(1 row)
+
+ expect_error 
+--------------
+ 
+(1 row)
+
+ expect_error 
+--------------
+ 
+(1 row)
+
+ expect_error 
+--------------
+ 
+(1 row)
+
+ expect_error 
+--------------
+ 
+(1 row)
+
+ expect_error 
+--------------
+ 
+(1 row)
+
+ expect_ok 
+-----------
+ 
+(1 row)
+
+ expect_error 
+--------------
+ 
+(1 row)
+
+ expect_error 
+--------------
+ 
+(1 row)
+
+ expect_error 
+--------------
+ 
+(1 row)
+
+ expect_error 
+--------------
+ 
+(1 row)
+
+ expect_error 
+--------------
+ 
+(1 row)
+
+ expect_ok 
+-----------
+ 
+(1 row)
+
+ expect_error 
+--------------
+ 
+(1 row)
+
+ expect_error 
+--------------
+ 
+(1 row)
+
+ expect_error 
+--------------
+ 
+(1 row)
+
+ expect_error 
+--------------
+ 
+(1 row)
+
+ expect_error 
+--------------
+ 
+(1 row)
+
+ expect_error 
+--------------
+ 
+(1 row)
+
+ expect_error 
+--------------
+ 
+(1 row)
+
+ expect_error 
+--------------
+ 
+(1 row)
+
  expect_ok 
 -----------
  
@@ -205,6 +285,21 @@
 
  expect_ok 
 -----------
+ 
+(1 row)
+
+ expect_error 
+--------------
+ 
+(1 row)
+
+ expect_error 
+--------------
+ 
+(1 row)
+
+ expect_error 
+--------------
  
 (1 row)
 
@@ -260,63 +355,83 @@
 
  outcome | count 
 ---------+-------
- PASS    |    55
+ PASS    |    75
 
-                                  id                                   | outcome |                                           detail                                           
------------------------------------------------------------------------+---------+--------------------------------------------------------------------------------------------
- DB-APR-01 self-approval rejected (T-EOP-01)                           | PASS    | new row for relation "approval" violates check constraint "approval_not_self"
- DB-APR-02 approver without issuer-approver role rejected              | PASS    | insert or update on table "approval" violates foreign key constraint "approval_org_id_appr
- DB-APR-03 approval lifetime > 30 min rejected                         | PASS    | new row for relation "approval" violates check constraint "approval_lifetime"
- DB-APR-04 approval bound to other action rejected                     | PASS    | API-4030 approval invalid, expired, mismatched or used
- DB-APR-05 approval with other request digest rejected                 | PASS    | API-4030 approval invalid, expired, mismatched or used
- DB-APR-06 matching approval consumed once                             | PASS    | ok
- DB-APR-07 approval replay rejected                                    | PASS    | API-4030 approval invalid, expired, mismatched or used
- DB-APR-08 executor equal to approver rejected                         | PASS    | new row for relation "approval" violates check constraint "approval_executor_not_approver"
- DB-APR-09 same approval on two transitions rejected                   | PASS    | duplicate key value violates unique constraint "credential_transition_approval_id_key"
- DB-AUD-01 service can append                                          | PASS    | ok
- DB-AUD-02 UPDATE blocked even for owner                               | PASS    | audit events are append-only
- DB-AUD-03 DELETE blocked outside purge                                | PASS    | audit events are append-only
- DB-AUD-04 service cannot read audit                                   | PASS    | permission denied for table audit_event
- DB-AUD-05 hash chain links every event                                | PASS    | prev_hash = previous hash
- DB-AUD-06 retention purge runs as svc_retention                       | PASS    | ok
- DB-IDM-01 same key same scope rejected                                | PASS    | duplicate key value violates unique constraint "idempotency_record_pkey"
- DB-IDM-02 same key in another org is isolated                         | PASS    | ok
- DB-IDM-03 retention > 24h rejected                                    | PASS    | new row for relation "idempotency_record" violates check constraint "idem_retention"
- DB-ISS-01 issuer revoked->valid rejected                              | PASS    | ISS revoked is final
- DB-ISS-02 second credential for same offer rejected                   | PASS    | duplicate key value violates unique constraint "credential_offer_id_key"
- DB-ISS-03 credential validity > 30 days rejected                      | PASS    | new row for relation "credential" violates check constraint "credential_validity"
- DB-ISS-04 offer lifetime > 10 min rejected                            | PASS    | new row for relation "offer" violates check constraint "offer_lifetime"
- DB-ISS-05 cross-tenant creator rejected (composite FK)                | PASS    | insert or update on table "offer" violates foreign key constraint "offer_org_id_created_by
- DB-PND-01 OD-07: verifier without hosts rejected when applied         | PASS    | new row for relation "trust_entry" violates check constraint "od07_verifier_hosts_required
- DB-PND-02 OD-06: status change without approval rejected when applied | PASS    | new row for relation "status_transition" violates check constraint "od06_approval_required
- DB-PRV-01 no disclosed-value columns in verifier schema               | PASS    | information_schema scan
- DB-STA-01 duplicate index allocation                                  | PASS    | duplicate key value violates unique constraint "status_entry_pkey"
- DB-STA-02 second index for same credential                            | PASS    | duplicate key value violates unique constraint "status_entry_credential_ref_key"
- DB-STA-03 idx beyond capacity                                         | PASS    | idx outside list capacity
- DB-STA-04 valid->suspended via CAS                                    | PASS    | ok
- DB-STA-05 stale CAS rejected (T-LC-02/03)                             | PASS    | CAS-4090 row_version mismatch
- DB-STA-06 suspended->revoked                                          | PASS    | ok
- DB-STA-07 revoked->valid rejected (DR-66/OD-09)                       | PASS    | STA-4091 revoked is final
- DB-STA-08 revoked->suspended direct UPDATE rejected                   | PASS    | STA-4091 revoked is final
- DB-STA-09 revoked->revoked is no-op without version bump              | PASS    | 2->2
- DB-STA-10 approval_ref reuse at C5 rejected (T-LC-04)                 | PASS    | duplicate key value violates unique constraint "status_transition_approval_ref_key"
- DB-STA-11 suspended on 1-bit list rejected                            | PASS    | STA-4221 suspended needs bits>=2
- DB-STA-12 list_version cannot go backwards                            | PASS    | status list versions are monotonic
- DB-STA-13 published_version cannot exceed list_version                | PASS    | new row for relation "status_list" violates check constraint "published_le_list"
- DB-STA-14 svc_status cannot read issuer data (privacy)                | PASS    | permission denied for schema issuer
- DB-STA-15 svc_status cannot DELETE entries                            | PASS    | permission denied for table status_entry
- DB-TRU-01 same key identity in second role rejected (OD-08 proposal)  | PASS    | duplicate key value violates unique constraint "trust_key_pkey"
- DB-TRU-02 same certificate under new key_id rejected                  | PASS    | duplicate key value violates unique constraint "trust_key_cert_sha256_key"
- DB-TRU-03 older trust list version rejected (T-TRU-02)                | PASS    | trust list version must increase (SEC-02)
- DB-TRU-04 wildcard response host rejected (T-RESP-01)                 | PASS    | new row for relation "response_host" violates check constraint "response_host_exact"
- DB-TRU-05 host with path/port rejected                                | PASS    | new row for relation "response_host" violates check constraint "response_host_exact"
- DB-TRU-06 malformed verifier identifier rejected                      | PASS    | new row for relation "trust_entry" violates check constraint "trust_verifier_x509_hash"
- DB-VER-01 session lifetime > 120 s rejected                           | PASS    | new row for relation "verification_session" violates check constraint "session_lifetime"
- DB-VER-02 nonce reuse across sessions rejected                        | PASS    | duplicate key value violates unique constraint "verification_session_nonce_sha256_key"
- DB-VER-03 request fetched once                                        | PASS    | ok
- DB-VER-04 second request fetch rejected                               | PASS    | request_uri already fetched
- DB-VER-05 first response accepted                                     | PASS    | ok
- DB-VER-06 second response rejected                                    | PASS    | response already received
- DB-VER-07 rollback to created rejected                                | PASS    | illegal session transition response_received -> created
- DB-VER-08 session owner cannot be reassigned (T-BOLA-01 support)      | PASS    | session ownership is immutable
+                                   id                                   | outcome |                                           detail                                           
+------------------------------------------------------------------------+---------+--------------------------------------------------------------------------------------------
+ DB-APR-01 self-approval rejected (T-EOP-01)                            | PASS    | new row for relation "approval" violates check constraint "approval_not_self"
+ DB-APR-02 approver without issuer-approver role rejected               | PASS    | insert or update on table "approval" violates foreign key constraint "approval_org_id_appr
+ DB-APR-03 approval lifetime > 30 min rejected                          | PASS    | new row for relation "approval" violates check constraint "approval_lifetime"
+ DB-APR-04 approval bound to other action rejected                      | PASS    | API-4030 approval invalid, expired, mismatched or used
+ DB-APR-05 approval with other request digest rejected                  | PASS    | API-4030 approval invalid, expired, mismatched or used
+ DB-APR-06 matching approval consumed once                              | PASS    | ok
+ DB-APR-07 approval replay rejected                                     | PASS    | API-4030 approval invalid, expired, mismatched or used
+ DB-APR-08 executor equal to approver rejected                          | PASS    | new row for relation "approval" violates check constraint "approval_executor_not_approver"
+ DB-APR-09 same approval on two transitions rejected                    | PASS    | duplicate key value violates unique constraint "credential_transition_approval_id_key"
+ DB-APR-10 executor equal to requester rejected                         | PASS    | new row for relation "approval" violates check constraint "approval_executor_not_requester
+ DB-APR-11 svc_issuer cannot reset a consumed approval                  | PASS    | permission denied for table approval
+ DB-APR-12 consumed approval immutable even for owner                   | PASS    | approval already consumed
+ DB-APR-13 unconsumed approval fields immutable (no lifetime extension) | PASS    | approval is immutable
+ DB-APR-14 approval cannot target another org credential                | PASS    | insert or update on table "approval" violates foreign key constraint "approval_org_id_cred
+ DB-AUD-01 service can append                                           | PASS    | ok
+ DB-AUD-02 UPDATE blocked even for owner                                | PASS    | audit events are append-only
+ DB-AUD-03 DELETE blocked outside purge                                 | PASS    | audit events are append-only
+ DB-AUD-04 service cannot read audit                                    | PASS    | permission denied for table audit_event
+ DB-AUD-05 hash chain links every event                                 | PASS    | prev_hash = previous hash
+ DB-AUD-06 retention purge runs as svc_retention                        | PASS    | ok
+ DB-IDM-01 same key same scope rejected                                 | PASS    | duplicate key value violates unique constraint "idempotency_record_pkey"
+ DB-IDM-02 same key in another org is isolated                          | PASS    | ok
+ DB-IDM-03 retention > 24h rejected                                     | PASS    | new row for relation "idempotency_record" violates check constraint "idem_retention"
+ DB-ISS-01 issuer revoked->valid rejected                               | PASS    | ISS revoked is final
+ DB-ISS-02 second credential for same offer rejected                    | PASS    | duplicate key value violates unique constraint "credential_offer_id_key"
+ DB-ISS-03 credential validity > 30 days rejected                       | PASS    | new row for relation "credential" violates check constraint "credential_validity"
+ DB-ISS-04 offer lifetime > 10 min rejected                             | PASS    | new row for relation "offer" violates check constraint "offer_lifetime"
+ DB-ISS-05 cross-tenant creator rejected (composite FK)                 | PASS    | insert or update on table "offer" violates foreign key constraint "offer_org_id_created_by
+ DB-ISS-06 credential cannot reference another org offer                | PASS    | insert or update on table "credential" violates foreign key constraint "credential_org_id_
+ DB-ISS-07 tx_attempts cannot decrease                                  | PASS    | tx_attempts can only increase
+ DB-ISS-08 offer lifetime cannot be extended                            | PASS    | offer identity/lifetime is immutable
+ DB-PND-01 OD-07: verifier without hosts rejected when applied          | PASS    | new row for relation "trust_entry" violates check constraint "od07_verifier_hosts_required
+ DB-PND-02 OD-06: status change without approval rejected when applied  | PASS    | new row for relation "status_transition" violates check constraint "od06_approval_required
+ DB-PRV-01 no disclosed-value columns in verifier schema                | PASS    | information_schema scan
+ DB-STA-01 duplicate index allocation                                   | PASS    | duplicate key value violates unique constraint "status_entry_pkey"
+ DB-STA-02 second index for same credential                             | PASS    | duplicate key value violates unique constraint "status_entry_credential_ref_key"
+ DB-STA-03 idx beyond capacity                                          | PASS    | idx outside list capacity
+ DB-STA-04 valid->suspended via CAS                                     | PASS    | ok
+ DB-STA-05 stale CAS rejected (T-LC-02/03)                              | PASS    | CAS-4090 row_version mismatch
+ DB-STA-06 suspended->revoked                                           | PASS    | ok
+ DB-STA-07 revoked->valid rejected (DR-66/OD-09)                        | PASS    | STA-4091 revoked is final
+ DB-STA-08 revoked->suspended direct UPDATE rejected                    | PASS    | STA-4091 revoked is final
+ DB-STA-09 revoked->revoked is no-op without version bump               | PASS    | 2->2
+ DB-STA-10 approval_ref reuse at C5 rejected (T-LC-04)                  | PASS    | duplicate key value violates unique constraint "status_transition_approval_ref_key"
+ DB-STA-11 suspended on 1-bit list rejected                             | PASS    | STA-4221 suspended needs bits>=2
+ DB-STA-12 list_version cannot go backwards                             | PASS    | status list versions are monotonic
+ DB-STA-13 published_version cannot exceed list_version                 | PASS    | new row for relation "status_list" violates check constraint "published_le_list"
+ DB-STA-14 svc_status cannot read issuer data (privacy)                 | PASS    | permission denied for schema issuer
+ DB-STA-15 svc_status cannot DELETE entries                             | PASS    | permission denied for table status_entry
+ DB-STA-16 svc_status cannot UPDATE value directly (bypass set_value)   | PASS    | permission denied for table status_entry
+ DB-STA-17 allocation cannot start revoked/suspended                    | PASS    | new allocation must start VALID (0), row_version 1
+ DB-STA-18 repeating current value (0->0) is a no-op                    | PASS    | 2->2
+ DB-STA-19 svc_status cannot move list_version directly                 | PASS    | permission denied for table status_list
+ DB-TRU-01 same key identity in second role rejected (OD-08 proposal)   | PASS    | duplicate key value violates unique constraint "trust_key_pkey"
+ DB-TRU-02 same certificate under new key_id rejected                   | PASS    | duplicate key value violates unique constraint "trust_key_cert_sha256_key"
+ DB-TRU-03 older trust list version rejected (T-TRU-02)                 | PASS    | trust list version must increase (SEC-02)
+ DB-TRU-04 wildcard response host rejected (T-RESP-01)                  | PASS    | new row for relation "response_host" violates check constraint "response_host_exact"
+ DB-TRU-05 host with path/port rejected                                 | PASS    | new row for relation "response_host" violates check constraint "response_host_exact"
+ DB-TRU-06 malformed verifier identifier rejected                       | PASS    | new row for relation "trust_entry" violates check constraint "trust_verifier_x509_hash"
+ DB-TRU-07 svc_trust cannot change key purpose                          | PASS    | permission denied for table trust_key
+ DB-TRU-08 key purpose immutable even for owner                         | PASS    | trust key identity is immutable
+ DB-TRU-09 key can be retired                                           | PASS    | ok
+ DB-TRU-10 retirement cannot be undone                                  | PASS    | key retirement is final
+ DB-TRU-11 key rows cannot be deleted                                   | PASS    | trust key identity is immutable
+ DB-VER-01 session lifetime > 120 s rejected                            | PASS    | new row for relation "verification_session" violates check constraint "session_lifetime"
+ DB-VER-02 nonce reuse across sessions rejected                         | PASS    | duplicate key value violates unique constraint "verification_session_nonce_sha256_key"
+ DB-VER-03 request fetched once                                         | PASS    | ok
+ DB-VER-04 second request fetch rejected                                | PASS    | request_uri already fetched
+ DB-VER-05 first response accepted                                      | PASS    | ok
+ DB-VER-06 second response rejected                                     | PASS    | response already received
+ DB-VER-07 rollback to created rejected                                 | PASS    | illegal session transition response_received -> created
+ DB-VER-08 session owner cannot be reassigned (T-BOLA-01 support)       | PASS    | session ownership is immutable
+ DB-VER-09 svc_verifier cannot extend session lifetime                  | PASS    | permission denied for table verification_session
+ DB-VER-10 session lifetime immutable even for owner                    | PASS    | session lifetime/nonce is immutable
+ DB-VER-11 expired session cannot progress                              | PASS    | session expired
 

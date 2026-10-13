@@ -61,7 +61,7 @@ CREATE TABLE iam.principal (
   UNIQUE (org_id, principal_id)             -- target for composite FKs (tenant-safe)
 );
 
--- [OAS] x-roles values + [PROPOSED] issuer-approver / status-writer (D-03, D-06).
+-- [OAS] x-roles values + [PROPOSED] issuer-approver / status-writer (D-03, D-06) / trust-admin.
 CREATE TABLE iam.role_grant (
   org_id        uuid NOT NULL,
   principal_id  uuid NOT NULL,
@@ -79,14 +79,15 @@ CREATE TABLE issuer.offer (
   org_id            uuid NOT NULL REFERENCES iam.organization(org_id),
   created_by        uuid NOT NULL,
   citizen_ref_hmac  bytea NOT NULL CHECK (octet_length(citizen_ref_hmac) = 32), -- HMAC, key outside DB
-  configuration_id  text NOT NULL,                          -- [OAS]
-  state             text NOT NULL DEFAULT 'created'
-                    CHECK (state IN ('created','fetched','issued','cancelled','expired','failed')),
+  configuration_id  text NOT NULL CHECK (configuration_id IN ('national_id_test')), -- [OAS] enum
+  state             text NOT NULL DEFAULT 'OFFERED'
+                    CHECK (state IN ('OFFERED','ISSUING','COMPLETED','EXPIRED','CANCELLED','FAILED')), -- [OAS] OfferState
   tx_code_hash      bytea,                                  -- never the clear tx_code
   tx_attempts       smallint NOT NULL DEFAULT 0 CHECK (tx_attempts BETWEEN 0 AND 5),
   created_at        timestamptz NOT NULL DEFAULT now(),
   expires_at        timestamptz NOT NULL,                   -- [OAS] expires_at
   CONSTRAINT offer_lifetime CHECK (expires_at > created_at AND expires_at <= created_at + interval '10 minutes'),
+  UNIQUE (org_id, offer_id),
   FOREIGN KEY (org_id, created_by) REFERENCES iam.principal(org_id, principal_id)
 );
 CREATE INDEX offer_org_state_idx ON issuer.offer (org_id, state);
@@ -95,29 +96,33 @@ CREATE INDEX offer_expires_idx   ON issuer.offer (expires_at);
 CREATE TABLE issuer.credential (
   credential_id    uuid PRIMARY KEY,                        -- [OAS]
   org_id           uuid NOT NULL REFERENCES iam.organization(org_id),
-  offer_id         uuid NOT NULL UNIQUE REFERENCES issuer.offer(offer_id), -- one credential per offer (AP-05)
+  offer_id         uuid NOT NULL UNIQUE,                    -- one credential per offer (AP-05)
   vct              text NOT NULL,                           -- [OAS]
-  state            text NOT NULL DEFAULT 'valid'
-                   CHECK (state IN ('valid','suspended','revoked')), -- [OAS] state (values per draft)
-  iat              timestamptz NOT NULL,                    -- [OAS]
-  exp              timestamptz NOT NULL,                    -- [OAS]
+  state            text NOT NULL DEFAULT 'ACTIVE'
+                   CHECK (state IN ('ACTIVE','SUSPENDED','REVOKED','EXPIRED')), -- [OAS] CredentialRecord.state
+  iat              bigint NOT NULL,                         -- [OAS] integer (NumericDate)
+  exp              bigint NOT NULL,                         -- [OAS] integer (NumericDate)
   status_list_id   text NOT NULL,                           -- [OAS] status_ref (uri side)
   status_idx       integer NOT NULL CHECK (status_idx >= 0),-- [OAS] status_ref.idx (OD-05 exposure)
   row_version      bigint NOT NULL DEFAULT 1,               -- CAS (D-05)
-  CONSTRAINT credential_validity CHECK (exp > iat AND exp <= iat + interval '30 days'), -- DR-18 (recommendation)
-  UNIQUE (status_list_id, status_idx)
+  CONSTRAINT credential_validity CHECK (exp > iat AND exp <= iat + 30*86400), -- DR-18 (recommendation)
+  UNIQUE (status_list_id, status_idx),
+  UNIQUE (org_id, credential_id),
+  FOREIGN KEY (org_id, offer_id) REFERENCES issuer.offer(org_id, offer_id)   -- same tenant as offer
 );
 
 -- Human approval records (OD-06 / DR-29 pending). Proposed rules enforced
 -- here: approver != requester, approver holds issuer-approver in the same
--- organisation, bounded lifetime, bound to action+target+request digest,
--- single use (consumed_at set exactly once).
+-- organisation, approver not executor, executor not requester, bounded
+-- lifetime, bound to org+action+target+request digest, single use
+-- (consumed_* set exactly once; all other columns immutable; svc_issuer has
+-- no UPDATE and consumes only through issuer.consume_approval).
 CREATE TABLE issuer.approval (
   approval_id       uuid PRIMARY KEY,
   approval_ref      text NOT NULL UNIQUE CHECK (char_length(approval_ref) BETWEEN 1 AND 64), -- [OAS] approval_ref
   org_id            uuid NOT NULL REFERENCES iam.organization(org_id),
   action            text NOT NULL CHECK (action IN ('suspend','reinstate','revoke')),
-  credential_id     uuid NOT NULL REFERENCES issuer.credential(credential_id),
+  credential_id     uuid NOT NULL,
   request_digest    bytea NOT NULL CHECK (octet_length(request_digest) = 32),
   requested_by      uuid NOT NULL,
   approved_by       uuid NOT NULL,
@@ -128,9 +133,12 @@ CREATE TABLE issuer.approval (
   consumed_by       uuid,
   CONSTRAINT approval_not_self CHECK (requested_by <> approved_by),
   CONSTRAINT approval_executor_not_approver CHECK (consumed_by IS NULL OR consumed_by <> approved_by),
+  CONSTRAINT approval_executor_not_requester CHECK (consumed_by IS NULL OR consumed_by <> requested_by),
   CONSTRAINT approval_lifetime CHECK (expires_at > created_at AND expires_at <= created_at + interval '30 minutes'),
   CONSTRAINT approval_consumed_pair CHECK ((consumed_at IS NULL) = (consumed_by IS NULL)),
+  FOREIGN KEY (org_id, credential_id) REFERENCES issuer.credential(org_id, credential_id), -- same tenant
   FOREIGN KEY (org_id, requested_by) REFERENCES iam.principal(org_id, principal_id),
+  FOREIGN KEY (org_id, consumed_by) REFERENCES iam.principal(org_id, principal_id),
   FOREIGN KEY (org_id, approved_by, approver_role) REFERENCES iam.role_grant(org_id, principal_id, role)
 );
 
@@ -149,7 +157,7 @@ CREATE TABLE issuer.credential_transition (
 -- ---------------------------------------------------------------- status (C5)
 -- No citizen data: credential_ref is a random UUID unknown outside C3 [OAS].
 CREATE TABLE status.status_list (
-  list_id            text PRIMARY KEY CHECK (list_id ~ '^[A-Za-z0-9_-]{1,64}$'),
+  list_id            text PRIMARY KEY CHECK (list_id ~ '^[a-z0-9-]{1,32}$'),   -- [OAS] path pattern
   list_uri           text NOT NULL UNIQUE CHECK (list_uri ~ '^https://'),  -- [OAS] list_uri
   bits               smallint NOT NULL CHECK (bits IN (1,2,4,8)),           -- DR-17: 2
   capacity           integer NOT NULL CHECK (capacity >= 8192),             -- DR-17/[OAS] >= 8192
@@ -175,7 +183,8 @@ CREATE TABLE status.status_transition (
   idx             integer NOT NULL,
   from_value      smallint NOT NULL,
   to_value        smallint NOT NULL,
-  reason_code     text NOT NULL,
+  reason_code     text NOT NULL CHECK (reason_code IN ('device_loss','compromise','data_error',
+                    'superseded','holder_request','investigation','reinstated')),   -- [OAS] enum
   approval_ref    text UNIQUE,                 -- C5 copy; reuse rejected (T-LC-04)
   list_version    bigint NOT NULL,
   occurred_at     timestamptz NOT NULL DEFAULT now(),
@@ -299,6 +308,7 @@ CREATE TABLE audit.audit_event (
   result_code    text,
   field_names    text[] NOT NULL DEFAULT '{}',
   request_id     text CHECK (request_id IS NULL OR request_id ~ '^[A-Za-z0-9._-]{1,64}$'),
+  chain_pos      bigint NOT NULL UNIQUE,     -- assigned under lock (order of the chain)
   prev_hash      bytea NOT NULL,
   hash           bytea NOT NULL UNIQUE
 );
@@ -332,6 +342,9 @@ BEGIN
   IF NEW.idx <> OLD.idx OR NEW.list_id <> OLD.list_id OR NEW.credential_ref <> OLD.credential_ref THEN
     RAISE EXCEPTION 'status entry identity is immutable';
   END IF;
+  IF NEW.row_version <= OLD.row_version AND NEW.value <> OLD.value THEN
+    RAISE EXCEPTION 'row_version must increase on change';
+  END IF;
   RETURN NEW;
 END $$;
 CREATE TRIGGER status_entry_rules BEFORE UPDATE ON status.status_entry
@@ -342,6 +355,9 @@ DECLARE v_cap integer;
 BEGIN
   SELECT capacity INTO v_cap FROM status.status_list WHERE list_id = NEW.list_id;
   IF NEW.idx >= v_cap THEN RAISE EXCEPTION 'idx outside list capacity'; END IF;
+  IF NEW.value <> 0 OR NEW.row_version <> 1 THEN
+    RAISE EXCEPTION 'new allocation must start VALID (0), row_version 1';
+  END IF;
   RETURN NEW;
 END $$;
 CREATE TRIGGER status_entry_bounds BEFORE INSERT ON status.status_entry
@@ -357,17 +373,18 @@ END $$;
 CREATE TRIGGER status_list_monotonic BEFORE UPDATE ON status.status_list
   FOR EACH ROW EXECUTE FUNCTION status.enforce_publish_monotonic();
 
--- Atomic CAS transition. Returns new list_version; 1->1 is a no-op (no bump).
+-- Atomic CAS transition (the only write path for svc_status). Returns the
+-- list_version; repeating the current value (1->1, 0->0, 2->2) is a no-op.
 CREATE FUNCTION status.set_value(p_list text, p_idx integer, p_value smallint,
                                  p_expected_row_version bigint, p_reason text,
                                  p_approval_ref text)
-RETURNS bigint LANGUAGE plpgsql AS $$
+RETURNS bigint LANGUAGE plpgsql SECURITY DEFINER SET search_path = pg_catalog, pg_temp AS $$
 DECLARE v_old smallint; v_ver bigint;
 BEGIN
   SELECT value INTO v_old FROM status.status_entry
    WHERE list_id = p_list AND idx = p_idx FOR UPDATE;
   IF NOT FOUND THEN RAISE EXCEPTION 'STA-4040 entry not found'; END IF;
-  IF v_old = 1 AND p_value = 1 THEN
+  IF v_old = p_value THEN
     SELECT list_version INTO v_ver FROM status.status_list WHERE list_id = p_list;
     RETURN v_ver;                                  -- idempotent no-op
   END IF;
@@ -385,21 +402,50 @@ END $$;
 -- Issuer side mirrors finality.
 CREATE FUNCTION issuer.enforce_credential_rules() RETURNS trigger LANGUAGE plpgsql AS $$
 BEGIN
-  IF OLD.state = 'revoked' AND NEW.state <> 'revoked' THEN
+  IF OLD.state = 'REVOKED' AND NEW.state <> 'REVOKED' THEN
     RAISE EXCEPTION 'ISS revoked is final';
   END IF;
-  IF NEW.status_list_id <> OLD.status_list_id OR NEW.status_idx <> OLD.status_idx THEN
-    RAISE EXCEPTION 'status_ref is immutable';
+  IF NEW.status_list_id <> OLD.status_list_id OR NEW.status_idx <> OLD.status_idx
+     OR NEW.org_id <> OLD.org_id OR NEW.offer_id <> OLD.offer_id OR NEW.iat <> OLD.iat OR NEW.exp <> OLD.exp THEN
+    RAISE EXCEPTION 'credential identity/status_ref is immutable';
   END IF;
   RETURN NEW;
 END $$;
 CREATE TRIGGER credential_rules BEFORE UPDATE ON issuer.credential
   FOR EACH ROW EXECUTE FUNCTION issuer.enforce_credential_rules();
 
+CREATE FUNCTION issuer.enforce_offer_rules() RETURNS trigger LANGUAGE plpgsql AS $$
+BEGIN
+  IF (NEW.org_id, NEW.created_by, NEW.citizen_ref_hmac, NEW.configuration_id, NEW.created_at, NEW.expires_at)
+     IS DISTINCT FROM (OLD.org_id, OLD.created_by, OLD.citizen_ref_hmac, OLD.configuration_id, OLD.created_at, OLD.expires_at)
+     OR NEW.tx_code_hash IS DISTINCT FROM OLD.tx_code_hash THEN
+    RAISE EXCEPTION 'offer identity/lifetime is immutable';
+  END IF;
+  IF NEW.tx_attempts < OLD.tx_attempts THEN RAISE EXCEPTION 'tx_attempts can only increase'; END IF;
+  RETURN NEW;
+END $$;
+CREATE TRIGGER offer_rules BEFORE UPDATE ON issuer.offer
+  FOR EACH ROW EXECUTE FUNCTION issuer.enforce_offer_rules();
+
+CREATE FUNCTION issuer.enforce_approval_rules() RETURNS trigger LANGUAGE plpgsql AS $$
+BEGIN
+  IF OLD.consumed_at IS NOT NULL THEN RAISE EXCEPTION 'approval already consumed'; END IF;
+  IF (NEW.approval_id, NEW.approval_ref, NEW.org_id, NEW.action, NEW.credential_id, NEW.request_digest,
+      NEW.requested_by, NEW.approved_by, NEW.created_at, NEW.expires_at)
+     IS DISTINCT FROM
+     (OLD.approval_id, OLD.approval_ref, OLD.org_id, OLD.action, OLD.credential_id, OLD.request_digest,
+      OLD.requested_by, OLD.approved_by, OLD.created_at, OLD.expires_at) THEN
+    RAISE EXCEPTION 'approval is immutable';
+  END IF;
+  RETURN NEW;
+END $$;
+CREATE TRIGGER approval_rules BEFORE UPDATE ON issuer.approval
+  FOR EACH ROW EXECUTE FUNCTION issuer.enforce_approval_rules();
+
 -- Single-use, bound approval consumption (OD-06 proposal).
 CREATE FUNCTION issuer.consume_approval(p_ref text, p_org uuid, p_action text,
                                         p_credential uuid, p_digest bytea, p_executor uuid)
-RETURNS uuid LANGUAGE plpgsql AS $$
+RETURNS uuid LANGUAGE plpgsql SECURITY DEFINER SET search_path = pg_catalog, pg_temp AS $$
 DECLARE v_id uuid;
 BEGIN
   UPDATE issuer.approval
@@ -414,6 +460,7 @@ END $$;
 
 CREATE FUNCTION trust.enforce_version_monotonic() RETURNS trigger LANGUAGE plpgsql AS $$
 BEGIN
+  PERFORM pg_advisory_xact_lock(hashtext('iqdid.trust.version'));   -- serialise publishers
   IF EXISTS (SELECT 1 FROM trust.trust_list_version WHERE version >= NEW.version) THEN
     RAISE EXCEPTION 'trust list version must increase (SEC-02)';
   END IF;
@@ -421,6 +468,21 @@ BEGIN
 END $$;
 CREATE TRIGGER trust_version_monotonic BEFORE INSERT ON trust.trust_list_version
   FOR EACH ROW EXECUTE FUNCTION trust.enforce_version_monotonic();
+
+-- A key identity never changes purpose/owner; retirement is one-way.
+CREATE FUNCTION trust.enforce_key_rules() RETURNS trigger LANGUAGE plpgsql AS $$
+BEGIN
+  IF (NEW.key_id, NEW.cert_sha256, NEW.entry_id, NEW.purpose, NEW.not_before, NEW.not_after)
+     IS DISTINCT FROM (OLD.key_id, OLD.cert_sha256, OLD.entry_id, OLD.purpose, OLD.not_before, OLD.not_after) THEN
+    RAISE EXCEPTION 'trust key identity is immutable';
+  END IF;
+  IF OLD.retired_at IS NOT NULL AND NEW.retired_at IS DISTINCT FROM OLD.retired_at THEN
+    RAISE EXCEPTION 'key retirement is final';
+  END IF;
+  RETURN NEW;
+END $$;
+CREATE TRIGGER trust_key_rules BEFORE UPDATE OR DELETE ON trust.trust_key
+  FOR EACH ROW EXECUTE FUNCTION trust.enforce_key_rules();
 
 -- Verifier session state machine: one response per session, fetch once.
 CREATE FUNCTION verifier.enforce_session_transition() RETURNS trigger LANGUAGE plpgsql AS $$
@@ -440,6 +502,14 @@ BEGIN
   IF NEW.org_id <> OLD.org_id OR NEW.created_by <> OLD.created_by THEN
     RAISE EXCEPTION 'session ownership is immutable';
   END IF;
+  IF (NEW.created_at, NEW.expires_at, NEW.nonce_sha256, NEW.service_id)
+     IS DISTINCT FROM (OLD.created_at, OLD.expires_at, OLD.nonce_sha256, OLD.service_id) THEN
+    RAISE EXCEPTION 'session lifetime/nonce is immutable';
+  END IF;
+  IF now() > OLD.expires_at AND NEW.state IN ('request_fetched','response_received','result_delivered')
+     AND NEW.state <> OLD.state THEN
+    RAISE EXCEPTION 'session expired';
+  END IF;
   RETURN NEW;
 END $$;
 CREATE TRIGGER session_transition BEFORE UPDATE ON verifier.verification_session
@@ -447,13 +517,16 @@ CREATE TRIGGER session_transition BEFORE UPDATE ON verifier.verification_session
 
 -- Audit: hash chain on insert; no UPDATE; DELETE only inside ops purge.
 CREATE FUNCTION audit.chain_event() RETURNS trigger LANGUAGE plpgsql SECURITY DEFINER
-SET search_path = pg_catalog, pg_temp AS $$
-DECLARE v_prev bytea;
+SET search_path = pg_catalog, pg_temp SET TimeZone = 'UTC' AS $$
+DECLARE v_prev bytea; v_pos bigint;
 BEGIN
   PERFORM pg_advisory_xact_lock(hashtext('iqdid.audit.chain'));
-  SELECT hash INTO v_prev FROM audit.audit_event ORDER BY seq DESC LIMIT 1;
+  SELECT hash, chain_pos INTO v_prev, v_pos FROM audit.audit_event ORDER BY chain_pos DESC LIMIT 1;
+  NEW.chain_pos := COALESCE(v_pos, 0) + 1;
   NEW.prev_hash := COALESCE(v_prev, '\x00'::bytea);
-  NEW.hash := sha256(NEW.prev_hash || convert_to(concat_ws('|', NEW.event_id, NEW.occurred_at,
+  -- canonical, session-independent text: epoch microseconds, lowercase uuids
+  NEW.hash := sha256(NEW.prev_hash || convert_to(concat_ws('|', NEW.chain_pos, NEW.event_id,
+                (extract(epoch FROM NEW.occurred_at) * 1000000)::bigint,
                 NEW.component, NEW.event_type, NEW.actor_role, NEW.org_id, NEW.object_type,
                 NEW.object_id, NEW.result_code, array_to_string(NEW.field_names, ','), NEW.request_id), 'UTF8'));
   RETURN NEW;
@@ -478,7 +551,7 @@ BEGIN
   DELETE FROM ops.idempotency_record WHERE expires_at < now();
   DELETE FROM verifier.verification_session
    WHERE expires_at < now() - (SELECT keep_for FROM ops.retention_policy WHERE object_class = 'verifier.verification_session');
-  UPDATE issuer.offer SET state = 'expired' WHERE state IN ('created','fetched') AND expires_at < now();
+  UPDATE issuer.offer SET state = 'EXPIRED' WHERE state IN ('OFFERED','ISSUING') AND expires_at < now();
   PERFORM set_config('iqdid.audit_purge', 'on', true);
   DELETE FROM audit.audit_event
    WHERE occurred_at < now() - (SELECT keep_for FROM ops.retention_policy WHERE object_class = 'audit.audit_event');
@@ -495,26 +568,31 @@ REVOKE ALL ON ALL FUNCTIONS IN SCHEMA issuer, status, trust, verifier, audit, op
 
 GRANT USAGE ON SCHEMA iam, issuer, ops, audit TO svc_issuer;
 GRANT SELECT ON iam.organization, iam.principal, iam.role_grant TO svc_issuer;
-GRANT SELECT, INSERT, UPDATE ON issuer.offer, issuer.credential, issuer.approval TO svc_issuer;
+GRANT SELECT, INSERT ON issuer.offer, issuer.credential, issuer.approval TO svc_issuer;
+GRANT UPDATE (state, tx_attempts) ON issuer.offer TO svc_issuer;
+GRANT UPDATE (state, row_version) ON issuer.credential TO svc_issuer;
+-- no UPDATE on issuer.approval: consumption only via consume_approval (SECURITY DEFINER)
 GRANT SELECT, INSERT ON issuer.credential_transition TO svc_issuer;
 GRANT EXECUTE ON FUNCTION issuer.consume_approval(text,uuid,text,uuid,bytea,uuid) TO svc_issuer;
 
 GRANT USAGE ON SCHEMA status, ops, audit TO svc_status;           -- no iam/issuer access
-GRANT SELECT, INSERT ON status.status_entry TO svc_status;
-GRANT SELECT, UPDATE (list_version, published_version, published_at) ON status.status_list TO svc_status;
+GRANT SELECT, INSERT ON status.status_entry TO svc_status;                -- INSERT forced to value 0
+GRANT SELECT, UPDATE (published_version, published_at) ON status.status_list TO svc_status;
 GRANT SELECT ON status.status_transition TO svc_status;
 GRANT EXECUTE ON FUNCTION status.set_value(text,integer,smallint,bigint,text,text) TO svc_status;
--- set_value runs as caller: grant only the columns it needs.
-GRANT UPDATE (value, row_version) ON status.status_entry TO svc_status;
-GRANT INSERT ON status.status_transition TO svc_status;
+-- no direct UPDATE on status_entry or INSERT on status_transition: set_value
+-- (SECURITY DEFINER) is the only write path for values and list_version.
 
 GRANT USAGE ON SCHEMA trust, audit TO svc_trust;
-GRANT SELECT, INSERT, UPDATE ON trust.trust_entry, trust.response_host, trust.trust_key, trust.service_policy TO svc_trust;
+GRANT SELECT, INSERT, UPDATE ON trust.trust_entry, trust.response_host, trust.service_policy TO svc_trust;
+GRANT SELECT, INSERT ON trust.trust_key TO svc_trust;
+GRANT UPDATE (retired_at) ON trust.trust_key TO svc_trust;
 GRANT SELECT, INSERT ON trust.trust_list_version TO svc_trust;
 
 GRANT USAGE ON SCHEMA verifier, iam, ops, audit TO svc_verifier;
 GRANT SELECT ON iam.principal, iam.role_grant TO svc_verifier;
-GRANT SELECT, INSERT, UPDATE ON verifier.verification_session TO svc_verifier;
+GRANT SELECT, INSERT ON verifier.verification_session TO svc_verifier;
+GRANT UPDATE (state, request_fetched_at, response_received_at, result_code) ON verifier.verification_session TO svc_verifier;
 
 GRANT SELECT, INSERT, UPDATE ON ops.idempotency_record TO svc_issuer, svc_status, svc_verifier;
 

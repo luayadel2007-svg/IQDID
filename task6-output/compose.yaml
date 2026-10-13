@@ -34,7 +34,7 @@ services:
     networks: [data]
     # No "ports:" — the database is never published to the host.
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U iqdid_bootstrap -d iqdid_test"]
+      test: ["CMD-SHELL", "pg_isready -h 127.0.0.1 -U iqdid_bootstrap -d iqdid_test"]  # TCP: not ready during init
       interval: 10s
       timeout: 3s
       retries: 5

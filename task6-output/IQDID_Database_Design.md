@@ -37,22 +37,22 @@ erDiagram
 |---|---|---|---|
 | `iam.organization` | المؤسسات | `display_code ~ ^TEST-` | — |
 | `iam.principal` | هوية معتمة من AuthProvider | UNIQUE(org, sub)؛ UNIQUE(org, principal_id) للـFK المركب | — (OD-02) |
-| `iam.role_grant` | الأدوار | PK(org, principal, role)؛ FK مركب يمنع منح دور عبر مؤسسة | قيم x-roles + `issuer-approver`, `status-writer` [PROPOSED] |
-| `issuer.offer` | عروض الإصدار | عمر ≤10د؛ محاولات tx ≤5؛ FK(org, created_by) | offer_id, configuration_id, expires_at |
-| `issuer.credential` | مرجع الاعتماد (بلا محتواه) | UNIQUE(offer_id)؛ UNIQUE(list,idx)؛ صلاحية ≤30 يوماً (DR-18)؛ `revoked` نهائي؛ status_ref ثابت؛ `row_version` | credential_id, vct, state, iat, exp, status_ref |
-| `issuer.approval` | الموافقة البشرية | approval_ref UNIQUE؛ `approval_not_self`؛ `approval_executor_not_approver`؛ عمر ≤30د؛ FK(org, approved_by, 'issuer-approver') | approval_ref (اختياري في العقد — OD-06) |
+| `iam.role_grant` | الأدوار | PK(org, principal, role)؛ FK مركب يمنع منح دور عبر مؤسسة | قيم x-roles + `issuer-approver`, `status-writer`, `trust-admin` [PROPOSED] |
+| `issuer.offer` | عروض الإصدار | عمر ≤10د وثابت؛ محاولات tx ≤5 ولا تنقص؛ FK(org, created_by)؛ UPDATE على state/tx_attempts فقط | offer_id، configuration_id (`national_id_test`)، state (OfferState)، expires_at |
+| `issuer.credential` | مرجع الاعتماد (بلا محتواه) | UNIQUE(offer_id)؛ FK(org, offer) نفس المؤسسة؛ UNIQUE(list,idx)؛ صلاحية ≤30 يوماً (DR-18)؛ `REVOKED` نهائي؛ الهوية وstatus_ref ثابتان؛ `row_version` | credential_id، vct، state (`ACTIVE/SUSPENDED/REVOKED/EXPIRED`)، iat/exp (integer)، status_ref |
+| `issuer.approval` | الموافقة البشرية | approval_ref UNIQUE؛ الموافق ∉ {المقدم، المنفذ} والمنفذ ≠ المقدم؛ عمر ≤30د؛ FK(org, approved_by, 'issuer-approver')؛ FK(org, credential) وFK(org, consumed_by) نفس المؤسسة؛ كل الأعمدة ثابتة والاستهلاك مرة واحدة؛ **لا UPDATE لـsvc_issuer** — الاستهلاك عبر `consume_approval` (SECURITY DEFINER) فقط | approval_ref (اختياري في العقد — OD-06) |
 | `issuer.credential_transition` | تاريخ الحالة | `approval_id UNIQUE` (استعمال واحد)؛ نمط reason_code | reason_code |
-| `status.status_list` | القوائم | bits∈{1,2,4,8}؛ capacity ≥8192؛ `published_le_list`؛ أرقام النسخ أحادية الاتجاه | list_uri, list_version, published_at |
-| `status.status_entry` | المواضع | **PK(list_id, idx)** يمنع التخصيص المزدوج؛ UNIQUE(credential_ref)؛ idx < capacity؛ 1 نهائي؛ 2 يتطلب bits≥2 | idx, value |
-| `status.status_transition` | تاريخ C5 | approval_ref UNIQUE (منع إعادة الاستعمال T-LC-04) | approval_ref, reason_code |
+| `status.status_list` | القوائم | list_id بنمط العقد `^[a-z0-9-]{1,32}$`؛ bits∈{1,2,4,8}؛ capacity ≥8192؛ `published_le_list`؛ أرقام النسخ أحادية الاتجاه؛ `list_version` يتغير عبر `set_value` فقط | list_uri, list_version, published_at |
+| `status.status_entry` | المواضع | **PK(list_id, idx)** يمنع التخصيص المزدوج؛ UNIQUE(credential_ref)؛ idx < capacity؛ التخصيص يبدأ بـ0؛ 1 نهائي؛ 2 يتطلب bits≥2؛ **لا UPDATE مباشر لـsvc_status** | idx, value |
+| `status.status_transition` | تاريخ C5 | approval_ref UNIQUE (منع إعادة الاستعمال T-LC-04)؛ reason_code بقيم العقد | approval_ref, reason_code |
 | `ops.idempotency_record` | Idempotency | PK(service, org, subject, operation, resource, key)؛ تجزئة الجسم؛ ≤24س؛ بلا أجسام | Idempotency-Key (UUID) |
 | `trust.trust_list_version` | نسخ القائمة المنشورة | version يتزايد بصرامة (SEC-02) | version, iat, exp |
 | `trust.trust_entry` | الجهات | UNIQUE(role, identifier)؛ verifier ⇒ `x509_hash:<43>`؛ issuer ⇒ https | كل حقول TrustEntry |
 | `trust.response_host` | مضيفات الرد | مضيف دقيق: بلا wildcard/منفذ/مسار | allowed_response_hosts |
-| `trust.trust_key` | هوية المفتاح | PK = RFC7638 thumbprint؛ UNIQUE(cert_sha256)؛ لا حذف (retired_at) ⇒ لا إعادة استعمال عبر الأدوار أو التدوير | **غير موجود في OAS** (تعارض INT-10 `keys`) |
+| `trust.trust_key` | هوية المفتاح | PK = RFC7638 thumbprint؛ UNIQUE(cert_sha256)؛ الصف ثابت (مشغل)، لا حذف، `retired_at` مرة واحدة ولا يُلغى ⇒ لا إعادة استعمال عبر الأغراض أو التدوير | **غير موجود في OAS** (تعارض INT-10 `keys`) |
 | `trust.service_policy` | سياسات الخدمة | PK(entry, service) | ServicePolicy كـ jsonb |
-| `verifier.verification_session` | جلسة التحقق | عمر ≤120ث؛ nonce_sha256 UNIQUE؛ آلة حالات؛ جلب واحد ورد واحد؛ الملكية ثابتة | session_id |
-| `audit.audit_event` | C6 | event_id UNIQUE؛ سلسلة تجزئات SHA-256؛ لا UPDATE؛ DELETE داخل التطهير فقط | — |
+| `verifier.verification_session` | جلسة التحقق | عمر ≤120ث؛ العمر وnonce والملكية ثابتة؛ لا تقدم بعد الانتهاء؛ nonce_sha256 UNIQUE؛ آلة حالات؛ جلب واحد ورد واحد | session_id |
+| `audit.audit_event` | C6 | event_id UNIQUE؛ `chain_pos` يُسند تحت القفل؛ تجزئة SHA-256 على نص قانوني مستقل عن إعدادات الجلسة (epoch µs، UTC)؛ لا UPDATE؛ DELETE داخل التطهير فقط | — |
 | `ops.retention_policy` | جدول الاحتفاظ | كل الصفوف `PENDING` | — |
 
 **Consent events:** الموافقة حقلاً حقلاً تحدث في المحفظة C1 (G1b). التصميم المقترح: مخزن محلي مشفر في المحفظة `{event_id, session_ref_hash, verifier_entry_id, field_names[], decision, at}` — أسماء حقول لا قيم. **لا جدول خادم** للموافقة؛ الخادم يسجل `requested_field_names` وحدث تدقيق فقط. NOT IMPLEMENTED (G1b).
@@ -61,13 +61,14 @@ erDiagram
 
 | الخطر | الآلية في المخطط | الاختبار |
 |---|---|---|
-| revoke ↔ reinstate متسابقان (T-LC-02) | `status.set_value`: `SELECT … FOR UPDATE` ثم `UPDATE … WHERE row_version = expected` ⇒ `CAS-4090` | DB-STA-05 |
+| revoke ↔ reinstate متسابقان (T-LC-02) | `status.set_value` (SECURITY DEFINER، المسار الوحيد للكتابة): `SELECT … FOR UPDATE` ثم `UPDATE … WHERE row_version = expected` ⇒ `CAS-4090`؛ تكرار القيمة نفسها no-op | DB-STA-05/16/18/19 |
 | فقد تحديث في البناء (T-LC-03) | `list_version` يُرفع داخل المعاملة نفسها؛ النشر يقرأ لقطة بنسخة؛ `published_version` لا ينقص | DB-STA-12/13 |
-| revoked → valid/suspended | مشغل `STA-4091` حتى مع UPDATE مباشر؛ 1→1 no-op بلا رفع نسخة | DB-STA-07/08/09 |
+| revoked → valid/suspended | مشغل `STA-4091` حتى مع UPDATE مباشر من المالك؛ 1→1 no-op بلا رفع نسخة | DB-STA-07/08/09 |
 | تخصيص idx مرتين | PK(list_id, idx) + UNIQUE(credential_ref)؛ الخدمة تختار idx عشوائياً بـCSPRNG وتعيد عند التصادم | DB-STA-01/02/03 |
-| إعادة approval_ref | `consume_approval` ذري (`UPDATE … WHERE consumed_at IS NULL … RETURNING`) + UNIQUE في التاريخين | DB-APR-04..09، DB-STA-10 |
+| إعادة approval_ref | `consume_approval` ذري (`UPDATE … WHERE consumed_at IS NULL … RETURNING`) + مشغل ثبات + بلا UPDATE للخدمة + UNIQUE في التاريخين | DB-APR-04..14، DB-STA-10 |
 | Idempotency in-flight | INSERT في PK أولاً (`in_flight`) — المتسابق الثاني يفشل بمفتاح مكرر ⇒ 409 API-4090؛ تجزئة جسم مختلفة ⇒ 409 | DB-IDM-01/02 |
-| سلسلة التدقيق | قفل استشاري لكل إدراج | DB-AUD-05 |
+| سلسلة التدقيق | قفل استشاري لكل إدراج؛ الترتيب بـ`chain_pos` المُسند بعد القفل (لا `seq`) | DB-AUD-05 (اتصال واحد؛ التزامن NOT RUN) |
+| نشر قائمة ثقة متزامن | قفل استشاري في مشغل النسخة | DB-TRU-03 (اتصال واحد) |
 
 مستوى العزل: `READ COMMITTED` يكفي مع الأقفال الصفية وCAS أعلاه؛ `SERIALIZABLE` اختياري لـC5 بعد قياس الأداء — PENDING.
 
