@@ -1,0 +1,4 @@
+CM1-planted-private-key | exit=1 | failing=[CHK-02] | expected=CHK-02 | KILLED
+CM2-db-port-published | exit=1 | failing=[CHK-05] | expected=CHK-05 | KILLED
+CM3-OD-marked-approved | exit=1 | failing=[CHK-06] | expected=CHK-06 | KILLED
+CM4-revoked-final-removed | exit=1 | failing=[CHK-03] | expected=CHK-03 | KILLED

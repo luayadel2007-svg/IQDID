@@ -1,0 +1,9 @@
+M1-remove-revoked-final | exit=1 | failing=[DB-STA-07,DB-STA-08,DB-STA-09] | expected=DB-STA-07 | KILLED
+M2-remove-CAS | exit=1 | failing=[DB-STA-05] | expected=DB-STA-05 | KILLED
+M3-allow-self-approval | exit=1 | failing=[DB-APR-01] | expected=DB-APR-01 | KILLED
+M4-approval-reusable | exit=1 | failing=[DB-APR-07] | expected=DB-APR-07 | KILLED
+M5-trust-version-not-monotonic | exit=1 | failing=[DB-TRU-03] | expected=DB-TRU-03 | KILLED
+M6-no-capacity-bound | exit=1 | failing=[DB-STA-03] | expected=DB-STA-03 | KILLED
+M8-session-refetch | exit=1 | failing=[DB-VER-04] | expected=DB-VER-04 | KILLED
+M9-audit-update-allowed | exit=1 | failing=[DB-AUD-02,DB-AUD-03] | expected=DB-AUD-02 | KILLED
+M7-status-reads-issuer | exit=1 | failing=[DB-STA-14] | expected=DB-STA-14 | KILLED

@@ -1,0 +1,76 @@
+# IQDID Prototype — TASK-6 OPTIONAL local infrastructure (TEST ONLY).
+# Infrastructure services only: no identity application (C3/C4/C5/C2-B/Wallet)
+# is defined here, on purpose. Not a production security boundary.
+# Usage and limits: IQDID_Local_Deployment_Guide.md
+name: iqdid-test
+
+x-hardening: &hardening
+  security_opt: ["no-new-privileges:true"]
+  read_only: true
+  restart: "no"
+  logging:
+    driver: local
+    options: { max-size: "10m", max-file: "3" }
+
+services:
+  db:
+    <<: *hardening
+    # Exact tag + digest from .env (postgres:16.15-alpine@sha256:7218…); re-verify on upgrade.
+    image: ${IQDID_DB_IMAGE:?set IQDID_DB_IMAGE in .env}
+    environment:
+      POSTGRES_USER: iqdid_bootstrap
+      POSTGRES_DB: iqdid_test
+      POSTGRES_PASSWORD_FILE: /run/secrets/db_bootstrap_password
+      POSTGRES_INITDB_ARGS: "--auth-host=scram-sha-256 --auth-local=scram-sha-256"
+    secrets: [db_bootstrap_password]
+    volumes:
+      - db-data:/var/lib/postgresql/data
+      - ./sql/001_schema.sql:/docker-entrypoint-initdb.d/001_schema.sql:ro
+    tmpfs:
+      - /var/run/postgresql:mode=0775,uid=70,gid=70
+      - /tmp
+    cap_drop: [ALL]
+    cap_add: [CHOWN, DAC_OVERRIDE, FOWNER, SETGID, SETUID]
+    networks: [data]
+    # No "ports:" — the database is never published to the host.
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U iqdid_bootstrap -d iqdid_test"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+    mem_limit: 512m
+    pids_limit: 200
+
+  db-migrate-check:
+    <<: *hardening
+    image: ${IQDID_DB_IMAGE:?set IQDID_DB_IMAGE in .env}
+    profiles: ["check"]
+    depends_on:
+      db: { condition: service_healthy }
+    user: "70:70"
+    environment:
+      PGHOST: db
+      PGUSER: iqdid_bootstrap
+      PGDATABASE: iqdid_test
+      PGPASSFILE: /tmp/.pgpass
+    secrets: [db_bootstrap_password]
+    entrypoint: ["/bin/sh", "-c", "printf 'db:5432:iqdid_test:iqdid_bootstrap:%s\\n' \"$$(cat /run/secrets/db_bootstrap_password)\" > /tmp/.pgpass && chmod 600 /tmp/.pgpass && psql -v ON_ERROR_STOP=1 -c '\\dn'"]
+    tmpfs: [/tmp]
+    cap_drop: [ALL]
+    networks: [data]
+
+networks:
+  # Future layout (see IQDID_Service_Network_Map.md):
+  #   edge     reverse proxy only (published 127.0.0.1:8443 when added)
+  #   app      C2-B, C3, C4, C5, AuthProvider, C6
+  #   data     services that hold a DB role + db
+  edge: { driver: bridge }
+  app:  { driver: bridge, internal: true }
+  data: { driver: bridge, internal: true }
+
+volumes:
+  db-data: {}
+
+secrets:
+  db_bootstrap_password:
+    file: ./secrets/db_bootstrap_password.txt   # generated locally, git-ignored

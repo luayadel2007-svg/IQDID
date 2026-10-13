@@ -1,0 +1,84 @@
+[
+  {
+    "id": "CHK-01 compose.yaml parses as YAML",
+    "outcome": "PASS",
+    "detail": "yaml.safe_load"
+  },
+  {
+    "id": "CHK-02 no secrets or private keys in package",
+    "outcome": "PASS",
+    "detail": "0 findings"
+  },
+  {
+    "id": "CHK-02b .env.example carries no secret values",
+    "outcome": "PASS",
+    "detail": "only non-secret keys"
+  },
+  {
+    "id": "CHK-02c .gitignore excludes .env, secrets/, key files",
+    "outcome": "PASS",
+    "detail": [
+      ".env",
+      "secrets/",
+      "*.pem",
+      "*.key",
+      "*.p12",
+      "*.pfx"
+    ]
+  },
+  {
+    "id": "CHK-03 required SQL constraints present",
+    "outcome": "PASS",
+    "detail": "14/14"
+  },
+  {
+    "id": "CHK-03b no PII/secret columns in schema",
+    "outcome": "PASS",
+    "detail": "none"
+  },
+  {
+    "id": "CHK-04 all foreign keys reference defined tables",
+    "outcome": "PASS",
+    "detail": "9 referenced tables, 19 tables"
+  },
+  {
+    "id": "CHK-04b status schema has no FK into issuer/iam (C5 never learns citizen)",
+    "outcome": "PASS",
+    "detail": "status block scanned"
+  },
+  {
+    "id": "CHK-05 compose network binding and hardening",
+    "outcome": "PASS",
+    "detail": "db internal-only; no published ports"
+  },
+  {
+    "id": "CHK-05b image digest pinned",
+    "outcome": "PASS",
+    "detail": "IQDID_DB_IMAGE must carry @sha256 digest"
+  },
+  {
+    "id": "CHK-06 OD-01..09 all PENDING, none marked APPROVED",
+    "outcome": "PASS",
+    "detail": "9/9 PENDING"
+  },
+  {
+    "id": "CHK-06b retention rows default PENDING",
+    "outcome": "PASS",
+    "detail": "ops.retention_policy.decision default"
+  },
+  {
+    "id": "CHK-07 all required deliverables present",
+    "outcome": "PASS",
+    "detail": "14/14"
+  },
+  {
+    "id": "CHK-08 every required threat has a checklist row",
+    "outcome": "PASS",
+    "detail": "15/15"
+  },
+  {
+    "id": "CHK-09 no @sd-jwt/crypto-nodejs in code/config",
+    "outcome": "PASS",
+    "detail": "none"
+  }
+]
