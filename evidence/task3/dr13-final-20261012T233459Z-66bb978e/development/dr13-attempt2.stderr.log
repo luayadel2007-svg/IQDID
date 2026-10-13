@@ -1,0 +1,17 @@
+file:///workspace/scratch/e5c8f9cdae15/dr13-work/tests/contracts/task3/dr13-tests.mjs:60
+await t('T11','library-mocked-transport','SDK POST emits wallet_metadata and wallet_nonce',async()=>{let sent;try{await vp.resolveOpenid4vpAuthorizationRequest({authorizationRequestPayload:{client_id:'x509_hash:TEST',request_uri:issuer+'/request',request_uri_method:'post'},responseMode:{type:'direct_post'},wallet:{metadata:{vp_formats_supported:{'dc+sd-jwt':{sd-jwt_alg_values:['ES256'],kb_jwt_alg_values:['ES256']}}},nonce:'TEST-wallet-nonce'},callbacks:{...callbacks,fetch:async(u,options)=>{sent=options;return new Response('TEST-invalid-request-object',{status:200});}}});}catch{/* Intentionally stop after capturing transport. Not a successful signed-request roundtrip. */}assert.ok(sent,'TRANSPORT_NOT_REACHED');assert.equal(sent.method.toUpperCase(),'POST');assert.ok(new Headers(sent.headers).get('content-type').includes('application/x-www-form-urlencoded'));C.walletPost(sent.body);});
+                                                                                                                                                                                                                                                                                                                                                                           ^
+
+SyntaxError: Unexpected token '-'
+    at compileSourceTextModule (node:internal/modules/esm/utils:318:16)
+    at ModuleLoader.moduleStrategy (node:internal/modules/esm/translators:89:18)
+    at #translate (node:internal/modules/esm/loader:434:20)
+    at afterLoad (node:internal/modules/esm/loader:502:29)
+    at ModuleLoader.loadAndTranslate (node:internal/modules/esm/loader:507:12)
+    at #getOrCreateModuleJobAfterResolve (node:internal/modules/esm/loader:560:36)
+    at afterResolve (node:internal/modules/esm/loader:607:52)
+    at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:613:12)
+    at node:internal/modules/esm/loader:632:32
+    at TracingChannel.tracePromise (node:diagnostics_channel:362:14)
+
+Node.js v24.19.0

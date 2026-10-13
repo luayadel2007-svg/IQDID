@@ -1,0 +1,18 @@
+{
+  "timestamp_utc": "2026-10-12T23:54:25.246047+00:00",
+  "argv": [
+    "node",
+    "tests/contracts/task3/compatibility/test-adapter.mjs",
+    "/workspace/scratch/e5c8f9cdae15/task3c-work/evidence/task3/task3c-20261012T235205Z/independent-review/adapter-run"
+  ],
+  "cwd": "/workspace/scratch/e5c8f9cdae15/task3c-work",
+  "env_overrides": {
+    "DR13_SDK_ROOT": "/workspace/scratch/e5c8f9cdae15/dr13-sdk"
+  },
+  "exit_code": 0,
+  "source_sha256": {
+    "tests/contracts/task3/compatibility/adapter.mjs": "2ad0d3192bc2d37f373e37c6e75ae5de406d6226aaefae13c7be2298575dba65",
+    "tests/contracts/task3/compatibility/test-adapter.mjs": "dae048cd9eb95e60e7b6999adab75675b56732630a885dd672b5bcca4323c63e",
+    "tests/contracts/task3/dr13-sdk/package-lock.json": "59912e1d4684e0143508154b14dd18e5b3cee47348091619892986d8702455f5"
+  }
+}

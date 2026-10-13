@@ -1,0 +1,72 @@
+{
+  "scope": "Proposal model only. Certificates here are self-signed fixtures for key-identity comparison, NOT PKI-chain trust evidence. No private material retained.",
+  "openssl": "OpenSSL 3.0.13 30 Jan 2024 (Library: OpenSSL 3.0.13 30 Jan 2024)",
+  "passed": 16,
+  "total": 16,
+  "tests": [
+    {
+      "id": "RP01-different-certificates-same-key",
+      "pass": true
+    },
+    {
+      "id": "RP01-reject-same-key-cross-role",
+      "pass": true
+    },
+    {
+      "id": "RP01-accept-distinct-role-keys",
+      "pass": true
+    },
+    {
+      "id": "RP01-renewal-same-role",
+      "pass": true
+    },
+    {
+      "id": "RP01-thumbprint-ignores-jwk-metadata",
+      "pass": true
+    },
+    {
+      "id": "RP01-missing-key-id",
+      "pass": true
+    },
+    {
+      "id": "RP03-model-0-to-0",
+      "pass": true
+    },
+    {
+      "id": "RP03-model-0-to-1",
+      "pass": true
+    },
+    {
+      "id": "RP03-model-0-to-2",
+      "pass": true
+    },
+    {
+      "id": "RP03-model-1-to-0",
+      "pass": true
+    },
+    {
+      "id": "RP03-model-1-to-1",
+      "pass": true
+    },
+    {
+      "id": "RP03-model-1-to-2",
+      "pass": true
+    },
+    {
+      "id": "RP03-model-2-to-0",
+      "pass": true
+    },
+    {
+      "id": "RP03-model-2-to-1",
+      "pass": true
+    },
+    {
+      "id": "RP03-model-2-to-2",
+      "pass": true
+    },
+    {
+      "id": "RP03-permissive-mutation-detected",
+      "pass": true
+    }
+  ]
+}

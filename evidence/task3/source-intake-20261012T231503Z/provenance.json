@@ -1,0 +1,44 @@
+{
+  "timestamp_utc": "2026-10-12T23:15:03.244447+00:00",
+  "sources": [
+    {
+      "archive": "files(1).zip",
+      "archive_sha256": "daa11690de13c7d5c294f5c35e78e7876bc21dcb9f073d246ad7b6558cf896db",
+      "member": "G1_Decision_Recommendations_v1.0.md",
+      "sha256": "09c7b77084ab0832304a559eb1ff2755130e21727039552dbe1d21593a3fe45b",
+      "path": "docs/task3/sources/G1_Decision_Recommendations_v1.0.md",
+      "status": "recommendation, not owner-approved"
+    },
+    {
+      "archive": "files(1).zip",
+      "archive_sha256": "daa11690de13c7d5c294f5c35e78e7876bc21dcb9f073d246ad7b6558cf896db",
+      "member": "G1_Blocker_Closure_Plan_v1.0.md",
+      "sha256": "23a044248e908b28e750ee442802ed5ed95b39b85d7f9b49bcccacddfba6869d",
+      "path": "docs/task3/sources/G1_Blocker_Closure_Plan_v1.0.md",
+      "status": "recommendation, not owner-approved"
+    },
+    {
+      "archive": "files(1).zip",
+      "archive_sha256": "daa11690de13c7d5c294f5c35e78e7876bc21dcb9f073d246ad7b6558cf896db",
+      "member": "Phase_2_Enhanced_Architecture_v1.2.md",
+      "sha256": "35fb6c62001f0e74e0e16b10d9e2e973d55f852d743c887b8d32e98cb70cd4eb",
+      "path": "docs/task3/sources/Phase_2_Enhanced_Architecture_v1.2.md",
+      "status": "recommendation, not owner-approved"
+    }
+  ],
+  "additional_uploaded_archives": [
+    {
+      "name": "G1_Test_Evidence_Package_v1.0(4).zip",
+      "sha256": "1a76f26e09b7fb4de84314cd35443279a1f5311df21920c302ff82c4c6b36759"
+    },
+    {
+      "name": "iqdid-prototype_task1(2).zip",
+      "sha256": "6d68a677bf78b84b063be1f122f9a77e64237a03deca8d03179644b1c4731e81"
+    },
+    {
+      "name": "IQDID_Audit_and_Runner_Fix(5).zip",
+      "sha256": "94bd2159694a10911d8fc3eb6fb0407c51f6e578b88d95dfb0eb768fb7bd69c2"
+    }
+  ],
+  "scope": "Archive source inspection only; no new contract or protocol test execution"
+}

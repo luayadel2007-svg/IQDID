@@ -1,0 +1,657 @@
+{
+  "base_commit": "904a2b59c222f211b98135ed9b8dada62d108802",
+  "protected_changes": [],
+  "prior_evidence": [
+    {
+      "path": "evidence/g1-suite-v1.0.SHA256SUMS",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/g1-suite-v1.0/README.md",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/g1-suite-v1.0/openapi/VALIDATION_RESULT.txt",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/g1-suite-v1.0/openapi/issuer-internal.v1.yaml",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/g1-suite-v1.0/openapi/status-internal.v1.yaml",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/g1-suite-v1.0/openapi/trust.v1.yaml",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/g1-suite-v1.0/openapi/verifier.v1.yaml",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/g1-suite-v1.0/tests_suite/evidence/mutation_skip-chain.log",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/g1-suite-v1.0/tests_suite/evidence/mutation_skip-role.log",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/g1-suite-v1.0/tests_suite/evidence/results.json",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/g1-suite-v1.0/tests_suite/evidence/results.md",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/g1-suite-v1.0/tests_suite/evidence/run_main.log",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/g1-suite-v1.0/tests_suite/lib/harness.mjs",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/g1-suite-v1.0/tests_suite/lib/pki.mjs",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/g1-suite-v1.0/tests_suite/package-lock.json",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/g1-suite-v1.0/tests_suite/package.json",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/g1-suite-v1.0/tests_suite/run.mjs",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/g1-suite-v1.0/tests_suite/tests/core.test.mjs",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/g1-suite-v1.0/tests_suite/tests/vp.test.mjs",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/runs/windows-validation-20261012/TASK1_Windows_Attempt1.zip",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/runs/windows-validation-20261012/TASK1_Windows_Attempt2.zip",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/runs/windows-validation-20261012/TASK1_Windows_Final_Raw.zip",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/runs/windows-validation-20261012/Windows_Test_Summary.json",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/runs/windows-validation-20261012/attempt1-job.log",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/runs/windows-validation-20261012/final-job.log",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/runs/windows-validation-20261012/independent-artifact-check.json",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/20261012T230434Z-c86e748c/candidate-tested-sha256.json",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/20261012T230434Z-c86e748c/commands.json",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/20261012T230434Z-c86e748c/contracts.stderr.log",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/20261012T230434Z-c86e748c/contracts.stdout.log",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/20261012T230434Z-c86e748c/delivery-manifest.json",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/20261012T230434Z-c86e748c/engineering.stderr.log",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/20261012T230434Z-c86e748c/engineering.stdout.log",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/20261012T230434Z-c86e748c/evidence-overwrite-guard.json",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/20261012T230434Z-c86e748c/node-version.stderr.log",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/20261012T230434Z-c86e748c/node-version.stdout.log",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/20261012T230434Z-c86e748c/npm-version.stderr.log",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/20261012T230434Z-c86e748c/npm-version.stdout.log",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/20261012T230434Z-c86e748c/p04-structure.stderr.log",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/20261012T230434Z-c86e748c/p04-structure.stdout.log",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/20261012T230434Z-c86e748c/policy-model.stderr.log",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/20261012T230434Z-c86e748c/policy-model.stdout.log",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/20261012T230434Z-c86e748c/preservation-final.json",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/20261012T230434Z-c86e748c/redocly.stderr.log",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/20261012T230434Z-c86e748c/redocly.stdout.log",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/20261012T230434Z-c86e748c/spectral-version.stderr.log",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/20261012T230434Z-c86e748c/spectral-version.stdout.log",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/20261012T230434Z-c86e748c/spectral.stderr.log",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/20261012T230434Z-c86e748c/spectral.stdout.log",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/20261012T230434Z-c86e748c/task2-delivery-scan.json",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/20261012T230434Z-c86e748c/task2-final-scan.stderr.log",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/20261012T230434Z-c86e748c/task2-final-scan.stdout.log",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/20261012T230434Z-c86e748c/task2-scan.stderr.log",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/20261012T230434Z-c86e748c/task2-scan.stdout.log",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/20261012T230434Z-c86e748c/tool-versions.stderr.log",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/20261012T230434Z-c86e748c/tool-versions.stdout.log",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/20261013T030000Z-task3b/checkout-eol-diagnosis.json",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/20261013T030000Z-task3b/commands.json",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/20261013T030000Z-task3b/contracts.stderr.log",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/20261013T030000Z-task3b/contracts.stdout.log",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/20261013T030000Z-task3b/development-prechecks/engineering-precheck.stderr.log",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/20261013T030000Z-task3b/development-prechecks/engineering-precheck.stdout.log",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/20261013T030000Z-task3b/development-prechecks/engineering-precheck2.stderr.log",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/20261013T030000Z-task3b/development-prechecks/engineering-precheck2.stdout.log",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/20261013T030000Z-task3b/development-prechecks/engineering-precheck3.stderr.log",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/20261013T030000Z-task3b/development-prechecks/engineering-precheck3.stdout.log",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/20261013T030000Z-task3b/development-prechecks/p04-install.stderr.log",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/20261013T030000Z-task3b/development-prechecks/p04-install.stdout.log",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/20261013T030000Z-task3b/development-prechecks/p04-precheck2.stderr.log",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/20261013T030000Z-task3b/development-prechecks/p04-precheck2.stdout.log",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/20261013T030000Z-task3b/development-prechecks/spectral-install.stderr.log",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/20261013T030000Z-task3b/development-prechecks/spectral-install.stdout.log",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/20261013T030000Z-task3b/development-prechecks/tool-install.stderr.log",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/20261013T030000Z-task3b/development-prechecks/tool-install.stdout.log",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/20261013T030000Z-task3b/dr13-original-markers.json",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/20261013T030000Z-task3b/engineering.stderr.log",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/20261013T030000Z-task3b/engineering.stdout.log",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/20261013T030000Z-task3b/frozen-verification-task3b.json",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/20261013T030000Z-task3b/node-version.stderr.log",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/20261013T030000Z-task3b/node-version.stdout.log",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/20261013T030000Z-task3b/npm-version.stderr.log",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/20261013T030000Z-task3b/npm-version.stdout.log",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/20261013T030000Z-task3b/p04.stderr.log",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/20261013T030000Z-task3b/p04.stdout.log",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/20261013T030000Z-task3b/policy-model.stderr.log",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/20261013T030000Z-task3b/policy-model.stdout.log",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/20261013T030000Z-task3b/redocly.stderr.log",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/20261013T030000Z-task3b/redocly.stdout.log",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/20261013T030000Z-task3b/source-inventory.json",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/20261013T030000Z-task3b/spectral-version.stderr.log",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/20261013T030000Z-task3b/spectral-version.stdout.log",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/20261013T030000Z-task3b/spectral.stderr.log",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/20261013T030000Z-task3b/spectral.stdout.log",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/20261013T030000Z-task3b/tool-versions.stderr.log",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/20261013T030000Z-task3b/tool-versions.stdout.log",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/TEST_REPORT.md",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/attempt1/commands.json",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/attempt1/contracts.stderr.log",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/attempt1/contracts.stdout.log",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/attempt1/node-version.stderr.log",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/attempt1/node-version.stdout.log",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/attempt1/npm-version.stderr.log",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/attempt1/npm-version.stdout.log",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/attempt1/policy-model.stderr.log",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/attempt1/policy-model.stdout.log",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/attempt1/redocly.stderr.log",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/attempt1/redocly.stdout.log",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/attempt1/spectral.stderr.log",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/attempt1/spectral.stdout.log",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/attempt1/tool-versions.stderr.log",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/attempt1/tool-versions.stdout.log",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/commands.json",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/contract-sha256.json",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/contracts.stderr.log",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/contracts.stdout.log",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/dr13-review-20261012T232239Z/review-provenance.json",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/frozen-after.json",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/frozen-before.json",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/node-version.stderr.log",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/node-version.stdout.log",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/npm-version.stderr.log",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/npm-version.stdout.log",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/policy-model.stderr.log",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/policy-model.stdout.log",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/preservation.json",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/redocly.stderr.log",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/redocly.stdout.log",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/source-intake-20261012T231503Z/provenance.json",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/source-provenance.json",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/spectral-version.stderr.log",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/spectral-version.stdout.log",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/spectral.stderr.log",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/spectral.stdout.log",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/tool-versions.stderr.log",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/tool-versions.stdout.log",
+      "unchanged": true
+    }
+  ],
+  "frozen": [
+    {
+      "path": "evidence/g1-suite-v1.0/README.md",
+      "sha256": "0d9f177e062678f24329533ac1a3f9e1d10d01d3926ee1cb09f1ac5756c79221",
+      "matches_git_head": true
+    },
+    {
+      "path": "evidence/g1-suite-v1.0/openapi/VALIDATION_RESULT.txt",
+      "sha256": "7d1c839aa91e6ae6967f303398d49c31fc9a7ad2d7023c3e0e4881eb3abf7692",
+      "matches_git_head": true
+    },
+    {
+      "path": "evidence/g1-suite-v1.0/openapi/issuer-internal.v1.yaml",
+      "sha256": "a7cd144d29d1fdf97c8575b1ca25c4aa80c8ac07f1a2542616a714cd95fcd2c2",
+      "matches_git_head": true
+    },
+    {
+      "path": "evidence/g1-suite-v1.0/openapi/status-internal.v1.yaml",
+      "sha256": "9468b46a826ddc042acda634be616c61684c45243a009d25fa82b024e0d61d53",
+      "matches_git_head": true
+    },
+    {
+      "path": "evidence/g1-suite-v1.0/openapi/trust.v1.yaml",
+      "sha256": "cf971b4cccbaaf587575cdb23ab4b2a44a1226df67f899803915b3febc84ca0d",
+      "matches_git_head": true
+    },
+    {
+      "path": "evidence/g1-suite-v1.0/openapi/verifier.v1.yaml",
+      "sha256": "1f64c21633af6b43ccc0872fe0344f5bd16f40a62108c0dd178cfddc0ce5cc50",
+      "matches_git_head": true
+    },
+    {
+      "path": "evidence/g1-suite-v1.0/tests_suite/evidence/mutation_skip-chain.log",
+      "sha256": "72ca7d799a858c8f6b2a6a75a25f0e77cbf88160685751c27f933e9c672d2a10",
+      "matches_git_head": true
+    },
+    {
+      "path": "evidence/g1-suite-v1.0/tests_suite/evidence/mutation_skip-role.log",
+      "sha256": "bcd59e8078c9fa19b6ca34971d0fbd229f2ad7b801163fbc680cb7186892b3f4",
+      "matches_git_head": true
+    },
+    {
+      "path": "evidence/g1-suite-v1.0/tests_suite/evidence/results.json",
+      "sha256": "1924fc697edcbb7bc347ca40afe4b55dff370f5e91434b440fdf39fdcf366c4f",
+      "matches_git_head": true
+    },
+    {
+      "path": "evidence/g1-suite-v1.0/tests_suite/evidence/results.md",
+      "sha256": "2938b45c6a3731f47555c22e96b58a2de55597164d048332be7c2b004c7a0250",
+      "matches_git_head": true
+    },
+    {
+      "path": "evidence/g1-suite-v1.0/tests_suite/evidence/run_main.log",
+      "sha256": "64626967a81136b2f908b86abe07bb636b3654bd6c2bee973c5fabe81746dc0e",
+      "matches_git_head": true
+    },
+    {
+      "path": "evidence/g1-suite-v1.0/tests_suite/lib/harness.mjs",
+      "sha256": "146381ad4b84f2ac2cf5f2930c33faa46928e7d813f8921db575d14d3c754b98",
+      "matches_git_head": true
+    },
+    {
+      "path": "evidence/g1-suite-v1.0/tests_suite/lib/pki.mjs",
+      "sha256": "b3b72216fb1cb5a0efa7ab0449caa3d87e2e70913fab4e46c7824a7196646da1",
+      "matches_git_head": true
+    },
+    {
+      "path": "evidence/g1-suite-v1.0/tests_suite/package-lock.json",
+      "sha256": "d3af25764d221d4bdca94dc49335deca8514a21e20d0611515aa297828fbe524",
+      "matches_git_head": true
+    },
+    {
+      "path": "evidence/g1-suite-v1.0/tests_suite/package.json",
+      "sha256": "65fb8c07ae8beddee9d240fbbdc35f6dbeb62223715d233435040f82ba02a792",
+      "matches_git_head": true
+    },
+    {
+      "path": "evidence/g1-suite-v1.0/tests_suite/run.mjs",
+      "sha256": "11d92edebd95ebe0552563fc73986da4512356200b90bb2976d237a7870c1c7a",
+      "matches_git_head": true
+    },
+    {
+      "path": "evidence/g1-suite-v1.0/tests_suite/tests/core.test.mjs",
+      "sha256": "51a2c25e7af42bf0a2a8c9f68eee439742f641e18bd4720ac2dd679add098649",
+      "matches_git_head": true
+    },
+    {
+      "path": "evidence/g1-suite-v1.0/tests_suite/tests/vp.test.mjs",
+      "sha256": "8c5b88cfbb47a3fc4c62bcc2a519536a13cf1c94eeddab1f7f16abd0f44701e8",
+      "matches_git_head": true
+    }
+  ],
+  "openapi_unchanged": [
+    {
+      "path": "openapi/v1.1/verifier.v1.1.yaml",
+      "sha256": "5d226908ac353929e504162217d30cfcf0a4c645131112e2a85a3381edad04ff"
+    },
+    {
+      "path": "openapi/v1.1/issuer-internal.v1.1.yaml",
+      "sha256": "3ae7e26e371fb5e53a36909e283903baa7c79e8799b21d44d5b4bd860b2ba47e"
+    },
+    {
+      "path": "openapi/v1.1/status-internal.v1.1.yaml",
+      "sha256": "be4503e84c2e3e59fda978b5b3cc589c06bfc2026506f0a6ba5654b33e59cf33"
+    },
+    {
+      "path": "openapi/v1.1/trust.v1.1.yaml",
+      "sha256": "abf454c0d370daf9c2baa41f6624cb3dac444466e13703202797a69510d71efe"
+    }
+  ],
+  "pending_od_activation": false
+}

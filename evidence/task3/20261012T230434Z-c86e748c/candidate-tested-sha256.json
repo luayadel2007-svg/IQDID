@@ -1,0 +1,20 @@
+{
+  "openapi/v1.1/verifier.v1.1.yaml": "5d226908ac353929e504162217d30cfcf0a4c645131112e2a85a3381edad04ff",
+  "openapi/v1.1/issuer-internal.v1.1.yaml": "3ae7e26e371fb5e53a36909e283903baa7c79e8799b21d44d5b4bd860b2ba47e",
+  "openapi/v1.1/status-internal.v1.1.yaml": "be4503e84c2e3e59fda978b5b3cc589c06bfc2026506f0a6ba5654b33e59cf33",
+  "openapi/v1.1/trust.v1.1.yaml": "abf454c0d370daf9c2baa41f6624cb3dac444466e13703202797a69510d71efe",
+  "tests/contracts/task3/validate.cjs": "8f2d4554b79c0a27882e9a08d75d1abcc71382431b7d83945a041164d9680666",
+  "tests/contracts/task3/contract-guard.cjs": "ae9391b64220c87dc56876da42c49846c3665af6dddff8295e70116b90f01c22",
+  "tests/contracts/task3/p04-structure.cjs": "4cb0f193f4d1ad1d529b26d262db199cd239a8241e144f81eb831180881b6bbf",
+  "tests/contracts/task3/package.json": "68498c72ea72fd6c3d20b232aacdf145d9f1c61ce31808b62a0d3467cfc8322c",
+  "tests/contracts/task3/policy-model.cjs": "cc0be2c5d6e3c6d9ec13dceed1e54f39f71ca8b3292ef1b7c0ecb1b2a76eefdf",
+  "tests/contracts/task3/spectral.yaml": "5befb63d37647289ad6b7beb11354bf28fb044fbad2918dae770068c99de7c89",
+  "tests/contracts/task3/README.md": "1ab5567ad7170b7edbfba75fd13807b1c4cfa470a6dd8f3f00945c542a62d4cd",
+  "tests/contracts/task3/run-validation.py": "874c732749a2e16b70b9512ec506c54aa9820ad5bc9c342febfb7cf12920aab3",
+  "tests/contracts/task3/engineering-tests.cjs": "2c7345ff4ffb53167c713cd87822923155e96e70b72aaa12dfcddcd8689b7f76",
+  "tests/contracts/task3/p04-vectors.json": "893baad6b0fac883a3c857ca6144a357d96c1ef08571970e127291411b8328e9",
+  "tests/contracts/task3/package-lock.json": "8fbfe53bf800e276f4c709f47f8f62bf5e678f5a0bc9798dad4113adc3e21df6",
+  "tests/contracts/task3/redocly.yaml": "8a230a4b80f148b0438bd5789edd7d94107b3788748ce463ec9b722cfe161251",
+  "tests/contracts/task3/spectral-tool/package.json": "a238e311edecb5a0c4c09600296e60fa89a9bad67b2d1c9f68d7b024b8176bcd",
+  "tests/contracts/task3/spectral-tool/package-lock.json": "ed8f6842c023998d71d6196c9d0541cb5ece398a329ed6395ed019339ff174d3"
+}

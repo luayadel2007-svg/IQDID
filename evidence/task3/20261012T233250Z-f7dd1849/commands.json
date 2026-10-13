@@ -1,0 +1,105 @@
+{
+  "timestamp_utc": "2026-10-12T23:32:54.821752+00:00",
+  "platform": "Linux-6.18.44-x86_64-with-glibc2.39",
+  "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+  "commands": [
+    {
+      "name": "node-version",
+      "argv": [
+        "node",
+        "--version"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "npm-version",
+      "argv": [
+        "npm",
+        "--version"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "tool-versions",
+      "argv": [
+        "npm",
+        "list",
+        "--prefix",
+        "/workspace/scratch/e5c8f9cdae15/task3-tools",
+        "--depth=0",
+        "--json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "spectral-version",
+      "argv": [
+        "/workspace/scratch/e5c8f9cdae15/task3-spectral/node_modules/.bin/spectral",
+        "--version"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "contracts",
+      "argv": [
+        "node",
+        "tests/contracts/task3/validate.cjs"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "spectral",
+      "argv": [
+        "/workspace/scratch/e5c8f9cdae15/task3-spectral/node_modules/.bin/spectral",
+        "lint",
+        "--ruleset",
+        "tests/contracts/task3/spectral.yaml",
+        "--fail-severity",
+        "error",
+        "openapi/v1.1/issuer-internal.v1.1.yaml",
+        "openapi/v1.1/status-internal.v1.1.yaml",
+        "openapi/v1.1/trust.v1.1.yaml",
+        "openapi/v1.1/verifier.v1.1.yaml"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "redocly",
+      "argv": [
+        "/workspace/scratch/e5c8f9cdae15/task3-tools/node_modules/.bin/redocly",
+        "lint",
+        "--config",
+        "tests/contracts/task3/redocly.yaml",
+        "openapi/v1.1/issuer-internal.v1.1.yaml",
+        "openapi/v1.1/status-internal.v1.1.yaml",
+        "openapi/v1.1/trust.v1.1.yaml",
+        "openapi/v1.1/verifier.v1.1.yaml"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "policy-model",
+      "argv": [
+        "node",
+        "tests/contracts/task3/policy-model.cjs"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "engineering",
+      "argv": [
+        "node",
+        "tests/contracts/task3/engineering-tests.cjs"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "p04-structure",
+      "argv": [
+        "node",
+        "tests/contracts/task3/p04-structure.cjs"
+      ],
+      "exit_code": 0
+    }
+  ]
+}

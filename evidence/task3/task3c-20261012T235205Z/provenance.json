@@ -1,0 +1,40 @@
+{
+  "standards": [
+    {
+      "url": "https://openid.net/specs/openid4vci-1.0.html",
+      "sha256": "f123c3178cacd27688b15b762098a045e9eb35eccfe2f5f18a357c3815e06ba7"
+    },
+    {
+      "url": "https://openid.net/specs/openid4vp-1.0.html",
+      "sha256": "e4f0abc689afd0a4f6c41b83954d7f970c5263a26143ad861216aea9918993bb"
+    }
+  ],
+  "packages": [
+    {
+      "name": "@openid4vc/openid4vci",
+      "version": "0.7.0",
+      "license": "Apache-2.0",
+      "package_sha256": "f3434c64f05fc26cae977d342b5a6649c400e3c28f17b7f21f56087bb4ba0b71"
+    },
+    {
+      "name": "@openid4vc/openid4vp",
+      "version": "0.7.0",
+      "license": "Apache-2.0",
+      "package_sha256": "3bd12a0cca1dba17dcca41587d58f22df19ced6039038a773a462548d4d40b6d"
+    },
+    {
+      "name": "@openid4vc/oauth2",
+      "version": "0.7.0",
+      "license": "Apache-2.0",
+      "package_sha256": "fa5541af0dd20bad188d15c401976c4c52dc50fe59387704117987bbbbae6094"
+    },
+    {
+      "name": "jose",
+      "version": "6.2.12",
+      "license": "MIT",
+      "package_sha256": "faa28d9e4362c02c81ce4c7a3b62443495343830c53de2efcbd8c1088e4ba931"
+    }
+  ],
+  "node": "v24.19.0",
+  "git": "git version 2.51.1"
+}

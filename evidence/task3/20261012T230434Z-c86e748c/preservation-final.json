@@ -1,0 +1,160 @@
+{
+  "protected_byte_changes": [],
+  "historical_evidence": [
+    {
+      "path": "evidence/task3/TEST_REPORT.md",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/commands.json",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/spectral.stdout.log",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/npm-version.stderr.log",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/tool-versions.stderr.log",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/node-version.stdout.log",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/spectral-version.stderr.log",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/spectral.stderr.log",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/redocly.stderr.log",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/contract-sha256.json",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/source-provenance.json",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/redocly.stdout.log",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/contracts.stdout.log",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/spectral-version.stdout.log",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/npm-version.stdout.log",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/frozen-before.json",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/frozen-after.json",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/policy-model.stderr.log",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/policy-model.stdout.log",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/preservation.json",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/tool-versions.stdout.log",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/contracts.stderr.log",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/node-version.stderr.log",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/attempt1/commands.json",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/attempt1/spectral.stdout.log",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/attempt1/npm-version.stderr.log",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/attempt1/tool-versions.stderr.log",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/attempt1/node-version.stdout.log",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/attempt1/spectral.stderr.log",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/attempt1/redocly.stderr.log",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/attempt1/redocly.stdout.log",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/attempt1/contracts.stdout.log",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/attempt1/npm-version.stdout.log",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/attempt1/policy-model.stderr.log",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/attempt1/policy-model.stdout.log",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/attempt1/tool-versions.stdout.log",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/attempt1/contracts.stderr.log",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/task3/attempt1/node-version.stderr.log",
+      "unchanged": true
+    }
+  ],
+  "cmd_git_blob_unchanged": true,
+  "cmd_status_note": "Git text filter reports normalization diff despite exact original blob bytes; excluded from all API tree writes.",
+  "original_head": "86102ac3bd35eed7817b7e7f4fd909beac4f6dc0"
+}

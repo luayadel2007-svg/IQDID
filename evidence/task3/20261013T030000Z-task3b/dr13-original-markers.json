@@ -1,0 +1,62 @@
+{
+  "source_sha256": "3d7ada1cda399b12840d9848ecc9c39cd78bae1ddbbfa3ce023817b2cf0a8133",
+  "note": "Original marked rows, not an invented numbered list of 17 fields. Rows can group several claims and repeat them.",
+  "rows": [
+    {
+      "source_line": 1996,
+      "text": "| الاستجابة | `200` JSON: `credential_issuer` و`credential_endpoint` و`nonce_endpoint` (يجب توفيرها إن اشترط المصدِّر nonce في الإثباتات) [م\\*]، و`notification_endpoint` اختياري [م\\*]، و`credential_configurations_supported` وفيها `format` تساوي `dc+sd-jwt` [م\\*]. وأسماء حقول أنواع الإثبات وخوارزميات التوقيع والعرض [غ]. **اختيارنا:** إعداد واحد معرّفه `national_id_test` يقابل `vct` = `urn:test:iq-digital-id:national-id:1`، وإثبات من نوع JWT بالخوارزمية ES256 وحدها، دون نقطة مؤجلة ودون دفعات (FR-14 لاحق) [س] |"
+    },
+    {
+      "source_line": 2006,
+      "text": "| الطريقة والمسار والغرض | يصل العرض إلى المحفظة بقيمة أو بمرجع [م\\*]. **اختيارنا:** بمرجع، فيحمل رمز QR عنوانَ العرض وليس الرمز السابق التفويض، ثم تجلب المحفظة العرض بـ`GET /openid4vci/offers/{offer_ref}` (المسار من تصميمنا [س]). وصيغة رابط QR نفسها (اسم المخطط والمعامل `credential_offer_uri`) [غ] |"
+    },
+    {
+      "source_line": 2009,
+      "text": "| الاستجابة | `200` JSON: `credential_issuer` [م\\*]، وقائمة معرّفات الإعدادات (الاسم الحرفي للحقل [غ])، و`grants` يتضمن نوع الرمز السابق التفويض ويحمل `pre-authorized_code` [م\\*]، وكائن `tx_code` (فارغ يعني أن الرمز مطلوب) [م\\*] |"
+    },
+    {
+      "source_line": 2019,
+      "text": "| الطريقة والمسار والغرض | `POST` على عنوان نقطة الرمز المعلن في بيانات خادم التفويض؛ تبادل الرمز السابق التفويض ورمز التفعيل برمز وصول. اكتشاف خادم التفويض وبياناته [غ]. **اختيارنا:** يؤدي المصدِّر دور خادم التفويض نفسه في الشريحة (AP-04) |"
+    },
+    {
+      "source_line": 2022,
+      "text": "| الاستجابة | `200` JSON فيه `access_token` ونوعه ومدة صلاحيته [غ]؛ ولا يتضمن `c_nonce` في النسخة النهائية، إذ يصدر من نقطة nonce [م\\*]. و`Cache-Control: no-store` [م\\*] |"
+    },
+    {
+      "source_line": 2047,
+      "text": "| الطلب | ترويسة `Authorization: Bearer <access_token>` [م\\*]؛ جسم JSON بنوع `application/json` فيه `credential_configuration_id` (أو `credential_identifier`، وأحدهما إلزامي) و`proofs` [م\\*]. ويجب أن يتضمن الإثبات هوية المصدِّر (aud) وقيمة `c_nonce` [م\\*]. مفتاح الإثبات من نوع JWT: ترويسته `typ` = `openid4vci-proof+jwt` ومعها `alg` و`jwk` [م\\*: وثيقة تنفيذ]، وحمولته `aud` و`nonce` [م\\*] و`iat` [غ] |"
+    },
+    {
+      "source_line": 2048,
+      "text": "| الاستجابة | `200` JSON فيه مصفوفة `credentials` عنصرها `credential` (الأسماء الحرفية [غ])، و`notification_id` اختياري [م\\*]. وتحمل الشهادة صيغة SD-JWT VC (القسم 2 من نموذج البيانات). و`Cache-Control: no-store` [م\\*] |"
+    },
+    {
+      "source_line": 2050,
+      "text": "| الأخطاء والمهل وإعادة المحاولة | `400` برمز `invalid_proof` (إثبات مفقود أو فاسد أو بلا nonce) أو `invalid_nonce` (nonce غير صالح، وعندها تجلب المحفظة قيمة جديدة وتعيد) [م\\*]، و`401` لرمز وصول غير صالح [غ]، و`503` عند تعذر الحالة أو المفتاح (N2 وN3 غير معتمدين) [س]. المهلة TO-W؛ RT-3 للأخطاء المتعلقة بـnonce فقط |"
+    },
+    {
+      "source_line": 2061,
+      "text": "| الاستجابة | `204` دون جسم (الرمز الحرفي [غ]) |"
+    },
+    {
+      "source_line": 2063,
+      "text": "| الأخطاء والمهل وإعادة المحاولة | رمز الخطأ الحرفي [غ]؛ TO-W؛ RT-1 |"
+    },
+    {
+      "source_line": 2086,
+      "text": "| الطلب | في `POST` يجوز أن ترسل المحفظة `wallet_nonce` [م\\*] وبيانات المحفظة الوصفية (الاسم الحرفي [غ]) |"
+    },
+    {
+      "source_line": 2088,
+      "text": "| التحقق والمصادقة والتفويض | لا مصادقة؛ والسر هو `session_ref` العشوائي (128 بتاً)؛ وتتحقق المحفظة من توقيع الطلب، ومن `wallet_nonce` إن أرسلته (واجب) [م\\*]، ومن أن المتحقق مسجل. **بادئة `client_id`:** AP-01؛ وتشترط SP-03 طلباً موقعاً، ولم أتحقق من أن البادئة `redirect_uri:` تسمح بطلب موقّع [غ]. وسياسة الخدمة تحدد الحقول في `dcql_query` (INT-11) [س] |"
+    },
+    {
+      "source_line": 2394,
+      "text": "| STD-04 | `invalid_request` و`invalid_grant`؛ وخطأ خاص بـ`tx_code` في مسودة 1.1 فقط | [غ] OAuth؛ [م\\*] مسودة 1.1 |"
+    },
+    {
+      "source_line": 2444,
+      "text": "| إثبات الحيازة للإصدار | aud وnonce و`iat` ضمن ±60 ثانية | 60 ثانية | — | [م\\*] aud وnonce؛ [غ] `iat` |"
+    }
+  ]
+}

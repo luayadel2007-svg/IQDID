@@ -1,0 +1,407 @@
+{
+  "base_branch": "task1/windows-validation",
+  "base_commit": "13d3ea5be2698cf2227f4e5f553dee2f2c473394",
+  "base_tree": "5342e467463d0ec6de8ab432702c13fb85bee9bb",
+  "repository": "luayadel2007-svg/IQDID",
+  "tree": [
+    {
+      "path": ".gitattributes",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b773fe47b6397d7b6fa23b62738dd5aa465cda15",
+      "size": 433,
+      "url": "https://api.github.com/repos/luayadel2007-svg/IQDID/git/blobs/b773fe47b6397d7b6fa23b62738dd5aa465cda15"
+    },
+    {
+      "path": ".github",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "71e6ba6cb14c6a0c6b11c926ed5a9215c12212fb",
+      "url": "https://api.github.com/repos/luayadel2007-svg/IQDID/git/trees/71e6ba6cb14c6a0c6b11c926ed5a9215c12212fb"
+    },
+    {
+      "path": ".github/workflows",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "04f32ff13cc9546faf2aa8679d227b9a36001fe6",
+      "url": "https://api.github.com/repos/luayadel2007-svg/IQDID/git/trees/04f32ff13cc9546faf2aa8679d227b9a36001fe6"
+    },
+    {
+      "path": ".github/workflows/task1-windows.yml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ec085ac4814140486ad32fe47e160d454832dbfb",
+      "size": 1662,
+      "url": "https://api.github.com/repos/luayadel2007-svg/IQDID/git/blobs/ec085ac4814140486ad32fe47e160d454832dbfb"
+    },
+    {
+      "path": ".gitignore",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "25293d06992f8aaf23f6f61ff9d459ba6e8c68e4",
+      "size": 360,
+      "url": "https://api.github.com/repos/luayadel2007-svg/IQDID/git/blobs/25293d06992f8aaf23f6f61ff9d459ba6e8c68e4"
+    },
+    {
+      "path": "README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "94e32732ddcccb56ab632bdc931cf22465caf0bc",
+      "size": 2440,
+      "url": "https://api.github.com/repos/luayadel2007-svg/IQDID/git/blobs/94e32732ddcccb56ab632bdc931cf22465caf0bc"
+    },
+    {
+      "path": "docs",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "8ac89c4da3f63d6177aa493a53bacbd448503573",
+      "url": "https://api.github.com/repos/luayadel2007-svg/IQDID/git/trees/8ac89c4da3f63d6177aa493a53bacbd448503573"
+    },
+    {
+      "path": "docs/Implementation_Baseline_v1.0.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "46fcc383a537e1cb7baa3cd809e80061fe698e52",
+      "size": 18178,
+      "url": "https://api.github.com/repos/luayadel2007-svg/IQDID/git/blobs/46fcc383a537e1cb7baa3cd809e80061fe698e52"
+    },
+    {
+      "path": "docs/TASK1_Linux_Previous_Verification.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3f8f608a0c91c7686e49284fba8c91997b5f6973",
+      "size": 11112,
+      "url": "https://api.github.com/repos/luayadel2007-svg/IQDID/git/blobs/3f8f608a0c91c7686e49284fba8c91997b5f6973"
+    },
+    {
+      "path": "docs/TASK1_Windows_Final_Verification.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "95a811f592fbd500b618a81ec1921cba7722eee0",
+      "size": 11538,
+      "url": "https://api.github.com/repos/luayadel2007-svg/IQDID/git/blobs/95a811f592fbd500b618a81ec1921cba7722eee0"
+    },
+    {
+      "path": "evidence",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "df4715a59b779a837380a76ac59a69c9bb73aff3",
+      "url": "https://api.github.com/repos/luayadel2007-svg/IQDID/git/trees/df4715a59b779a837380a76ac59a69c9bb73aff3"
+    },
+    {
+      "path": "evidence/g1-suite-v1.0.SHA256SUMS",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b3d8a6b19a14a38bba38845995a47e1eef428e06",
+      "size": 1753,
+      "url": "https://api.github.com/repos/luayadel2007-svg/IQDID/git/blobs/b3d8a6b19a14a38bba38845995a47e1eef428e06"
+    },
+    {
+      "path": "evidence/g1-suite-v1.0",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "2c536fe541629518c40a0db28205d6ea24cd79e9",
+      "url": "https://api.github.com/repos/luayadel2007-svg/IQDID/git/trees/2c536fe541629518c40a0db28205d6ea24cd79e9"
+    },
+    {
+      "path": "evidence/g1-suite-v1.0/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9461fb117a5b49d7c87c2ceebe311432ada621b1",
+      "size": 1033,
+      "url": "https://api.github.com/repos/luayadel2007-svg/IQDID/git/blobs/9461fb117a5b49d7c87c2ceebe311432ada621b1"
+    },
+    {
+      "path": "evidence/g1-suite-v1.0/openapi",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "5bf81762bab2995a5d607d270bd61e4f069c686a",
+      "url": "https://api.github.com/repos/luayadel2007-svg/IQDID/git/trees/5bf81762bab2995a5d607d270bd61e4f069c686a"
+    },
+    {
+      "path": "evidence/g1-suite-v1.0/openapi/VALIDATION_RESULT.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c7177de427d38625eeeaaf28572d06c518118fbb",
+      "size": 259,
+      "url": "https://api.github.com/repos/luayadel2007-svg/IQDID/git/blobs/c7177de427d38625eeeaaf28572d06c518118fbb"
+    },
+    {
+      "path": "evidence/g1-suite-v1.0/openapi/issuer-internal.v1.yaml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "46587e81a583268fdb31b5f26ba3f6d1bd939243",
+      "size": 11715,
+      "url": "https://api.github.com/repos/luayadel2007-svg/IQDID/git/blobs/46587e81a583268fdb31b5f26ba3f6d1bd939243"
+    },
+    {
+      "path": "evidence/g1-suite-v1.0/openapi/status-internal.v1.yaml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6932820eb25158e352b9b1818d6e83444bded334",
+      "size": 5537,
+      "url": "https://api.github.com/repos/luayadel2007-svg/IQDID/git/blobs/6932820eb25158e352b9b1818d6e83444bded334"
+    },
+    {
+      "path": "evidence/g1-suite-v1.0/openapi/trust.v1.yaml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "950c865ee341b78ece367bf1e34c9d2d3cdaf519",
+      "size": 4539,
+      "url": "https://api.github.com/repos/luayadel2007-svg/IQDID/git/blobs/950c865ee341b78ece367bf1e34c9d2d3cdaf519"
+    },
+    {
+      "path": "evidence/g1-suite-v1.0/openapi/verifier.v1.yaml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8d7af76989abd6c8fa857e24cfa789f1266a9ccb",
+      "size": 5514,
+      "url": "https://api.github.com/repos/luayadel2007-svg/IQDID/git/blobs/8d7af76989abd6c8fa857e24cfa789f1266a9ccb"
+    },
+    {
+      "path": "evidence/g1-suite-v1.0/tests_suite",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "1550637bb4a84a1e5590981489d88ac5a6b02762",
+      "url": "https://api.github.com/repos/luayadel2007-svg/IQDID/git/trees/1550637bb4a84a1e5590981489d88ac5a6b02762"
+    },
+    {
+      "path": "evidence/g1-suite-v1.0/tests_suite/evidence",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "4514a6e9eb0ecea3a6c6afb36f8cbd4a947c1123",
+      "url": "https://api.github.com/repos/luayadel2007-svg/IQDID/git/trees/4514a6e9eb0ecea3a6c6afb36f8cbd4a947c1123"
+    },
+    {
+      "path": "evidence/g1-suite-v1.0/tests_suite/evidence/mutation_skip-chain.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e441b15d3f25b82d3c941d4e3d48c5382831c96d",
+      "size": 5875,
+      "url": "https://api.github.com/repos/luayadel2007-svg/IQDID/git/blobs/e441b15d3f25b82d3c941d4e3d48c5382831c96d"
+    },
+    {
+      "path": "evidence/g1-suite-v1.0/tests_suite/evidence/mutation_skip-role.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2a011141340d943ff3b40763c8e60e78db6b3026",
+      "size": 5552,
+      "url": "https://api.github.com/repos/luayadel2007-svg/IQDID/git/blobs/2a011141340d943ff3b40763c8e60e78db6b3026"
+    },
+    {
+      "path": "evidence/g1-suite-v1.0/tests_suite/evidence/results.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2dac132216f9e77bb7d21e29cf54d1058577dbef",
+      "size": 19054,
+      "url": "https://api.github.com/repos/luayadel2007-svg/IQDID/git/blobs/2dac132216f9e77bb7d21e29cf54d1058577dbef"
+    },
+    {
+      "path": "evidence/g1-suite-v1.0/tests_suite/evidence/results.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4c830437bd26f0d0cdf7d0d5cdd1bcbe466c4475",
+      "size": 6934,
+      "url": "https://api.github.com/repos/luayadel2007-svg/IQDID/git/blobs/4c830437bd26f0d0cdf7d0d5cdd1bcbe466c4475"
+    },
+    {
+      "path": "evidence/g1-suite-v1.0/tests_suite/evidence/run_main.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "88fdc2be91742fd3d8599e705c079d64d37c9a6f",
+      "size": 5679,
+      "url": "https://api.github.com/repos/luayadel2007-svg/IQDID/git/blobs/88fdc2be91742fd3d8599e705c079d64d37c9a6f"
+    },
+    {
+      "path": "evidence/g1-suite-v1.0/tests_suite/lib",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "1265021a74dee8ae7cc104ae1d071d9fbbb5eae3",
+      "url": "https://api.github.com/repos/luayadel2007-svg/IQDID/git/trees/1265021a74dee8ae7cc104ae1d071d9fbbb5eae3"
+    },
+    {
+      "path": "evidence/g1-suite-v1.0/tests_suite/lib/harness.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f43d382413002d87c99391e732d4a09b7c6ef65e",
+      "size": 945,
+      "url": "https://api.github.com/repos/luayadel2007-svg/IQDID/git/blobs/f43d382413002d87c99391e732d4a09b7c6ef65e"
+    },
+    {
+      "path": "evidence/g1-suite-v1.0/tests_suite/lib/pki.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6ff200b869c0158780e66918fd194e41de04436d",
+      "size": 5966,
+      "url": "https://api.github.com/repos/luayadel2007-svg/IQDID/git/blobs/6ff200b869c0158780e66918fd194e41de04436d"
+    },
+    {
+      "path": "evidence/g1-suite-v1.0/tests_suite/package-lock.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b3fdce07b7781464f5cb548dfc5b82c658ebf37c",
+      "size": 24877,
+      "url": "https://api.github.com/repos/luayadel2007-svg/IQDID/git/blobs/b3fdce07b7781464f5cb548dfc5b82c658ebf37c"
+    },
+    {
+      "path": "evidence/g1-suite-v1.0/tests_suite/package.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "67b1afa86ed24b554c3050eed1dc724b5a6fe511",
+      "size": 611,
+      "url": "https://api.github.com/repos/luayadel2007-svg/IQDID/git/blobs/67b1afa86ed24b554c3050eed1dc724b5a6fe511"
+    },
+    {
+      "path": "evidence/g1-suite-v1.0/tests_suite/run.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "34896a5bdbb2032f29767aaf67fe12fb5585697d",
+      "size": 3458,
+      "url": "https://api.github.com/repos/luayadel2007-svg/IQDID/git/blobs/34896a5bdbb2032f29767aaf67fe12fb5585697d"
+    },
+    {
+      "path": "evidence/g1-suite-v1.0/tests_suite/tests",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "ac629858dc02e2717f20457fcc91166333499354",
+      "url": "https://api.github.com/repos/luayadel2007-svg/IQDID/git/trees/ac629858dc02e2717f20457fcc91166333499354"
+    },
+    {
+      "path": "evidence/g1-suite-v1.0/tests_suite/tests/core.test.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "51e7edec9a0a0c99f66961866d2857af71545a0c",
+      "size": 23858,
+      "url": "https://api.github.com/repos/luayadel2007-svg/IQDID/git/blobs/51e7edec9a0a0c99f66961866d2857af71545a0c"
+    },
+    {
+      "path": "evidence/g1-suite-v1.0/tests_suite/tests/vp.test.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2a94f47238f63031bf40864045ba4b7d13e69b59",
+      "size": 6583,
+      "url": "https://api.github.com/repos/luayadel2007-svg/IQDID/git/blobs/2a94f47238f63031bf40864045ba4b7d13e69b59"
+    },
+    {
+      "path": "evidence/runs",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "caa131e9933c3a127b66bcd9c08e9fdcc9fe47e1",
+      "url": "https://api.github.com/repos/luayadel2007-svg/IQDID/git/trees/caa131e9933c3a127b66bcd9c08e9fdcc9fe47e1"
+    },
+    {
+      "path": "evidence/runs/windows-validation-20261012",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "9546d61fb33275599b65fcd25fc165b453b9ac2a",
+      "url": "https://api.github.com/repos/luayadel2007-svg/IQDID/git/trees/9546d61fb33275599b65fcd25fc165b453b9ac2a"
+    },
+    {
+      "path": "evidence/runs/windows-validation-20261012/TASK1_Windows_Attempt1.zip",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "baf014cc255391b999e4ec296f654e20a68126d4",
+      "size": 290577,
+      "url": "https://api.github.com/repos/luayadel2007-svg/IQDID/git/blobs/baf014cc255391b999e4ec296f654e20a68126d4"
+    },
+    {
+      "path": "evidence/runs/windows-validation-20261012/TASK1_Windows_Attempt2.zip",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1077e0e20b9a99c1adc4ad941cb7cfba9bafa3d0",
+      "size": 265579,
+      "url": "https://api.github.com/repos/luayadel2007-svg/IQDID/git/blobs/1077e0e20b9a99c1adc4ad941cb7cfba9bafa3d0"
+    },
+    {
+      "path": "evidence/runs/windows-validation-20261012/TASK1_Windows_Final_Raw.zip",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9329cc4c6fadd724c7817e08eee9a5bc2ecee894",
+      "size": 319876,
+      "url": "https://api.github.com/repos/luayadel2007-svg/IQDID/git/blobs/9329cc4c6fadd724c7817e08eee9a5bc2ecee894"
+    },
+    {
+      "path": "evidence/runs/windows-validation-20261012/Windows_Test_Summary.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "45c1cca6a5b3941ab124c9a90e320ac99afe1dc4",
+      "size": 8473,
+      "url": "https://api.github.com/repos/luayadel2007-svg/IQDID/git/blobs/45c1cca6a5b3941ab124c9a90e320ac99afe1dc4"
+    },
+    {
+      "path": "evidence/runs/windows-validation-20261012/attempt1-job.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "48d7b179c26312049c3e4455e33b7d8f5c2664ae",
+      "size": 22191,
+      "url": "https://api.github.com/repos/luayadel2007-svg/IQDID/git/blobs/48d7b179c26312049c3e4455e33b7d8f5c2664ae"
+    },
+    {
+      "path": "evidence/runs/windows-validation-20261012/final-job.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3a65061d8a2570aa281fded145b12c8ab991f61c",
+      "size": 23542,
+      "url": "https://api.github.com/repos/luayadel2007-svg/IQDID/git/blobs/3a65061d8a2570aa281fded145b12c8ab991f61c"
+    },
+    {
+      "path": "evidence/runs/windows-validation-20261012/independent-artifact-check.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "439d1a9a078d043dbefffa5c7535818043122f52",
+      "size": 2114,
+      "url": "https://api.github.com/repos/luayadel2007-svg/IQDID/git/blobs/439d1a9a078d043dbefffa5c7535818043122f52"
+    },
+    {
+      "path": "tools",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "9a08fbca9a8094a3ee12b28b20429cbf26031d1c",
+      "url": "https://api.github.com/repos/luayadel2007-svg/IQDID/git/trees/9a08fbca9a8094a3ee12b28b20429cbf26031d1c"
+    },
+    {
+      "path": "tools/check-g1-results.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6a943837811f9895a91d6907e6dce2b6ce3b85a3",
+      "size": 4809,
+      "url": "https://api.github.com/repos/luayadel2007-svg/IQDID/git/blobs/6a943837811f9895a91d6907e6dce2b6ce3b85a3"
+    },
+    {
+      "path": "tools/run-g1-suite.cmd",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "51f5027dc2b90c2fbc1061d555adf5ca1c1c537f",
+      "size": 192,
+      "url": "https://api.github.com/repos/luayadel2007-svg/IQDID/git/blobs/51f5027dc2b90c2fbc1061d555adf5ca1c1c537f"
+    },
+    {
+      "path": "tools/run-g1-suite.ps1",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1ba0d20f885395249a85c6b76d71b89080100cdd",
+      "size": 15723,
+      "url": "https://api.github.com/repos/luayadel2007-svg/IQDID/git/blobs/1ba0d20f885395249a85c6b76d71b89080100cdd"
+    },
+    {
+      "path": "tools/test-g1-windows-runner.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9db97a4a894688f7c26766514af73bf71facf3b0",
+      "size": 9535,
+      "url": "https://api.github.com/repos/luayadel2007-svg/IQDID/git/blobs/9db97a4a894688f7c26766514af73bf71facf3b0"
+    }
+  ],
+  "search_scope": [
+    "task1/windows-validation complete recursive tree",
+    "main complete recursive tree",
+    "seven supplied attachments including nested task1b ZIP"
+  ],
+  "missing": [
+    "Decision_Register",
+    "G1_Decision_Recommendations_v1.0",
+    "DR-13 original 17-field list",
+    "previous G1a/OpenAPI audit report"
+  ],
+  "note": "Attached frozen files matched all 18 Git blob IDs at base commit. TASK1 Windows report read from pinned base; older attached Linux reports do not override it."
+}

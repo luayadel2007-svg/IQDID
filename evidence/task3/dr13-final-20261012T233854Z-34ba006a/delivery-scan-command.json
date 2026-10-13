@@ -1,0 +1,10 @@
+{
+  "argv": [
+    "node",
+    "/workspace/scratch/e5c8f9cdae15/repo/tools/secret-scanner.mjs",
+    "--repo",
+    "/workspace/scratch/e5c8f9cdae15/dr13-scan-snapshot",
+    "--all-index"
+  ],
+  "exit_code": 0
+}

@@ -1,0 +1,322 @@
+openapi: 3.1.0
+info:
+  title: Iraqi Digital ID Prototype — Trust Service
+  version: 1.1.0-draft
+  description: "TEST ONLY. INT-10 signed trust list (our own format — NOT a
+    standard). Verifier entries are keyed by
+
+    x509_hash and bind allowed response_uri hosts, services and claims (DR-14
+    amended, THM-48; evidenced by W16-b).
+
+    Consumers verify signature + chain to the pinned TEST root, exp, and reject
+    versions older than last seen (SEC-02).
+
+
+    TASK-3 REVIEW CANDIDATE. Not owner-approved and not a service
+    implementation. See docs/task3/G1a_Open_Decisions.md. Existing DR proposals
+    retain their original status.
+
+    \ Host binding is an IQDID project trust policy (OD-07 / DR-14), not an
+    automatic guarantee of x509_hash or protocol conformance. Certificate
+    fingerprint identifies certificate; it does not independently authorize
+    response_uri host."
+  x-environment: TEST
+servers:
+  - url: https://trust.digital-id.test
+paths:
+  /trust/v1/trust-list:
+    get:
+      operationId: getTrustList
+      summary: INT-10 — signed trust list
+      security: []
+      parameters:
+        - name: If-None-Match
+          in: header
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Compact JWS whose payload follows TrustListPayload
+          headers:
+            ETag:
+              schema:
+                type: string
+            X-Environment:
+              schema:
+                type: string
+                const: TEST
+          content:
+            application/jwt:
+              schema:
+                type: string
+                pattern: ^[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+$
+                x-payload-schema:
+                  $ref: "#/components/schemas/TrustListPayload"
+        '304':
+          description: Not modified
+          headers:
+            X-Environment:
+              schema:
+                type: string
+                const: TEST
+        '400':
+          $ref: '#/components/responses/BadRequest'
+      description: '
+
+        Public read: no bearer required; 401/403 are not part of this operation.
+        Consumers must validate signed data independently. A 304 cannot extend
+        signed exp or reset anti-rollback version. Revalidate cached token
+        signature, chain, exp and last-seen version before use; if no valid
+        cache, obtain a fresh 200 or fail closed.'
+      tags:
+        - trust
+components:
+  schemas:
+    TrustListPayload:
+      type: object
+      additionalProperties: false
+      required:
+        - version
+        - iat
+        - exp
+        - entries
+      properties:
+        version:
+          type: integer
+          minimum: 1
+          description: Monotonic; older versions rejected (SEC-02)
+        iat:
+          type: integer
+        exp:
+          type: integer
+          description: 7 days (DR-16)
+        entries:
+          type: array
+          items:
+            $ref: '#/components/schemas/TrustEntry'
+    TrustEntry:
+      type: object
+      additionalProperties: false
+      required:
+        - entry_id
+        - role
+        - display_name
+        - identifier
+        - state
+        - valid_from
+        - valid_to
+      properties:
+        entry_id:
+          type: string
+        role:
+          type: string
+          enum:
+            - issuer
+            - verifier
+            - status
+        display_name:
+          type: object
+          additionalProperties: false
+          required:
+            - ar
+            - en
+          properties:
+            ar:
+              type: string
+            en:
+              type: string
+        identifier:
+          type: string
+          description: 'issuer: https iss; verifier: x509_hash:<b64url sha-256 of leaf
+            DER>; status: status list host'
+        legal_nature:
+          type: string
+          enum:
+            - government
+            - private
+        allowed_vct:
+          type: array
+          items:
+            type: string
+        allowed_response_hosts:
+          type: array
+          items:
+            type: string
+          description: 'OD-07 pending owner approval: remains optional in this draft.
+            Proposed verifier profile requires nonempty exact HTTPS response
+            host allowlist; absent list must fail closed when that profile is
+            activated.'
+        services:
+          type: array
+          items:
+            $ref: '#/components/schemas/ServicePolicy'
+        state:
+          type: string
+          enum:
+            - active
+            - suspended
+            - removed
+        valid_from:
+          type: integer
+        valid_to:
+          type: integer
+    ServicePolicy:
+      type: object
+      additionalProperties: false
+      required:
+        - service_id
+        - purpose
+        - fields
+        - retention
+        - reuse
+      description: Disclosure policy per Legal Report §9.2
+        (PRV-Consent-and-Mandatory-Disclosure-Policy) Cross-service projection
+        remains a proposed adapter contract; see
+        docs/task3/OpenAPI_v1.1_Final_Review.md. claim strings MUST NOT be
+        guessed into dot-separated paths.
+      properties:
+        service_id:
+          type: string
+        purpose:
+          type: object
+          additionalProperties: false
+          required:
+            - ar
+            - en
+          properties:
+            ar:
+              type: string
+            en:
+              type: string
+        accepted_vct:
+          type: array
+          items:
+            type: string
+        fields:
+          type: array
+          items:
+            type: object
+            additionalProperties: false
+            required:
+              - claim
+              - class
+            properties:
+              claim:
+                type: string
+              class:
+                type: string
+                enum:
+                  - OPTIONAL
+                  - SERVICE_REQUIRED
+                  - LEGAL_REQUIRED
+              necessity_statement:
+                type: string
+        prohibited_claims:
+          type: array
+          items:
+            type: string
+        legal_basis:
+          type: array
+          items:
+            type: object
+            additionalProperties: false
+            required:
+              - law_name
+              - law_no
+              - year
+              - article
+              - verification_status
+            properties:
+              law_name:
+                type: string
+              law_no:
+                type: string
+              year:
+                type: string
+              article:
+                type: string
+              paragraph:
+                type: string
+              official_source_url:
+                type: string
+              verification_status:
+                type: string
+                enum:
+                  - unverified
+                  - under_review
+                  - verified
+        retention:
+          type: object
+          additionalProperties: false
+          required:
+            - declared
+          properties:
+            declared:
+              type: string
+              enum:
+                - none
+                - duration
+            duration_days:
+              type: integer
+              minimum: 0
+        reuse:
+          type: string
+          enum:
+            - prohibited_outside_purpose
+        may_store_values:
+          type: array
+          items:
+            type: string
+          maxItems: 0
+          description: Empty in the slice (R-POL-06)
+        next_review:
+          type: string
+          format: date
+    ErrorResponse:
+      type: object
+      additionalProperties: false
+      required:
+        - error
+      properties:
+        error:
+          type: object
+          additionalProperties: false
+          required:
+            - code
+            - message
+            - request_id
+          properties:
+            code:
+              type: string
+              pattern: ^(API|ISS|STA|VER|TRU)-[0-9]{4}$
+            message:
+              type: string
+              minLength: 1
+              maxLength: 200
+            request_id:
+              type: string
+              minLength: 1
+              maxLength: 64
+  responses:
+    BadRequest:
+      description: 'Malformed syntax, invalid schema, identifier or required header:
+        API-4001.'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            error:
+              code: API-4001
+              message: BadRequest
+              request_id: test-request-1
+      headers:
+        X-Environment:
+          schema:
+            type: string
+            const: TEST
+x-review-status: proposed-not-approved
+tags:
+  - name: trust
+    description: TEST draft trust operations

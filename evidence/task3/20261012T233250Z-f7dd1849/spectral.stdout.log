@@ -1,0 +1,14 @@
+
+/workspace/scratch/e5c8f9cdae15/dr13-work/openapi/v1.1/issuer-internal.v1.1.yaml
+ 2:6  warning  info-contact  Info object must have "contact" object.  info
+
+/workspace/scratch/e5c8f9cdae15/dr13-work/openapi/v1.1/status-internal.v1.1.yaml
+ 2:6  warning  info-contact  Info object must have "contact" object.  info
+
+/workspace/scratch/e5c8f9cdae15/dr13-work/openapi/v1.1/trust.v1.1.yaml
+ 2:6  warning  info-contact  Info object must have "contact" object.  info
+
+/workspace/scratch/e5c8f9cdae15/dr13-work/openapi/v1.1/verifier.v1.1.yaml
+ 2:6  warning  info-contact  Info object must have "contact" object.  info
+
+✖ 4 problems (0 errors, 4 warnings, 0 infos, 0 hints)

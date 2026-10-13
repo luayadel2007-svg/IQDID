@@ -1,0 +1,6 @@
+{
+  "command": "python tests/contracts/task3/run-validation.py with existing TASK3_EVIDENCE_DIR",
+  "exit_code": 1,
+  "existing_commands_unchanged": true,
+  "scope": "Expected harness refusal, not validator failure"
+}

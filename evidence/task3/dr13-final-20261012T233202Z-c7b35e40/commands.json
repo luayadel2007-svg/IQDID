@@ -1,0 +1,18 @@
+{
+  "timestamp_utc": "2026-10-12T23:32:02.870320+00:00",
+  "platform": "Linux-6.18.44-x86_64-with-glibc2.39",
+  "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+  "argv": [
+    "node",
+    "tests/contracts/task3/dr13-tests.mjs",
+    "/workspace/scratch/e5c8f9cdae15/dr13-work/evidence/task3/dr13-final-20261012T233202Z-c7b35e40/tests"
+  ],
+  "layers": "contract, library (including explicitly mocked transport), proposed-policy-model, HTTP-service NOT RUN",
+  "test_hashes": {
+    "tests/contracts/task3/dr13-tests.mjs": "3a60cfab738cbcb698f6de86beae02aab2928cd731ce6f9bba0632e8d433664d",
+    "tests/contracts/task3/dr13-contracts.cjs": "97e99784d91db59e06a99cf90033c0613bdc0534645d41f134625d35f0369876"
+  },
+  "exit_code": 1,
+  "summary_present": true,
+  "status": "FAIL"
+}

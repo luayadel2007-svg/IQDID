@@ -1,0 +1,23 @@
+[
+  {
+    "argv": [
+      "node",
+      "tests/contracts/task3/dr13-tests.mjs",
+      "/workspace/scratch/e5c8f9cdae15/task3c-work/evidence/task3/task3c-20261012T235205Z/sdk-raw-before"
+    ],
+    "cwd": "/workspace/scratch/e5c8f9cdae15/task3c-work",
+    "environment": {
+      "DR13_SDK_ROOT": "/workspace/scratch/e5c8f9cdae15/dr13-sdk"
+    },
+    "exit_code": 1
+  },
+  {
+    "argv": [
+      "node",
+      "tests/contracts/task3/compatibility/test-adapter.mjs",
+      "/workspace/scratch/e5c8f9cdae15/task3c-work/evidence/task3/task3c-20261012T235205Z/adapter-first"
+    ],
+    "cwd": "/workspace/scratch/e5c8f9cdae15/task3c-work",
+    "exit_code": 1
+  }
+]

@@ -1,0 +1,156 @@
+[
+  {
+    "path": "/workspace/scratch/e5c8f9cdae15/task3/docs/Implementation_Baseline_v1.0.md",
+    "sha256": "6af9901527c6b2aff531b7a2362597856d540e1afe3fc9149667fbc4d102b501",
+    "size": 18178,
+    "origin": "Git 86102ac3bd35eed7817b7e7f4fd909beac4f6dc0",
+    "status": "test report / unapproved proposal / source; owner approval not inferred"
+  },
+  {
+    "path": "/workspace/scratch/e5c8f9cdae15/task3/docs/task3/sources/G1_Test_Evidence_Report_v1.0.md",
+    "sha256": "464b0c50ce011ecae5a3ca5122a30dda7fa143e66bd91cf42c4543d3ed0471bc",
+    "size": 10868,
+    "origin": "Git 86102ac3bd35eed7817b7e7f4fd909beac4f6dc0",
+    "status": "test report / unapproved proposal / source; owner approval not inferred"
+  },
+  {
+    "path": "/workspace/scratch/e5c8f9cdae15/task3/docs/TASK1_Windows_Final_Verification.md",
+    "sha256": "62a32a2ad80d1d387cfad0e841edf4cb568a50fcd4139900d16edfcf700d7e72",
+    "size": 11538,
+    "origin": "Git 86102ac3bd35eed7817b7e7f4fd909beac4f6dc0",
+    "status": "test report / unapproved proposal / source; owner approval not inferred"
+  },
+  {
+    "path": "/workspace/scratch/e5c8f9cdae15/task3/docs/task3/TASK3_G1a_Audit_Report.md",
+    "sha256": "82a66392bab653ec110a04454c0b5f37c36951ce4fd06e022ef4b728d60827ab",
+    "size": 8374,
+    "origin": "Git 86102ac3bd35eed7817b7e7f4fd909beac4f6dc0",
+    "status": "test report / unapproved proposal / source; owner approval not inferred"
+  },
+  {
+    "path": "/workspace/scratch/e5c8f9cdae15/task3-library-sources/Phase_2_Consolidated_Architecture_v1.1 (1).md",
+    "sha256": "3d7ada1cda399b12840d9848ecc9c39cd78bae1ddbbfa3ce023817b2cf0a8133",
+    "size": 511524,
+    "origin": "Library materialized original",
+    "status": "test report / unapproved proposal / source; owner approval not inferred"
+  },
+  {
+    "path": "/workspace/scratch/e5c8f9cdae15/upload/TASK2_Security_Scanner_Report(1).md",
+    "sha256": "c2b12350266cf1f0b01901c71051e29f09511a9f8820068d8e3d1257ed280c4f",
+    "size": 14290,
+    "origin": "User attachment",
+    "status": "test report / unapproved proposal / source; owner approval not inferred"
+  },
+  {
+    "path": "/workspace/scratch/e5c8f9cdae15/upload/نص ملصق.txt",
+    "sha256": "b379ee8b0f879b4889cd3e66e815d1865e56af625b138c441732ae0742e818d7",
+    "size": 25904,
+    "origin": "User attachment",
+    "status": "test report / unapproved proposal / source; owner approval not inferred"
+  },
+  {
+    "path": "/workspace/scratch/e5c8f9cdae15/upload/TASK1_Final_Verification(4).md",
+    "sha256": "3e084b9c33c83a8cdf99b563ad25f4d55a26983f787680d1732cbd09876d9bd8",
+    "size": 11112,
+    "origin": "User attachment",
+    "status": "test report / unapproved proposal / source; owner approval not inferred"
+  },
+  {
+    "path": "/workspace/scratch/e5c8f9cdae15/upload/G1_Test_Evidence_Package_v1.0(2).zip",
+    "sha256": "1a76f26e09b7fb4de84314cd35443279a1f5311df21920c302ff82c4c6b36759",
+    "size": 43257,
+    "origin": "User attachment",
+    "status": "test report / unapproved proposal / source; owner approval not inferred"
+  },
+  {
+    "path": "/workspace/scratch/e5c8f9cdae15/upload/G1_Test_Evidence_Report_v1.0(2).md",
+    "sha256": "464b0c50ce011ecae5a3ca5122a30dda7fa143e66bd91cf42c4543d3ed0471bc",
+    "size": 10868,
+    "origin": "User attachment",
+    "status": "test report / unapproved proposal / source; owner approval not inferred"
+  },
+  {
+    "path": "/workspace/scratch/e5c8f9cdae15/upload/TASK1_Final_Verification(3).md",
+    "sha256": "3e084b9c33c83a8cdf99b563ad25f4d55a26983f787680d1732cbd09876d9bd8",
+    "size": 11112,
+    "origin": "User attachment",
+    "status": "test report / unapproved proposal / source; owner approval not inferred"
+  },
+  {
+    "path": "/workspace/scratch/e5c8f9cdae15/upload/Implementation_Baseline_v1.0(3).md",
+    "sha256": "6af9901527c6b2aff531b7a2362597856d540e1afe3fc9149667fbc4d102b501",
+    "size": 18178,
+    "origin": "User attachment",
+    "status": "test report / unapproved proposal / source; owner approval not inferred"
+  },
+  {
+    "path": "/workspace/scratch/e5c8f9cdae15/upload/IQDID_Audit_and_Runner_Fix(4).zip",
+    "sha256": "94bd2159694a10911d8fc3eb6fb0407c51f6e578b88d95dfb0eb768fb7bd69c2",
+    "size": 202674,
+    "origin": "User attachment",
+    "status": "test report / unapproved proposal / source; owner approval not inferred"
+  },
+  {
+    "path": "/workspace/scratch/e5c8f9cdae15/upload/files (1)(2).zip",
+    "sha256": "547dc99c6605cf3d908566ca16a9b86fe689cb0b5338e1bcb49ac76c84b6afe3",
+    "size": 210603,
+    "origin": "User attachment",
+    "status": "test report / unapproved proposal / source; owner approval not inferred"
+  },
+  {
+    "path": "/workspace/scratch/e5c8f9cdae15/upload/Implementation_Baseline_v1.0(4).md",
+    "sha256": "6af9901527c6b2aff531b7a2362597856d540e1afe3fc9149667fbc4d102b501",
+    "size": 18178,
+    "origin": "User attachment",
+    "status": "test report / unapproved proposal / source; owner approval not inferred"
+  },
+  {
+    "path": "/workspace/scratch/e5c8f9cdae15/upload/G1_Test_Evidence_Package_v1.0(3).zip",
+    "sha256": "1a76f26e09b7fb4de84314cd35443279a1f5311df21920c302ff82c4c6b36759",
+    "size": 43257,
+    "origin": "User attachment",
+    "status": "test report / unapproved proposal / source; owner approval not inferred"
+  },
+  {
+    "path": "/workspace/scratch/e5c8f9cdae15/official-sources/rfc7638.html",
+    "sha256": "13e604d659d8c8fdb8ddbe6097f6073c93f3f6fe2d867501d6190480a560125c",
+    "size": 35465,
+    "origin": "Official downloaded specification",
+    "status": "test report / unapproved proposal / source; owner approval not inferred"
+  },
+  {
+    "path": "/workspace/scratch/e5c8f9cdae15/official-sources/rfc8725.html",
+    "sha256": "7f93df8a106c14e2c9394bd3fc12a488266477c89a1fe2f9182cf0bdb02d7ce0",
+    "size": 89311,
+    "origin": "Official downloaded specification",
+    "status": "test report / unapproved proposal / source; owner approval not inferred"
+  },
+  {
+    "path": "/workspace/scratch/e5c8f9cdae15/official-sources/status-list-21.html",
+    "sha256": "a33a09209c3a830a7076703745a68c43b292ecdd4c4670687480a1c1b805da62",
+    "size": 337460,
+    "origin": "Official downloaded specification",
+    "status": "test report / unapproved proposal / source; owner approval not inferred"
+  },
+  {
+    "path": "/workspace/scratch/e5c8f9cdae15/official-sources/openid4vp-1.0.html",
+    "sha256": "e4f0abc689afd0a4f6c41b83954d7f970c5263a26143ad861216aea9918993bb",
+    "size": 515401,
+    "origin": "Official downloaded specification",
+    "status": "test report / unapproved proposal / source; owner approval not inferred"
+  },
+  {
+    "path": "/workspace/scratch/e5c8f9cdae15/official-sources/sd-jwt-vc-19.html",
+    "sha256": "45bebb1ff4c806724005b27ea47b7bed7a8e4d1fd8763fc39521dd32dee977a8",
+    "size": 308407,
+    "origin": "Official downloaded specification",
+    "status": "test report / unapproved proposal / source; owner approval not inferred"
+  },
+  {
+    "path": "/workspace/scratch/e5c8f9cdae15/official-sources/openid4vci-1.0.html",
+    "sha256": "f123c3178cacd27688b15b762098a045e9eb35eccfe2f5f18a357c3815e06ba7",
+    "size": 504445,
+    "origin": "Official downloaded specification",
+    "status": "test report / unapproved proposal / source; owner approval not inferred"
+  }
+]

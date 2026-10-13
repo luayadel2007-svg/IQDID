@@ -1,0 +1,22 @@
+
+/workspace/scratch/d78978f5ac1a/task3-work/openapi/v1.1/issuer-internal.v1.1.yaml
+ 2:6  warning  info-contact  Info object must have "contact" object.  info
+
+/workspace/scratch/d78978f5ac1a/task3-work/openapi/v1.1/status-internal.v1.1.yaml
+  2:6   warning  info-contact    Info object must have "contact" object.      info
+ 22:10  warning  operation-tags  Operation must have non-empty "tags" array.  paths./internal/v1/status/allocations.post
+ 104:9  warning  operation-tags  Operation must have non-empty "tags" array.  paths./internal/v1/status/entries/{list_id}/{idx}.put
+ 260:9  warning  operation-tags  Operation must have non-empty "tags" array.  paths./lists/{list_id}.get
+
+/workspace/scratch/d78978f5ac1a/task3-work/openapi/v1.1/trust.v1.1.yaml
+  2:6   warning  info-contact           Info object must have "contact" object.          info
+  17:9  warning  operation-tags         Operation must have non-empty "tags" array.      paths./trust/v1/trust-list.get
+ 57:22  warning  oas3-unused-component  Potentially unused component has been detected.  components.schemas.TrustListPayload
+
+/workspace/scratch/d78978f5ac1a/task3-work/openapi/v1.1/verifier.v1.1.yaml
+  2:6   warning  info-contact    Info object must have "contact" object.      info
+  23:9  warning  operation-tags  Operation must have non-empty "tags" array.  paths./verifier/v1/services.get
+ 94:10  warning  operation-tags  Operation must have non-empty "tags" array.  paths./verifier/v1/sessions.post
+ 191:9  warning  operation-tags  Operation must have non-empty "tags" array.  paths./verifier/v1/sessions/{session_id}.get
+
+✖ 12 problems (0 errors, 12 warnings, 0 infos, 0 hints)
