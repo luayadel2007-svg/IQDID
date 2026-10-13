@@ -1,0 +1,6 @@
+#!/bin/sh
+# Git for Windows supplies sh for hooks. Scan the Git index, never the working tree.
+command -v node >/dev/null 2>&1 || { printf '%s\n' 'BLOCKED: Node.js is unavailable.' >&2; exit 2; }
+root=$(git rev-parse --show-toplevel) || { printf '%s\n' 'BLOCKED: Git repository unavailable.' >&2; exit 2; }
+node "$root/tools/secret-scanner.mjs" --repo "$root" --staged
+exit $?

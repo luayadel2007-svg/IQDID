@@ -1,0 +1,227 @@
+{
+  "base": "13d3ea5be2698cf2227f4e5f553dee2f2c473394",
+  "head": "0b944fa6363f8f0d2c1d95cd98386605f1f78fdd",
+  "files": [
+    {
+      "path": ".githooks/pre-commit",
+      "status": "added"
+    },
+    {
+      "path": ".github/workflows/task2-secret-scanner.yml",
+      "status": "added"
+    },
+    {
+      "path": ".security/secret-scanner-rules.json",
+      "status": "added"
+    },
+    {
+      "path": "docs/Secret_Scanner_Policy.md",
+      "status": "added"
+    },
+    {
+      "path": "evidence/runs/task2-secret-scanner/base-preservation.json",
+      "status": "added"
+    },
+    {
+      "path": "evidence/runs/task2-secret-scanner/commands-local.json",
+      "status": "added"
+    },
+    {
+      "path": "evidence/runs/task2-secret-scanner/integrity-linux.json",
+      "status": "added"
+    },
+    {
+      "path": "evidence/runs/task2-secret-scanner/local-precheck-engine-fixture.json",
+      "status": "added"
+    },
+    {
+      "path": "evidence/runs/task2-secret-scanner/repository-scan-local.json",
+      "status": "added"
+    },
+    {
+      "path": "evidence/runs/task2-secret-scanner/tests-linux.json",
+      "status": "added"
+    },
+    {
+      "path": "evidence/runs/task2-secret-scanner/tests-local.stderr.log",
+      "status": "added"
+    },
+    {
+      "path": "evidence/runs/task2-secret-scanner/tests-local.stdout.log",
+      "status": "added"
+    },
+    {
+      "path": "tools/install-secret-hook.mjs",
+      "status": "added"
+    },
+    {
+      "path": "tools/lib/secret-scanner-engine.mjs",
+      "status": "added"
+    },
+    {
+      "path": "tools/secret-scanner.mjs",
+      "status": "added"
+    },
+    {
+      "path": "tools/test-secret-scanner.mjs",
+      "status": "added"
+    },
+    {
+      "path": "tools/verify-task2-integrity.mjs",
+      "status": "added"
+    }
+  ],
+  "all_original_files_preserved": true,
+  "pr": 3,
+  "base_branch": "task1/windows-validation",
+  "draft": true,
+  "merged": false,
+  "ci_pr_jobs": [
+    {
+      "id": 114950143186,
+      "name": "scanner (ubuntu-24.04)",
+      "conclusion": "success",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Checkout PR contents without persisted credentials",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Existing Node 22 baseline",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Scan Git Index, including bounded ZIP members",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Verify installation command on Windows PowerShell 5.1",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 5
+        },
+        {
+          "name": "Real index and pre-commit integration tests",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "Verify frozen G1 package and capture read-only repository scan",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "Retain redacted test evidence",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8
+        },
+        {
+          "name": "Post Existing Node 22 baseline",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 15
+        },
+        {
+          "name": "Post Checkout PR contents without persisted credentials",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 16
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 17
+        }
+      ]
+    },
+    {
+      "id": 114950143668,
+      "name": "scanner (windows-2022)",
+      "conclusion": "success",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Checkout PR contents without persisted credentials",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Existing Node 22 baseline",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Scan Git Index, including bounded ZIP members",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Verify installation command on Windows PowerShell 5.1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Real index and pre-commit integration tests",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "Verify frozen G1 package and capture read-only repository scan",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "Retain redacted test evidence",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8
+        },
+        {
+          "name": "Post Existing Node 22 baseline",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 15
+        },
+        {
+          "name": "Post Checkout PR contents without persisted credentials",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 16
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 17
+        }
+      ]
+    }
+  ]
+}

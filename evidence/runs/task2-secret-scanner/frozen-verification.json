@@ -1,0 +1,8 @@
+{
+  "status": "PASS",
+  "files": 18,
+  "before_manifest": "evidence/g1-suite-v1.0.SHA256SUMS",
+  "after_manifest": "frozen-before-after.txt",
+  "base_files_verified": 37,
+  "all_base_files_unchanged": true
+}

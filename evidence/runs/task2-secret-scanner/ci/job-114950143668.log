@@ -1,0 +1,285 @@
+﻿2026-10-12T18:25:32.8126096Z Current runner version: '2.337.0'
+2026-10-12T18:25:32.8150936Z ##[group]Runner Image Provisioner
+2026-10-12T18:25:32.8151761Z Hosted Compute Agent
+2026-10-12T18:25:32.8152310Z Version: 20261002.596
+2026-10-12T18:25:32.8152938Z Commit: c3d12f3313a95f25162a1503be624f3b0617f8c0
+2026-10-12T18:25:32.8153594Z Build Date: 2026-10-02T22:28:27Z
+2026-10-12T18:25:32.8154194Z Worker ID: {bcda1427-390c-40b5-bc52-c38d3f458461}
+2026-10-12T18:25:32.8154850Z Region: westus
+2026-10-12T18:25:32.8155314Z Cloud: Azure
+2026-10-12T18:25:32.8155772Z ##[endgroup]
+2026-10-12T18:25:32.8157193Z ##[group]Operating System
+2026-10-12T18:25:32.8157784Z Microsoft Windows Server 2022
+2026-10-12T18:25:32.8158356Z 10.0.20348
+2026-10-12T18:25:32.8158855Z Datacenter
+2026-10-12T18:25:32.8159315Z ##[endgroup]
+2026-10-12T18:25:32.8159823Z ##[group]Runner Image
+2026-10-12T18:25:32.8160334Z Image: windows-2022
+2026-10-12T18:25:32.8160908Z Version: 20261004.326.1
+2026-10-12T18:25:32.8162287Z Included Software: https://github.com/actions/runner-images/blob/win22/20261004.326/images/windows/Windows2022-Readme.md
+2026-10-12T18:25:32.8163739Z Image Release: https://github.com/actions/runner-images/releases/tag/win22%2F20261004.326
+2026-10-12T18:25:32.8164610Z ##[endgroup]
+2026-10-12T18:25:32.8165625Z ##[group]GITHUB_TOKEN Permissions
+2026-10-12T18:25:32.8167426Z Contents: read
+2026-10-12T18:25:32.8167991Z Metadata: read
+2026-10-12T18:25:32.8168470Z ##[endgroup]
+2026-10-12T18:25:32.8170543Z Secret source: Actions
+2026-10-12T18:25:32.8171396Z Cache mode: write
+2026-10-12T18:25:32.8172018Z Prepare workflow directory
+2026-10-12T18:25:32.8514311Z Prepare all required actions
+2026-10-12T18:25:32.8587386Z Getting action download info
+2026-10-12T18:25:33.2837215Z Download action repository 'actions/checkout@11d5960a326750d5838078e36cf38b85af677262' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+2026-10-12T18:25:33.4276847Z Download action repository 'actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020' (SHA:49933ea5288caeca8642d1e84afbd3f7d6820020)
+2026-10-12T18:25:33.5796513Z Download action repository 'actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+2026-10-12T18:25:33.9649993Z Complete job name: scanner (windows-2022)
+2026-10-12T18:25:34.1362789Z ##[group]Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+2026-10-12T18:25:34.1364642Z with:
+2026-10-12T18:25:34.1365256Z   persist-credentials: false
+2026-10-12T18:25:34.1366049Z   repository: luayadel2007-svg/IQDID
+2026-10-12T18:25:34.1374734Z   token: ***
+2026-10-12T18:25:34.1375196Z   ssh-strict: true
+2026-10-12T18:25:34.1375686Z   ssh-user: git
+2026-10-12T18:25:34.1376129Z   clean: true
+2026-10-12T18:25:34.1376622Z   sparse-checkout-cone-mode: true
+2026-10-12T18:25:34.1377268Z   fetch-depth: 1
+2026-10-12T18:25:34.1377737Z   fetch-tags: false
+2026-10-12T18:25:34.1378234Z   show-progress: true
+2026-10-12T18:25:34.1378729Z   lfs: false
+2026-10-12T18:25:34.1379177Z   submodules: false
+2026-10-12T18:25:34.1379729Z   set-safe-directory: true
+2026-10-12T18:25:34.1380327Z   allow-unsafe-pr-checkout: false
+2026-10-12T18:25:34.1381195Z ##[endgroup]
+2026-10-12T18:25:35.0711559Z Syncing repository: luayadel2007-svg/IQDID
+2026-10-12T18:25:35.0715185Z ##[group]Getting Git version info
+2026-10-12T18:25:35.0716595Z Working directory is 'D:\a\IQDID\IQDID'
+2026-10-12T18:25:35.0718738Z [command]"C:\Program Files\Git\bin\git.exe" version
+2026-10-12T18:25:35.0720187Z git version 2.56.0.windows.1
+2026-10-12T18:25:35.0724683Z ##[endgroup]
+2026-10-12T18:25:35.0732481Z Temporarily overriding HOME='D:\a\_temp\ca9e11ce-32a3-4a21-a214-9977820b335f' before making global git config changes
+2026-10-12T18:25:35.0735019Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-12T18:25:35.0737393Z [command]"C:\Program Files\Git\bin\git.exe" config --global --add safe.directory D:\a\IQDID\IQDID
+2026-10-12T18:25:35.0741381Z Deleting the contents of 'D:\a\IQDID\IQDID'
+2026-10-12T18:25:35.0747571Z ##[group]Initializing the repository
+2026-10-12T18:25:35.0749478Z [command]"C:\Program Files\Git\bin\git.exe" init D:\a\IQDID\IQDID
+2026-10-12T18:25:35.0751392Z Initialized empty Git repository in D:/a/IQDID/IQDID/.git/
+2026-10-12T18:25:35.0755768Z [command]"C:\Program Files\Git\bin\git.exe" remote add origin https://github.com/luayadel2007-svg/IQDID
+2026-10-12T18:25:35.0761938Z ##[endgroup]
+2026-10-12T18:25:35.0764207Z ##[group]Disabling automatic garbage collection
+2026-10-12T18:25:35.0766084Z [command]"C:\Program Files\Git\bin\git.exe" config --local gc.auto 0
+2026-10-12T18:25:35.0932426Z ##[endgroup]
+2026-10-12T18:25:35.0937541Z ##[group]Setting up auth
+2026-10-12T18:25:35.0940056Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp core\.sshCommand
+2026-10-12T18:25:36.0547882Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :\""
+2026-10-12T18:25:36.5330586Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-12T18:25:36.5659945Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :\""
+2026-10-12T18:25:37.1825730Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-12T18:25:37.2207503Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "git config --local --show-origin --name-only --get-regexp remote.origin.url"
+2026-10-12T18:25:37.7774847Z [command]"C:\Program Files\Git\bin\git.exe" config --local http.https://github.com/.extraheader "AUTHORIZATION: basic ***"
+2026-10-12T18:25:37.8113075Z ##[endgroup]
+2026-10-12T18:25:37.8136476Z ##[group]Fetching the repository
+2026-10-12T18:25:37.8143162Z [command]"C:\Program Files\Git\bin\git.exe" -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +47ef47dfd8b1d4414b7da2dad207f8983d066704:refs/remotes/pull/3/merge
+2026-10-12T18:25:39.2459853Z From https://github.com/luayadel2007-svg/IQDID
+2026-10-12T18:25:39.2461163Z  * [new ref]         47ef47dfd8b1d4414b7da2dad207f8983d066704 -> pull/3/merge
+2026-10-12T18:25:39.2490516Z ##[endgroup]
+2026-10-12T18:25:39.2491339Z ##[group]Determining the checkout info
+2026-10-12T18:25:39.2493535Z ##[endgroup]
+2026-10-12T18:25:39.2504465Z [command]"C:\Program Files\Git\bin\git.exe" sparse-checkout disable
+2026-10-12T18:25:39.2936901Z [command]"C:\Program Files\Git\bin\git.exe" config --local --unset-all extensions.worktreeConfig
+2026-10-12T18:25:39.3284865Z ##[group]Checking out the ref
+2026-10-12T18:25:39.3288479Z [command]"C:\Program Files\Git\bin\git.exe" checkout --progress --force refs/remotes/pull/3/merge
+2026-10-12T18:25:39.4168432Z Note: switching to 'refs/remotes/pull/3/merge'.
+2026-10-12T18:25:39.4169075Z 
+2026-10-12T18:25:39.4169463Z You are in 'detached HEAD' state. You can look around, make experimental
+2026-10-12T18:25:39.4170340Z changes and commit them, and you can discard any commits you make in this
+2026-10-12T18:25:39.4171299Z state without impacting any branches by switching back to a branch.
+2026-10-12T18:25:39.4171822Z 
+2026-10-12T18:25:39.4172149Z If you want to create a new branch to retain commits you create, you may
+2026-10-12T18:25:39.4172940Z do so (now or later) by using -c with the switch command. Example:
+2026-10-12T18:25:39.4173390Z 
+2026-10-12T18:25:39.4173583Z   git switch -c <new-branch-name>
+2026-10-12T18:25:39.4173898Z 
+2026-10-12T18:25:39.4174123Z Or undo this operation with:
+2026-10-12T18:25:39.4174418Z 
+2026-10-12T18:25:39.4174554Z   git switch -
+2026-10-12T18:25:39.4174750Z 
+2026-10-12T18:25:39.4175087Z Turn off this advice by setting config variable advice.detachedHead to false
+2026-10-12T18:25:39.4176953Z 
+2026-10-12T18:25:39.4177873Z HEAD is now at 47ef47d Merge 0b944fa6363f8f0d2c1d95cd98386605f1f78fdd into 13d3ea5be2698cf2227f4e5f553dee2f2c473394
+2026-10-12T18:25:39.4292468Z ##[endgroup]
+2026-10-12T18:25:39.4673945Z [command]"C:\Program Files\Git\bin\git.exe" log -1 --format=%H
+2026-10-12T18:25:39.4962687Z 47ef47dfd8b1d4414b7da2dad207f8983d066704
+2026-10-12T18:25:39.5127892Z ##[group]Removing auth
+2026-10-12T18:25:39.5128902Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp core\.sshCommand
+2026-10-12T18:25:39.5387145Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :\""
+2026-10-12T18:25:40.1138759Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-12T18:25:40.1425612Z http.https://github.com/.extraheader
+2026-10-12T18:25:40.1468172Z [command]"C:\Program Files\Git\bin\git.exe" config --local --unset-all http.https://github.com/.extraheader
+2026-10-12T18:25:40.1794749Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :\""
+2026-10-12T18:25:40.7321622Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-12T18:25:40.7731297Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "git config --local --show-origin --name-only --get-regexp remote.origin.url"
+2026-10-12T18:25:41.3393883Z ##[endgroup]
+2026-10-12T18:25:41.3812338Z ##[group]Run actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+2026-10-12T18:25:41.3812796Z with:
+2026-10-12T18:25:41.3812994Z   node-version: 22.22.2
+2026-10-12T18:25:41.3813211Z   always-auth: false
+2026-10-12T18:25:41.3813437Z   check-latest: false
+2026-10-12T18:25:41.3816091Z   token: ***
+2026-10-12T18:25:41.3816281Z ##[endgroup]
+2026-10-12T18:25:41.5595110Z Attempting to download 22.22.2...
+2026-10-12T18:25:41.5883133Z (node:6048) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-12T18:25:41.5884563Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-12T18:25:42.3651209Z Acquiring 22.22.2 - x64 from https://github.com/actions/node-versions/releases/download/22.22.2-23521889093/node-22.22.2-win32-x64.7z
+2026-10-12T18:25:42.8781439Z Extracting ...
+2026-10-12T18:25:44.8037352Z Adding to the cache ...
+2026-10-12T18:25:48.7726640Z ##[group]Environment details
+2026-10-12T18:25:50.4040309Z node: v22.22.2
+2026-10-12T18:25:50.4040942Z npm: 10.9.7
+2026-10-12T18:25:50.4041338Z yarn: 1.22.22
+2026-10-12T18:25:50.4042117Z ##[endgroup]
+2026-10-12T18:25:50.4398168Z ##[group]Run node tools/secret-scanner.mjs --all-index
+2026-10-12T18:25:50.4399044Z [36;1mnode tools/secret-scanner.mjs --all-index[0m
+2026-10-12T18:25:50.4518525Z shell: C:\Program Files\PowerShell\7\pwsh.EXE -command ". '{0}'"
+2026-10-12T18:25:50.4518921Z ##[endgroup]
+2026-10-12T18:25:56.7619765Z {
+2026-10-12T18:25:56.7620340Z   "schema": 1,
+2026-10-12T18:25:56.7620934Z   "status": "PASS",
+2026-10-12T18:25:56.7621436Z   "exit_code": 0,
+2026-10-12T18:25:56.7621911Z   "mode": "all-index",
+2026-10-12T18:25:56.7622411Z   "scanned_files": 54,
+2026-10-12T18:25:56.7622867Z   "findings": [],
+2026-10-12T18:25:56.7623288Z   "errors": []
+2026-10-12T18:25:56.7623676Z }
+2026-10-12T18:25:56.9040281Z ##[group]Run if ($PSVersionTable.PSVersion.Major -ne 5 -or $PSVersionTable.PSVersion.Minor -ne 1) { throw 'PowerShell 5.1 expected' }
+2026-10-12T18:25:56.9041357Z [36;1mif ($PSVersionTable.PSVersion.Major -ne 5 -or $PSVersionTable.PSVersion.Minor -ne 1) { throw 'PowerShell 5.1 expected' }[0m
+2026-10-12T18:25:56.9041994Z [36;1mnode tools/install-secret-hook.mjs .[0m
+2026-10-12T18:25:56.9042509Z [36;1mexit $LASTEXITCODE[0m
+2026-10-12T18:25:56.9082400Z shell: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.EXE -command ". '{0}'"
+2026-10-12T18:25:56.9082823Z ##[endgroup]
+2026-10-12T18:26:00.2398993Z PASS: repository-local pre-commit hook installed.
+2026-10-12T18:26:00.3209344Z ##[group]Run node tools/test-secret-scanner.mjs .
+2026-10-12T18:26:00.3210022Z [36;1mnode tools/test-secret-scanner.mjs .[0m
+2026-10-12T18:26:00.3277274Z shell: C:\Program Files\PowerShell\7\pwsh.EXE -command ". '{0}'"
+2026-10-12T18:26:00.3277881Z ##[endgroup]
+2026-10-12T18:26:01.5703991Z {"id":"N01_private_pem","pass":true,"exit":1,"report":{"schema":1,"status":"FAIL","exit_code":1,"mode":"staged","scanned_files":1,"findings":[{"path":"key material.txt","rule":"PRIVATE_KEY","line":1}],"errors":[]},"noLeak":true,"index_unchanged":true,"stdout":"{\n  \"schema\": 1,\n  \"status\": \"FAIL\",\n  \"exit_code\": 1,\n  \"mode\": \"staged\",\n  \"scanned_files\": 1,\n  \"findings\": [\n    {\n      \"path\": \"key material.txt\",\n      \"rule\": \"PRIVATE_KEY\",\n      \"line\": 1\n    }\n  ],\n  \"errors\": []\n}\n","stderr":""}
+2026-10-12T18:26:02.4186624Z {"id":"N02_private_jwk","pass":true,"exit":1,"report":{"schema":1,"status":"FAIL","exit_code":1,"mode":"staged","scanned_files":1,"findings":[{"path":"credential.data","rule":"PRIVATE_JWK","line":1}],"errors":[]},"noLeak":true,"index_unchanged":true,"stdout":"{\n  \"schema\": 1,\n  \"status\": \"FAIL\",\n  \"exit_code\": 1,\n  \"mode\": \"staged\",\n  \"scanned_files\": 1,\n  \"findings\": [\n    {\n      \"path\": \"credential.data\",\n      \"rule\": \"PRIVATE_JWK\",\n      \"line\": 1\n    }\n  ],\n  \"errors\": []\n}\n","stderr":""}
+2026-10-12T18:26:03.2934788Z {"id":"N03_api_token","pass":true,"exit":1,"report":{"schema":1,"status":"FAIL","exit_code":1,"mode":"staged","scanned_files":1,"findings":[{"path":"config.txt","rule":"KNOWN_TOKEN","line":1}],"errors":[]},"noLeak":true,"index_unchanged":true,"stdout":"{\n  \"schema\": 1,\n  \"status\": \"FAIL\",\n  \"exit_code\": 1,\n  \"mode\": \"staged\",\n  \"scanned_files\": 1,\n  \"findings\": [\n    {\n      \"path\": \"config.txt\",\n      \"rule\": \"KNOWN_TOKEN\",\n      \"line\": 1\n    }\n  ],\n  \"errors\": []\n}\n","stderr":""}
+2026-10-12T18:26:04.2196932Z {"id":"N04_env","pass":true,"exit":1,"report":{"schema":1,"status":"FAIL","exit_code":1,"mode":"staged","scanned_files":1,"findings":[{"path":"config/.env","rule":"SENSITIVE_FILE","line":1}],"errors":[]},"noLeak":true,"index_unchanged":true,"stdout":"{\n  \"schema\": 1,\n  \"status\": \"FAIL\",\n  \"exit_code\": 1,\n  \"mode\": \"staged\",\n  \"scanned_files\": 1,\n  \"findings\": [\n    {\n      \"path\": \"config/.env\",\n      \"rule\": \"SENSITIVE_FILE\",\n      \"line\": 1\n    }\n  ],\n  \"errors\": []\n}\n","stderr":""}
+2026-10-12T18:26:05.0382067Z {"id":"N05_identity","pass":true,"exit":1,"report":{"schema":1,"status":"FAIL","exit_code":1,"mode":"staged","scanned_files":1,"findings":[{"path":"citizen.json","rule":"PII_IDENTIFIER","line":1}],"errors":[]},"noLeak":true,"index_unchanged":true,"stdout":"{\n  \"schema\": 1,\n  \"status\": \"FAIL\",\n  \"exit_code\": 1,\n  \"mode\": \"staged\",\n  \"scanned_files\": 1,\n  \"findings\": [\n    {\n      \"path\": \"citizen.json\",\n      \"rule\": \"PII_IDENTIFIER\",\n      \"line\": 1\n    }\n  ],\n  \"errors\": []\n}\n","stderr":""}
+2026-10-12T18:26:05.8654181Z {"id":"N06_index_differs_worktree","pass":true,"exit":1,"report":{"schema":1,"status":"FAIL","exit_code":1,"mode":"staged","scanned_files":1,"findings":[{"path":"staged.txt","rule":"KNOWN_TOKEN","line":1}],"errors":[]},"noLeak":true,"index_unchanged":true,"stdout":"{\n  \"schema\": 1,\n  \"status\": \"FAIL\",\n  \"exit_code\": 1,\n  \"mode\": \"staged\",\n  \"scanned_files\": 1,\n  \"findings\": [\n    {\n      \"path\": \"staged.txt\",\n      \"rule\": \"KNOWN_TOKEN\",\n      \"line\": 1\n    }\n  ],\n  \"errors\": []\n}\n","stderr":""}
+2026-10-12T18:26:06.7404293Z {"id":"N07_special_filename","pass":true,"exit":1,"report":{"schema":1,"status":"FAIL","exit_code":1,"mode":"staged","scanned_files":1,"findings":[{"path":"dir with spaces/اسم ; $x [a].txt","rule":"KNOWN_TOKEN","line":1}],"errors":[]},"noLeak":true,"index_unchanged":true,"stdout":"{\n  \"schema\": 1,\n  \"status\": \"FAIL\",\n  \"exit_code\": 1,\n  \"mode\": \"staged\",\n  \"scanned_files\": 1,\n  \"findings\": [\n    {\n      \"path\": \"dir with spaces/اسم ; $x [a].txt\",\n      \"rule\": \"KNOWN_TOKEN\",\n      \"line\": 1\n    }\n  ],\n  \"errors\": []\n}\n","stderr":""}
+2026-10-12T18:26:07.5505663Z {"id":"N08_read_failure","pass":true,"exit":2,"report":{"schema":1,"status":"BLOCKED","exit_code":2,"mode":"staged","scanned_files":0,"findings":[],"errors":[{"path":"unreadable.txt","code":"GIT_READ_FAILED"}]},"noLeak":true,"index_unchanged":true,"stdout":"{\n  \"schema\": 1,\n  \"status\": \"BLOCKED\",\n  \"exit_code\": 2,\n  \"mode\": \"staged\",\n  \"scanned_files\": 0,\n  \"findings\": [],\n  \"errors\": [\n    {\n      \"path\": \"unreadable.txt\",\n      \"code\": \"GIT_READ_FAILED\"\n    }\n  ]\n}\n","stderr":""}
+2026-10-12T18:26:08.2401888Z {"id":"N09_private_key_exception","pass":true,"exit":2,"report":{"schema":1,"status":"BLOCKED","exit_code":2,"mode":"staged","scanned_files":0,"findings":[],"errors":[{"code":"RULES_INVALID"}]},"noLeak":true,"index_unchanged":true,"stdout":"{\n  \"schema\": 1,\n  \"status\": \"BLOCKED\",\n  \"exit_code\": 2,\n  \"mode\": \"staged\",\n  \"scanned_files\": 0,\n  \"findings\": [],\n  \"errors\": [\n    {\n      \"code\": \"RULES_INVALID\"\n    }\n  ]\n}\n","stderr":""}
+2026-10-12T18:26:09.0594678Z {"id":"N10_ssh_private","pass":true,"exit":1,"report":{"schema":1,"status":"FAIL","exit_code":1,"mode":"staged","scanned_files":1,"findings":[{"path":"ssh.txt","rule":"PRIVATE_KEY","line":1}],"errors":[]},"noLeak":true,"index_unchanged":true,"stdout":"{\n  \"schema\": 1,\n  \"status\": \"FAIL\",\n  \"exit_code\": 1,\n  \"mode\": \"staged\",\n  \"scanned_files\": 1,\n  \"findings\": [\n    {\n      \"path\": \"ssh.txt\",\n      \"rule\": \"PRIVATE_KEY\",\n      \"line\": 1\n    }\n  ],\n  \"errors\": []\n}\n","stderr":""}
+2026-10-12T18:26:09.9350268Z {"id":"N11_pgp_private","pass":true,"exit":1,"report":{"schema":1,"status":"FAIL","exit_code":1,"mode":"staged","scanned_files":1,"findings":[{"path":"pgp.txt","rule":"PRIVATE_KEY","line":1}],"errors":[]},"noLeak":true,"index_unchanged":true,"stdout":"{\n  \"schema\": 1,\n  \"status\": \"FAIL\",\n  \"exit_code\": 1,\n  \"mode\": \"staged\",\n  \"scanned_files\": 1,\n  \"findings\": [\n    {\n      \"path\": \"pgp.txt\",\n      \"rule\": \"PRIVATE_KEY\",\n      \"line\": 1\n    }\n  ],\n  \"errors\": []\n}\n","stderr":""}
+2026-10-12T18:26:11.1214771Z {"id":"N12_binary","pass":true,"exit":2,"report":{"schema":1,"status":"BLOCKED","exit_code":2,"mode":"staged","scanned_files":0,"findings":[],"errors":[{"path":"opaque.bin","code":"UNSUPPORTED_BINARY"}]},"noLeak":true,"index_unchanged":true,"stdout":"{\n  \"schema\": 1,\n  \"status\": \"BLOCKED\",\n  \"exit_code\": 2,\n  \"mode\": \"staged\",\n  \"scanned_files\": 0,\n  \"findings\": [],\n  \"errors\": [\n    {\n      \"path\": \"opaque.bin\",\n      \"code\": \"UNSUPPORTED_BINARY\"\n    }\n  ]\n}\n","stderr":""}
+2026-10-12T18:26:12.7770695Z {"id":"N13_large","pass":true,"exit":2,"report":{"schema":1,"status":"BLOCKED","exit_code":2,"mode":"staged","scanned_files":0,"findings":[],"errors":[{"path":"large.txt","code":"FILE_TOO_LARGE"}]},"noLeak":true,"index_unchanged":true,"stdout":"{\n  \"schema\": 1,\n  \"status\": \"BLOCKED\",\n  \"exit_code\": 2,\n  \"mode\": \"staged\",\n  \"scanned_files\": 0,\n  \"findings\": [],\n  \"errors\": [\n    {\n      \"path\": \"large.txt\",\n      \"code\": \"FILE_TOO_LARGE\"\n    }\n  ]\n}\n","stderr":""}
+2026-10-12T18:26:13.8986377Z {"id":"N14_utf16","pass":true,"exit":1,"report":{"schema":1,"status":"FAIL","exit_code":1,"mode":"staged","scanned_files":1,"findings":[{"path":"unicode.txt","rule":"KNOWN_TOKEN","line":1}],"errors":[]},"noLeak":true,"index_unchanged":true,"stdout":"{\n  \"schema\": 1,\n  \"status\": \"FAIL\",\n  \"exit_code\": 1,\n  \"mode\": \"staged\",\n  \"scanned_files\": 1,\n  \"findings\": [\n    {\n      \"path\": \"unicode.txt\",\n      \"rule\": \"KNOWN_TOKEN\",\n      \"line\": 1\n    }\n  ],\n  \"errors\": []\n}\n","stderr":""}
+2026-10-12T18:26:14.7807224Z {"id":"N15_rules_from_index","pass":true,"exit":1,"report":{"schema":1,"status":"FAIL","exit_code":1,"mode":"staged","scanned_files":1,"findings":[{"path":"secret.txt","rule":"KNOWN_TOKEN","line":1}],"errors":[]},"noLeak":true,"index_unchanged":true,"stdout":"{\n  \"schema\": 1,\n  \"status\": \"FAIL\",\n  \"exit_code\": 1,\n  \"mode\": \"staged\",\n  \"scanned_files\": 1,\n  \"findings\": [\n    {\n      \"path\": \"secret.txt\",\n      \"rule\": \"KNOWN_TOKEN\",\n      \"line\": 1\n    }\n  ],\n  \"errors\": []\n}\n","stderr":""}
+2026-10-12T18:26:15.7255672Z {"id":"N16_rename","pass":true,"exit":1,"report":{"schema":1,"status":"FAIL","exit_code":1,"mode":"staged","scanned_files":1,"findings":[{"path":"renamed file.txt","rule":"PRIVATE_KEY","line":1}],"errors":[]},"noLeak":true,"index_unchanged":true,"stdout":"{\n  \"schema\": 1,\n  \"status\": \"FAIL\",\n  \"exit_code\": 1,\n  \"mode\": \"staged\",\n  \"scanned_files\": 1,\n  \"findings\": [\n    {\n      \"path\": \"renamed file.txt\",\n      \"rule\": \"PRIVATE_KEY\",\n      \"line\": 1\n    }\n  ],\n  \"errors\": []\n}\n","stderr":""}
+2026-10-12T18:26:16.2573502Z {"id":"N17_tool_failure","pass":true,"exit":2,"report":{"schema":1,"status":"BLOCKED","exit_code":2,"mode":"staged","scanned_files":0,"findings":[],"errors":[{"code":"GIT_READ_FAILED"}]},"noLeak":true,"index_unchanged":true,"stdout":"{\n  \"schema\": 1,\n  \"status\": \"BLOCKED\",\n  \"exit_code\": 2,\n  \"mode\": \"staged\",\n  \"scanned_files\": 0,\n  \"findings\": [],\n  \"errors\": [\n    {\n      \"code\": \"GIT_READ_FAILED\"\n    }\n  ]\n}\n","stderr":""}
+2026-10-12T18:26:17.4701674Z {"id":"N18_token_in_filename","pass":true,"exit":1,"report":{"schema":1,"status":"FAIL","exit_code":1,"mode":"staged","scanned_files":1,"findings":[{"path":"<redacted>.txt","rule":"KNOWN_TOKEN","line":1}],"errors":[]},"noLeak":true,"index_unchanged":true,"stdout":"{\n  \"schema\": 1,\n  \"status\": \"FAIL\",\n  \"exit_code\": 1,\n  \"mode\": \"staged\",\n  \"scanned_files\": 1,\n  \"findings\": [\n    {\n      \"path\": \"<redacted>.txt\",\n      \"rule\": \"KNOWN_TOKEN\",\n      \"line\": 1\n    }\n  ],\n  \"errors\": []\n}\n","stderr":""}
+2026-10-12T18:26:18.3352385Z {"id":"P01_source","pass":true,"exit":0,"report":{"schema":1,"status":"PASS","exit_code":0,"mode":"staged","scanned_files":1,"findings":[],"errors":[]},"noLeak":true,"index_unchanged":true,"stdout":"{\n  \"schema\": 1,\n  \"status\": \"PASS\",\n  \"exit_code\": 0,\n  \"mode\": \"staged\",\n  \"scanned_files\": 1,\n  \"findings\": [],\n  \"errors\": []\n}\n","stderr":""}
+2026-10-12T18:26:19.4270182Z {"id":"P02_public_key","pass":true,"exit":0,"report":{"schema":1,"status":"PASS","exit_code":0,"mode":"staged","scanned_files":2,"findings":[],"errors":[]},"noLeak":true,"index_unchanged":true,"stdout":"{\n  \"schema\": 1,\n  \"status\": \"PASS\",\n  \"exit_code\": 0,\n  \"mode\": \"staged\",\n  \"scanned_files\": 2,\n  \"findings\": [],\n  \"errors\": []\n}\n","stderr":""}
+2026-10-12T18:26:20.3463035Z {"id":"P03_synthetic_id","pass":true,"exit":0,"report":{"schema":1,"status":"PASS","exit_code":0,"mode":"staged","scanned_files":1,"findings":[],"errors":[]},"noLeak":true,"index_unchanged":true,"stdout":"{\n  \"schema\": 1,\n  \"status\": \"PASS\",\n  \"exit_code\": 0,\n  \"mode\": \"staged\",\n  \"scanned_files\": 1,\n  \"findings\": [],\n  \"errors\": []\n}\n","stderr":""}
+2026-10-12T18:26:21.2145514Z {"id":"P04_deleted","pass":true,"exit":0,"report":{"schema":1,"status":"PASS","exit_code":0,"mode":"staged","scanned_files":0,"findings":[],"errors":[]},"noLeak":true,"index_unchanged":true,"stdout":"{\n  \"schema\": 1,\n  \"status\": \"PASS\",\n  \"exit_code\": 0,\n  \"mode\": \"staged\",\n  \"scanned_files\": 0,\n  \"findings\": [],\n  \"errors\": []\n}\n","stderr":""}
+2026-10-12T18:26:22.1476797Z {"id":"P05_clean_worktree_bad_staged","pass":true,"exit":0,"report":{"schema":1,"status":"PASS","exit_code":0,"mode":"staged","scanned_files":1,"findings":[],"errors":[]},"noLeak":true,"index_unchanged":true,"stdout":"{\n  \"schema\": 1,\n  \"status\": \"PASS\",\n  \"exit_code\": 0,\n  \"mode\": \"staged\",\n  \"scanned_files\": 1,\n  \"findings\": [],\n  \"errors\": []\n}\n","stderr":""}
+2026-10-12T18:26:23.0431610Z {"id":"P06_env_example","pass":true,"exit":0,"report":{"schema":1,"status":"PASS","exit_code":0,"mode":"staged","scanned_files":1,"findings":[],"errors":[]},"noLeak":true,"index_unchanged":true,"stdout":"{\n  \"schema\": 1,\n  \"status\": \"PASS\",\n  \"exit_code\": 0,\n  \"mode\": \"staged\",\n  \"scanned_files\": 1,\n  \"findings\": [],\n  \"errors\": []\n}\n","stderr":""}
+2026-10-12T18:26:23.4831629Z {"id":"H01_before_hook","pass":true,"exit":0,"note":"Before hook, commit was allowed; fixture stays only in temporary TEST repo."}
+2026-10-12T18:26:25.1649800Z {"id":"H02_hook_reject_accept","pass":true,"reject_exit":1,"accept_exit":0,"logs_redacted":true,"index_entries_unchanged":true,"note":"Git commit may refresh index metadata; direct scanner tests compare exact index bytes.","stderr":"{\n  \"schema\": 1,\n  \"status\": \"FAIL\",\n  \"exit_code\": 1,\n  \"mode\": \"staged\",\n  \"scanned_files\": 1,\n  \"findings\": [\n    {\n      \"path\": \"private.txt\",\n      \"rule\": \"PRIVATE_KEY\",\n      \"line\": 1\n    }\n  ],\n  \"errors\": []\n}\n"}
+2026-10-12T18:26:25.6467963Z {"id":"H03_existing_hook_preserved","pass":true,"exit":2}
+2026-10-12T18:26:26.4784864Z {"id":"N19_zip_token","pass":true,"exit":1,"report":{"schema":1,"status":"FAIL","exit_code":1,"mode":"staged","scanned_files":1,"findings":[{"path":"archive.zip!config.txt","rule":"KNOWN_TOKEN","line":1}],"errors":[]},"noLeak":true,"index_unchanged":true,"stdout":"{\n  \"schema\": 1,\n  \"status\": \"FAIL\",\n  \"exit_code\": 1,\n  \"mode\": \"staged\",\n  \"scanned_files\": 1,\n  \"findings\": [\n    {\n      \"path\": \"archive.zip!config.txt\",\n      \"rule\": \"KNOWN_TOKEN\",\n      \"line\": 1\n    }\n  ],\n  \"errors\": []\n}\n","stderr":""}
+2026-10-12T18:26:27.3541161Z {"id":"N20_invalid_zip","pass":true,"exit":2,"report":{"schema":1,"status":"BLOCKED","exit_code":2,"mode":"staged","scanned_files":0,"findings":[],"errors":[{"path":"broken.zip","code":"ARCHIVE_INVALID"}]},"noLeak":true,"index_unchanged":true,"stdout":"{\n  \"schema\": 1,\n  \"status\": \"BLOCKED\",\n  \"exit_code\": 2,\n  \"mode\": \"staged\",\n  \"scanned_files\": 0,\n  \"findings\": [],\n  \"errors\": [\n    {\n      \"path\": \"broken.zip\",\n      \"code\": \"ARCHIVE_INVALID\"\n    }\n  ]\n}\n","stderr":""}
+2026-10-12T18:26:28.1702903Z {"id":"N21_password_test_marker","pass":true,"exit":1,"report":{"schema":1,"status":"FAIL","exit_code":1,"mode":"staged","scanned_files":1,"findings":[{"path":"password.txt","rule":"SECRET_ASSIGNMENT","line":2}],"errors":[]},"noLeak":true,"index_unchanged":true,"stdout":"{\n  \"schema\": 1,\n  \"status\": \"FAIL\",\n  \"exit_code\": 1,\n  \"mode\": \"staged\",\n  \"scanned_files\": 1,\n  \"findings\": [\n    {\n      \"path\": \"password.txt\",\n      \"rule\": \"SECRET_ASSIGNMENT\",\n      \"line\": 2\n    }\n  ],\n  \"errors\": []\n}\n","stderr":""}
+2026-10-12T18:26:29.0258444Z {"id":"P07_safe_zip","pass":true,"exit":0,"report":{"schema":1,"status":"PASS","exit_code":0,"mode":"staged","scanned_files":1,"findings":[],"errors":[]},"noLeak":true,"index_unchanged":true,"stdout":"{\n  \"schema\": 1,\n  \"status\": \"PASS\",\n  \"exit_code\": 0,\n  \"mode\": \"staged\",\n  \"scanned_files\": 1,\n  \"findings\": [],\n  \"errors\": []\n}\n","stderr":""}
+2026-10-12T18:26:29.8664715Z {"id":"N22_jwk_before_kty_invalid_json","pass":true,"exit":1,"report":{"schema":1,"status":"FAIL","exit_code":1,"mode":"staged","scanned_files":1,"findings":[{"path":"jwk snippet.txt","rule":"PRIVATE_JWK","line":1}],"errors":[]},"noLeak":true,"index_unchanged":true,"stdout":"{\n  \"schema\": 1,\n  \"status\": \"FAIL\",\n  \"exit_code\": 1,\n  \"mode\": \"staged\",\n  \"scanned_files\": 1,\n  \"findings\": [\n    {\n      \"path\": \"jwk snippet.txt\",\n      \"rule\": \"PRIVATE_JWK\",\n      \"line\": 1\n    }\n  ],\n  \"errors\": []\n}\n","stderr":""}
+2026-10-12T18:26:30.7194171Z {"id":"N23_spaced_identity","pass":true,"exit":1,"report":{"schema":1,"status":"FAIL","exit_code":1,"mode":"staged","scanned_files":1,"findings":[{"path":"document.json","rule":"PII_IDENTIFIER","line":1}],"errors":[]},"noLeak":true,"index_unchanged":true,"stdout":"{\n  \"schema\": 1,\n  \"status\": \"FAIL\",\n  \"exit_code\": 1,\n  \"mode\": \"staged\",\n  \"scanned_files\": 1,\n  \"findings\": [\n    {\n      \"path\": \"document.json\",\n      \"rule\": \"PII_IDENTIFIER\",\n      \"line\": 1\n    }\n  ],\n  \"errors\": []\n}\n","stderr":""}
+2026-10-12T18:26:31.6148100Z {"id":"N24_orphan_zip","pass":true,"exit":2,"report":{"schema":1,"status":"BLOCKED","exit_code":2,"mode":"staged","scanned_files":0,"findings":[],"errors":[{"path":"orphan.zip","code":"ARCHIVE_LIMIT"}]},"noLeak":true,"index_unchanged":true,"stdout":"{\n  \"schema\": 1,\n  \"status\": \"BLOCKED\",\n  \"exit_code\": 2,\n  \"mode\": \"staged\",\n  \"scanned_files\": 0,\n  \"findings\": [],\n  \"errors\": [\n    {\n      \"path\": \"orphan.zip\",\n      \"code\": \"ARCHIVE_LIMIT\"\n    }\n  ]\n}\n","stderr":""}
+2026-10-12T18:26:32.4439962Z {"id":"N25_zip_comment_token","pass":true,"exit":1,"report":{"schema":1,"status":"FAIL","exit_code":1,"mode":"staged","scanned_files":1,"findings":[{"path":"comment.zip","rule":"KNOWN_TOKEN","line":1}],"errors":[]},"noLeak":true,"index_unchanged":true,"stdout":"{\n  \"schema\": 1,\n  \"status\": \"FAIL\",\n  \"exit_code\": 1,\n  \"mode\": \"staged\",\n  \"scanned_files\": 1,\n  \"findings\": [\n    {\n      \"path\": \"comment.zip\",\n      \"rule\": \"KNOWN_TOKEN\",\n      \"line\": 1\n    }\n  ],\n  \"errors\": []\n}\n","stderr":""}
+2026-10-12T18:26:32.8849698Z {"id":"H04_global_hook_preserved","pass":true,"exit":2,"existing_configuration_unchanged":true}
+2026-10-12T18:26:33.3743815Z {"id":"N26_tool_syntax_no_leak","pass":true,"exit":2,"report":{"schema":1,"status":"BLOCKED","exit_code":2,"mode":"staged","scanned_files":0,"findings":[],"errors":[{"code":"SCANNER_PROCESS_FAILED"}]},"noLeak":true,"index_unchanged":true,"stdout":"{\n  \"schema\": 1,\n  \"status\": \"BLOCKED\",\n  \"exit_code\": 2,\n  \"mode\": \"staged\",\n  \"scanned_files\": 0,\n  \"findings\": [],\n  \"errors\": [\n    {\n      \"code\": \"SCANNER_PROCESS_FAILED\"\n    }\n  ]\n}\n","stderr":""}
+2026-10-12T18:26:33.3754507Z TASK2 TESTS 37/37 PASS
+2026-10-12T18:26:33.4896498Z ##[group]Run node tools/verify-task2-integrity.mjs .
+2026-10-12T18:26:33.4897216Z [36;1mnode tools/verify-task2-integrity.mjs .[0m
+2026-10-12T18:26:33.4966230Z shell: C:\Program Files\PowerShell\7\pwsh.EXE -command ". '{0}'"
+2026-10-12T18:26:33.4966814Z ##[endgroup]
+2026-10-12T18:26:39.5056049Z {
+2026-10-12T18:26:39.5056755Z   "status": "PASS",
+2026-10-12T18:26:39.5057364Z   "platform": "win32",
+2026-10-12T18:26:39.5057944Z   "node": "v22.22.2",
+2026-10-12T18:26:39.5058651Z   "source_commit": "47ef47dfd8b1d4414b7da2dad207f8983d066704",
+2026-10-12T18:26:39.5059464Z   "source_ref": "3/merge",
+2026-10-12T18:26:39.5059986Z   "frozen_files": 18,
+2026-10-12T18:26:39.5060478Z   "frozen_match": true,
+2026-10-12T18:26:39.5061083Z   "hashes": {
+2026-10-12T18:26:39.5083170Z     "openapi/issuer-internal.v1.yaml": "a7cd144d29d1fdf97c8575b1ca25c4aa80c8ac07f1a2542616a714cd95fcd2c2",
+2026-10-12T18:26:39.5084740Z     "openapi/status-internal.v1.yaml": "9468b46a826ddc042acda634be616c61684c45243a009d25fa82b024e0d61d53",
+2026-10-12T18:26:39.5088244Z     "openapi/trust.v1.yaml": "cf971b4cccbaaf587575cdb23ab4b2a44a1226df67f899803915b3febc84ca0d",
+2026-10-12T18:26:39.5089600Z     "openapi/VALIDATION_RESULT.txt": "7d1c839aa91e6ae6967f303398d49c31fc9a7ad2d7023c3e0e4881eb3abf7692",
+2026-10-12T18:26:39.5091026Z     "openapi/verifier.v1.yaml": "1f64c21633af6b43ccc0872fe0344f5bd16f40a62108c0dd178cfddc0ce5cc50",
+2026-10-12T18:26:39.5092453Z     "README.md": "0d9f177e062678f24329533ac1a3f9e1d10d01d3926ee1cb09f1ac5756c79221",
+2026-10-12T18:26:39.5096638Z     "tests_suite/evidence/mutation_skip-chain.log": "72ca7d799a858c8f6b2a6a75a25f0e77cbf88160685751c27f933e9c672d2a10",
+2026-10-12T18:26:39.5098416Z     "tests_suite/evidence/mutation_skip-role.log": "bcd59e8078c9fa19b6ca34971d0fbd229f2ad7b801163fbc680cb7186892b3f4",
+2026-10-12T18:26:39.5099843Z     "tests_suite/evidence/results.json": "1924fc697edcbb7bc347ca40afe4b55dff370f5e91434b440fdf39fdcf366c4f",
+2026-10-12T18:26:39.5101231Z     "tests_suite/evidence/results.md": "2938b45c6a3731f47555c22e96b58a2de55597164d048332be7c2b004c7a0250",
+2026-10-12T18:26:39.5102504Z     "tests_suite/evidence/run_main.log": "64626967a81136b2f908b86abe07bb636b3654bd6c2bee973c5fabe81746dc0e",
+2026-10-12T18:26:39.5103930Z     "tests_suite/lib/harness.mjs": "146381ad4b84f2ac2cf5f2930c33faa46928e7d813f8921db575d14d3c754b98",
+2026-10-12T18:26:39.5119074Z     "tests_suite/lib/pki.mjs": "b3b72216fb1cb5a0efa7ab0449caa3d87e2e70913fab4e46c7824a7196646da1",
+2026-10-12T18:26:39.5124922Z     "tests_suite/package-lock.json": "d3af25764d221d4bdca94dc49335deca8514a21e20d0611515aa297828fbe524",
+2026-10-12T18:26:39.5131106Z     "tests_suite/package.json": "65fb8c07ae8beddee9d240fbbdc35f6dbeb62223715d233435040f82ba02a792",
+2026-10-12T18:26:39.5135226Z     "tests_suite/run.mjs": "11d92edebd95ebe0552563fc73986da4512356200b90bb2976d237a7870c1c7a",
+2026-10-12T18:26:39.5136629Z     "tests_suite/tests/core.test.mjs": "51a2c25e7af42bf0a2a8c9f68eee439742f641e18bd4720ac2dd679add098649",
+2026-10-12T18:26:39.5138045Z     "tests_suite/tests/vp.test.mjs": "8c5b88cfbb47a3fc4c62bcc2a519536a13cf1c94eeddab1f7f16abd0f44701e8"
+2026-10-12T18:26:39.5138933Z   },
+2026-10-12T18:26:39.5139354Z   "index_entries_unchanged": true,
+2026-10-12T18:26:39.5146557Z   "repository_scan": {
+2026-10-12T18:26:39.5147058Z     "schema": 1,
+2026-10-12T18:26:39.5147494Z     "status": "PASS",
+2026-10-12T18:26:39.5147934Z     "exit_code": 0,
+2026-10-12T18:26:39.5148447Z     "mode": "all-index",
+2026-10-12T18:26:39.5148933Z     "scanned_files": 54,
+2026-10-12T18:26:39.5149369Z     "findings": [],
+2026-10-12T18:26:39.5149778Z     "errors": []
+2026-10-12T18:26:39.5150137Z   }
+2026-10-12T18:26:39.5150477Z }
+2026-10-12T18:26:39.6551416Z ##[group]Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+2026-10-12T18:26:39.6551891Z with:
+2026-10-12T18:26:39.6552096Z   name: task2-windows-2022-38290803341-1
+2026-10-12T18:26:39.6552388Z   path: evidence/runs/task2-secret-scanner/
+2026-10-12T18:26:39.6552686Z   if-no-files-found: error
+2026-10-12T18:26:39.6552904Z   retention-days: 30
+2026-10-12T18:26:39.6553104Z   compression-level: 6
+2026-10-12T18:26:39.6553301Z   overwrite: false
+2026-10-12T18:26:39.6553506Z   include-hidden-files: false
+2026-10-12T18:26:39.6553747Z ##[endgroup]
+2026-10-12T18:26:39.8750660Z (node:6600) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-12T18:26:39.8752474Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-12T18:26:39.9201866Z With the provided path, there will be 10 files uploaded
+2026-10-12T18:26:39.9203014Z Artifact name is valid!
+2026-10-12T18:26:39.9203673Z Root directory input is valid!
+2026-10-12T18:26:40.3025776Z Beginning upload of artifact content to blob storage
+2026-10-12T18:26:40.3552697Z (node:6600) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-10-12T18:26:40.6304140Z Uploaded bytes 11458
+2026-10-12T18:26:40.7119387Z Finished uploading artifact content to blob storage!
+2026-10-12T18:26:40.7120961Z SHA256 digest of uploaded artifact zip is 1c79099eaad7f5a1b74c515d06f433f04aa3f180848617122ffcdea533f625fa
+2026-10-12T18:26:40.7122190Z Finalizing artifact upload
+2026-10-12T18:26:41.0101998Z Artifact task2-windows-2022-38290803341-1.zip successfully finalized. Artifact ID 11766030324
+2026-10-12T18:26:41.0105812Z Artifact task2-windows-2022-38290803341-1 has been successfully uploaded! Final size is 11458 bytes. Artifact ID is 11766030324
+2026-10-12T18:26:41.0114762Z Artifact download URL: https://github.com/luayadel2007-svg/IQDID/actions/runs/38290803341/artifacts/11766030324
+2026-10-12T18:26:41.0421653Z Post job cleanup.
+2026-10-12T18:26:41.1957832Z (node:4732) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-12T18:26:41.1959394Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-12T18:26:41.2257098Z Post job cleanup.
+2026-10-12T18:26:41.5097361Z [command]"C:\Program Files\Git\bin\git.exe" version
+2026-10-12T18:26:41.5466722Z git version 2.56.0.windows.1
+2026-10-12T18:26:41.5544614Z Temporarily overriding HOME='D:\a\_temp\98a112c9-2335-4e1c-8435-e3bbc4f44349' before making global git config changes
+2026-10-12T18:26:41.5546505Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-12T18:26:41.5556425Z [command]"C:\Program Files\Git\bin\git.exe" config --global --add safe.directory D:\a\IQDID\IQDID
+2026-10-12T18:26:41.5876158Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp core\.sshCommand
+2026-10-12T18:26:41.6203293Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :\""
+2026-10-12T18:26:42.1960127Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-12T18:26:42.2288677Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :\""
+2026-10-12T18:26:42.7735145Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-12T18:26:42.8040478Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "git config --local --show-origin --name-only --get-regexp remote.origin.url"
+2026-10-12T18:26:43.3596159Z Cleaning up orphan processes
+2026-10-12T18:26:43.3633923Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@11d5960a326750d5838078e36cf38b85af677262, actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020, actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+
