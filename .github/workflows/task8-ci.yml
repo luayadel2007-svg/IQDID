@@ -1,0 +1,43 @@
+name: TASK8 apps CI
+on:
+  push:
+    branches: [task8/monorepo-demo]
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: task8-ci-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  verify:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-24.04
+            chrome: /usr/bin/google-chrome
+          - os: windows-2022
+            chrome: C:\Program Files\Google\Chrome\Application\chrome.exe
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 20
+    steps:
+      - name: Checkout without persisted credentials
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - name: Node 22 LTS
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '22'
+      - name: Clean install, typecheck, lint, tests, build, browser E2E (with evidence)
+        env:
+          CHROMIUM_PATH: ${{ matrix.chrome }}
+        run: npm run evidence -- --ci
+      - name: Keep evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: task8-evidence-${{ matrix.os }}-${{ github.run_id }}
+          path: evidence/task8
+          retention-days: 30

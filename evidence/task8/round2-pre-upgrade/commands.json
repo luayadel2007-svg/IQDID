@@ -1,0 +1,58 @@
+{
+ "at": "2026-10-14T10:38:07.088Z",
+ "versions": {
+  "node": "v22.22.0",
+  "npm": "10.9.4",
+  "platform": "linux x64"
+ },
+ "steps": [
+  {
+   "id": "npm-ci",
+   "command": "npm ci --no-audit --no-fund",
+   "exit": 0,
+   "ms": 6589,
+   "log": "evidence/task8/npm-ci.log",
+   "logSha256": "955aa5f1329b4d5350076d6ed932405197ae08397f0ce1bf13942c6ba61683a4"
+  },
+  {
+   "id": "typecheck",
+   "command": "npm run typecheck",
+   "exit": 0,
+   "ms": 14070,
+   "log": "evidence/task8/typecheck.log",
+   "logSha256": "c9a5e459c240e38901d56d9e0845eded12d657596e1e6f48d8b4dfb5875f3eb5"
+  },
+  {
+   "id": "lint",
+   "command": "npm run lint",
+   "exit": 0,
+   "ms": 2341,
+   "log": "evidence/task8/lint.log",
+   "logSha256": "9adbb5f7e17548c8344be8ef222d3401131e137ae2c08e95a1cdd96ad7e07a6b"
+  },
+  {
+   "id": "test",
+   "command": "npm exec -- vitest run --reporter=default --reporter=json --outputFile.json=evidence/task8/vitest-results.json",
+   "exit": 0,
+   "ms": 5972,
+   "log": "evidence/task8/test.log",
+   "logSha256": "e6719b84e8c541549dbca461b71affef1f6b169a92b700ad7bef8a9df12328d8"
+  },
+  {
+   "id": "build",
+   "command": "npm run build",
+   "exit": 0,
+   "ms": 4626,
+   "log": "evidence/task8/build.log",
+   "logSha256": "84d1178ae68e5618deecbba80b1a1021c65d189d4a98e64e90e2e933328cd8fe"
+  },
+  {
+   "id": "e2e",
+   "command": "npm run e2e",
+   "exit": 0,
+   "ms": 25438,
+   "log": "evidence/task8/e2e.log",
+   "logSha256": "559dfdd406980c6d9e54a80973e526b02494ea0ac69be96bd9abc13d80179ce9"
+  }
+ ]
+}
