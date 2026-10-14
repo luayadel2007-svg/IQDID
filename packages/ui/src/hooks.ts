@@ -38,35 +38,38 @@ export interface AsyncState<T> {
   readonly reload: () => void;
 }
 
+interface Snapshot<T> {
+  readonly key: readonly unknown[];
+  readonly data: T | undefined;
+  readonly error: unknown;
+  readonly settled: boolean;
+}
+
+const sameKey = (a: readonly unknown[], b: readonly unknown[]): boolean => a.length === b.length && a.every((v, i) => Object.is(v, b[i]));
+
 /**
  * Runs an abortable async loader; re-runs when `deps` change, optionally polls.
- * Previous in-flight requests are cancelled on re-run and unmount.
+ * Results are tied to the deps that produced them, so a deps change never
+ * renders the previous deps' data (no stale flash). In-flight requests are
+ * cancelled on re-run and unmount; polling refreshes keep the current data.
  */
 export function useAsync<T>(loader: (signal: AbortSignal) => Promise<T>, deps: readonly unknown[], options: { pollMs?: number } = {}): AsyncState<T> {
-  const [data, setData] = useState<T | undefined>(undefined);
-  const [error, setError] = useState<unknown>(null);
-  const [loading, setLoading] = useState(true);
   const [tick, setTick] = useState(0);
+  const key = [...deps, tick];
+  const [snap, setSnap] = useState<Snapshot<T>>({ key, data: undefined, error: null, settled: false });
   const loaderRef = useRef(loader);
   loaderRef.current = loader;
   const reload = useCallback(() => setTick((n) => n + 1), []);
 
   useEffect(() => {
     const controller = new AbortController();
-    let first = true;
+    const runKey = key;
     const run = async (): Promise<void> => {
-      if (first) setLoading(true);
       try {
         const value = await loaderRef.current(controller.signal);
-        if (!controller.signal.aborted) {
-          setData(value);
-          setError(null);
-        }
+        if (!controller.signal.aborted) setSnap({ key: runKey, data: value, error: null, settled: true });
       } catch (e) {
-        if (!controller.signal.aborted) setError(e);
-      } finally {
-        if (!controller.signal.aborted && first) setLoading(false);
-        first = false;
+        if (!controller.signal.aborted) setSnap((prev) => ({ key: runKey, data: sameKey(prev.key, runKey) ? prev.data : undefined, error: e, settled: true }));
       }
     };
     void run();
@@ -76,9 +79,10 @@ export function useAsync<T>(loader: (signal: AbortSignal) => Promise<T>, deps: r
       if (timer) clearInterval(timer);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [...deps, tick, options.pollMs]);
+  }, [...key, options.pollMs]);
 
-  return { data, error, loading, reload };
+  const current = sameKey(snap.key, key) && snap.settled;
+  return { data: current ? snap.data : undefined, error: current ? snap.error : null, loading: !current, reload };
 }
 
 /** Seconds remaining until an ISO timestamp, updated every second. */

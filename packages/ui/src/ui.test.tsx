@@ -80,3 +80,23 @@ describe('design tokens meet WCAG 2.2 AA contrast (4.5:1 for text)', () => {
     }
   }
 });
+
+describe('useAsync', () => {
+  it('never renders data from previous deps while the new deps load', async () => {
+    const { useAsync } = await import('./hooks.ts');
+    const seen: string[] = [];
+    function Probe({ id }: { id: string }) {
+      const { data, loading } = useAsync(async () => {
+        await new Promise((r) => setTimeout(r, 20));
+        return `data-${id}`;
+      }, [id]);
+      seen.push(loading ? `loading:${id}` : `${String(data)}@${id}`);
+      return <span>{loading ? 'loading' : data}</span>;
+    }
+    const { rerender } = render(<Probe id="a" />);
+    expect(await screen.findByText('data-a')).toBeInTheDocument();
+    rerender(<Probe id="b" />);
+    expect(await screen.findByText('data-b')).toBeInTheDocument();
+    expect(seen).not.toContain('data-a@b');
+  });
+});
