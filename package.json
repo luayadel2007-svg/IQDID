@@ -1,0 +1,50 @@
+{
+  "name": "iqdid-prototype",
+  "private": true,
+  "version": "0.8.0",
+  "description": "IQDID Prototype — TEST ONLY. Synthetic data only. Not affiliated with any government body.",
+  "type": "module",
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "engines": {
+    "node": ">=22.18.0"
+  },
+  "scripts": {
+    "dev": "node scripts/dev.mjs",
+    "dev:mock": "node packages/mock-services/src/server-main.ts",
+    "dev:wallet": "npm run dev -w @iqdid/wallet-web",
+    "dev:verifier": "npm run dev -w @iqdid/verifier-web",
+    "typecheck": "npm run typecheck --workspaces --if-present && tsc -p test/tsconfig.json",
+    "lint": "eslint . --max-warnings=0",
+    "test": "vitest run",
+    "build": "npm run build -w @iqdid/wallet-web -w @iqdid/verifier-web",
+    "preview": "node scripts/dev.mjs --preview",
+    "e2e": "node scripts/e2e.mjs",
+    "verify": "npm run typecheck && npm run lint && npm test && npm run build",
+    "evidence": "node scripts/evidence.mjs"
+  },
+  "devDependencies": {
+    "@eslint/js": "9.36.0",
+    "@testing-library/jest-dom": "6.8.0",
+    "@testing-library/react": "16.3.3",
+    "@testing-library/user-event": "14.6.8",
+    "@types/node": "22.18.13",
+    "@types/react": "19.1.17",
+    "@types/react-dom": "19.1.11",
+    "@vitejs/plugin-react": "5.0.4",
+    "eslint": "9.36.0",
+    "eslint-plugin-jsx-a11y": "6.10.2",
+    "eslint-plugin-react-hooks": "5.2.0",
+    "globals": "16.4.0",
+    "jsdom": "26.1.0",
+    "playwright-core": "1.56.1",
+    "react": "19.1.9",
+    "react-dom": "19.1.9",
+    "typescript": "5.9.3",
+    "typescript-eslint": "8.44.1",
+    "vite": "7.1.12",
+    "vitest": "3.2.7"
+  }
+}

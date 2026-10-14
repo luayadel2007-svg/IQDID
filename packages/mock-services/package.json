@@ -1,0 +1,12 @@
+{
+  "name": "@iqdid/mock-services",
+  "version": "0.8.0",
+  "private": true,
+  "type": "module",
+  "exports": { ".": "./src/index.ts" },
+  "scripts": {
+    "start": "node src/server-main.ts",
+    "typecheck": "tsc -p tsconfig.json"
+  },
+  "dependencies": { "@iqdid/shared-types": "0.8.0" }
+}

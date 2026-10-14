@@ -1,0 +1,69 @@
+{
+ "at": "2026-10-14T10:34:55.546Z",
+ "ttlMs": 15000,
+ "results": [
+  {
+   "name": "both apps load as Arabic RTL with the demo banner",
+   "outcome": "PASS",
+   "ms": 653
+  },
+  {
+   "name": "keyboard: first Tab reaches the skip link",
+   "outcome": "PASS",
+   "ms": 12
+  },
+  {
+   "name": "verifier creates an age request (org A)",
+   "outcome": "PASS",
+   "ms": 691
+  },
+  {
+   "name": "request appears in the wallet (other browser context) with org, purpose and fields",
+   "outcome": "PASS",
+   "ms": 512
+  },
+  {
+   "name": "wallet approves → verifier updates live to DEMO_ACCEPTED (no reload)",
+   "outcome": "PASS",
+   "ms": 1344
+  },
+  {
+   "name": "identity request → wallet rejects → verifier shows rejection without values",
+   "outcome": "FAIL",
+   "ms": 619,
+   "error": "locator.click: Error: strict mode violation: getByRole('link', { name: /الطلبات/ }) resolved to 2 elements:\n    1) <a href=\"/requests\" data-discover=\"true\">العودة إلى الطلبات</a> aka getByRole('link', { name: 'العودة إلى الطلبات' })\n    2) <a class=\"active\" href=\"/requests\" aria-current=\"page\" data-discover=\"true\">…</a> aka getByRole('link', { name: 'الطلبات', exact: true })\n\nCall log:\n\u001b[2m  - waiting for getByRole('link', { name: /الطلبات/ })\u001b[22m\n"
+  },
+  {
+   "name": "unanswered request expires after 15s on both sides",
+   "outcome": "FAIL",
+   "ms": 15722,
+   "error": "locator.click: Error: strict mode violation: getByRole('link', { name: /الطلبات/ }) resolved to 2 elements:\n    1) <a href=\"/requests\" data-discover=\"true\">العودة إلى الطلبات</a> aka getByRole('link', { name: 'العودة إلى الطلبات' })\n    2) <a class=\"active\" href=\"/requests\" aria-current=\"page\" data-discover=\"true\">…</a> aka getByRole('link', { name: 'الطلبات', exact: true })\n\nCall log:\n\u001b[2m  - waiting for getByRole('link', { name: /الطلبات/ })\u001b[22m\n"
+  },
+  {
+   "name": "activity logs on both sides record the decisions",
+   "outcome": "FAIL",
+   "ms": 30220,
+   "error": "locator.waitFor: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByText(/رفض المواطن التجريبي طلب/).first() to be visible\u001b[22m\n"
+  },
+  {
+   "name": "organisation B sees none of organisation A sessions",
+   "outcome": "PASS",
+   "ms": 229
+  },
+  {
+   "name": "dark mode toggles theme and colours in both apps",
+   "outcome": "PASS",
+   "ms": 228
+  },
+  {
+   "name": "demo reset clears data for both apps",
+   "outcome": "PASS",
+   "ms": 1666
+  },
+  {
+   "name": "no browser console errors",
+   "outcome": "PASS",
+   "ms": 1
+  }
+ ]
+}

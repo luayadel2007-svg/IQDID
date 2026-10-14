@@ -1,0 +1,5 @@
+M1-no-expiry-check | exit=1 | Tests  2 failed | KILLED
+M2-allow-redecide | exit=1 | Tests  3 failed | KILLED
+M3-accept-inactive-credential | exit=1 | Tests  1 failed | KILLED
+M4-cross-org-read | exit=1 | Tests  3 failed | KILLED
+M5-disclose-on-reject | exit=1 | Tests  1 failed | KILLED
