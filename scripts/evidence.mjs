@@ -28,6 +28,7 @@ for (const [id, args] of steps) {
   await writeFile(path.join(out, `${id}.log`), log);
   rows.push({ id, command: `npm ${args.join(' ')}`, exit: r.status, ms: Date.now() - started, log: `evidence/task8/${id}.log`, logSha256: createHash('sha256').update(log).digest('hex') });
   console.log(`${id.padEnd(10)} exit=${r.status} (${Date.now() - started} ms)`);
+  if (r.status !== 0) console.log(`--- ${id} output (tail) ---\n${`${r.stdout}\n${r.stderr}`.trim().split('\n').slice(-40).join('\n')}\n---`);
 }
 const versions = {
   node: process.version,
