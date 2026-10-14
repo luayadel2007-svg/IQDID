@@ -4,13 +4,13 @@
 |---|---|
 | Date | 2026-10-14 |
 | Branch | `task8/monorepo-demo` (from `main` `879a262`; does not touch task1/2/3 or the TASK-6 branch) |
-| Commits | `0b24671` (workspace + apps + tests), `ed283b2` (dependency patches, favicon, CI output), report commit = the commit containing this file |
-| PR | Draft — see the PR linked from the branch (not merged) |
+| Commits | `0b24671` (workspace + apps + tests), `ed283b2` (dependency patches, favicon, CI output), `3bf1ca2` (useAsync stale-data fix), docs commit = the commit containing this file |
+| PR | [luayadel2007-svg/IQDID#4](https://github.com/luayadel2007-svg/IQDID/pull/4) — Draft, not merged |
 | Classification | TEST ONLY — synthetic data — not affiliated with any government body |
 
 ## 1. Verdict
 
-**TASK-8 local acceptance: PASS** (all criteria in §15 of the task met with evidence on Linux). **CI on GitHub (Ubuntu + Windows): see `TASK8_Test_Evidence.md` §3** — the first CI run failed only at the browser E2E step on both runners; status of the follow-up run is recorded there. G1a/G1b remain **NOT PASSED**; no owner decision changed.
+**TASK-8: PASS** — every acceptance criterion in §15 of the task is met with evidence, locally (Linux) and in CI on **Ubuntu 24.04 and Windows Server 2022** (run 38552444640 on `3bf1ca2`: install, typecheck, lint, 58 tests, build and 12/12 browser E2E all green). Two earlier CI runs failed and are kept as evidence; the second exposed a real UI bug that is now fixed with a regression test. G1a/G1b remain **NOT PASSED**; no owner decision changed.
 
 ## 2. What was built
 
@@ -65,10 +65,10 @@ Screenshots: `evidence/task8/e2e/screenshots/` (12).
 |---|---|
 | typecheck (6 workspaces + tests) | exit 0 |
 | lint (`--max-warnings=0`) | exit 0 |
-| Vitest | 57/57 (26 node + 31 jsdom, incl. 9 cross-app tests against a real server) |
+| Vitest | 58/58 (26 node + 32 jsdom, incl. 9 cross-app tests against a real server); cross-app suite 10/10 repeated runs |
 | Build (2 apps) | exit 0 |
 | Browser E2E | 12/12 steps |
-| Control mutations | 5/5 detected |
+| Control mutations | 6/6 detected |
 | npm audit | 0 vulnerabilities (all deps and runtime-only) |
 | Secret / personal-data scan | 0 findings |
 
@@ -81,14 +81,14 @@ Earlier failing rounds are kept: E2E round 1 (9/12, ambiguous selector in the te
 | 1 | Working applications | 1 | Both run (dev and production preview), every screen reachable, browser-verified |
 | 2 | Cross-app integration | 1 | One server, separate browser contexts, live update without reload, tested in jsdom and browser |
 | 3 | Code structure | 1 | Clear package boundaries; gateways reused by both apps; no global state beyond explicit context |
-| 4 | UI quality | 1 | Consistent tokens, RTL, light/dark, mobile/desktop layouts (screenshots) |
+| 4 | UI quality | **0.5** | Consistent tokens, RTL, light/dark, mobile/desktop layouts (screenshots); but no screen-reader/axe audit and no independent design review yet (L-07) |
 | 5 | UX functionality | 1 | No dead buttons; loading/empty/error/expired/cancelled states; confirmations; reset |
 | 6 | Type safety | 1 | strict + `noUncheckedIndexedAccess` + runtime guards at the network boundary |
 | 7 | Testing | 1 | unit + integration + browser E2E + mutations, failing rounds kept |
-| 8 | Runtime reproducibility | **0.5** | Locally reproducible from `npm ci`; Windows CI passed install/typecheck/lint/tests/build, but browser E2E on CI failed in the first run (see evidence §3) |
+| 8 | Runtime reproducibility | 1 | `npm ci` → full pipeline green locally and on Ubuntu + Windows CI; evidence runner records exit codes and log hashes |
 | 9 | Documentation | 1 | README, DEVELOPMENT (API, env, Windows), report, evidence, limitations |
 | 10 | TASK-9 readiness | 1 | Wallet screens, gateway and shell ready to extend; real transport seam defined |
-| | **Total** | **9.5 / 10** | Updated in §1/evidence if CI changes |
+| | **Total** | **9.5 / 10** | |
 
 ## 8. Next-task readiness (TASK-9)
 
