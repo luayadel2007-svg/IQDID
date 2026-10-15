@@ -66,7 +66,8 @@ it('useOnline catches a connectivity change that happens before its listener is 
   let reads = 0;
   const spy = vi.spyOn(navigator, 'onLine', 'get').mockImplementation(() => reads++ === 0);
   function Probe() { return <span>{useOnline() ? 'online' : 'offline'}</span>; }
-  const { container } = render(<Probe />);
-  expect(container.textContent).toBe('offline');
-  spy.mockRestore();
+  try {
+    const { container } = render(<Probe />);
+    expect(container.textContent).toBe('offline');
+  } finally { spy.mockRestore(); }
 });

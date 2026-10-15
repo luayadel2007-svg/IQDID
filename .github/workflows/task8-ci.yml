@@ -47,5 +47,4 @@ jobs:
           path: |
             evidence/modernization
             evidence/task9/wallet-e2e
-            evidence/task8-9-recovery/pdf-audit
           retention-days: 30

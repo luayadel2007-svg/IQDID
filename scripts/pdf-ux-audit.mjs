@@ -1,13 +1,13 @@
 // Measures the pasted «معايير تجميل التطبيقات الحكومية» criteria in a real browser on the
 // production builds (TEST ONLY, synthetic data) and captures screenshots at 320/390/768/1366 px
 // and 200 % text. Usage: npm run build && node scripts/pdf-ux-audit.mjs
-// Evidence → evidence/<IQDID_PDF_AUDIT_DIR | task8-9-recovery/pdf-audit>/ (audit.json + PNGs)
+// Evidence → evidence/<IQDID_PDF_AUDIT_DIR | modernization/pdf-audit>/ (audit.json + PNGs)
 import { chromium } from 'playwright-core';
 import { mkdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { startStack } from './stack.mjs';
 
-const out = path.resolve('evidence', process.env.IQDID_PDF_AUDIT_DIR ?? 'task8-9-recovery/pdf-audit');
+const out = path.resolve('evidence', process.env.IQDID_PDF_AUDIT_DIR ?? 'modernization/pdf-audit');
 await mkdir(out, { recursive: true });
 const stack = startStack({ preview: true, onLine: () => {} });
 const checks = [];
@@ -49,9 +49,25 @@ try {
     record(app, 'P3', 'functional motion 200–400 ms (§5)', m.durations.every((d) => d >= 200 && d <= 400), { durationsMs: m.durations });
     record(app, 'P4', 'consistent icon size (§4.4)', m.navIcons.length === 1, { navIconSizes: m.navIcons });
     record(app, 'P5', 'status not by colour alone (§5.3)', m.badges === 0, { emptyBadges: m.badges });
-    record(app, 'P6', 'button press feedback (§5.5)', m.activeFeedback, { activeRule: m.activeFeedback });
-    record(app, 'P7', 'skeleton loading, not a bare spinner (§5.2)', m.skeletonCss, { shimmerSkeleton: m.skeletonCss });
-    record(app, 'P8', 'core services ≤ 3 clicks (§3)', m.navLinks >= 5, { servicesInPrimaryNav: m.navLinks, clicksFromHome: 1 });
+    record(app, 'P6', 'button press feedback (§5.5) — stylesheet rule present', m.activeFeedback, { activeRule: m.activeFeedback });
+    record(app, 'P7', 'skeleton loading, not a bare spinner (§5.2) — stylesheet rule present', m.skeletonCss, { shimmerSkeleton: m.skeletonCss });
+    // Measured: from home, each primary service is opened with ONE click and shows its own h1.
+    const reached = [];
+    const labels = await p.locator('nav[aria-label="التنقل الرئيسي"] a').allTextContents();
+    for (const label of labels) {
+      await open('/');
+      const before = await p.getByRole('heading', { level: 1 }).first().textContent();
+      const link = p.getByRole('navigation', { name: 'التنقل الرئيسي' }).getByRole('link', { name: label.trim(), exact: true });
+      const href = await link.getAttribute('href');
+      await link.click();
+      await p.waitForURL((u) => u.pathname === href);
+      await p.getByRole('heading', { level: 1 }).first().waitFor();
+      if (href !== '/') await p.waitForFunction((b) => document.querySelector('h1')?.textContent !== b, before, { timeout: 5000 }).catch(() => undefined);
+      const after = await p.getByRole('heading', { level: 1 }).first().textContent();
+      reached.push({ service: label.trim(), clicks: 1, heading: after, changed: label.trim() === labels[0]?.trim() || after !== before });
+    }
+    record(app, 'P8', 'core services ≤ 3 clicks (§3) — measured', reached.length >= 5 && reached.every((r) => r.changed), { reached });
+    await open('/');
 
     await p.evaluate(() => window.scrollTo(0, 600));
     await p.waitForTimeout(200);
@@ -69,8 +85,8 @@ try {
     await p.getByRole('button', { name: 'تلقائي', exact: true }).click();
     record(app, 'P11', 'light and dark are complete themes (§6.4, §7.1)', themes.light[0] !== themes.dark[0] && themes.light[1] !== themes.dark[1], themes);
     await p.emulateMedia({ reducedMotion: 'reduce' });
-    const rm = await p.locator('.btn').first().evaluate((e) => getComputedStyle(e).transitionDuration);
-    record(app, 'P12', 'motion can be reduced (§5)', rm === '0s', { buttonTransitionUnderReduce: rm });
+    const rm = await p.evaluate(() => { const all = [...document.querySelectorAll('body *')]; return { elements: all.length, moving: all.filter((e) => { const cs = getComputedStyle(e); return cs.transitionDuration.split(',').some((d) => parseFloat(d) > 0) || (cs.animationName !== 'none' && parseFloat(cs.animationDuration) > 0); }).length }; });
+    record(app, 'P12', 'motion can be reduced (§5) — every element', rm.moving === 0, rm);
     await p.emulateMedia({ reducedMotion: 'no-preference' });
 
     if (app === 'wallet') {

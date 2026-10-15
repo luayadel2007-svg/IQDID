@@ -1,0 +1,65 @@
+Guard v2 (hardened after independent review). Each case breaks one thing in the working tree, runs the guard, restores.
+## N1 delete test/wallet-premium.test.tsx
+COVERAGE GUARD: FAIL
+- missing required file test/wallet-premium.test.tsx
+exit=1
+## N2 remove browser-wallet step
+COVERAGE GUARD: FAIL
+- verify step "browser-wallet" missing
+exit=1
+## N3a browser-wallet optional via false
+COVERAGE GUARD: FAIL
+- verify step "browser-wallet" must stay required (no 4th element)
+exit=1
+## N3b browser-wallet optional via 0 (review bypass c)
+COVERAGE GUARD: FAIL
+- verify step "browser-wallet" must stay required (no 4th element)
+exit=1
+## N3c lint step commented out (review bypass b)
+COVERAGE GUARD: FAIL
+- verify step "lint" missing
+exit=1
+## N3d verify no longer fails on required failure
+COVERAGE GUARD: FAIL
+- verify must exit non-zero when a required step fails
+exit=1
+## N4a continue-on-error
+COVERAGE GUARD: FAIL
+- workflow must not use continue-on-error
+exit=1
+## N4b || true (review bypass d)
+COVERAGE GUARD: FAIL
+- workflow must run exactly "run: npm run modernization:verify" (no || true, no chaining)
+exit=1
+## N4c conditional verify step
+COVERAGE GUARD: FAIL
+- the verify step must not be conditional
+exit=1
+## N5a stale results (since=now+1min)
+COVERAGE GUARD: FAIL
+- vitest report is stale (not from this run)
+- e2e: results are stale (not produced by this run)
+- ux: results are stale (not produced by this run)
+- wallet: results are stale (not produced by this run)
+- pdf: results are stale (not produced by this run)
+exit=1
+## N5b since=0 (review: staleness disabled)
+COVERAGE GUARD: FAIL
+- guard must be given this run's start time
+exit=1
+## N6a fewer passing tests than floor
+COVERAGE GUARD: FAIL
+- vitest passed 73 tests, floor is 89
+exit=1
+## N6b 10 tests skipped, total unchanged (review bypass a)
+COVERAGE GUARD: FAIL
+- vitest passed 79 tests, floor is 89
+- skipped/todo tests are not allowed (pending 10, todo 0)
+exit=1
+## N6c todo tests
+COVERAGE GUARD: FAIL
+- skipped/todo tests are not allowed (pending 0, todo 1)
+exit=1
+## P1 intact tree
+COVERAGE GUARD: PASS (9 files, 11 required steps, floors met)
+exit=0
