@@ -45,7 +45,7 @@ export function VerifierApp({ gateway, pollMs = 1500 }: { gateway: VerifierGatew
             <Route path="/results" element={<ResultsPage />} />
             <Route path="/activity" element={<ActivityPage />} />
             <Route path="/settings" element={<SettingsPage />} />
-            <Route path="*" element={<EmptyState icon="🧭" title="الصفحة غير موجودة" />} />
+            <Route path="*" element={<EmptyState icon="search" title="الصفحة غير موجودة" />} />
           </Routes></OrgBoundary>
         </AppShell>
       </PollContext.Provider>

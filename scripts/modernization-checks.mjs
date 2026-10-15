@@ -2,7 +2,7 @@
 import { spawnSync } from 'node:child_process';
 import { mkdirSync, writeFileSync, readFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
-const out = 'evidence/modernization/final';
+const out = `evidence/${process.env.IQDID_VERIFY_DIR ?? 'modernization/final'}`;
 mkdirSync(out, { recursive: true });
 const npm = process.env.npm_execpath;
 if (!npm) throw new Error('Run npm run modernization:verify');

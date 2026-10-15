@@ -5,7 +5,7 @@ import path from 'node:path';
 import { startStack } from './stack.mjs';
 const require = createRequire(import.meta.url);
 const axe = await readFile(require.resolve('axe-core/axe.min.js'), 'utf8');
-const out = path.resolve('evidence/modernization/ux-final');
+const out = path.resolve('evidence', process.env.IQDID_UX_EVIDENCE_DIR ?? 'modernization/ux-final');
 await mkdir(out, { recursive: true });
 const lines = [], results = [];
 const stack = startStack({ preview: true, onLine: (l) => lines.push(l) });
@@ -51,6 +51,8 @@ try {
       await p.getByLabel('حجم النص').selectOption('normal');
       await p.getByLabel('تقليل الشفافية والتمويه').uncheck();
       await step(`${app}: axe WCAG 2.2 AA settings (${mode}) including contrast`, async () => {
+        // Theme changes animate colours; audit the settled state, not a mid-transition frame.
+        await p.waitForFunction(() => document.getAnimations().every((a) => a.playState !== 'running'));
         await p.addScriptTag({ content: axe });
         const report = await p.evaluate(async () => window.axe.run(document, { runOnly: { type: 'tag', values: ['wcag2a', 'wcag2aa', 'wcag21aa', 'wcag22aa'] } }));
         await writeFile(path.join(out, `${app}-${mode}-axe.json`), JSON.stringify(report, null, 2));
@@ -61,7 +63,7 @@ try {
       const response = await fetch(`${stack.urls.api}/demo-api/v1/verifier/sessions`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ organizationId: 'org-test-a', templateId: 'AGE_OVER_18', purpose: 'اختبار معاينة البيانات' }) });
       const session = await response.json();
       check(typeof session.id === 'string', 'could not create QA session');
-      const routes = app === 'wallet' ? ['', 'card', 'credentials/cred-test-001', 'requests', `requests/${session.id}`, 'activity'] : ['', 'new', 'sessions', `sessions/${session.id}`, 'results', 'activity'];
+      const routes = app === 'wallet' ? ['', 'welcome', 'card', 'credentials', 'credentials/cred-test-001', 'credentials/cred-test-004', 'requests', `requests/${session.id}`, `requests/${session.id}/disclosure`, 'qr', 'activity', 'notifications', 'settings', 'help'] : ['', 'new', 'sessions', `sessions/${session.id}`, 'results', 'activity'];
       const audits = [];
       for (const mode of ['light', 'dark']) {
         for (const route of routes) {
@@ -70,7 +72,9 @@ try {
           await p.waitForFunction(() => !document.querySelector('.skeleton'));
           await p.evaluate((theme) => { localStorage.setItem('iqdid-demo-theme', theme); window.dispatchEvent(new Event('storage')); }, mode);
           await p.waitForFunction((theme) => document.documentElement.dataset.theme === theme, mode);
-          await p.addScriptTag({ content: axe });
+          // Theme changes animate colours; audit the settled state, not a mid-transition frame.
+        await p.waitForFunction(() => document.getAnimations().every((a) => a.playState !== 'running'));
+        await p.addScriptTag({ content: axe });
           const report = await p.evaluate(async () => window.axe.run(document, { runOnly: { type: 'tag', values: ['wcag2a', 'wcag2aa', 'wcag21aa', 'wcag22aa'] } }));
           audits.push({ route, mode, violations: report.violations, incomplete: report.incomplete.map((v) => ({ id: v.id, targets: v.nodes.map((n) => n.target) })) });
         }
@@ -96,10 +100,10 @@ try {
       await p.evaluate(() => { document.documentElement.style.fontSize = ''; });
     });
     await step(`${app}: keyboard controls and visible skip-link target`, async () => {
-      await p.goto(url); await p.keyboard.press('Tab');
+      await p.goto(url); await p.getByRole('heading', { level: 1 }).waitFor(); await p.keyboard.press('Tab');
       check((await p.evaluate(() => document.activeElement?.textContent ?? '')).includes('تخطَّ'), 'skip not first');
       await p.keyboard.press('Enter');
-      check(await p.evaluate(() => document.activeElement?.id) === 'main', 'skip not focusing main');
+      check(await p.waitForFunction(() => document.activeElement?.id === 'main', null, { timeout: 3000 }).then(() => true, () => false), 'skip not focusing main');
     });
     await step(`${app}: offline API error is visible, retry offered`, async () => {
       await ctx.route('**/demo-api/v1/**', (route) => route.abort('internetdisconnected'));

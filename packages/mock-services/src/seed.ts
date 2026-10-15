@@ -41,3 +41,26 @@ export function seedCredential(now: number): DemoCredentialSummary {
     ],
   };
 }
+
+/** Extra synthetic credentials shown in the wallet only; they never answer verification requests. */
+export function seedExtraCredentials(now: number): DemoCredentialSummary[] {
+  const day = 86_400_000;
+  const base = { holderRef: DEMO_HOLDER_REF, holderDisplayName: 'مواطن تجريبي' } as const;
+  return [
+    {
+      ...base, id: 'cred-test-002', type: 'DEMO_DRIVING_LICENCE', title: 'إجازة سوق (تجريبية)', issuerName: 'جهة مرور تجريبية (محاكاة)', status: 'ACTIVE',
+      issuedAt: new Date(now - 400 * day).toISOString(), expiresAt: new Date(now + 5 * day).toISOString(),
+      claims: [{ key: 'licence_class', label: 'فئة الإجازة', value: 'خصوصي (تجريبي)' }, { key: 'licence_number', label: 'رقم الإجازة التجريبي', value: 'TEST-DL-0002' }],
+    },
+    {
+      ...base, id: 'cred-test-003', type: 'DEMO_RESIDENCE_CARD', title: 'بطاقة السكن (تجريبية)', issuerName: 'جهة إصدار تجريبية (محاكاة)', status: 'ACTIVE',
+      issuedAt: new Date(now - 30 * day).toISOString(), expiresAt: new Date(now + 700 * day).toISOString(),
+      claims: [{ key: 'governorate', label: 'المحافظة', value: 'محافظة تجريبية' }, { key: 'residence_ref', label: 'مرجع السكن التجريبي', value: 'TEST-RES-0003' }],
+    },
+    {
+      ...base, id: 'cred-test-004', type: 'DEMO_HEALTH_CARD', title: 'بطاقة التأمين الصحي (تجريبية)', issuerName: 'جهة صحية تجريبية (محاكاة)', status: 'SUSPENDED',
+      issuedAt: new Date(now - 200 * day).toISOString(), expiresAt: new Date(now + 165 * day).toISOString(),
+      claims: [{ key: 'plan', label: 'الخطة', value: 'أساسية (تجريبية)' }, { key: 'member_ref', label: 'رقم العضوية التجريبي', value: 'TEST-HC-0004' }],
+    },
+  ];
+}

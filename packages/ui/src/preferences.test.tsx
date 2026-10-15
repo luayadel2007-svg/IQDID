@@ -38,3 +38,25 @@ it('pins a route and restores it without saving free-text or personal data', asy
   view.unmount(); render(<FavoriteShortcut app="wallet" options={options} />);
   expect(screen.getByLabelText('خدمتي المفضلة')).toHaveValue('/requests');
 });
+
+describe('design system v2 preferences and primitives', () => {
+  it('reads legacy v1 appearance storage without motion and persists the reduced-motion switch', async () => {
+    localStorage.setItem('iqdid-appearance-v1', JSON.stringify({ text: 'large', glass: false }));
+    const view = render(<AppearanceSettings />);
+    expect(screen.getByLabelText('حجم النص')).toHaveValue('large');
+    expect(screen.getByRole('switch', { name: 'تقليل الشفافية والتمويه' })).toBeChecked();
+    const motion = screen.getByRole('switch', { name: 'تقليل الحركة' });
+    expect(motion).not.toBeChecked();
+    await userEvent.click(motion);
+    expect(document.documentElement.dataset.motion).toBe('reduced');
+    view.unmount(); render(<AppearanceSettings />);
+    expect(screen.getByRole('switch', { name: 'تقليل الحركة' })).toBeChecked();
+    expect(JSON.parse(localStorage.getItem('iqdid-appearance-v1') ?? '{}')).toEqual({ text: 'large', glass: false, motion: 'reduced' });
+  });
+  it('ignores tampered motion values', () => {
+    localStorage.setItem('iqdid-appearance-v1', JSON.stringify({ motion: '<script>' }));
+    render(<AppearanceSettings />);
+    expect(screen.getByRole('switch', { name: 'تقليل الحركة' })).not.toBeChecked();
+    expect(document.documentElement.dataset.motion).toBe('system');
+  });
+});

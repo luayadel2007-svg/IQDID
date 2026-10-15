@@ -13,10 +13,10 @@ export function ResultsPage() {
   const decided = (data ?? []).filter((s) => s.status !== 'PENDING');
   return (
     <>
-      <PageHeader title="نتائج الطلبات" description="الجلسات المغلقة: موافقة تجريبية، رفض، انتهاء أو إلغاء." />
+      <PageHeader eyebrow="النتائج" icon="check" title="نتائج الطلبات" description="الجلسات المغلقة: موافقة تجريبية، رفض، انتهاء أو إلغاء." />
       <Card>
         {loading || org.loading ? <LoadingState /> : error ? <ErrorState message={describeError(error)} onRetry={reload} /> : decided.length === 0 ? (
-          <EmptyState icon="⌛" title="لا توجد نتائج بعد" />
+          <EmptyState icon="clock" title="لا توجد نتائج بعد" />
         ) : <SessionTable sessions={decided} caption="نتائج الطلبات" />}
       </Card>
     </>

@@ -2,20 +2,22 @@
 export const tokens = {
   color: {
     light: {
-      bg: '#f4f6fb', surface: '#ffffff', surfaceAlt: '#eef2f9', text: '#0f1b2d', textMuted: '#4a5a72',
-      border: '#d5dce8', primary: '#1446a0', primaryText: '#ffffff', navy: '#0b1f3a',
-      success: '#0e6b38', warning: '#8a5300', danger: '#b42318', info: '#1446a0', focus: '#f2b705',
+      bg: '#f2f5fb', surface: '#ffffff', surfaceAlt: '#edf2fa', text: '#0a1630', textMuted: '#475672',
+      border: '#d9e1ee', primary: '#1a46b8', primaryText: '#ffffff', navy: '#081a36', accent: '#0b6e8f',
+      success: '#0b6b3a', warning: '#8a5300', danger: '#b42318', info: '#1a46b8', focus: '#f2b705',
     },
     dark: {
-      bg: '#08111f', surface: '#101c31', surfaceAlt: '#16253f', text: '#e8eef8', textMuted: '#a9b6cb',
-      border: '#26375a', primary: '#8fb0ff', primaryText: '#08111f', navy: '#050c18',
-      success: '#5fd394', warning: '#f4c26b', danger: '#ff8a80', info: '#8fb0ff', focus: '#f2b705',
+      bg: '#050c1a', surface: '#0d182d', surfaceAlt: '#13223f', text: '#eaf0fb', textMuted: '#a8b5cc',
+      border: '#22355a', primary: '#8eb2ff', primaryText: '#06112a', navy: '#030812', accent: '#67d4f0',
+      success: '#5fd394', warning: '#f4c26b', danger: '#ff8f86', info: '#8eb2ff', focus: '#f2b705',
     },
   },
-  font: { family: '"Noto Sans Arabic", "Segoe UI", Tahoma, Arial, system-ui, sans-serif', size: { xs: 12, sm: 14, md: 16, lg: 18, xl: 22, xxl: 28 } },
+  gradient: { brand: 'linear-gradient(135deg, #0a2350 0%, #1a46b8 55%, #2d6ae0 100%)' },
+  font: { family: '"Noto Sans Arabic", "Segoe UI", Tahoma, Arial, system-ui, sans-serif', size: { xs: 13, sm: 14, md: 16, lg: 18, xl: 22, xxl: 30 } },
   space: { 1: 4, 2: 8, 3: 12, 4: 16, 5: 24, 6: 32, 7: 48 },
-  radius: { sm: 6, md: 10, lg: 16, pill: 999 },
-  shadow: { sm: '0 1px 2px rgb(11 31 58 / 8%)', md: '0 6px 18px rgb(11 31 58 / 12%)' },
+  radius: { sm: 8, md: 14, lg: 20, xl: 28, pill: 999 },
+  shadow: { sm: '0 1px 2px rgb(8 26 54 / 6%), 0 1px 1px rgb(8 26 54 / 4%)', md: '0 10px 30px -12px rgb(8 26 54 / 22%)', lg: '0 24px 60px -24px rgb(8 26 54 / 35%)' },
+  motion: { fast: 160, base: 220, slow: 320, easing: 'cubic-bezier(.2,.7,.2,1)' },
   breakpoint: { sm: 480, md: 768, lg: 1024, xl: 1280 },
 } as const;
 

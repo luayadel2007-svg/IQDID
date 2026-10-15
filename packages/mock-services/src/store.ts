@@ -4,7 +4,7 @@ import type {
   DemoVerificationSession,
 } from '@iqdid/shared-types';
 import { DEMO_HOLDER_REF, DEMO_SESSION_TTL_MS, previewDemoDisclosure } from '@iqdid/shared-types';
-import { DEMO_ORGANIZATIONS, DEMO_TEMPLATES, seedCredential } from './seed.ts';
+import { DEMO_ORGANIZATIONS, DEMO_TEMPLATES, seedCredential, seedExtraCredentials } from './seed.ts';
 
 export type Result<T> = { ok: true; value: T } | { ok: false; code: DemoErrorCode; message: string };
 
@@ -29,6 +29,7 @@ export class DemoStore {
   readonly ttlMs: number;
   private readonly initialCredentialStatus: DemoCredentialStatus;
   private credential!: DemoCredentialSummary;
+  private extraCredentials: DemoCredentialSummary[] = [];
   private sessions = new Map<string, DemoVerificationSession>();
   private activity: DemoActivityEvent[] = [];
 
@@ -42,6 +43,7 @@ export class DemoStore {
 
   reset(record = true): void {
     this.credential = { ...seedCredential(this.now()), status: this.initialCredentialStatus };
+    this.extraCredentials = seedExtraCredentials(this.now());
     this.sessions = new Map();
     this.activity = [];
     if (record) this.log('DEMO_RESET', 'SYSTEM', null, null, null, 'أُعيدت البيانات التجريبية إلى حالتها الأولية');
@@ -110,11 +112,12 @@ export class DemoStore {
   // ------------------------------------------------------------ wallet side
 
   credentials(holderRef: string = DEMO_HOLDER_REF): readonly DemoCredentialSummary[] {
-    return this.credential.holderRef === holderRef ? [this.credential] : [];
+    return [this.credential, ...this.extraCredentials].filter((c) => c.holderRef === holderRef);
   }
 
   credentialById(id: string): Result<DemoCredentialSummary> {
-    return id === this.credential.id ? { ok: true, value: this.credential } : fail('NOT_FOUND', 'credential not found');
+    const found = [this.credential, ...this.extraCredentials].find((c) => c.id === id);
+    return found ? { ok: true, value: found } : fail('NOT_FOUND', 'credential not found');
   }
 
   walletRequests(holderRef: string = DEMO_HOLDER_REF): readonly DemoVerificationSession[] {

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { Badge, Button, ErrorState, Input, Modal, ThemeToggle, contrastRatio, tokens } from './index.ts';
+import { Alert, Badge, Button, ErrorState, SegmentedControl, StatCard, Input, Modal, ThemeToggle, contrastRatio, tokens } from './index.ts';
 
 describe('ui primitives', () => {
   it('Button shows loading state and blocks clicks', async () => {
@@ -98,5 +98,25 @@ describe('useAsync', () => {
     rerender(<Probe id="b" />);
     expect(await screen.findByText('data-b')).toBeInTheDocument();
     expect(seen).not.toContain('data-a@b');
+  });
+});
+
+describe('design system v2 components', () => {
+  it('StatCard is a named region with a visible number and decorative icon', () => {
+    const { container } = render(<StatCard label="بانتظار القرار" value={3} icon="clock" />);
+    expect(screen.getByRole('region', { name: 'بانتظار القرار' })).toHaveTextContent('3');
+    expect(container.querySelector('svg')).toHaveAttribute('aria-hidden', 'true');
+  });
+  it('SegmentedControl exposes exactly one pressed option', () => {
+    const onChange = vi.fn();
+    render(<SegmentedControl label="الحالة" value="a" onChange={onChange} options={[{ value: 'a', label: 'الكل' }, { value: 'b', label: 'فعال' }]} />);
+    expect(screen.getByRole('button', { name: 'الكل' })).toHaveAttribute('aria-pressed', 'true');
+    expect(screen.getByRole('button', { name: 'فعال' })).toHaveAttribute('aria-pressed', 'false');
+    screen.getByRole('button', { name: 'فعال' }).click();
+    expect(onChange).toHaveBeenCalledWith('b');
+  });
+  it('Alert keeps danger as an assertive alert with an icon', () => {
+    render(<Alert tone="danger" title="خطأ">تفاصيل</Alert>);
+    expect(screen.getByRole('alert')).toHaveTextContent('خطأتفاصيل');
   });
 });

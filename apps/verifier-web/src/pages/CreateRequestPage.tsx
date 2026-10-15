@@ -42,7 +42,7 @@ export function CreateRequestPage() {
 
   return (
     <>
-      <PageHeader title="إنشاء طلب تحقق تجريبي" description={org.current ? `باسم: ${org.current.name}` : undefined} />
+      <PageHeader eyebrow="طلب جديد" icon="send" title="إنشاء طلب تحقق تجريبي" description={org.current ? `باسم: ${org.current.name}` : undefined} />
       {submitError && <Alert tone="danger" title="تعذر إنشاء الطلب">{submitError}</Alert>}
       <Card>
         <form onSubmit={(e) => void onSubmit(e)} noValidate>

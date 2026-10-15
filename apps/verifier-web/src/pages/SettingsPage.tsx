@@ -25,13 +25,13 @@ export function SettingsPage() {
 
   return (
     <>
-      <PageHeader title="الإعدادات" />
+      <PageHeader eyebrow="التفضيلات" icon="settings" title="الإعدادات" />
       {message && <Alert tone={message.tone}>{message.text}</Alert>}
-      <Card title="المؤسسة التجريبية">
+      <Card title="المؤسسة التجريبية" icon="building">
         <Select label="المؤسسة الحالية" value={org.current?.id ?? ''} onChange={(e) => org.select(e.target.value)} options={org.organizations.map((o) => ({ value: o.id, label: o.name }))} />
       </Card>
       <AppearanceSettings />
-      <Card title="العرض التجريبي">
+      <Card title="العرض التجريبي" icon="refresh">
         <p className="muted">تحذف إعادة الضبط كل الجلسات والسجل في التطبيقين.</p>
         <Button variant="danger" onClick={() => setConfirmReset(true)}>إعادة ضبط البيانات التجريبية</Button>
       </Card>

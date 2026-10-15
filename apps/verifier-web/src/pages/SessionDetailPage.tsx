@@ -39,9 +39,9 @@ export function SessionDetailPage() {
 
   return (
     <>
-      <PageHeader title={`جلسة ${data.shortCode}`} description={data.organizationName} actions={<SessionStatusBadge status={data.status} />} />
+      <PageHeader eyebrow="تفاصيل الجلسة" icon="file" title={`جلسة ${data.shortCode}`} description={data.organizationName} actions={<SessionStatusBadge status={data.status} />} />
       {actionError && <Alert tone="danger">{actionError}</Alert>}
-      <Card title="تفاصيل الطلب">
+      <Card title="تفاصيل الطلب" icon="list">
         <dl className="kv">
           <dt>الغرض</dt><dd>{data.purpose}</dd>
           <dt>المواطن</dt><dd><span className="mono">{data.holderRef}</span></dd>
@@ -50,7 +50,7 @@ export function SessionDetailPage() {
           {data.status === 'PENDING' && left !== null && (<><dt>المهلة المتبقية</dt><dd aria-live="polite">{left} ثانية</dd></>)}
         </dl>
       </Card>
-      <Card title="النتيجة">
+      <Card title="النتيجة" icon="shield">
         <SessionResult session={data} />
         {data.status === 'PENDING' && (
           <div className="row" style={{ marginTop: 'var(--sp-3)' }}>

@@ -11,6 +11,9 @@ export const DEMO_HOLDER_REF = 'TEST-001';
 export const DEMO_SESSION_TTL_MS = 120_000;
 
 export const CREDENTIAL_STATUSES = ['ACTIVE', 'SUSPENDED', 'REVOKED'] as const;
+/** Synthetic credential kinds. Only DEMO_NATIONAL_ID answers verification requests. */
+export const CREDENTIAL_TYPES = ['DEMO_NATIONAL_ID', 'DEMO_DRIVING_LICENCE', 'DEMO_RESIDENCE_CARD', 'DEMO_HEALTH_CARD'] as const;
+export type DemoCredentialType = (typeof CREDENTIAL_TYPES)[number];
 export type DemoCredentialStatus = (typeof CREDENTIAL_STATUSES)[number];
 
 /**
@@ -44,7 +47,7 @@ export interface DemoClaim {
 
 export interface DemoCredentialSummary {
   readonly id: string;
-  readonly type: 'DEMO_NATIONAL_ID';
+  readonly type: DemoCredentialType;
   readonly title: string;
   readonly holderRef: string;
   readonly holderDisplayName: string;
@@ -139,7 +142,7 @@ export function isDemoClaim(v: unknown): v is DemoClaim {
 
 export function isDemoCredentialSummary(v: unknown): v is DemoCredentialSummary {
   return (
-    isRecord(v) && isString(v.id) && v.type === 'DEMO_NATIONAL_ID' && isString(v.title) && isString(v.holderRef) &&
+    isRecord(v) && isString(v.id) && oneOf(CREDENTIAL_TYPES, v.type) && isString(v.title) && isString(v.holderRef) &&
     isString(v.holderDisplayName) && isString(v.issuerName) && oneOf(CREDENTIAL_STATUSES, v.status) &&
     isIsoDate(v.issuedAt) && isIsoDate(v.expiresAt) && Array.isArray(v.claims) && v.claims.every(isDemoClaim)
   );
@@ -200,6 +203,11 @@ export function validateConsentDecision(v: unknown): { ok: true; value: DemoCons
 export const isTerminalStatus = (s: DemoSessionStatus): boolean => TERMINAL_SESSION_STATUSES.includes(s);
 
 export type { DemoOutcome, VerifiedByProtocol, VerificationOutcome } from './verification.ts';
+
+/** The single credential that answers demo verification requests (server uses the same rule). */
+export function primaryIdentityCredential<T extends DemoCredentialSummary>(list: readonly T[] | undefined, holderRef: string = DEMO_HOLDER_REF): T | undefined {
+  return list?.find((c) => c.type === 'DEMO_NATIONAL_ID' && c.holderRef === holderRef);
+}
 
 /** Exact synthetic projection. No protocol or selective-disclosure claim. */
 export function previewDemoDisclosure(session: DemoVerificationSession, credential: DemoCredentialSummary): readonly DemoClaim[] {

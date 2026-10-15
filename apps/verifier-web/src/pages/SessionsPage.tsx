@@ -12,7 +12,7 @@ export function SessionsPage() {
   const { data, error, loading, reload } = useAsync((s) => (orgId ? verifier.sessions(orgId, { signal: s }) : Promise.resolve([])), [verifier, orgId], { pollMs });
   return (
     <>
-      <PageHeader title="جلسات التحقق" description="كل الطلبات التي أنشأتها مؤسستك التجريبية." />
+      <PageHeader eyebrow="الجلسات" icon="folder" title="جلسات التحقق" description="كل الطلبات التي أنشأتها مؤسستك التجريبية." />
       <Card>
         {loading || org.loading ? <LoadingState /> : error ? <ErrorState message={describeError(error)} onRetry={reload} /> : (data ?? []).length === 0 ? (
           <EmptyState title="لا توجد جلسات" />

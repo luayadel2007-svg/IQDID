@@ -26,7 +26,8 @@
     "evidence": "node scripts/evidence.mjs",
     "test:ux": "node scripts/ux-e2e.mjs",
     "test:compatibility": "node scripts/compatibility-contract.mjs",
-    "modernization:verify": "node scripts/modernization-checks.mjs"
+    "modernization:verify": "node scripts/modernization-checks.mjs",
+    "screenshots": "node scripts/screenshots.mjs"
   },
   "devDependencies": {
     "@eslint/js": "9.39.5",
