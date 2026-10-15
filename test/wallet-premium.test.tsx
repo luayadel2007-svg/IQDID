@@ -27,6 +27,18 @@ class FlakyTransport implements Transport {
     return this.inner.request(spec);
   }
 }
+/** Reads go stale on demand (GET fails); writes still reach the server. Counts decisions the server refused. */
+class StaleReadsTransport implements Transport {
+  readonly mode = 'demo';
+  staleReads = false;
+  refusedDecisions = 0;
+  private readonly inner: Transport;
+  constructor(inner: Transport) { this.inner = inner; }
+  async request<T>(spec: RequestSpec<T>): Promise<T> {
+    if (this.staleReads && spec.method === 'GET') throw new ApiError({ kind: 'network', message: 'simulated stale screen', requestId: 'test' });
+    try { return await this.inner.request(spec); } catch (e) { if (spec.method === 'POST') this.refusedDecisions++; throw e; }
+  }
+}
 const demo = (baseUrl = srv.url) => createTransport('demo', { baseUrl, retries: 0, timeoutMs: 3000 });
 const renderWallet = (path: string, transport: Transport = demo()) =>
   render(<MemoryRouter initialEntries={[path]}><WalletApp gateway={createWalletGateway(transport)} pollMs={POLL} /></MemoryRouter>);
@@ -89,14 +101,20 @@ describe('journey and edge cases', () => {
 
   it('duplicate decision from a stale screen is refused by the server and the page shows the real outcome', async () => {
     const s = await createSession();
-    const stale = renderWallet(`/requests/${s.id}`);
+    // The screen is made stale deterministically: after it loads, its refresh GETs fail (decision POSTs still go out),
+    // so a poll can never update it before the second decision is attempted.
+    const net = new StaleReadsTransport(demo());
+    const stale = renderWallet(`/requests/${s.id}`, net);
     const ui = within(stale.container);
     await ui.findByRole('button', { name: 'رفض' });
+    net.staleReads = true;
     await createWalletGateway(demo()).decide(s.id, 'ACCEPT'); // decided elsewhere (another device)
     await userEvent.click(ui.getByRole('button', { name: 'رفض' }));
     await userEvent.click(screen.getByRole('button', { name: 'تأكيد الرفض' }));
     expect(await ui.findByText('لم يُسجَّل القرار')).toBeInTheDocument();
-    expect(await ui.findByText('سُجلت موافقتك التجريبية')).toBeInTheDocument();
+    expect(net.refusedDecisions).toBe(1);
+    net.staleReads = false;
+    expect(await ui.findByText('سُجلت موافقتك التجريبية', {}, { timeout: 3000 })).toBeInTheDocument();
     expect(srv.store.activityForHolder().filter((e) => e.type === 'CONSENT_REJECTED')).toHaveLength(0);
   });
 
