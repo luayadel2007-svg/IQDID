@@ -42,7 +42,7 @@ export function WalletApp({ gateway, pollMs = 2000 }: { gateway: WalletGateway; 
             <Route path="/requests/:id" element={<RequestDetailPage />} />
             <Route path="/activity" element={<ActivityPage />} />
             <Route path="/settings" element={<SettingsPage />} />
-            <Route path="*" element={<EmptyState icon="🧭" title="الصفحة غير موجودة" description="تحقق من الرابط أو عد إلى الرئيسية." />} />
+            <Route path="*" element={<EmptyState icon="search" title="الصفحة غير موجودة" description="تحقق من الرابط أو عد إلى الرئيسية." />} />
           </Routes>
         </AppShell>
       </PollContext.Provider>

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { FavoriteShortcut, Card, EmptyState, ErrorState, LoadingState, PageHeader, useAsync } from '@iqdid/ui';
+import { FavoriteShortcut, Card, Icon, StatCard, EmptyState, ErrorState, LoadingState, PageHeader, useAsync } from '@iqdid/ui';
 import { describeError } from '@iqdid/api-client';
 import { useOrg, useVerifier } from '../gateway.tsx';
 import { usePollMs } from '../poll.ts';
@@ -17,26 +17,21 @@ export function DashboardPage() {
   const all = data ?? [];
   const count = (st: string) => all.filter((s) => s.status === st).length;
   const stats = [
-    { label: 'بانتظار القرار', value: count('PENDING') },
-    { label: 'موافقات تجريبية', value: count('DEMO_ACCEPTED') },
-    { label: 'مرفوضة', value: count('DEMO_REJECTED') },
-    { label: 'منتهية/ملغاة', value: count('EXPIRED') + count('CANCELLED') },
-  ];
+    { label: 'بانتظار القرار', value: count('PENDING'), icon: 'clock', tone: 'info' },
+    { label: 'موافقات تجريبية', value: count('DEMO_ACCEPTED'), icon: 'check', tone: 'success' },
+    { label: 'مرفوضة', value: count('DEMO_REJECTED'), icon: 'x', tone: 'danger' },
+    { label: 'منتهية/ملغاة', value: count('EXPIRED') + count('CANCELLED'), icon: 'alert', tone: 'warning' },
+  ] as const;
   return (
     <>
-      <PageHeader title="لوحة المتابعة" description={org.current ? `المؤسسة الحالية: ${org.current.name}` : undefined} actions={<Link className="btn btn--primary" to="/new">طلب تحقق جديد</Link>} />
+      <PageHeader eyebrow="بوابة التحقق" icon="shield" title="لوحة المتابعة" description={org.current ? `المؤسسة الحالية: ${org.current.name}` : undefined} actions={<Link className="btn btn--primary" to="/new"><Icon name="plus" size={18} />طلب تحقق جديد</Link>} />
       <FavoriteShortcut app="verifier" options={[{ href: '/new', label: 'طلب تحقق جديد' }, { href: '/sessions', label: 'جلسات التحقق' }, { href: '/results', label: 'النتائج' }]} />
       <div className="grid" style={{ marginBottom: 'var(--sp-4)' }}>
-        {stats.map((s) => (
-          <section key={s.label} className="card" aria-label={s.label}>
-            <div className="muted small">{s.label}</div>
-            <div className="stat">{loading ? '…' : s.value}</div>
-          </section>
-        ))}
+        {stats.map((s) => <StatCard key={s.label} label={s.label} value={loading ? '…' : s.value} icon={s.icon} tone={s.tone} />)}
       </div>
-      <Card title="أحدث الجلسات" actions={<Link to="/sessions">كل الجلسات</Link>}>
+      <Card title="أحدث الجلسات" icon="folder" actions={<Link to="/sessions">كل الجلسات</Link>}>
         {loading ? <LoadingState /> : error ? <ErrorState message={describeError(error)} onRetry={reload} /> : all.length === 0 ? (
-          <EmptyState icon="📝" title="لا توجد جلسات بعد" description="ابدأ بإنشاء طلب تحقق تجريبي." action={<Link className="btn btn--primary" to="/new">إنشاء طلب</Link>} />
+          <EmptyState icon="file" title="لا توجد جلسات بعد" description="ابدأ بإنشاء طلب تحقق تجريبي." action={<Link className="btn btn--primary" to="/new">إنشاء طلب</Link>} />
         ) : <SessionTable sessions={all.slice(0, 5)} caption="أحدث الجلسات" />}
       </Card>
     </>

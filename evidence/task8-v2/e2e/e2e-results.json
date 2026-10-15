@@ -1,0 +1,66 @@
+{
+ "at": "2026-10-15T13:59:22.802Z",
+ "ttlMs": 15000,
+ "results": [
+  {
+   "name": "both apps load as Arabic RTL with the demo banner",
+   "outcome": "PASS",
+   "ms": 898
+  },
+  {
+   "name": "keyboard: first Tab reaches the skip link",
+   "outcome": "PASS",
+   "ms": 14
+  },
+  {
+   "name": "verifier creates an age request (org A)",
+   "outcome": "PASS",
+   "ms": 893
+  },
+  {
+   "name": "request appears in the wallet (other browser context) with org, purpose and fields",
+   "outcome": "PASS",
+   "ms": 695
+  },
+  {
+   "name": "wallet approves → verifier updates live to DEMO_ACCEPTED (no reload)",
+   "outcome": "PASS",
+   "ms": 2757
+  },
+  {
+   "name": "identity request → wallet rejects → verifier shows rejection without values",
+   "outcome": "PASS",
+   "ms": 2486
+  },
+  {
+   "name": "unanswered request expires after 15s on both sides",
+   "outcome": "PASS",
+   "ms": 16334
+  },
+  {
+   "name": "activity logs on both sides record the decisions",
+   "outcome": "PASS",
+   "ms": 842
+  },
+  {
+   "name": "organisation B sees none of organisation A sessions",
+   "outcome": "PASS",
+   "ms": 350
+  },
+  {
+   "name": "dark mode toggles theme and colours in both apps",
+   "outcome": "PASS",
+   "ms": 555
+  },
+  {
+   "name": "demo reset clears data for both apps",
+   "outcome": "PASS",
+   "ms": 1118
+  },
+  {
+   "name": "no browser console errors",
+   "outcome": "PASS",
+   "ms": 1
+  }
+ ]
+}

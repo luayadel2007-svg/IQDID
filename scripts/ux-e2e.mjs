@@ -5,7 +5,7 @@ import path from 'node:path';
 import { startStack } from './stack.mjs';
 const require = createRequire(import.meta.url);
 const axe = await readFile(require.resolve('axe-core/axe.min.js'), 'utf8');
-const out = path.resolve('evidence/modernization/ux-final');
+const out = path.resolve('evidence', process.env.IQDID_UX_EVIDENCE_DIR ?? 'modernization/ux-final');
 await mkdir(out, { recursive: true });
 const lines = [], results = [];
 const stack = startStack({ preview: true, onLine: (l) => lines.push(l) });

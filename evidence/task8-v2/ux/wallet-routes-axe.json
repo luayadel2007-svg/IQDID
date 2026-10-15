@@ -1,0 +1,290 @@
+[
+  {
+    "route": "",
+    "mode": "light",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "targets": [
+          [
+            ".demo-banner__tag"
+          ],
+          [
+            ".shell__brand-mark"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "route": "card",
+    "mode": "light",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "targets": [
+          [
+            ".demo-banner__tag"
+          ],
+          [
+            ".shell__brand-mark"
+          ],
+          [
+            "dt:nth-child(3)"
+          ],
+          [
+            "dd:nth-child(4) > .mono"
+          ],
+          [
+            "dd:nth-child(6) > .mono"
+          ],
+          [
+            "dd:nth-child(8)"
+          ],
+          [
+            ".id-card__watermark"
+          ],
+          [
+            ".small"
+          ],
+          [
+            "a[href$=\"settings\"]"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "route": "credentials/cred-test-001",
+    "mode": "light",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "targets": [
+          [
+            ".demo-banner__tag"
+          ],
+          [
+            ".shell__brand-mark"
+          ],
+          [
+            "a[href$=\"settings\"]"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "route": "requests",
+    "mode": "light",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "targets": [
+          [
+            ".demo-banner__tag"
+          ],
+          [
+            ".shell__brand-mark"
+          ],
+          [
+            "a[href$=\"settings\"]"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "route": "requests/57da963d-ade2-412e-887e-0f1f20eeb6c4",
+    "mode": "light",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "targets": [
+          [
+            ".demo-banner__tag"
+          ],
+          [
+            ".shell__brand-mark"
+          ],
+          [
+            "div:nth-child(1) > p"
+          ],
+          [
+            "a[href$=\"settings\"]"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "route": "activity",
+    "mode": "light",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "targets": [
+          [
+            ".demo-banner__tag"
+          ],
+          [
+            ".shell__brand-mark"
+          ],
+          [
+            "a[href$=\"settings\"]"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "route": "",
+    "mode": "dark",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "targets": [
+          [
+            ".demo-banner__tag"
+          ],
+          [
+            ".shell__brand-mark"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "route": "card",
+    "mode": "dark",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "targets": [
+          [
+            ".demo-banner__tag"
+          ],
+          [
+            ".shell__brand-mark"
+          ],
+          [
+            "dt:nth-child(3)"
+          ],
+          [
+            "dd:nth-child(4) > .mono"
+          ],
+          [
+            "dd:nth-child(6) > .mono"
+          ],
+          [
+            "dd:nth-child(8)"
+          ],
+          [
+            ".id-card__watermark"
+          ],
+          [
+            ".small"
+          ],
+          [
+            "a[href$=\"settings\"]"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "route": "credentials/cred-test-001",
+    "mode": "dark",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "targets": [
+          [
+            ".demo-banner__tag"
+          ],
+          [
+            ".shell__brand-mark"
+          ],
+          [
+            "a[href$=\"settings\"]"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "route": "requests",
+    "mode": "dark",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "targets": [
+          [
+            ".demo-banner__tag"
+          ],
+          [
+            ".shell__brand-mark"
+          ],
+          [
+            "a[href$=\"settings\"]"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "route": "requests/57da963d-ade2-412e-887e-0f1f20eeb6c4",
+    "mode": "dark",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "targets": [
+          [
+            ".demo-banner__tag"
+          ],
+          [
+            ".shell__brand-mark"
+          ],
+          [
+            "div:nth-child(1) > p"
+          ],
+          [
+            "a[href$=\"settings\"]"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "route": "activity",
+    "mode": "dark",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "targets": [
+          [
+            ".demo-banner__tag"
+          ],
+          [
+            ".shell__brand-mark"
+          ],
+          [
+            "a[href$=\"settings\"]"
+          ]
+        ]
+      }
+    ]
+  }
+]

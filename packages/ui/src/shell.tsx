@@ -8,7 +8,7 @@ export function ThemeToggle() {
   const { resolvedTheme, toggle } = useTheme();
   const dark = resolvedTheme === 'dark';
   return (
-    <Button variant="ghost" size="sm" onClick={toggle} aria-pressed={dark} aria-label={dark ? 'تفعيل الوضع الفاتح' : 'تفعيل الوضع الداكن'} style={{ color: 'inherit' }}>
+    <Button variant="ghost" size="sm" onClick={toggle} aria-pressed={dark} aria-label={dark ? 'تفعيل الوضع الفاتح' : 'تفعيل الوضع الداكن'}>
       <Icon name={dark ? 'sun' : 'moon'} />
       <span>{dark ? 'فاتح' : 'داكن'}</span>
     </Button>
@@ -21,11 +21,13 @@ export interface AppShellProps {
   readonly layout: 'mobile' | 'desktop';
   readonly nav: ReactNode;
   readonly headerExtra?: ReactNode;
+  /** Rendered between the header and the content (e.g. connectivity bar, toasts). */
+  readonly topSlot?: ReactNode;
   readonly children: ReactNode;
 }
 
 /** Page frame: demo banner, header, navigation landmark and main content. */
-export function AppShell({ appName, appSubtitle, layout, nav, headerExtra, children }: AppShellProps) {
+export function AppShell({ appName, appSubtitle, layout, nav, headerExtra, topSlot, children }: AppShellProps) {
   useAppearance();
   const navEl = <nav className="nav" aria-label="التنقل الرئيسي">{nav}</nav>;
   return (
@@ -40,11 +42,12 @@ export function AppShell({ appName, appSubtitle, layout, nav, headerExtra, child
             <div className="shell__sub">{appSubtitle}</div>
           </span>
         </div>
-        <div className="row">
+        <div className="shell__actions">
           {headerExtra}
           <ThemeToggle />
         </div>
       </header>
+      {topSlot}
       <div className="shell__body">
         {layout === 'desktop' && navEl}
         <main id="main" className="shell__main" tabIndex={-1}>{children}</main>

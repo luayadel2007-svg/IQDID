@@ -9,7 +9,7 @@ export function MyCardPage() {
   if (loading) return <LoadingState />;
   if (error) return <ErrorState message={describeError(error)} onRetry={reload} />;
   const card = data?.[0];
-  if (!card) return <EmptyState icon="🪪" title="لا توجد بطاقة في المحفظة" description="أعد ضبط العرض من الإعدادات." />;
+  if (!card) return <EmptyState icon="card" title="لا توجد بطاقة في المحفظة" description="أعد ضبط العرض من الإعدادات." />;
   const claim = (k: string) => card.claims.find((c) => c.key === k)?.value ?? '—';
   return (
     <>

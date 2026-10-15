@@ -15,7 +15,7 @@ export function RequestsPage() {
     <>
       <PageHeader title="طلبات مشاركة البيانات" description="الطلبات الواردة من المؤسسات التجريبية." />
       {loading ? <LoadingState /> : error ? <ErrorState message={describeError(error)} onRetry={reload} /> : data?.length === 0 ? (
-        <EmptyState icon="📭" title="لا توجد طلبات" description="عندما تنشئ مؤسسة تجريبية طلب تحقق سيظهر هنا تلقائياً." />
+        <EmptyState icon="inbox" title="لا توجد طلبات" description="عندما تنشئ مؤسسة تجريبية طلب تحقق سيظهر هنا تلقائياً." />
       ) : (
         <>
           <Card title={`بانتظار قرارك (${pending.length})`}>
