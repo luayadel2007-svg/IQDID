@@ -51,6 +51,8 @@ try {
       await p.getByLabel('حجم النص').selectOption('normal');
       await p.getByLabel('تقليل الشفافية والتمويه').uncheck();
       await step(`${app}: axe WCAG 2.2 AA settings (${mode}) including contrast`, async () => {
+        // Theme changes animate colours; audit the settled state, not a mid-transition frame.
+        await p.waitForFunction(() => document.getAnimations().every((a) => a.playState !== 'running'));
         await p.addScriptTag({ content: axe });
         const report = await p.evaluate(async () => window.axe.run(document, { runOnly: { type: 'tag', values: ['wcag2a', 'wcag2aa', 'wcag21aa', 'wcag22aa'] } }));
         await writeFile(path.join(out, `${app}-${mode}-axe.json`), JSON.stringify(report, null, 2));
@@ -70,7 +72,9 @@ try {
           await p.waitForFunction(() => !document.querySelector('.skeleton'));
           await p.evaluate((theme) => { localStorage.setItem('iqdid-demo-theme', theme); window.dispatchEvent(new Event('storage')); }, mode);
           await p.waitForFunction((theme) => document.documentElement.dataset.theme === theme, mode);
-          await p.addScriptTag({ content: axe });
+          // Theme changes animate colours; audit the settled state, not a mid-transition frame.
+        await p.waitForFunction(() => document.getAnimations().every((a) => a.playState !== 'running'));
+        await p.addScriptTag({ content: axe });
           const report = await p.evaluate(async () => window.axe.run(document, { runOnly: { type: 'tag', values: ['wcag2a', 'wcag2aa', 'wcag21aa', 'wcag22aa'] } }));
           audits.push({ route, mode, violations: report.violations, incomplete: report.incomplete.map((v) => ({ id: v.id, targets: v.nodes.map((n) => n.target) })) });
         }
