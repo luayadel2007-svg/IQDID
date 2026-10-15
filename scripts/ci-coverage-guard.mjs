@@ -42,6 +42,7 @@ const browser = [
   ['e2e', ev('IQDID_EVIDENCE_DIR', 'modernization/e2e', 'e2e-results.json'), (j) => j.results],
   ['ux', ev('IQDID_UX_EVIDENCE_DIR', 'modernization/ux-final', 'results.json'), (j) => j],
   ['wallet', ev('IQDID_WALLET_EVIDENCE_DIR', 'task9/wallet-e2e', 'wallet-e2e-results.json'), (j) => j.results],
+  ['pdf', ev('IQDID_PDF_AUDIT_DIR', 'task8-9-recovery/pdf-audit', 'audit.json'), (j) => j.checks],
 ];
 for (const [name, file, pick] of browser) {
   if (!existsSync(file)) { problems.push(`${name}: results missing (${file})`); continue; }

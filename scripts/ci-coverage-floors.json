@@ -1,13 +1,55 @@
 {
   "_comment": "Minimum required test coverage. Lowering a number or removing an entry must be a reviewed change, never a way to get green.",
   "requiredFiles": [
-    "test/wallet-premium.test.tsx", "test/cross-app.test.tsx", "test/provider-replacement.test.tsx", "test/crypto-contract.test.ts",
-    "scripts/e2e.mjs", "scripts/ux-e2e.mjs", "scripts/wallet-e2e.mjs", "scripts/compatibility-contract.mjs"
+    "test/wallet-premium.test.tsx",
+    "test/cross-app.test.tsx",
+    "test/provider-replacement.test.tsx",
+    "test/crypto-contract.test.ts",
+    "scripts/e2e.mjs",
+    "scripts/ux-e2e.mjs",
+    "scripts/wallet-e2e.mjs",
+    "scripts/compatibility-contract.mjs",
+    "scripts/pdf-ux-audit.mjs"
   ],
-  "requiredNpmScripts": { "e2e": "scripts/e2e.mjs", "test:ux": "scripts/ux-e2e.mjs", "test:wallet": "scripts/wallet-e2e.mjs", "test:compatibility": "scripts/compatibility-contract.mjs" },
-  "requiredVerifySteps": ["typecheck", "lint", "tests", "compatibility", "build", "browser-regression", "browser-ux", "browser-wallet", "coverage-guard", "secrets-diff"],
-  "requiredVitestFiles": ["test/wallet-premium.test.tsx", "test/cross-app.test.tsx", "test/provider-replacement.test.tsx", "test/crypto-contract.test.ts"],
+  "requiredNpmScripts": {
+    "e2e": "scripts/e2e.mjs",
+    "test:ux": "scripts/ux-e2e.mjs",
+    "test:wallet": "scripts/wallet-e2e.mjs",
+    "test:compatibility": "scripts/compatibility-contract.mjs",
+    "test:pdf-ux": "scripts/pdf-ux-audit.mjs"
+  },
+  "requiredVerifySteps": [
+    "typecheck",
+    "lint",
+    "tests",
+    "compatibility",
+    "build",
+    "browser-regression",
+    "browser-ux",
+    "browser-wallet",
+    "browser-pdf-ux",
+    "coverage-guard",
+    "secrets-diff"
+  ],
+  "requiredVitestFiles": [
+    "test/wallet-premium.test.tsx",
+    "test/cross-app.test.tsx",
+    "test/provider-replacement.test.tsx",
+    "test/crypto-contract.test.ts"
+  ],
   "minVitestTests": 87,
-  "minBrowserSteps": { "e2e": 12, "ux": 20, "wallet": 13 },
-  "workflow": { "file": ".github/workflows/task8-ci.yml", "mustRun": "npm run modernization:verify", "oses": ["ubuntu", "windows"] }
+  "minBrowserSteps": {
+    "e2e": 12,
+    "ux": 20,
+    "wallet": 13,
+    "pdf": 27
+  },
+  "workflow": {
+    "file": ".github/workflows/task8-ci.yml",
+    "mustRun": "npm run modernization:verify",
+    "oses": [
+      "ubuntu",
+      "windows"
+    ]
+  }
 }

@@ -28,6 +28,7 @@
     "test:compatibility": "node scripts/compatibility-contract.mjs",
     "modernization:verify": "node scripts/modernization-checks.mjs",
     "test:wallet": "node scripts/wallet-e2e.mjs",
+    "test:pdf-ux": "node scripts/pdf-ux-audit.mjs",
     "screenshots": "node scripts/screenshots.mjs"
   },
   "devDependencies": {
