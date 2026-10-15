@@ -1,0 +1,60 @@
+
+> iqdid-prototype@0.8.0 modernization:verify
+> node scripts/modernization-checks.mjs
+
+typecheck: PASS (exit 0)
+lint: PASS (exit 0)
+tests: FAIL (exit 1)
+          [36m</svg>[39m
+        [36m</span>[39m
+        [0mالإعدادات[0m
+      [36m</a>[39m
+    [36m</nav>[39m
+  [36m</div>[39m
+[36m</div>[39m
+ ❯ waitForWrapper node_modules/@testing-library/dom/dist/wait-for.js:163:27
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:86:33
+ ❯ test/wallet-premium.test.tsx:98:21
+     96|     await userEvent.click(ui.getByRole('button', { name: 'رفض' }));
+     97|     await userEvent.click(screen.getByRole('button', { name: 'تأكيد ال…
+     98|     expect(await ui.findByText('لم يُسجَّل القرار')).toBeInTheDocument…
+       |                     ^
+     99|     expect(await ui.findByText('سُجلت موافقتك التجريبية')).toBeInTheDo…
+    100|     expect(srv.store.activityForHolder().filter((e) => e.type === 'CON…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+compatibility: PASS (exit 0)
+build: PASS (exit 0)
+browser-regression: PASS (exit 0)
+browser-ux: PASS (exit 0)
+browser-wallet: PASS (exit 0)
+browser-pdf-ux: PASS (exit 0)
+coverage-guard: FAIL (exit 1)
+COVERAGE GUARD: FAIL
+- vitest reported failures
+
+secrets-diff: PASS (exit 0)
+secrets-all-index: BLOCKED (exit 2)
+    },
+    {
+      "path": "evidence/task8/e2e/screenshots/07-verifier-activity.png",
+      "code": "UNSUPPORTED_BINARY"
+    },
+    {
+      "path": "evidence/task8/e2e/screenshots/07-wallet-activity.png",
+      "code": "UNSUPPORTED_BINARY"
+    },
+    {
+      "path": "evidence/task8/e2e/screenshots/08-verifier-dark.png",
+      "code": "UNSUPPORTED_BINARY"
+    },
+    {
+      "path": "evidence/task8/e2e/screenshots/08-wallet-dark.png",
+      "code": "UNSUPPORTED_BINARY"
+    }
+  ]
+}
+
+verify exit=1

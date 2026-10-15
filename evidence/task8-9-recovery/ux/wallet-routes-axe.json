@@ -1,0 +1,839 @@
+[
+  {
+    "route": "",
+    "mode": "light",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "targets": [
+          [
+            ".demo-banner__tag"
+          ],
+          [
+            ".shell__brand-mark"
+          ],
+          [
+            ".btn--icon > .nav__badge[aria-hidden=\"true\"]"
+          ],
+          [
+            ".hero > .row--between.row > .badge--warning.badge"
+          ],
+          [
+            ".mono"
+          ],
+          [
+            "dd:nth-child(6)"
+          ],
+          [
+            ".id-card__watermark"
+          ],
+          [
+            "li:nth-child(4) > .badge--warning.badge"
+          ],
+          [
+            "a[href$=\"requests\"][data-discover=\"true\"] > .nav__badge[aria-hidden=\"true\"]"
+          ],
+          [
+            "a[href$=\"settings\"]"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "route": "welcome",
+    "mode": "light",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "targets": [
+          [
+            ".demo-banner__tag"
+          ],
+          [
+            ".shell__brand-mark"
+          ],
+          [
+            ".page-head__eyebrow"
+          ],
+          [
+            ".muted"
+          ],
+          [
+            "a[href$=\"settings\"]"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "route": "card",
+    "mode": "light",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "targets": [
+          [
+            ".demo-banner__tag"
+          ],
+          [
+            ".shell__brand-mark"
+          ],
+          [
+            ".btn--icon > .nav__badge"
+          ],
+          [
+            "dt:nth-child(3)"
+          ],
+          [
+            "dd:nth-child(4) > .mono"
+          ],
+          [
+            "dd:nth-child(6) > .mono"
+          ],
+          [
+            "dd:nth-child(8)"
+          ],
+          [
+            ".id-card__watermark"
+          ],
+          [
+            ".small"
+          ],
+          [
+            "a[href$=\"requests\"] > .nav__badge"
+          ],
+          [
+            "a[href$=\"settings\"]"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "route": "credentials",
+    "mode": "light",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "targets": [
+          [
+            ".demo-banner__tag"
+          ],
+          [
+            ".shell__brand-mark"
+          ],
+          [
+            ".btn--icon > .nav__badge[aria-hidden=\"true\"]"
+          ],
+          [
+            "li:nth-child(4) > .item__end > .badge--warning.badge"
+          ],
+          [
+            ".small"
+          ],
+          [
+            "a[href$=\"requests\"] > .nav__badge[aria-hidden=\"true\"]"
+          ],
+          [
+            "a[href$=\"settings\"]"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "route": "credentials/cred-test-001",
+    "mode": "light",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "targets": [
+          [
+            ".demo-banner__tag"
+          ],
+          [
+            ".shell__brand-mark"
+          ],
+          [
+            ".btn--icon > .nav__badge"
+          ],
+          [
+            "a[href$=\"requests\"] > .nav__badge"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "route": "credentials/cred-test-004",
+    "mode": "light",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "targets": [
+          [
+            ".demo-banner__tag"
+          ],
+          [
+            ".shell__brand-mark"
+          ],
+          [
+            ".btn--icon > .nav__badge"
+          ],
+          [
+            ".badge"
+          ],
+          [
+            "a[href$=\"requests\"] > .nav__badge"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "route": "requests",
+    "mode": "light",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "targets": [
+          [
+            ".demo-banner__tag"
+          ],
+          [
+            ".shell__brand-mark"
+          ],
+          [
+            ".btn--icon > .nav__badge"
+          ],
+          [
+            "div > p"
+          ],
+          [
+            ".ring__value"
+          ],
+          [
+            ".active > .nav__badge"
+          ],
+          [
+            "a[href$=\"settings\"]"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "route": "requests/bc4bba48-de2f-44ec-8bdd-8713781caf82",
+    "mode": "light",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "targets": [
+          [
+            ".demo-banner__tag"
+          ],
+          [
+            ".shell__brand-mark"
+          ],
+          [
+            ".btn--icon > .nav__badge"
+          ],
+          [
+            ".page-head__eyebrow"
+          ],
+          [
+            "div:nth-child(1) > p"
+          ],
+          [
+            ".ring__value"
+          ],
+          [
+            ".active > .nav__badge"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "route": "requests/bc4bba48-de2f-44ec-8bdd-8713781caf82/disclosure",
+    "mode": "light",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "targets": [
+          [
+            ".demo-banner__tag"
+          ],
+          [
+            ".shell__brand-mark"
+          ],
+          [
+            ".btn--icon > .nav__badge[aria-hidden=\"true\"]"
+          ],
+          [
+            ".active > .nav__badge[aria-hidden=\"true\"]"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "route": "qr",
+    "mode": "light",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "targets": [
+          [
+            ".demo-banner__tag"
+          ],
+          [
+            ".shell__brand-mark"
+          ],
+          [
+            "h1"
+          ],
+          [
+            ".qr-box__stamp"
+          ],
+          [
+            ".ring__value"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "route": "activity",
+    "mode": "light",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "targets": [
+          [
+            ".demo-banner__tag"
+          ],
+          [
+            ".shell__brand-mark"
+          ],
+          [
+            ".nav__badge"
+          ],
+          [
+            "a[href$=\"settings\"]"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "route": "notifications",
+    "mode": "light",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "targets": [
+          [
+            ".demo-banner__tag"
+          ],
+          [
+            ".shell__brand-mark"
+          ],
+          [
+            "a[href$=\"settings\"]"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "route": "settings",
+    "mode": "light",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "targets": [
+          [
+            ".demo-banner__tag"
+          ],
+          [
+            ".shell__brand-mark"
+          ],
+          [
+            "h1"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "route": "help",
+    "mode": "light",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "targets": [
+          [
+            ".demo-banner__tag"
+          ],
+          [
+            ".shell__brand-mark"
+          ],
+          [
+            ".page-head__eyebrow"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "route": "",
+    "mode": "dark",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "targets": [
+          [
+            ".demo-banner__tag"
+          ],
+          [
+            ".shell__brand-mark"
+          ],
+          [
+            ".btn--icon > .nav__badge[aria-hidden=\"true\"]"
+          ],
+          [
+            ".hero > .row--between.row > .badge--warning.badge"
+          ],
+          [
+            ".mono"
+          ],
+          [
+            "dd:nth-child(6)"
+          ],
+          [
+            ".id-card__watermark"
+          ],
+          [
+            "li:nth-child(4) > .badge--warning.badge"
+          ],
+          [
+            "a[href$=\"requests\"][data-discover=\"true\"] > .nav__badge[aria-hidden=\"true\"]"
+          ],
+          [
+            "a[href$=\"settings\"]"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "route": "welcome",
+    "mode": "dark",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "targets": [
+          [
+            ".demo-banner__tag"
+          ],
+          [
+            ".shell__brand-mark"
+          ],
+          [
+            ".btn--icon > .nav__badge"
+          ],
+          [
+            ".page-head__eyebrow"
+          ],
+          [
+            ".muted"
+          ],
+          [
+            "a[href$=\"requests\"] > .nav__badge"
+          ],
+          [
+            "a[href$=\"settings\"]"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "route": "card",
+    "mode": "dark",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "targets": [
+          [
+            ".demo-banner__tag"
+          ],
+          [
+            ".shell__brand-mark"
+          ],
+          [
+            ".btn--icon > .nav__badge"
+          ],
+          [
+            "dt:nth-child(3)"
+          ],
+          [
+            "dd:nth-child(4) > .mono"
+          ],
+          [
+            "dd:nth-child(6) > .mono"
+          ],
+          [
+            "dd:nth-child(8)"
+          ],
+          [
+            ".id-card__watermark"
+          ],
+          [
+            ".small"
+          ],
+          [
+            "a[href$=\"requests\"] > .nav__badge"
+          ],
+          [
+            "a[href$=\"settings\"]"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "route": "credentials",
+    "mode": "dark",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "targets": [
+          [
+            ".demo-banner__tag"
+          ],
+          [
+            ".shell__brand-mark"
+          ],
+          [
+            ".btn--icon > .nav__badge[aria-hidden=\"true\"]"
+          ],
+          [
+            "li:nth-child(4) > .item__end > .badge--warning.badge"
+          ],
+          [
+            ".small"
+          ],
+          [
+            "a[href$=\"requests\"] > .nav__badge[aria-hidden=\"true\"]"
+          ],
+          [
+            "a[href$=\"settings\"]"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "route": "credentials/cred-test-001",
+    "mode": "dark",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "targets": [
+          [
+            ".demo-banner__tag"
+          ],
+          [
+            ".shell__brand-mark"
+          ],
+          [
+            ".btn--icon > .nav__badge"
+          ],
+          [
+            "a[href$=\"requests\"] > .nav__badge"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "route": "credentials/cred-test-004",
+    "mode": "dark",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "targets": [
+          [
+            ".demo-banner__tag"
+          ],
+          [
+            ".shell__brand-mark"
+          ],
+          [
+            ".btn--icon > .nav__badge"
+          ],
+          [
+            ".badge"
+          ],
+          [
+            "a[href$=\"requests\"] > .nav__badge"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "route": "requests",
+    "mode": "dark",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "targets": [
+          [
+            ".demo-banner__tag"
+          ],
+          [
+            ".shell__brand-mark"
+          ],
+          [
+            ".btn--icon > .nav__badge"
+          ],
+          [
+            "div > p"
+          ],
+          [
+            ".ring__value"
+          ],
+          [
+            ".active > .nav__badge"
+          ],
+          [
+            "a[href$=\"settings\"]"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "route": "requests/bc4bba48-de2f-44ec-8bdd-8713781caf82",
+    "mode": "dark",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "targets": [
+          [
+            ".demo-banner__tag"
+          ],
+          [
+            ".shell__brand-mark"
+          ],
+          [
+            ".btn--icon > .nav__badge"
+          ],
+          [
+            ".page-head__eyebrow"
+          ],
+          [
+            "div:nth-child(1) > p"
+          ],
+          [
+            ".ring__value"
+          ],
+          [
+            ".active > .nav__badge"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "route": "requests/bc4bba48-de2f-44ec-8bdd-8713781caf82/disclosure",
+    "mode": "dark",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "targets": [
+          [
+            ".demo-banner__tag"
+          ],
+          [
+            ".shell__brand-mark"
+          ],
+          [
+            ".btn--icon > .nav__badge[aria-hidden=\"true\"]"
+          ],
+          [
+            ".active > .nav__badge[aria-hidden=\"true\"]"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "route": "qr",
+    "mode": "dark",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "targets": [
+          [
+            ".demo-banner__tag"
+          ],
+          [
+            ".shell__brand-mark"
+          ],
+          [
+            ".btn--icon > .nav__badge"
+          ],
+          [
+            "h1"
+          ],
+          [
+            ".qr-box__stamp"
+          ],
+          [
+            ".ring__value"
+          ],
+          [
+            "a[href$=\"requests\"] > .nav__badge"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "route": "activity",
+    "mode": "dark",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "targets": [
+          [
+            ".demo-banner__tag"
+          ],
+          [
+            ".shell__brand-mark"
+          ],
+          [
+            ".btn--icon > .nav__badge"
+          ],
+          [
+            "a[href$=\"requests\"] > .nav__badge"
+          ],
+          [
+            "a[href$=\"settings\"]"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "route": "notifications",
+    "mode": "dark",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "targets": [
+          [
+            ".demo-banner__tag"
+          ],
+          [
+            ".shell__brand-mark"
+          ],
+          [
+            ".btn--icon > .nav__badge"
+          ],
+          [
+            "a[href$=\"requests\"] > .nav__badge"
+          ],
+          [
+            "a[href$=\"settings\"]"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "route": "settings",
+    "mode": "dark",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "targets": [
+          [
+            ".demo-banner__tag"
+          ],
+          [
+            ".shell__brand-mark"
+          ],
+          [
+            ".btn--icon > .nav__badge"
+          ],
+          [
+            "h1"
+          ],
+          [
+            "a[href$=\"requests\"] > .nav__badge"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "route": "help",
+    "mode": "dark",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "targets": [
+          [
+            ".demo-banner__tag"
+          ],
+          [
+            ".shell__brand-mark"
+          ],
+          [
+            ".btn--icon > .nav__badge"
+          ],
+          [
+            ".page-head__eyebrow"
+          ],
+          [
+            "a[href$=\"requests\"] > .nav__badge"
+          ]
+        ]
+      }
+    ]
+  }
+]

@@ -1,0 +1,30 @@
+## N1 delete test/wallet-premium.test.tsx
+COVERAGE GUARD: FAIL
+- missing required file test/wallet-premium.test.tsx
+exit=1
+## N2 drop browser-wallet verify step
+COVERAGE GUARD: FAIL
+- verify step "browser-wallet" missing
+exit=1
+## N3 make browser-wallet optional
+COVERAGE GUARD: FAIL
+- verify step "browser-wallet" must stay required
+exit=1
+## N4 continue-on-error in workflow
+COVERAGE GUARD: FAIL
+- workflow must not use continue-on-error
+exit=1
+## N5 stale results (since=now)
+COVERAGE GUARD: FAIL
+- vitest report is stale (not from this run)
+- e2e: results are stale (not produced by this run)
+- ux: results are stale (not produced by this run)
+- wallet: results are stale (not produced by this run)
+exit=1
+## N6 fewer vitest tests than floor
+COVERAGE GUARD: FAIL
+- vitest ran 73 tests, floor is 87
+exit=1
+## P1 restored tree
+COVERAGE GUARD: PASS (8 files, 10 required steps, floors met)
+exit=0
