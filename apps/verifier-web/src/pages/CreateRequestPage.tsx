@@ -10,7 +10,7 @@ export function CreateRequestPage() {
   const org = useOrg();
   const navigate = useNavigate();
   const templates = useAsync((s) => verifier.templates({ signal: s }), [verifier]);
-  const [templateId, setTemplateId] = useState<DemoRequestTemplate['id']>('AGE_OVER_18');
+  const [templateId, setTemplateId] = useState<DemoRequestTemplate['id']>(() => { try { return sessionStorage.getItem('iqdid-demo-template') === 'IDENTITY_BASIC' ? 'IDENTITY_BASIC' : 'AGE_OVER_18'; } catch { return 'AGE_OVER_18'; } });
   const [purpose, setPurpose] = useState('');
   const [purposeError, setPurposeError] = useState<string | null>(null);
   const [submitError, setSubmitError] = useState<string | null>(null);
@@ -50,7 +50,7 @@ export function CreateRequestPage() {
             <legend>نوع التحقق</legend>
             {templates.data?.map((t) => (
               <label key={t.id}>
-                <input type="radio" name="template" value={t.id} checked={templateId === t.id} onChange={() => setTemplateId(t.id)} />
+                <input type="radio" name="template" value={t.id} checked={templateId === t.id} onChange={() => { setTemplateId(t.id); try { sessionStorage.setItem('iqdid-demo-template', t.id); } catch { /* session only */ } }} />
                 <span>
                   <strong>{t.title}</strong>
                   <span className="small muted" style={{ display: 'block' }}>{t.fields.map((f) => f.label).join('، ')}</span>

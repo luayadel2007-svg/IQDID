@@ -1,5 +1,5 @@
 import { NavLink, Route, Routes } from 'react-router-dom';
-import { AppShell, EmptyState } from '@iqdid/ui';
+import { AppShell, EmptyState, Icon, type IconName } from '@iqdid/ui';
 import type { WalletGateway } from '@iqdid/api-client';
 import { GatewayProvider } from './gateway.tsx';
 import { HomePage } from './pages/HomePage.tsx';
@@ -12,11 +12,11 @@ import { SettingsPage } from './pages/SettingsPage.tsx';
 import { PollContext } from './poll.ts';
 
 const NAV = [
-  { to: '/', label: 'الرئيسية', icon: '🏠', end: true },
-  { to: '/card', label: 'بطاقتي', icon: '🪪', end: false },
-  { to: '/requests', label: 'الطلبات', icon: '📨', end: false },
-  { to: '/activity', label: 'السجل', icon: '🕘', end: false },
-  { to: '/settings', label: 'الإعدادات', icon: '⚙️', end: false },
+  { to: '/', label: 'الرئيسية', icon: 'home', end: true },
+  { to: '/card', label: 'بطاقتي', icon: 'card', end: false },
+  { to: '/requests', label: 'الطلبات', icon: 'inbox', end: false },
+  { to: '/activity', label: 'السجل', icon: 'clock', end: false },
+  { to: '/settings', label: 'الإعدادات', icon: 'settings', end: false },
 ];
 
 export function WalletApp({ gateway, pollMs = 2000 }: { gateway: WalletGateway; pollMs?: number }) {
@@ -29,7 +29,7 @@ export function WalletApp({ gateway, pollMs = 2000 }: { gateway: WalletGateway; 
           layout="mobile"
           nav={NAV.map((n) => (
             <NavLink key={n.to} to={n.to} end={n.end}>
-              <span className="nav__icon" aria-hidden="true">{n.icon}</span>
+              <span className="nav__icon" aria-hidden="true"><Icon name={n.icon as IconName} /></span>
               {n.label}
             </NavLink>
           ))}

@@ -3,7 +3,7 @@ import type {
   DemoCredentialSummary, DemoErrorCode, DemoOrganization, DemoRequestTemplate, DemoVerificationRequest,
   DemoVerificationSession,
 } from '@iqdid/shared-types';
-import { DEMO_HOLDER_REF, DEMO_SESSION_TTL_MS } from '@iqdid/shared-types';
+import { DEMO_HOLDER_REF, DEMO_SESSION_TTL_MS, previewDemoDisclosure } from '@iqdid/shared-types';
 import { DEMO_ORGANIZATIONS, DEMO_TEMPLATES, seedCredential } from './seed.ts';
 
 export type Result<T> = { ok: true; value: T } | { ok: false; code: DemoErrorCode; message: string };
@@ -137,12 +137,7 @@ export class DemoStore {
       return fail('CREDENTIAL_NOT_ACTIVE', 'the demo credential is not active');
     }
     const accepted = decision === 'ACCEPT';
-    const disclosed = accepted
-      ? s.requestedFields.map((f) => {
-          const claim = this.credential.claims.find((c) => c.key === f.key);
-          return { key: f.key, label: f.label, value: claim?.value ?? '—' };
-        })
-      : null;
+    const disclosed = accepted ? previewDemoDisclosure(s, this.credential) : null;
     const updated: DemoVerificationSession = {
       ...s,
       status: accepted ? 'DEMO_ACCEPTED' : 'DEMO_REJECTED',

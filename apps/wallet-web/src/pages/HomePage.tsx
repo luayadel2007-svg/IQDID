@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { ActivityList, Alert, Card, CredentialStatusBadge, ErrorState, LoadingState, PageHeader, useAsync } from '@iqdid/ui';
+import { FavoriteShortcut, ActivityList, Alert, Card, CredentialStatusBadge, ErrorState, LoadingState, PageHeader, useAsync } from '@iqdid/ui';
 import { describeError } from '@iqdid/api-client';
 import { useWallet } from '../gateway.tsx';
 import { usePollMs } from '../poll.ts';
@@ -21,6 +21,7 @@ export function HomePage() {
           <Link to="/requests">عرض الطلبات</Link>
         </Alert>
       )}
+      <FavoriteShortcut app="wallet" options={[{ href: '/card', label: 'بطاقتي' }, { href: '/requests', label: 'الطلبات' }, { href: '/activity', label: 'السجل' }]} />
       <Card title="اعتماداتي" actions={<Link to="/card">بطاقتي الرقمية</Link>}>
         {creds.loading ? <LoadingState /> : creds.error ? <ErrorState message={describeError(creds.error)} onRetry={creds.reload} /> : (
           <ul className="list">

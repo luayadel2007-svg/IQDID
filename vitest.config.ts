@@ -5,7 +5,7 @@ export default defineConfig({
   test: {
     projects: [
       {
-        test: { name: 'node', environment: 'node', include: ['packages/{shared-types,api-client,mock-services}/**/*.test.ts'] },
+        test: { name: 'node', environment: 'node', include: ['packages/{shared-types,api-client,mock-services}/**/*.test.ts', 'test/**/*.test.ts'] },
       },
       {
         plugins: [react()],

@@ -1,0 +1,42 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> iqdid-prototype@0.8.0 lint
+> eslint . --max-warnings=0
+
+
+/workspace/scratch/3b8f7ffc5c8e/iqdid/packages/api-client/src/server/compatibility/task3c-adapter.mjs
+  41:19  error  'URL' is not defined              no-undef
+  48:30  error  'URL' is not defined              no-undef
+  69:20  error  'URLSearchParams' is not defined  no-undef
+  88:28  error  'URL' is not defined              no-undef
+  95:25  error  'Headers' is not defined          no-undef
+
+/workspace/scratch/3b8f7ffc5c8e/iqdid/tools/lib/secret-scanner-engine.mjs
+   12:163  error  Unnecessary escape character: \/                                                                       no-useless-escape
+   14:145  error  Unexpected control character(s) in regular expression: \x00, \x1f                                      no-control-regex
+   17:102  error  'process' is not defined                                                                               no-undef
+   43:6    error  Unexpected control character(s) in regular expression: \x00, \x08, \x0b, \x0c, \x0e, \x1a, \x1c, \x1f  no-control-regex
+   68:72   error  'Buffer' is not defined                                                                                no-undef
+   85:41   error  Empty block statement                                                                                  no-empty
+  141:12   error  'process' is not defined                                                                               no-undef
+  142:20   error  'process' is not defined                                                                               no-undef
+  144:17   error  'process' is not defined                                                                               no-undef
+  144:52   error  'process' is not defined                                                                               no-undef
+  144:107  error  'process' is not defined                                                                               no-undef
+  144:263  error  'process' is not defined                                                                               no-undef
+  144:401  error  'process' is not defined                                                                               no-undef
+  145:78   error  'process' is not defined                                                                               no-undef
+  145:107  error  'process' is not defined                                                                               no-undef
+  146:9    error  'process' is not defined                                                                               no-undef
+  146:106  error  'process' is not defined                                                                               no-undef
+
+/workspace/scratch/3b8f7ffc5c8e/iqdid/tools/secret-scanner.mjs
+   4:32   error  'URL' is not defined                                               no-undef
+   5:12   error  'process' is not defined                                           no-undef
+   8:341  error  Unexpected control character(s) in regular expression: \x00, \x1f  no-control-regex
+  12:20   error  'process' is not defined                                           no-undef
+  21:1    error  'process' is not defined                                           no-undef
+  21:58   error  'process' is not defined                                           no-undef
+
+✖ 28 problems (28 errors, 0 warnings)
+

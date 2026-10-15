@@ -1,0 +1,30 @@
+[
+  {
+    "ref": "150084192b1a6d3f68eed0f56d5c0e5b1248df30",
+    "source": "tools/secret-scanner.mjs",
+    "target": "tools/secret-scanner.mjs",
+    "sha256": "89f58568159917a4320eaddf66c4cf679a40eaed39415c3d0bed738199c136c4",
+    "byteIdentical": true
+  },
+  {
+    "ref": "150084192b1a6d3f68eed0f56d5c0e5b1248df30",
+    "source": "tools/lib/secret-scanner-engine.mjs",
+    "target": "tools/lib/secret-scanner-engine.mjs",
+    "sha256": "7756181a00866c7d9f9cc2615c1d02a42281b58638f0eb01bbe814f8711cb039",
+    "byteIdentical": true
+  },
+  {
+    "ref": "150084192b1a6d3f68eed0f56d5c0e5b1248df30",
+    "source": ".security/secret-scanner-rules.json",
+    "target": ".security/secret-scanner-rules.json",
+    "sha256": "0667d64fd6b12c71f202fc2dd9a4c6b8858df34a771cc922548256feaae688d4",
+    "byteIdentical": true
+  },
+  {
+    "ref": "120d626e1d6901935d738a51306086cc1bfec983",
+    "source": "tests/contracts/task3/compatibility/adapter.mjs",
+    "target": "packages/api-client/src/server/compatibility/task3c-adapter.mjs",
+    "sha256": "2ad0d3192bc2d37f373e37c6e75ae5de406d6226aaefae13c7be2298575dba65",
+    "byteIdentical": true
+  }
+]

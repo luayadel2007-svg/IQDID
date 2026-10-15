@@ -4,3 +4,5 @@ export {
   type DemoTransportOptions, type HttpMethod, type RequestSpec, type Transport, type TransportMode,
 } from './transport.ts';
 export { createVerifierGateway, createWalletGateway, type VerifierGateway, type WalletGateway } from './gateways.ts';
+
+export type * from './crypto-ports.ts';

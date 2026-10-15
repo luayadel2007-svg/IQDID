@@ -1,7 +1,7 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useState, type ReactNode } from 'react';
-import { createTransport, createVerifierGateway, type VerifierGateway } from '@iqdid/api-client';
+import { createTransport, createVerifierGateway, describeError, type VerifierGateway } from '@iqdid/api-client';
 import type { DemoOrganization } from '@iqdid/shared-types';
-import { useAsync } from '@iqdid/ui';
+import { useAsync, ErrorState, LoadingState } from '@iqdid/ui';
 
 const GatewayCtx = createContext<VerifierGateway | null>(null);
 
@@ -12,7 +12,7 @@ export function useVerifier(): VerifierGateway {
 }
 
 export function defaultVerifierGateway(): VerifierGateway {
-  const mode = import.meta.env.VITE_IQDID_TRANSPORT === 'real' ? 'real' : 'demo';
+  const mode = !import.meta.env.VITE_IQDID_TRANSPORT || import.meta.env.VITE_IQDID_TRANSPORT === 'demo' ? 'demo' : 'real';
   return createVerifierGateway(createTransport(mode));
 }
 
@@ -70,4 +70,12 @@ export function VerifierProviders({ gateway, children }: { gateway: VerifierGate
       <OrgProvider>{children}</OrgProvider>
     </GatewayCtx.Provider>
   );
+}
+
+/** Organisation loading errors must never appear as an empty session list. */
+export function OrgBoundary({ children }: { children: ReactNode }) {
+  const org = useOrg();
+  if (org.loading) return <LoadingState />;
+  if (org.error) return <ErrorState message={describeError(org.error)} onRetry={org.reload} />;
+  return children;
 }

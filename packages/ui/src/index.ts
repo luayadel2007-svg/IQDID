@@ -5,3 +5,7 @@ export * from './status.tsx';
 export { AppShell, ThemeToggle, type AppShellProps } from './shell.tsx';
 export { ActivityList } from './activity.tsx';
 export { contrastRatio, tokens } from './tokens.ts';
+
+export { AppearanceSettings } from './preferences.tsx';
+export { Icon, type IconName } from './Icon.tsx';
+export { FavoriteShortcut } from './FavoriteShortcut.tsx';

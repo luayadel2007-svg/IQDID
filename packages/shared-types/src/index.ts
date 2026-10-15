@@ -157,7 +157,7 @@ export function isDemoRequestTemplate(v: unknown): v is DemoRequestTemplate {
 
 export function isDemoVerificationSession(v: unknown): v is DemoVerificationSession {
   return (
-    isRecord(v) && isString(v.id) && isString(v.shortCode) && isString(v.organizationId) && isString(v.organizationName) &&
+    isRecord(v) && Object.keys(v).every((k) => ['id', 'shortCode', 'organizationId', 'organizationName', 'templateId', 'purpose', 'requestedFields', 'holderRef', 'status', 'createdAt', 'expiresAt', 'decidedAt', 'disclosed'].includes(k)) && isString(v.id) && isString(v.shortCode) && isString(v.organizationId) && isString(v.organizationName) &&
     (v.templateId === 'AGE_OVER_18' || v.templateId === 'IDENTITY_BASIC') && isString(v.purpose) &&
     Array.isArray(v.requestedFields) && v.requestedFields.every(isField) && isString(v.holderRef) &&
     oneOf(SESSION_STATUSES, v.status) && isIsoDate(v.createdAt) && isIsoDate(v.expiresAt) &&
@@ -198,3 +198,11 @@ export function validateConsentDecision(v: unknown): { ok: true; value: DemoCons
 }
 
 export const isTerminalStatus = (s: DemoSessionStatus): boolean => TERMINAL_SESSION_STATUSES.includes(s);
+
+export type { DemoOutcome, VerifiedByProtocol, VerificationOutcome } from './verification.ts';
+
+/** Exact synthetic projection. No protocol or selective-disclosure claim. */
+export function previewDemoDisclosure(session: DemoVerificationSession, credential: DemoCredentialSummary): readonly DemoClaim[] {
+  if (session.holderRef !== credential.holderRef) throw new Error('holder mismatch');
+  return session.requestedFields.map((f) => ({ key: f.key, label: f.label, value: credential.claims.find((c) => c.key === f.key)?.value ?? '—' }));
+}

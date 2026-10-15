@@ -1,13 +1,15 @@
 import type { ReactNode } from 'react';
 import { Button, DemoBanner } from './components.tsx';
 import { useTheme } from './hooks.ts';
+import { useAppearance } from './preferences.tsx';
+import { Icon } from './Icon.tsx';
 
 export function ThemeToggle() {
-  const { theme, toggle } = useTheme();
-  const dark = theme === 'dark';
+  const { resolvedTheme, toggle } = useTheme();
+  const dark = resolvedTheme === 'dark';
   return (
     <Button variant="ghost" size="sm" onClick={toggle} aria-pressed={dark} aria-label={dark ? 'تفعيل الوضع الفاتح' : 'تفعيل الوضع الداكن'} style={{ color: 'inherit' }}>
-      <span aria-hidden="true">{dark ? '☀️' : '🌙'}</span>
+      <Icon name={dark ? 'sun' : 'moon'} />
       <span>{dark ? 'فاتح' : 'داكن'}</span>
     </Button>
   );
@@ -24,6 +26,7 @@ export interface AppShellProps {
 
 /** Page frame: demo banner, header, navigation landmark and main content. */
 export function AppShell({ appName, appSubtitle, layout, nav, headerExtra, children }: AppShellProps) {
+  useAppearance();
   const navEl = <nav className="nav" aria-label="التنقل الرئيسي">{nav}</nav>;
   return (
     <div className={`shell shell--${layout}`}>

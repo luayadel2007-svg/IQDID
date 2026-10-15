@@ -1,5 +1,6 @@
 import { useCallback, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
+import { previewDemoDisclosure } from '@iqdid/shared-types';
 import type { DemoConsentDecisionValue, DemoSessionStatus } from '@iqdid/shared-types';
 import { Alert, Button, Card, ErrorState, LoadingState, Modal, PageHeader, SessionStatusBadge, formatDateTime, useAsync, useCountdown } from '@iqdid/ui';
 import { describeError } from '@iqdid/api-client';
@@ -11,6 +12,7 @@ export function RequestDetailPage() {
   const wallet = useWallet();
   const pollMs = usePollMs();
   const { data, error, loading, reload } = useAsync((s) => wallet.request(id, { signal: s }), [wallet, id], { pollMs });
+  const credentials = useAsync((signal) => wallet.credentials({ signal }), [wallet]);
   const left = useCountdown(data?.status === 'PENDING' ? data.expiresAt : null);
   const [confirm, setConfirm] = useState<DemoConsentDecisionValue | null>(null);
   const [submitting, setSubmitting] = useState(false);
@@ -35,6 +37,8 @@ export function RequestDetailPage() {
 
   if (loading) return <LoadingState />;
   if (error || !data) return <ErrorState message={describeError(error)} onRetry={reload} />;
+  const credential = credentials.data?.find((c) => c.holderRef === data.holderRef);
+  const preview = credential ? previewDemoDisclosure(data, credential) : null;
   const pending = data.status === 'PENDING' && left !== 0;
 
   return (
@@ -55,9 +59,13 @@ export function RequestDetailPage() {
         </ul>
         <p className="small muted">ستُشارك هذه الحقول فقط إذا وافقت. يمكنك الرفض دائماً.</p>
       </Card>
+      {pending && <Card title="معاينة القيم التي ستُشارك (اصطناعية)">
+        {credentials.loading ? <LoadingState /> : credentials.error || !preview ? <ErrorState message="تعذرت معاينة البيانات؛ أعد المحاولة قبل الموافقة." onRetry={credentials.reload} /> :
+          <dl className="kv">{preview.map((c) => <div key={c.key}><dt>{`قيمة: ${c.label}`}</dt><dd>{c.value}</dd></div>)}</dl>}
+      </Card>}
       {pending ? (
         <div className="row" style={{ marginTop: 'var(--sp-4)' }}>
-          <Button onClick={() => setConfirm('ACCEPT')}>موافقة تجريبية</Button>
+          <Button disabled={!preview || Boolean(credentials.error) || credential?.status !== 'ACTIVE'} onClick={() => setConfirm('ACCEPT')}>موافقة تجريبية</Button>
           <Button variant="danger" onClick={() => setConfirm('REJECT')}>رفض</Button>
         </div>
       ) : (
@@ -71,7 +79,7 @@ export function RequestDetailPage() {
         footer={
           <>
             <Button variant="secondary" onClick={close} disabled={submitting}>تراجع</Button>
-            <Button variant={confirm === 'REJECT' ? 'danger' : 'primary'} loading={submitting} onClick={() => confirm && void submit(confirm)}>
+            <Button variant={confirm === 'REJECT' ? 'danger' : 'primary'} disabled={!pending || (confirm === 'ACCEPT' && (!preview || Boolean(credentials.error) || credential?.status !== 'ACTIVE'))} loading={submitting} onClick={() => confirm && void submit(confirm)}>
               {confirm === 'ACCEPT' ? 'تأكيد الموافقة' : 'تأكيد الرفض'}
             </Button>
           </>

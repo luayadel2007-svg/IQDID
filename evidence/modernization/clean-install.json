@@ -1,0 +1,9 @@
+{
+  "command": [
+    "npm",
+    "ci"
+  ],
+  "exit": 0,
+  "outcome": "PASS",
+  "lockSha256": "e693bb80d6ecc744ea733158ba81545309f67cf946a7c7b7faf7783846fbc0dd"
+}
