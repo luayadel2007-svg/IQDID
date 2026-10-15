@@ -60,7 +60,7 @@ Regressions found and fixed during the run: (1) body background shorthand was in
 
 ## 4. Screenshots
 
-`evidence/task8-v2/screenshots/before/` (base `6cb22c3`) and `after/` — same 14 shots, same seed: wallet 390 (home light/dark, card, requests, settings light/dark), wallet 768, verifier 1366 (dashboard light/dark, new, sessions, settings dark), verifier 768 and 390. `compare/` holds 4 side-by-side composites.
+`evidence/task8-v2/screenshots/before/` (base `6cb22c3`) and `after/` — same 14 shots, same seed: wallet 390 (home light/dark, card, requests, settings light/dark), wallet 768, verifier 1366 (dashboard light/dark, new, sessions, settings dark), verifier 768 and 390. `compare/` holds 4 side-by-side composites. Following the repository rule from PR #5 (`/evidence/modernization/**/*.png` ignored so the secret scanner can inspect every committed file), PNGs are **not committed**: they are delivered in the package ZIP and regenerated with `npm run build && IQDID_SHOTS_DIR=task8-v2/screenshots/after npm run screenshots`.
 
 ## 5. Not done / limits
 
