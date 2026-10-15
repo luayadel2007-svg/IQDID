@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { render, screen } from '@testing-library/react';
+import { act, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { Alert, Badge, Button, ErrorState, SegmentedControl, StatCard, Input, Modal, ThemeToggle, contrastRatio, tokens } from './index.ts';
+import { AppShell, Alert, Badge, Button, ErrorState, SegmentedControl, StatCard, Input, Modal, ThemeToggle, contrastRatio, tokens } from './index.ts';
 
 describe('ui primitives', () => {
   it('Button shows loading state and blocks clicks', async () => {
@@ -118,5 +118,19 @@ describe('design system v2 components', () => {
   it('Alert keeps danger as an assertive alert with an icon', () => {
     render(<Alert tone="danger" title="خطأ">تفاصيل</Alert>);
     expect(screen.getByRole('alert')).toHaveTextContent('خطأتفاصيل');
+  });
+});
+
+describe('PDF §5 adaptive top bar', () => {
+  it('marks the header as scrolled after scrolling and keeps every header control', () => {
+    render(<AppShell appName="محفظة" appSubtitle="تجريبي" layout="mobile" nav={<a href="/">الرئيسية</a>} headerExtra={<button type="button">إشعارات</button>}><h1>عنوان</h1></AppShell>);
+    const header = screen.getByRole('banner');
+    expect(header).toHaveAttribute('data-scrolled', 'false');
+    act(() => { Object.defineProperty(window, 'scrollY', { value: 120, configurable: true }); window.dispatchEvent(new Event('scroll')); });
+    expect(header).toHaveAttribute('data-scrolled', 'true');
+    expect(screen.getByRole('button', { name: 'إشعارات' })).toBeVisible();
+    expect(screen.getByRole('button', { name: /تفعيل الوضع/ })).toBeVisible();
+    act(() => { Object.defineProperty(window, 'scrollY', { value: 0, configurable: true }); window.dispatchEvent(new Event('scroll')); });
+    expect(header).toHaveAttribute('data-scrolled', 'false');
   });
 });

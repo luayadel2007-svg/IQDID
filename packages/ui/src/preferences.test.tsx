@@ -1,6 +1,6 @@
 import { render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { AppearanceSettings, ThemeToggle, LoadingState, FavoriteShortcut } from './index.ts';
+import { AppearanceSettings, ThemeToggle, LoadingState, FavoriteShortcut, useOnline } from './index.ts';
 
 describe('shared display preferences', () => {
   it('synchronizes settings and header, persists text and transparency after remount', async () => {
@@ -59,4 +59,15 @@ describe('design system v2 preferences and primitives', () => {
     expect(screen.getByRole('switch', { name: 'تقليل الحركة' })).not.toBeChecked();
     expect(document.documentElement.dataset.motion).toBe('system');
   });
+});
+
+it('useOnline catches a connectivity change that happens before its listener is attached', () => {
+  // Online while rendering, offline by the time effects run, and no event in between.
+  let reads = 0;
+  const spy = vi.spyOn(navigator, 'onLine', 'get').mockImplementation(() => reads++ === 0);
+  function Probe() { return <span>{useOnline() ? 'online' : 'offline'}</span>; }
+  try {
+    const { container } = render(<Probe />);
+    expect(container.textContent).toBe('offline');
+  } finally { spy.mockRestore(); }
 });

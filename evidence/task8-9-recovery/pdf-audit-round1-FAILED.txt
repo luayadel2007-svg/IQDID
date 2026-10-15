@@ -1,0 +1,7 @@
+PDF audit round 1 (before the reduced-transparency fix). Reconstructed from the console output of the run;
+the round-1 audit.json was overwritten by round 2 (recorded honestly here).
+Result: PDF AUDIT: 25 PASS / 2 FAIL
+FAIL wallet P10 user can turn transparency off (§2) — {"navBackdropFilter":"blur(0px) saturate(1.4)"}
+FAIL verifier P10 user can turn transparency off (§2) — {"navBackdropFilter":"blur(0px)"}
+Root cause: html[data-glass=off] only zeroed --glass-blur; the nav kept a backdrop-filter (saturate on wallet).
+Fix: backdrop-filter:none on .shell .nav when data-glass=off or prefers-reduced-transparency. Round 2: 27 PASS / 0 FAIL.

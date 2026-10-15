@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react';
+import { useEffect, useState, type ReactNode } from 'react';
 import { Button, DemoBanner } from './components.tsx';
 import { useTheme } from './hooks.ts';
 import { useAppearance } from './preferences.tsx';
@@ -29,12 +29,19 @@ export interface AppShellProps {
 /** Page frame: demo banner, header, navigation landmark and main content. */
 export function AppShell({ appName, appSubtitle, layout, nav, headerExtra, topSlot, children }: AppShellProps) {
   useAppearance();
+  const [scrolled, setScrolled] = useState(false);
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 8);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
   const navEl = <nav className="nav" aria-label="التنقل الرئيسي">{nav}</nav>;
   return (
     <div className={`shell shell--${layout}`}>
       <a href="#main" className="visually-hidden">تخطَّ إلى المحتوى</a>
       <DemoBanner />
-      <header className="shell__header">
+      <header className="shell__header" data-scrolled={scrolled}>
         <div className="shell__brand">
           <span className="shell__brand-mark" aria-hidden="true">ID</span>
           <span>
