@@ -1,0 +1,20 @@
+[demo-api] [demo-api] TEST ONLY — synthetic data — listening on http://127.0.0.1:4010 (session TTL 120000 ms)
+[verifier]   ➜  Local:   http://127.0.0.1:4174/
+[wallet]   ➜  Local:   http://127.0.0.1:4173/
+[demo-api] [demo-api] GET /demo-api/v1/health 200 5ea9056d-326d-4887-b065-749237686f96
+[demo-api] [demo-api] GET /demo-api/v1/wallet/credentials 200 4207773c-2d3a-40c0-9f77-f2f0ff9a3ded
+[demo-api] [demo-api] GET /demo-api/v1/wallet/activity 200 e17f1d9c-3688-4c65-83c7-b2c2c04834c7
+[demo-api] [demo-api] GET /demo-api/v1/wallet/requests 200 cbc685d2-548b-43a9-89cc-cb52705ec6cf
+[demo-api] [demo-api] GET /demo-api/v1/wallet/credentials 200 d61d4d14-e1c5-4124-a4ea-925ecfa1f6b8
+[demo-api] [demo-api] GET /demo-api/v1/wallet/credentials 200 4704f7df-8ebb-487c-846c-f6438c8df75d
+[demo-api] [demo-api] GET /demo-api/v1/wallet/requests 200 c76d68a1-c322-43db-b020-0da1ef8d9a80
+[demo-api] [demo-api] GET /demo-api/v1/wallet/activity 200 f81f2d37-36a0-4789-a9c1-76c34e8a1fd8
+[demo-api] [demo-api] GET /demo-api/v1/wallet/credentials 200 f9bd55d8-f76a-4eb6-86d5-25055f99b401
+[demo-api] [demo-api] GET /demo-api/v1/wallet/requests 200 9c259609-24e7-430d-b64c-ecc72ab1e340
+[demo-api] [demo-api] GET /demo-api/v1/wallet/activity 200 0b36cc3a-fa84-41a6-b768-9f9a96efa516
+[demo-api] [demo-api] GET /demo-api/v1/organizations 200 7dec665f-2a07-4ee5-9369-3e2fa343e397
+[demo-api] [demo-api] GET /demo-api/v1/verifier/sessions 200 d4db72f2-fec5-4781-bb37-f670a6145d83
+[demo-api] [demo-api] GET /demo-api/v1/request-templates 200 88b9de1c-cf08-4923-9bb8-03678fbcd15e
+[demo-api] [demo-api] GET /demo-api/v1/organizations 200 85f32868-5732-497b-9941-a67a61d33c93
+[demo-api] [demo-api] GET /demo-api/v1/organizations 200 eb3fa2f6-1d0b-473c-b3ed-9699417147ba
+[demo-api] [demo-api] GET /demo-api/v1/organizations 200 992f6d5f-8223-4db5-b32a-4f0918d9c871

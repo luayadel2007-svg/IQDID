@@ -1,7 +1,7 @@
 name: TASK8 apps CI
 on:
   push:
-    branches: [task8/monorepo-demo]
+    branches: [task8/monorepo-demo, integration/crypto-ready-ux]
   pull_request:
   workflow_dispatch:
 permissions:
@@ -26,6 +26,7 @@ jobs:
         uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
         with:
           persist-credentials: false
+          fetch-depth: 0
       - name: Node 22 LTS
         uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
         with:
@@ -33,11 +34,15 @@ jobs:
       - name: Clean install, typecheck, lint, tests, build, browser E2E (with evidence)
         env:
           CHROMIUM_PATH: ${{ matrix.chrome }}
-        run: npm run evidence -- --ci
+        run: npm ci --no-audit --no-fund
+      - name: Modernization checks
+        env:
+          CHROMIUM_PATH: ${{ matrix.chrome }}
+        run: npm run modernization:verify
       - name: Keep evidence
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
           name: task8-evidence-${{ matrix.os }}-${{ github.run_id }}
-          path: evidence/task8
+          path: evidence/modernization
           retention-days: 30

@@ -1,34 +1,39 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 
-export type ThemeName = 'light' | 'dark';
+export type ThemeName = 'light' | 'dark' | 'system';
 const THEME_KEY = 'iqdid-demo-theme';
-
-const readStoredTheme = (): ThemeName | null => {
-  try {
-    const v = window.localStorage.getItem(THEME_KEY);
-    return v === 'light' || v === 'dark' ? v : null;
-  } catch {
-    return null;
-  }
+const THEME_EVENT = 'iqdid-theme-change';
+const readStoredTheme = (): ThemeName => {
+  try { const v = window.localStorage.getItem(THEME_KEY); return v === 'light' || v === 'dark' ? v : 'system'; }
+  catch { return 'system'; }
 };
-
-const systemTheme = (): ThemeName =>
+const systemTheme = (): 'light' | 'dark' =>
   typeof window.matchMedia === 'function' && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-
-/** Light/dark theme applied to <html data-theme>; remembered per browser (convenience only). */
-export function useTheme(): { theme: ThemeName; setTheme: (t: ThemeName) => void; toggle: () => void } {
-  const [theme, setThemeState] = useState<ThemeName>(() => readStoredTheme() ?? systemTheme());
+/** All mounted consumers share preference; system changes apply while in system mode. */
+export function useTheme(): { theme: ThemeName; resolvedTheme: 'light' | 'dark'; setTheme: (t: ThemeName) => void; toggle: () => void } {
+  const [theme, setThemeState] = useState<ThemeName>(readStoredTheme);
+  const [system, setSystem] = useState(systemTheme);
   useEffect(() => {
-    document.documentElement.dataset.theme = theme;
-    try {
-      window.localStorage.setItem(THEME_KEY, theme);
-    } catch {
-      /* storage unavailable — theme still applies for this page */
-    }
-  }, [theme]);
-  const setTheme = useCallback((t: ThemeName) => setThemeState(t), []);
-  const toggle = useCallback(() => setThemeState((t) => (t === 'dark' ? 'light' : 'dark')), []);
-  return { theme, setTheme, toggle };
+    const sync = (event: Event) => {
+      const preference: unknown = event instanceof CustomEvent ? event.detail : undefined;
+      setThemeState(preference === 'light' || preference === 'dark' || preference === 'system' ? preference : readStoredTheme());
+    };
+    const media = window.matchMedia?.('(prefers-color-scheme: dark)');
+    const changed = () => setSystem(systemTheme());
+    window.addEventListener(THEME_EVENT, sync);
+    window.addEventListener('storage', sync);
+    media?.addEventListener('change', changed);
+    return () => { window.removeEventListener(THEME_EVENT, sync); window.removeEventListener('storage', sync); media?.removeEventListener('change', changed); };
+  }, []);
+  const resolvedTheme = theme === 'system' ? system : theme;
+  useEffect(() => { document.documentElement.dataset.theme = resolvedTheme; }, [resolvedTheme]);
+  const setTheme = useCallback((t: ThemeName) => {
+    setThemeState(t);
+    try { window.localStorage.setItem(THEME_KEY, t); } catch { /* session only */ }
+    window.dispatchEvent(new CustomEvent(THEME_EVENT, { detail: t }));
+  }, []);
+  const toggle = useCallback(() => setTheme(resolvedTheme === 'dark' ? 'light' : 'dark'), [resolvedTheme, setTheme]);
+  return { theme, resolvedTheme, setTheme, toggle };
 }
 
 export interface AsyncState<T> {

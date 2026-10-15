@@ -6,3 +6,5 @@ coverage/
 !.env.example
 *.log
 /evidence/task8/tmp/
+
+/evidence/modernization/**/*.png

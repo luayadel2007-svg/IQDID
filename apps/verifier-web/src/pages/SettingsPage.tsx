@@ -1,12 +1,11 @@
 import { useState } from 'react';
-import { Alert, Button, Card, Modal, PageHeader, Select, useTheme } from '@iqdid/ui';
+import { Alert, Button, Card, Modal, PageHeader, Select, AppearanceSettings } from '@iqdid/ui';
 import { describeError } from '@iqdid/api-client';
 import { useOrg, useVerifier } from '../gateway.tsx';
 
 export function SettingsPage() {
   const verifier = useVerifier();
   const org = useOrg();
-  const { theme, setTheme } = useTheme();
   const [confirmReset, setConfirmReset] = useState(false);
   const [busy, setBusy] = useState(false);
   const [message, setMessage] = useState<{ tone: 'success' | 'danger'; text: string } | null>(null);
@@ -31,12 +30,7 @@ export function SettingsPage() {
       <Card title="المؤسسة التجريبية">
         <Select label="المؤسسة الحالية" value={org.current?.id ?? ''} onChange={(e) => org.select(e.target.value)} options={org.organizations.map((o) => ({ value: o.id, label: o.name }))} />
       </Card>
-      <Card title="المظهر">
-        <div className="row" role="group" aria-label="اختيار المظهر">
-          <Button variant={theme === 'light' ? 'primary' : 'secondary'} aria-pressed={theme === 'light'} onClick={() => setTheme('light')}>فاتح</Button>
-          <Button variant={theme === 'dark' ? 'primary' : 'secondary'} aria-pressed={theme === 'dark'} onClick={() => setTheme('dark')}>داكن</Button>
-        </div>
-      </Card>
+      <AppearanceSettings />
       <Card title="العرض التجريبي">
         <p className="muted">تحذف إعادة الضبط كل الجلسات والسجل في التطبيقين.</p>
         <Button variant="danger" onClick={() => setConfirmReset(true)}>إعادة ضبط البيانات التجريبية</Button>

@@ -94,7 +94,7 @@ export function Select({ label, hint, error, options, ...rest }: FieldProps & Se
 export function LoadingState({ label = 'جارٍ التحميل…' }: { label?: string }) {
   return (
     <div className="state" role="status" aria-live="polite">
-      <span className="spinner" aria-hidden="true" />
+      <div className="skeleton" aria-hidden="true"><i /><i /><i /></div>
       <span>{label}</span>
     </div>
   );

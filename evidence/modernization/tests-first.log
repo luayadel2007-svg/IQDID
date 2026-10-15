@@ -1,0 +1,1370 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> iqdid-prototype@0.8.0 test
+> vitest run
+
+
+ RUN  v4.1.11 /workspace/scratch/3b8f7ffc5c8e/iqdid
+
+ ❯ |dom| test/provider-replacement.test.tsx (2 tests | 2 failed) 2091ms
+     × uses an alternate transport against a real server without page or UI API changes 1074ms
+     × same Wallet and Verifier display real-provider failure rather than demo success 1014ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |dom| test/provider-replacement.test.tsx > same pages with replacement providers > uses an alternate transport against a real server without page or UI API changes
+TestingLibraryElementError: Unable to find an element with the text: مواطن تجريبي. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.
+
+Ignored nodes: comments, script, style
+[36m<div>[39m
+  [36m<div[39m
+    [33mclass[39m=[32m"shell shell--mobile"[39m
+  [36m>[39m
+    [36m<a[39m
+      [33mclass[39m=[32m"visually-hidden"[39m
+      [33mhref[39m=[32m"#main"[39m
+    [36m>[39m
+      [0mتخطَّ إلى المحتوى[0m
+    [36m</a>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"demo-banner"[39m
+      [33mrole[39m=[32m"note"[39m
+    [36m>[39m
+      [0mنسخة تجريبية — بيانات وهمية · لا تمثل أي جهة حكومية · لا يجري أي تحقق تشفيري[0m
+    [36m</div>[39m
+    [36m<header[39m
+      [33mclass[39m=[32m"shell__header"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"shell__brand"[39m
+      [36m>[39m
+        [36m<span[39m
+          [33maria-hidden[39m=[32m"true"[39m
+          [33mclass[39m=[32m"shell__brand-mark"[39m
+        [36m>[39m
+          [0mID[0m
+        [36m</span>[39m
+        [36m<span>[39m
+          [0mمحفظتي الرقمية[0m
+          [36m<div[39m
+            [33mclass[39m=[32m"shell__sub"[39m
+          [36m>[39m
+            [0mتطبيق المواطن — نسخة تجريبية[0m
+          [36m</div>[39m
+        [36m</span>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"row"[39m
+      [36m>[39m
+        [36m<button[39m
+          [33maria-label[39m=[32m"تفعيل الوضع الداكن"[39m
+          [33maria-pressed[39m=[32m"false"[39m
+          [33mclass[39m=[32m"btn btn--ghost btn--sm"[39m
+          [33mstyle[39m=[32m"color: inherit;"[39m
+          [33mtype[39m=[32m"button"[39m
+        [36m>[39m
+          [36m<svg[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mfill[39m=[32m"none"[39m
+            [33mfocusable[39m=[32m"false"[39m
+            [33mheight[39m=[32m"22"[39m
+            [33mstroke[39m=[32m"currentColor"[39m
+            [33mstroke-linecap[39m=[32m"round"[39m
+            [33mstroke-linejoin[39m=[32m"round"[39m
+            [33mstroke-width[39m=[32m"1.7"[39m
+            [33mviewBox[39m=[32m"0 0 24 24"[39m
+            [33mwidth[39m=[32m"22"[39m
+          [36m>[39m
+            [36m<path[39m
+              [33md[39m=[32m"M20 15A9 9 0 0 1 9 4a9 9 0 1 0 11 11"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+          [36m<span>[39m
+            [0mداكن[0m
+          [36m</span>[39m
+        [36m</button>[39m
+      [36m</div>[39m
+    [36m</header>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"shell__body"[39m
+    [36m>[39m
+      [36m<main[39m
+        [33mclass[39m=[32m"shell__main"[39m
+        [33mid[39m=[32m"main"[39m
+        [33mtabindex[39m=[32m"-1"[39m
+      [36m>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"page-head"[39m
+        [36m>[39m
+          [36m<div>[39m
+            [36m<h1>[39m
+              [0mأهلاً بك[0m
+            [36m</h1>[39m
+            [36m<p>[39m
+              [0mمحفظة هوية رقمية تجريبية للمواطن الاصطناعي TEST-001.[0m
+            [36m</p>[39m
+          [36m</div>[39m
+        [36m</div>[39m
+        [36m<section[39m
+          [33mclass[39m=[32m"card"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"card__head"[39m
+          [36m>[39m
+            [36m<h2[39m
+              [33mclass[39m=[32m"card__title"[39m
+            [36m>[39m
+              [0mاعتماداتي[0m
+            [36m</h2>[39m
+            [36m<a[39m
+              [33mdata-discover[39m=[32m"true"[39m
+              [33mhref[39m=[32m"/card"[39m
+            [36m>[39m
+              [0mبطاقتي الرقمية[0m
+            [36m</a>[39m
+          [36m</div>[39m
+          [36m<ul[39m
+            [33mclass[39m=[32m"list"[39m
+          [36m>[39m
+            [36m<li[39m
+              [33mclass[39m=[32m"row row--between"[39m
+            [36m>[39m
+              [36m<a[39m
+                [33mdata-discover[39m=[32m"true"[39m
+                [33mhref[39m=[32m"/credentials/cred-test-001"[39m
+              [36m>[39m
+                [0mبطاقة الهوية الرقمية (تجريبية)[0m
+              [36m</a>[39m
+              [36m<span[39m
+                [33mclass[39m=[32m"badge badge--success"[39m
+              [36m>[39m
+                [0mفعال (تجريبي)[0m
+              [36m</span>[39m
+            [36m</li>[39m
+          [36m</ul>[39m
+        [36m</section>[39m
+        [36m<section[39m
+          [33mclass[39m=[32m"card"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"card__head"[39m
+          [36m>[39m
+            [36m<h2[39m
+              [33mclass[39m=[32m"card__title"[39m
+            [36m>[39m
+              [0mآخر النشاطات[0m
+            [36m</h2>[39m
+            [36m<a[39m
+              [33mdata-discover[39m=[32m"true"[39m
+              [33mhref[39m=[32m"/activity"[39m
+            [36m>[39m
+              [0mالسجل الكامل[0m
+            [36m</a>[39m
+          [36m</div>[39m
+          [36m<p[39m
+            [33mclass[39m=[32m"muted"[39m
+          [36m>[39m
+            [0mلا توجد عمليات مسجلة بعد.[0m
+          [36m</p>[39m
+        [36m</section>[39m
+      [36m</main>[39m
+    [36m</div>[39m
+    [36m<nav[39m
+      [33maria-label[39m=[32m"التنقل الرئيسي"[39m
+      [33mclass[39m=[32m"nav"[39m
+    [36m>[39m
+      [36m<a[39m
+        [33maria-current[39m=[32m"page"[39m
+        [33mclass[39m=[32m"active"[39m
+        [33mdata-discover[39m=[32m"true"[39m
+        [33mhref[39m=[32m"/"[39m
+      [36m>[39m
+        [36m<span[39m
+          [33maria-hidden[39m=[32m"true"[39m
+          [33mclass[39m=[32m"nav__icon"[39m
+        [36m>[39m
+          [36m<svg[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mfill[39m=[32m"none"[39m
+            [33mfocusable[39m=[32m"false"[39m
+            [33mheight[39m=[32m"22"[39m
+            [33mstroke[39m=[32m"currentColor"[39m
+            [33mstroke-linecap[39m=[32m"round"[39m
+            [33mstroke-linejoin[39m=[32m"round"[39m
+            [33mstroke-width[39m=[32m"1.7"[39m
+            [33mviewBox[39m=[32m"0 0 24 24"[39m
+            [33mwidth[39m=[32m"22"[39m
+          [36m>[39m
+            [36m<path[39m
+              [33md[39m=[32m"M3 10 12 3l9 7v11h-6v-7H9v7H3Z"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+        [36m</span>[39m
+        [0mالرئيسية[0m
+      [36m</a>[39m
+      [36m<a[39m
+        [33mclass[39m=[32m""[39m
+        [33mdata-discover[39m=[32m"true"[39m
+        [33mhref[39m=[32m"/card"[39m
+      [36m>[39m
+        [36m<span[39m
+          [33maria-hidden[39m=[32m"true"[39m
+          [33mclass[39m=[32m"nav__icon"[39m
+        [36m>[39m
+          [36m<svg[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mfill[39m=[32m"none"[39m
+            [33mfocusable[39m=[32m"false"[39m
+            [33mheight[39m=[32m"22"[39m
+            [33mstroke[39m=[32m"currentColor"[39m
+            [33mstroke-linecap[39m=[32m"round"[39m
+            [33mstroke-linejoin[39m=[32m"round"[39m
+            [33mstroke-width[39m=[32m"1.7"[39m
+            [33mviewBox[39m=[32m"0 0 24 24"[39m
+            [33mwidth[39m=[32m"22"[39m
+          [36m>[39m
+            [36m<path[39m
+              [33md[39m=[32m"M3 5h18v14H3ZM3 10h18M7 15h4"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+        [36m</span>[39m
+        [0mبطاقتي[0m
+      [36m</a>[39m
+      [36m<a[39m
+        [33mclass[39m=[32m""[39m
+        [33mdata-discover[39m=[32m"true"[39m
+        [33mhref[39m=[32m"/requests"[39m
+      [36m>[39m
+        [36m<span[39m
+          [33maria-hidden[39m=[32m"true"[39m
+          [33mclass[39m=[32m"nav__icon"[39m
+        [36m>[39m
+          [36m<svg[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mfill[39m=[32m"none"[39m
+            [33mfocusable[39m=[32m"false"[39m
+            [33mheight[39m=[32m"22"[39m
+            [33mstroke[39m=[32m"currentColor"[39m
+            [33mstroke-linecap[39m=[32m"round"[39m
+            [33mstroke-linejoin[39m=[32m"round"[39m
+            [33mstroke-width[39m=[32m"1.7"[39m
+            [33mviewBox[39m=[32m"0 0 24 24"[39m
+            [33mwidth[39m=[32m"22"[39m
+          [36m>[39m
+            [36m<path[39m
+              [33md[39m=[32m"M3 4h18v16H3ZM3 13h5l2 3h4l2-3h5"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+        [36m</span>[39m
+        [0mالطلبات[0m
+      [36m</a>[39m
+      [36m<a[39m
+        [33mclass[39m=[32m""[39m
+        [33mdata-discover[39m=[32m"true"[39m
+        [33mhref[39m=[32m"/activity"[39m
+      [36m>[39m
+        [36m<span[39m
+          [33maria-hidden[39m=[32m"true"[39m
+          [33mclass[39m=[32m"nav__icon"[39m
+        [36m>[39m
+          [36m<svg[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mfill[39m=[32m"none"[39m
+            [33mfocusable[39m=[32m"false"[39m
+            [33mheight[39m=[32m"22"[39m
+            [33mstroke[39m=[32m"currentColor"[39m
+            [33mstroke-linecap[39m=[32m"round"[39m
+            [33mstroke-linejoin[39m=[32m"round"[39m
+            [33mstroke-width[39m=[32m"1.7"[39m
+            [33mviewBox[39m=[32m"0 0 24 24"[39m
+            [33mwidth[39m=[32m"22"[39m
+          [36m>[39m
+            [36m<path[39m
+              [33md[39m=[32m"M12 8v5l3 2M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+        [36m</span>[39m
+        [0mالسجل[0m
+      [36m</a>[39m
+      [36m<a[39m
+        [33mclass[39m=[32m""[39m
+        [33mdata-discover[39m=[32m"true"[39m
+        [33mhref[39m=[32m"/settings"[39m
+      [36m>[39m
+        [36m<span[39m
+          [33maria-hidden[39m=[32m"true"[39m
+          [33mclass[39m=[32m"nav__icon"[39m
+        [36m>[39m
+          [36m<svg[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mfill[39m=[32m"none"[39m
+            [33mfocusable[39m=[32m"false"[39m
+            [33mheight[39m=[32m"22"[39m
+            [33mstroke[39m=[32m"currentColor"[39m
+            [33mstroke-linecap[39m=[32m"round"[39m
+            [33mstroke-linejoin[39m=[32m"round"[39m
+            [33mstroke-width[39m=[32m"1.7"[39m
+            [33mviewBox[39m=[32m"0 0 24 24"[39m
+            [33mwidth[39m=[32m"22"[39m
+          [36m>[39m
+            [36m<path[39m
+              [33md[39m=[32m"M4 7h16M4 17h16M9 4v6M15 14v6"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+        [36m</span>[39m
+        [0mالإعدادات[0m
+      [36m</a>[39m
+    [36m</nav>[39m
+  [36m</div>[39m
+[36m</div>[39m
+
+Ignored nodes: comments, script, style
+[36m<div>[39m
+  [36m<div[39m
+    [33mclass[39m=[32m"shell shell--mobile"[39m
+  [36m>[39m
+    [36m<a[39m
+      [33mclass[39m=[32m"visually-hidden"[39m
+      [33mhref[39m=[32m"#main"[39m
+    [36m>[39m
+      [0mتخطَّ إلى المحتوى[0m
+    [36m</a>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"demo-banner"[39m
+      [33mrole[39m=[32m"note"[39m
+    [36m>[39m
+      [0mنسخة تجريبية — بيانات وهمية · لا تمثل أي جهة حكومية · لا يجري أي تحقق تشفيري[0m
+    [36m</div>[39m
+    [36m<header[39m
+      [33mclass[39m=[32m"shell__header"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"shell__brand"[39m
+      [36m>[39m
+        [36m<span[39m
+          [33maria-hidden[39m=[32m"true"[39m
+          [33mclass[39m=[32m"shell__brand-mark"[39m
+        [36m>[39m
+          [0mID[0m
+        [36m</span>[39m
+        [36m<span>[39m
+          [0mمحفظتي الرقمية[0m
+          [36m<div[39m
+            [33mclass[39m=[32m"shell__sub"[39m
+          [36m>[39m
+            [0mتطبيق المواطن — نسخة تجريبية[0m
+          [36m</div>[39m
+        [36m</span>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"row"[39m
+      [36m>[39m
+        [36m<button[39m
+          [33maria-label[39m=[32m"تفعيل الوضع الداكن"[39m
+          [33maria-pressed[39m=[32m"false"[39m
+          [33mclass[39m=[32m"btn btn--ghost btn--sm"[39m
+          [33mstyle[39m=[32m"color: inherit;"[39m
+          [33mtype[39m=[32m"button"[39m
+        [36m>[39m
+          [36m<svg[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mfill[39m=[32m"none"[39m
+            [33mfocusable[39m=[32m"false"[39m
+            [33mheight[39m=[32m"22"[39m
+            [33mstroke[39m=[32m"currentColor"[39m
+            [33mstroke-linecap[39m=[32m"round"[39m
+            [33mstroke-linejoin[39m=[32m"round"[39m
+            [33mstroke-width[39m=[32m"1.7"[39m
+            [33mviewBox[39m=[32m"0 0 24 24"[39m
+            [33mwidth[39m=[32m"22"[39m
+          [36m>[39m
+            [36m<path[39m
+              [33md[39m=[32m"M20 15A9 9 0 0 1 9 4a9 9 0 1 0 11 11"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+          [36m<span>[39m
+            [0mداكن[0m
+          [36m</span>[39m
+        [36m</button>[39m
+      [36m</div>[39m
+    [36m</header>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"shell__body"[39m
+    [36m>[39m
+      [36m<main[39m
+        [33mclass[39m=[32m"shell__main"[39m
+        [33mid[39m=[32m"main"[39m
+        [33mtabindex[39m=[32m"-1"[39m
+      [36m>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"page-head"[39m
+        [36m>[39m
+          [36m<div>[39m
+            [36m<h1>[39m
+              [0mأهلاً بك[0m
+            [36m</h1>[39m
+            [36m<p>[39m
+              [0mمحفظة هوية رقمية تجريبية للمواطن الاصطناعي TEST-001.[0m
+            [36m</p>[39m
+          [36m</div>[39m
+        [36m</div>[39m
+        [36m<section[39m
+          [33mclass[39m=[32m"card"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"card__head"[39m
+          [36m>[39m
+            [36m<h2[39m
+              [33mclass[39m=[32m"card__title"[39m
+            [36m>[39m
+              [0mاعتماداتي[0m
+            [36m</h2>[39m
+            [36m<a[39m
+              [33mdata-discover[39m=[32m"true"[39m
+              [33mhref[39m=[32m"/card"[39m
+            [36m>[39m
+              [0mبطاقتي الرقمية[0m
+            [36m</a>[39m
+          [36m</div>[39m
+          [36m<ul[39m
+            [33mclass[39m=[32m"list"[39m
+          [36m>[39m
+            [36m<li[39m
+              [33mclass[39m=[32m"row row--between"[39m
+            [36m>[39m
+              [36m<a[39m
+                [33mdata-discover[39m=[32m"true"[39m
+                [33mhref[39m=[32m"/credentials/cred-test-001"[39m
+              [36m>[39m
+                [0mبطاقة الهوية الرقمية (تجريبية)[0m
+              [36m</a>[39m
+              [36m<span[39m
+                [33mclass[39m=[32m"badge badge--success"[39m
+              [36m>[39m
+                [0mفعال (تجريبي)[0m
+              [36m</span>[39m
+            [36m</li>[39m
+          [36m</ul>[39m
+        [36m</section>[39m
+        [36m<section[39m
+          [33mclass[39m=[32m"card"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"card__head"[39m
+          [36m>[39m
+            [36m<h2[39m
+              [33mclass[39m=[32m"card__title"[39m
+            [36m>[39m
+              [0mآخر النشاطات[0m
+            [36m</h2>[39m
+            [36m<a[39m
+              [33mdata-discover[39m=[32m"true"[39m
+              [33mhref[39m=[32m"/activity"[39m
+            [36m>[39m
+              [0mالسجل الكامل[0m
+            [36m</a>[39m
+          [36m</div>[39m
+          [36m<p[39m
+            [33mclass[39m=[32m"muted"[39m
+          [36m>[39m
+            [0mلا توجد عمليات مسجلة بعد.[0m
+          [36m</p>[39m
+        [36m</section>[39m
+      [36m</main>[39m
+    [36m</div>[39m
+    [36m<nav[39m
+      [33maria-label[39m=[32m"التنقل الرئيسي"[39m
+      [33mclass[39m=[32m"nav"[39m
+    [36m>[39m
+      [36m<a[39m
+        [33maria-current[39m=[32m"page"[39m
+        [33mclass[39m=[32m"active"[39m
+        [33mdata-discover[39m=[32m"true"[39m
+        [33mhref[39m=[32m"/"[39m
+      [36m>[39m
+        [36m<span[39m
+          [33maria-hidden[39m=[32m"true"[39m
+          [33mclass[39m=[32m"nav__icon"[39m
+        [36m>[39m
+          [36m<svg[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mfill[39m=[32m"none"[39m
+            [33mfocusable[39m=[32m"false"[39m
+            [33mheight[39m=[32m"22"[39m
+            [33mstroke[39m=[32m"currentColor"[39m
+            [33mstroke-linecap[39m=[32m"round"[39m
+            [33mstroke-linejoin[39m=[32m"round"[39m
+            [33mstroke-width[39m=[32m"1.7"[39m
+            [33mviewBox[39m=[32m"0 0 24 24"[39m
+            [33mwidth[39m=[32m"22"[39m
+          [36m>[39m
+            [36m<path[39m
+              [33md[39m=[32m"M3 10 12 3l9 7v11h-6v-7H9v7H3Z"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+        [36m</span>[39m
+        [0mالرئيسية[0m
+      [36m</a>[39m
+      [36m<a[39m
+        [33mclass[39m=[32m""[39m
+        [33mdata-discover[39m=[32m"true"[39m
+        [33mhref[39m=[32m"/card"[39m
+      [36m>[39m
+        [36m<span[39m
+          [33maria-hidden[39m=[32m"true"[39m
+          [33mclass[39m=[32m"nav__icon"[39m
+        [36m>[39m
+          [36m<svg[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mfill[39m=[32m"none"[39m
+            [33mfocusable[39m=[32m"false"[39m
+            [33mheight[39m=[32m"22"[39m
+            [33mstroke[39m=[32m"currentColor"[39m
+            [33mstroke-linecap[39m=[32m"round"[39m
+            [33mstroke-linejoin[39m=[32m"round"[39m
+            [33mstroke-width[39m=[32m"1.7"[39m
+            [33mviewBox[39m=[32m"0 0 24 24"[39m
+            [33mwidth[39m=[32m"22"[39m
+          [36m>[39m
+            [36m<path[39m
+              [33md[39m=[32m"M3 5h18v14H3ZM3 10h18M7 15h4"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+        [36m</span>[39m
+        [0mبطاقتي[0m
+      [36m</a>[39m
+      [36m<a[39m
+        [33mclass[39m=[32m""[39m
+        [33mdata-discover[39m=[32m"true"[39m
+        [33mhref[39m=[32m"/requests"[39m
+      [36m>[39m
+        [36m<span[39m
+          [33maria-hidden[39m=[32m"true"[39m
+          [33mclass[39m=[32m"nav__icon"[39m
+        [36m>[39m
+          [36m<svg[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mfill[39m=[32m"none"[39m
+            [33mfocusable[39m=[32m"false"[39m
+            [33mheight[39m=[32m"22"[39m
+            [33mstroke[39m=[32m"currentColor"[39m
+            [33mstroke-linecap[39m=[32m"round"[39m
+            [33mstroke-linejoin[39m=[32m"round"[39m
+            [33mstroke-width[39m=[32m"1.7"[39m
+            [33mviewBox[39m=[32m"0 0 24 24"[39m
+            [33mwidth[39m=[32m"22"[39m
+          [36m>[39m
+            [36m<path[39m
+              [33md[39m=[32m"M3 4h18v16H3ZM3 13h5l2 3h4l2-3h5"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+        [36m</span>[39m
+        [0mالطلبات[0m
+      [36m</a>[39m
+      [36m<a[39m
+        [33mclass[39m=[32m""[39m
+        [33mdata-discover[39m=[32m"true"[39m
+        [33mhref[39m=[32m"/activity"[39m
+      [36m>[39m
+        [36m<span[39m
+          [33maria-hidden[39m=[32m"true"[39m
+          [33mclass[39m=[32m"nav__icon"[39m
+        [36m>[39m
+          [36m<svg[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mfill[39m=[32m"none"[39m
+            [33mfocusable[39m=[32m"false"[39m
+            [33mheight[39m=[32m"22"[39m
+            [33mstroke[39m=[32m"currentColor"[39m
+            [33mstroke-linecap[39m=[32m"round"[39m
+            [33mstroke-linejoin[39m=[32m"round"[39m
+            [33mstroke-width[39m=[32m"1.7"[39m
+            [33mviewBox[39m=[32m"0 0 24 24"[39m
+            [33mwidth[39m=[32m"22"[39m
+          [36m>[39m
+            [36m<path[39m
+              [33md[39m=[32m"M12 8v5l3 2M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+        [36m</span>[39m
+        [0mالسجل[0m
+      [36m</a>[39m
+      [36m<a[39m
+        [33mclass[39m=[32m""[39m
+        [33mdata-discover[39m=[32m"true"[39m
+        [33mhref[39m=[32m"/settings"[39m
+      [36m>[39m
+        [36m<span[39m
+          [33maria-hidden[39m=[32m"true"[39m
+          [33mclass[39m=[32m"nav__icon"[39m
+        [36m>[39m
+          [36m<svg[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mfill[39m=[32m"none"[39m
+            [33mfocusable[39m=[32m"false"[39m
+            [33mheight[39m=[32m"22"[39m
+            [33mstroke[39m=[32m"currentColor"[39m
+            [33mstroke-linecap[39m=[32m"round"[39m
+            [33mstroke-linejoin[39m=[32m"round"[39m
+            [33mstroke-width[39m=[32m"1.7"[39m
+            [33mviewBox[39m=[32m"0 0 24 24"[39m
+            [33mwidth[39m=[32m"22"[39m
+          [36m>[39m
+            [36m<path[39m
+              [33md[39m=[32m"M4 7h16M4 17h16M9 4v6M15 14v6"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+        [36m</span>[39m
+        [0mالإعدادات[0m
+      [36m</a>[39m
+    [36m</nav>[39m
+  [36m</div>[39m
+[36m</div>[39m
+ ❯ waitForWrapper node_modules/@testing-library/dom/dist/wait-for.js:163:27
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:86:33
+ ❯ test/provider-replacement.test.tsx:23:45
+     21|       const transport = new RecordingTransport(createTransport('demo',…
+     22|       const wallet = render(<MemoryRouter><WalletApp gateway={createWa…
+     23|       expect(await within(wallet.container).findByText('مواطن تجريبي')…
+       |                                             ^
+     24|       wallet.unmount();
+     25|       const verifier = render(<MemoryRouter><VerifierApp gateway={crea…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  |dom| test/provider-replacement.test.tsx > same pages with replacement providers > same Wallet and Verifier display real-provider failure rather than demo success
+TestingLibraryElementError: Found multiple elements with the role "alert"
+
+Here are the matching elements:
+
+Ignored nodes: comments, script, style
+[36m<div[39m
+  [33mclass[39m=[32m"state"[39m
+  [33mrole[39m=[32m"alert"[39m
+[36m>[39m
+  [36m<span[39m
+    [33maria-hidden[39m=[32m"true"[39m
+    [33mclass[39m=[32m"state__icon"[39m
+  [36m>[39m
+    [0m⚠️[0m
+  [36m</span>[39m
+  [36m<span[39m
+    [33mclass[39m=[32m"state__title"[39m
+  [36m>[39m
+    [0mتعذر عرض البيانات[0m
+  [36m</span>[39m
+  [36m<span>[39m
+    [0mالواجهة الحقيقية غير متاحة في هذه النسخة التجريبية.[0m
+  [36m</span>[39m
+  [36m<button[39m
+    [33mclass[39m=[32m"btn btn--secondary"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m>[39m
+    [0mإعادة المحاولة[0m
+  [36m</button>[39m
+[36m</div>[39m
+
+Ignored nodes: comments, script, style
+[36m<div[39m
+  [33mclass[39m=[32m"state"[39m
+  [33mrole[39m=[32m"alert"[39m
+[36m>[39m
+  [36m<span[39m
+    [33maria-hidden[39m=[32m"true"[39m
+    [33mclass[39m=[32m"state__icon"[39m
+  [36m>[39m
+    [0m⚠️[0m
+  [36m</span>[39m
+  [36m<span[39m
+    [33mclass[39m=[32m"state__title"[39m
+  [36m>[39m
+    [0mتعذر عرض البيانات[0m
+  [36m</span>[39m
+  [36m<span>[39m
+    [0mالواجهة الحقيقية غير متاحة في هذه النسخة التجريبية.[0m
+  [36m</span>[39m
+  [36m<button[39m
+    [33mclass[39m=[32m"btn btn--secondary"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m>[39m
+    [0mإعادة المحاولة[0m
+  [36m</button>[39m
+[36m</div>[39m
+
+(If this is intentional, then use the `*AllBy*` variant of the query (like `queryAllByText`, `getAllByText`, or `findAllByText`)).
+
+Ignored nodes: comments, script, style
+[36m<div>[39m
+  [36m<div[39m
+    [33mclass[39m=[32m"shell shell--mobile"[39m
+  [36m>[39m
+    [36m<a[39m
+      [33mclass[39m=[32m"visually-hidden"[39m
+      [33mhref[39m=[32m"#main"[39m
+    [36m>[39m
+      [0mتخطَّ إلى المحتوى[0m
+    [36m</a>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"demo-banner"[39m
+      [33mrole[39m=[32m"note"[39m
+    [36m>[39m
+      [0mنسخة تجريبية — بيانات وهمية · لا تمثل أي جهة حكومية · لا يجري أي تحقق تشفيري[0m
+    [36m</div>[39m
+    [36m<header[39m
+      [33mclass[39m=[32m"shell__header"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"shell__brand"[39m
+      [36m>[39m
+        [36m<span[39m
+          [33maria-hidden[39m=[32m"true"[39m
+          [33mclass[39m=[32m"shell__brand-mark"[39m
+        [36m>[39m
+          [0mID[0m
+        [36m</span>[39m
+        [36m<span>[39m
+          [0mمحفظتي الرقمية[0m
+          [36m<div[39m
+            [33mclass[39m=[32m"shell__sub"[39m
+          [36m>[39m
+            [0mتطبيق المواطن — نسخة تجريبية[0m
+          [36m</div>[39m
+        [36m</span>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"row"[39m
+      [36m>[39m
+        [36m<button[39m
+          [33maria-label[39m=[32m"تفعيل الوضع الداكن"[39m
+          [33maria-pressed[39m=[32m"false"[39m
+          [33mclass[39m=[32m"btn btn--ghost btn--sm"[39m
+          [33mstyle[39m=[32m"color: inherit;"[39m
+          [33mtype[39m=[32m"button"[39m
+        [36m>[39m
+          [36m<svg[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mfill[39m=[32m"none"[39m
+            [33mfocusable[39m=[32m"false"[39m
+            [33mheight[39m=[32m"22"[39m
+            [33mstroke[39m=[32m"currentColor"[39m
+            [33mstroke-linecap[39m=[32m"round"[39m
+            [33mstroke-linejoin[39m=[32m"round"[39m
+            [33mstroke-width[39m=[32m"1.7"[39m
+            [33mviewBox[39m=[32m"0 0 24 24"[39m
+            [33mwidth[39m=[32m"22"[39m
+          [36m>[39m
+            [36m<path[39m
+              [33md[39m=[32m"M20 15A9 9 0 0 1 9 4a9 9 0 1 0 11 11"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+          [36m<span>[39m
+            [0mداكن[0m
+          [36m</span>[39m
+        [36m</button>[39m
+      [36m</div>[39m
+    [36m</header>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"shell__body"[39m
+    [36m>[39m
+      [36m<main[39m
+        [33mclass[39m=[32m"shell__main"[39m
+        [33mid[39m=[32m"main"[39m
+        [33mtabindex[39m=[32m"-1"[39m
+      [36m>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"page-head"[39m
+        [36m>[39m
+          [36m<div>[39m
+            [36m<h1>[39m
+              [0mأهلاً بك[0m
+            [36m</h1>[39m
+            [36m<p>[39m
+              [0mمحفظة هوية رقمية تجريبية للمواطن الاصطناعي TEST-001.[0m
+            [36m</p>[39m
+          [36m</div>[39m
+        [36m</div>[39m
+        [36m<section[39m
+          [33mclass[39m=[32m"card"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"card__head"[39m
+          [36m>[39m
+            [36m<h2[39m
+              [33mclass[39m=[32m"card__title"[39m
+            [36m>[39m
+              [0mاعتماداتي[0m
+            [36m</h2>[39m
+            [36m<a[39m
+              [33mdata-discover[39m=[32m"true"[39m
+              [33mhref[39m=[32m"/card"[39m
+            [36m>[39m
+              [0mبطاقتي الرقمية[0m
+            [36m</a>[39m
+          [36m</div>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"state"[39m
+            [33mrole[39m=[32m"alert"[39m
+          [36m>[39m
+            [36m<span[39m
+              [33maria-hidden[39m=[32m"true"[39m
+              [33mclass[39m=[32m"state__icon"[39m
+            [36m>[39m
+              [0m⚠️[0m
+            [36m</span>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"state__title"[39m
+            [36m>[39m
+              [0mتعذر عرض البيانات[0m
+            [36m</span>[39m
+            [36m<span>[39m
+              [0mالواجهة الحقيقية غير متاحة في هذه النسخة التجريبية.[0m
+            [36m</span>[39m
+            [36m<button[39m
+              [33mclass[39m=[32m"btn btn--secondary"[39m
+              [33mtype[39m=[32m"button"[39m
+            [36m>[39m
+              [0mإعادة المحاولة[0m
+            [36m</button>[39m
+          [36m</div>[39m
+        [36m</section>[39m
+        [36m<section[39m
+          [33mclass[39m=[32m"card"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"card__head"[39m
+          [36m>[39m
+            [36m<h2[39m
+              [33mclass[39m=[32m"card__title"[39m
+            [36m>[39m
+              [0mآخر النشاطات[0m
+            [36m</h2>[39m
+            [36m<a[39m
+              [33mdata-discover[39m=[32m"true"[39m
+              [33mhref[39m=[32m"/activity"[39m
+            [36m>[39m
+              [0mالسجل الكامل[0m
+            [36m</a>[39m
+          [36m</div>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"state"[39m
+            [33mrole[39m=[32m"alert"[39m
+          [36m>[39m
+            [36m<span[39m
+              [33maria-hidden[39m=[32m"true"[39m
+              [33mclass[39m=[32m"state__icon"[39m
+            [36m>[39m
+              [0m⚠️[0m
+            [36m</span>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"state__title"[39m
+            [36m>[39m
+              [0mتعذر عرض البيانات[0m
+            [36m</span>[39m
+            [36m<span>[39m
+              [0mالواجهة الحقيقية غير متاحة في هذه النسخة التجريبية.[0m
+            [36m</span>[39m
+            [36m<button[39m
+              [33mclass[39m=[32m"btn btn--secondary"[39m
+              [33mtype[39m=[32m"button"[39m
+            [36m>[39m
+              [0mإعادة المحاولة[0m
+            [36m</button>[39m
+          [36m</div>[39m
+        [36m</section>[39m
+      [36m</main>[39m
+    [36m</div>[39m
+    [36m<nav[39m
+      [33maria-label[39m=[32m"التنقل الرئيسي"[39m
+      [33mclass[39m=[32m"nav"[39m
+    [36m>[39m
+      [36m<a[39m
+        [33maria-current[39m=[32m"page"[39m
+        [33mclass[39m=[32m"active"[39m
+        [33mdata-discover[39m=[32m"true"[39m
+        [33mhref[39m=[32m"/"[39m
+      [36m>[39m
+        [36m<span[39m
+          [33maria-hidden[39m=[32m"true"[39m
+          [33mclass[39m=[32m"nav__icon"[39m
+        [36m>[39m
+          [36m<svg[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mfill[39m=[32m"none"[39m
+            [33mfocusable[39m=[32m"false"[39m
+            [33mheight[39m=[32m"22"[39m
+            [33mstroke[39m=[32m"currentColor"[39m
+            [33mstroke-linecap[39m=[32m"round"[39m
+            [33mstroke-linejoin[39m=[32m"round"[39m
+            [33mstroke-width[39m=[32m"1.7"[39m
+            [33mviewBox[39m=[32m"0 0 24 24"[39m
+            [33mwidth[39m=[32m"22"[39m
+          [36m>[39m
+            [36m<path[39m
+              [33md[39m=[32m"M3 10 12 3l9 7v11h-6v-7H9v7H3Z"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+        [36m</span>[39m
+        [0mالرئيسية[0m
+      [36m</a>[39m
+      [36m<a[39m
+        [33mclass[39m=[32m""[39m
+        [33mdata-discover[39m=[32m"true"[39m
+        [33mhref[39m=[32m"/card"[39m
+      [36m>[39m
+        [36m<span[39m
+          [33maria-hidden[39m=[32m"true"[39m
+          [33mclass[39m=[32m"nav__icon"[39m
+        [36m>[39m
+          [36m<svg[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mfill[39m=[32m"none"[39m
+            [33mfocusable[39m=[32m"false"[39m
+            [33mheight[39m=[32m"22"[39m
+            [33mstroke[39m=[32m"currentColor"[39m
+            [33mstroke-linecap[39m=[32m"round"[39m
+            [33mstroke-linejoin[39m=[32m"round"[39m
+            [33mstroke-width[39m=[32m"1.7"[39m
+            [33mviewBox[39m=[32m"0 0 24 24"[39m
+            [33mwidth[39m=[32m"22"[39m
+          [36m>[39m
+            [36m<path[39m
+              [33md[39m=[32m"M3 5h18v14H3ZM3 10h18M7 15h4"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+        [36m</span>[39m
+        [0mبطاقتي[0m
+      [36m</a>[39m
+      [36m<a[39m
+        [33mclass[39m=[32m""[39m
+        [33mdata-discover[39m=[32m"true"[39m
+        [33mhref[39m=[32m"/requests"[39m
+      [36m>[39m
+        [36m<span[39m
+          [33maria-hidden[39m=[32m"true"[39m
+          [33mclass[39m=[32m"nav__icon"[39m
+        [36m>[39m
+          [36m<svg[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mfill[39m=[32m"none"[39m
+            [33mfocusable[39m=[32m"false"[39m
+            [33mheight[39m=[32m"22"[39m
+            [33mstroke[39m=[32m"currentColor"[39m
+            [33mstroke-linecap[39m=[32m"round"[39m
+            [33mstroke-linejoin[39m=[32m"round"[39m
+            [33mstroke-width[39m=[32m"1.7"[39m
+            [33mviewBox[39m=[32m"0 0 24 24"[39m
+            [33mwidth[39m=[32m"22"[39m
+          [36m>[39m
+            [36m<path[39m
+              [33md[39m=[32m"M3 4h18v16H3ZM3 13h5l2 3h4l2-3h5"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+        [36m</span>[39m
+        [0mالطلبات[0m
+      [36m</a>[39m
+      [36m<a[39m
+        [33mclass[39m=[32m""[39m
+        [33mdata-discover[39m=[32m"true"[39m
+        [33mhref[39m=[32m"/activity"[39m
+      [36m>[39m
+        [36m<span[39m
+          [33maria-hidden[39m=[32m"true"[39m
+          [33mclass[39m=[32m"nav__icon"[39m
+        [36m>[39m
+          [36m<svg[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mfill[39m=[32m"none"[39m
+            [33mfocusable[39m=[32m"false"[39m
+            [33mheight[39m=[32m"22"[39m
+            [33mstroke[39m=[32m"currentColor"[39m
+            [33mstroke-linecap[39m=[32m"round"[39m
+            [33mstroke-linejoin[39m=[32m"round"[39m
+            [33mstroke-width[39m=[32m"1.7"[39m
+            [33mviewBox[39m=[32m"0 0 24 24"[39m
+            [33mwidth[39m=[32m"22"[39m
+          [36m>[39m
+            [36m<path[39m
+              [33md[39m=[32m"M12 8v5l3 2M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+        [36m</span>[39m
+        [0mالسجل[0m
+      [36m</a>[39m
+      [36m<a[39m
+        [33mclass[39m=[32m""[39m
+        [33mdata-discover[39m=[32m"true"[39m
+        [33mhref[39m=[32m"/settings"[39m
+      [36m>[39m
+        [36m<span[39m
+          [33maria-hidden[39m=[32m"true"[39m
+          [33mclass[39m=[32m"nav__icon"[39m
+        [36m>[39m
+          [36m<svg[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mfill[39m=[32m"none"[39m
+            [33mfocusable[39m=[32m"false"[39m
+            [33mheight[39m=[32m"22"[39m
+            [33mstroke[39m=[32m"currentColor"[39m
+            [33mstroke-linecap[39m=[32m"round"[39m
+            [33mstroke-linejoin[39m=[32m"round"[39m
+            [33mstroke-width[39m=[32m"1.7"[39m
+            [33mviewBox[39m=[32m"0 0 24 24"[39m
+            [33mwidth[39m=[32m"22"[39m
+          [36m>[39m
+            [36m<path[39m
+              [33md[39m=[32m"M4 7h16M4 17h16M9 4v6M15 14v6"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+        [36m</span>[39m
+        [0mالإعدادات[0m
+      [36m</a>[39m
+    [36m</nav>[39m
+  [36m</div>[39m
+[36m</div>[39m
+
+Ignored nodes: comments, script, style
+[36m<div>[39m
+  [36m<div[39m
+    [33mclass[39m=[32m"shell shell--mobile"[39m
+  [36m>[39m
+    [36m<a[39m
+      [33mclass[39m=[32m"visually-hidden"[39m
+      [33mhref[39m=[32m"#main"[39m
+    [36m>[39m
+      [0mتخطَّ إلى المحتوى[0m
+    [36m</a>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"demo-banner"[39m
+      [33mrole[39m=[32m"note"[39m
+    [36m>[39m
+      [0mنسخة تجريبية — بيانات وهمية · لا تمثل أي جهة حكومية · لا يجري أي تحقق تشفيري[0m
+    [36m</div>[39m
+    [36m<header[39m
+      [33mclass[39m=[32m"shell__header"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"shell__brand"[39m
+      [36m>[39m
+        [36m<span[39m
+          [33maria-hidden[39m=[32m"true"[39m
+          [33mclass[39m=[32m"shell__brand-mark"[39m
+        [36m>[39m
+          [0mID[0m
+        [36m</span>[39m
+        [36m<span>[39m
+          [0mمحفظتي الرقمية[0m
+          [36m<div[39m
+            [33mclass[39m=[32m"shell__sub"[39m
+          [36m>[39m
+            [0mتطبيق المواطن — نسخة تجريبية[0m
+          [36m</div>[39m
+        [36m</span>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"row"[39m
+      [36m>[39m
+        [36m<button[39m
+          [33maria-label[39m=[32m"تفعيل الوضع الداكن"[39m
+          [33maria-pressed[39m=[32m"false"[39m
+          [33mclass[39m=[32m"btn btn--ghost btn--sm"[39m
+          [33mstyle[39m=[32m"color: inherit;"[39m
+          [33mtype[39m=[32m"button"[39m
+        [36m>[39m
+          [36m<svg[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mfill[39m=[32m"none"[39m
+            [33mfocusable[39m=[32m"false"[39m
+            [33mheight[39m=[32m"22"[39m
+            [33mstroke[39m=[32m"currentColor"[39m
+            [33mstroke-linecap[39m=[32m"round"[39m
+            [33mstroke-linejoin[39m=[32m"round"[39m
+            [33mstroke-width[39m=[32m"1.7"[39m
+            [33mviewBox[39m=[32m"0 0 24 24"[39m
+            [33mwidth[39m=[32m"22"[39m
+          [36m>[39m
+            [36m<path[39m
+              [33md[39m=[32m"M20 15A9 9 0 0 1 9 4a9 9 0 1 0 11 11"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+          [36m<span>[39m
+            [0mداكن[0m
+          [36m</span>[39m
+        [36m</button>[39m
+      [36m</div>[39m
+    [36m</header>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"shell__body"[39m
+    [36m>[39m
+      [36m<main[39m
+        [33mclass[39m=[32m"shell__main"[39m
+        [33mid[39m=[32m"main"[39m
+        [33mtabindex[39m=[32m"-1"[39m
+      [36m>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"page-head"[39m
+        [36m>[39m
+          [36m<div>[39m
+            [36m<h1>[39m
+              [0mأهلاً بك[0m
+            [36m</h1>[39m
+            [36m<p>[39m
+              [0mمحفظة هوية رقمية تجريبية للمواطن الاصطناعي TEST-001.[0m
+            [36m</p>[39m
+          [36m</div>[39m
+        [36m</div>[39m
+        [36m<section[39m
+          [33mclass[39m=[32m"card"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"card__head"[39m
+          [36m>[39m
+            [36m<h2[39m
+              [33mclass[39m=[32m"card__title"[39m
+            [36m>[39m
+              [0mاعتماداتي[0m
+            [36m</h2>[39m
+            [36m<a[39m
+              [33mdata-discover[39m=[32m"true"[39m
+              [33mhref[39m=[32m"/card"[39m
+            [36m>[39m
+              [0mبطاقتي الرقمية[0m
+            [36m</a>[39m
+          [36m</div>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"state"[39m
+            [33mrole[39m=[32m"alert"[39m
+          [36m>[39m
+            [36m<span[39m
+              [33maria-hidden[39m=[32m"true"[39m
+              [33mclass[39m=[32m"state__icon"[39m
+            [36m>[39m
+              [0m⚠️[0m
+            [36m</span>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"state__title"[39m
+            [36m>[39m
+              [0mتعذر عرض البيانات[0m
+            [36m</span>[39m
+            [36m<span>[39m
+              [0mالواجهة الحقيقية غير متاحة في هذه النسخة التجريبية.[0m
+            [36m</span>[39m
+            [36m<button[39m
+              [33mclass[39m=[32m"btn btn--secondary"[39m
+              [33mtype[39m=[32m"button"[39m
+            [36m>[39m
+              [0mإعادة المحاولة[0m
+            [36m</button>[39m
+          [36m</div>[39m
+        [36m</section>[39m
+        [36m<section[39m
+          [33mclass[39m=[32m"card"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"card__head"[39m
+          [36m>[39m
+            [36m<h2[39m
+              [33mclass[39m=[32m"card__title"[39m
+            [36m>[39m
+              [0mآخر النشاطات[0m
+            [36m</h2>[39m
+            [36m<a[39m
+              [33mdata-discover[39m=[32m"true"[39m
+              [33mhref[39m=[32m"/activity"[39m
+            [36m>[39m
+              [0mالسجل الكامل[0m
+            [36m</a>[39m
+          [36m</div>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"state"[39m
+            [33mrole[39m=[32m"alert"[39m
+          [36m>[39m
+            [36m<span[39m
+              [33maria-hidden[39m=[32m"true"[39m
+              [33mclass[39m=[32m"state__icon"[39m
+            [36m>[39m
+              [0m⚠️[0m
+            [36m</span>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"state__title"[39m
+            [36m>[39m
+              [0mتعذر عرض البيانات[0m
+            [36m</span>[39m
+            [36m<span>[39m
+              [0mالواجهة الحقيقية غير متاحة في هذه النسخة التجريبية.[0m
+            [36m</span>[39m
+            [36m<button[39m
+              [33mclass[39m=[32m"btn btn--secondary"[39m
+              [33mtype[39m=[32m"button"[39m
+            [36m>[39m
+              [0mإعادة المحاولة[0m
+            [36m</button>[39m
+          [36m</div>[39m
+        [36m</section>[39m
+      [36m</main>[39m
+    [36m</div>[39m
+    [36m<nav[39m
+      [33maria-label[39m=[32m"التنقل الرئيسي"[39m
+      [33mclass[39m=[32m"nav"[39m
+    [36m>[39m
+      [36m<a[39m
+        [33maria-current[39m=[32m"page"[39m
+        [33mclass[39m=[32m"active"[39m
+        [33mdata-discover[39m=[32m"true"[39m
+        [33mhref[39m=[32m"/"[39m
+      [36m>[39m
+        [36m<span[39m
+          [33maria-hidden[39m=[32m"true"[39m
+          [33mclass[39m=[32m"nav__icon"[39m
+        [36m>[39m
+          [36m<svg[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mfill[39m=[32m"none"[39m
+            [33mfocusable[39m=[32m"false"[39m
+            [33mheight[39m=[32m"22"[39m
+            [33mstroke[39m=[32m"currentColor"[39m
+            [33mstroke-linecap[39m=[32m"round"[39m
+            [33mstroke-linejoin[39m=[32m"round"[39m
+            [33mstroke-width[39m=[32m"1.7"[39m
+            [33mviewBox[39m=[32m"0 0 24 24"[39m
+            [33mwidth[39m=[32m"22"[39m
+          [36m>[39m
+            [36m<path[39m
+              [33md[39m=[32m"M3 10 12 3l9 7v11h-6v-7H9v7H3Z"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+        [36m</span>[39m
+        [0mالرئيسية[0m
+      [36m</a>[39m
+      [36m<a[39m
+        [33mclass[39m=[32m""[39m
+        [33mdata-discover[39m=[32m"true"[39m
+        [33mhref[39m=[32m"/card"[39m
+      [36m>[39m
+        [36m<span[39m
+          [33maria-hidden[39m=[32m"true"[39m
+          [33mclass[39m=[32m"nav__icon"[39m
+        [36m>[39m
+          [36m<svg[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mfill[39m=[32m"none"[39m
+            [33mfocusable[39m=[32m"false"[39m
+            [33mheight[39m=[32m"22"[39m
+            [33mstroke[39m=[32m"currentColor"[39m
+            [33mstroke-linecap[39m=[32m"round"[39m
+            [33mstroke-linejoin[39m=[32m"round"[39m
+            [33mstroke-width[39m=[32m"1.7"[39m
+            [33mviewBox[39m=[32m"0 0 24 24"[39m
+            [33mwidth[39m=[32m"22"[39m
+          [36m>[39m
+            [36m<path[39m
+              [33md[39m=[32m"M3 5h18v14H3ZM3 10h18M7 15h4"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+        [36m</span>[39m
+        [0mبطاقتي[0m
+      [36m</a>[39m
+      [36m<a[39m
+        [33mclass[39m=[32m""[39m
+        [33mdata-discover[39m=[32m"true"[39m
+        [33mhref[39m=[32m"/requests"[39m
+      [36m>[39m
+        [36m<span[39m
+          [33maria-hidden[39m=[32m"true"[39m
+          [33mclass[39m=[32m"nav__icon"[39m
+        [36m>[39m
+          [36m<svg[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mfill[39m=[32m"none"[39m
+            [33mfocusable[39m=[32m"false"[39m
+            [33mheight[39m=[32m"22"[39m
+            [33mstroke[39m=[32m"currentColor"[39m
+            [33mstroke-linecap[39m=[32m"round"[39m
+            [33mstroke-linejoin[39m=[32m"round"[39m
+            [33mstroke-width[39m=[32m"1.7"[39m
+            [33mviewBox[39m=[32m"0 0 24 24"[39m
+            [33mwidth[39m=[32m"22"[39m
+          [36m>[39m
+            [36m<path[39m
+              [33md[39m=[32m"M3 4h18v16H3ZM3 13h5l2 3h4l2-3h5"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+        [36m</span>[39m
+        [0mالطلبات[0m
+      [36m</a>[39m
+      [36m<a[39m
+        [33mclass[39m=[32m""[39m
+        [33mdata-discover[39m=[32m"true"[39m
+        [33mhref[39m=[32m"/activity"[39m
+      [36m>[39m
+        [36m<span[39m
+          [33maria-hidden[39m=[32m"true"[39m
+          [33mclass[39m=[32m"nav__icon"[39m
+        [36m>[39m
+          [36m<svg[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mfill[39m=[32m"none"[39m
+            [33mfocusable[39m=[32m"false"[39m
+            [33mheight[39m=[32m"22"[39m
+            [33mstroke[39m=[32m"currentColor"[39m
+            [33mstroke-linecap[39m=[32m"round"[39m
+            [33mstroke-linejoin[39m=[32m"round"[39m
+            [33mstroke-width[39m=[32m"1.7"[39m
+            [33mviewBox[39m=[32m"0 0 24 24"[39m
+            [33mwidth[39m=[32m"22"[39m
+          [36m>[39m
+            [36m<path[39m
+              [33md[39m=[32m"M12 8v5l3 2M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+        [36m</span>[39m
+        [0mالسجل[0m
+      [36m</a>[39m
+      [36m<a[39m
+        [33mclass[39m=[32m""[39m
+        [33mdata-discover[39m=[32m"true"[39m
+        [33mhref[39m=[32m"/settings"[39m
+      [36m>[39m
+        [36m<span[39m
+          [33maria-hidden[39m=[32m"true"[39m
+          [33mclass[39m=[32m"nav__icon"[39m
+        [36m>[39m
+          [36m<svg[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mfill[39m=[32m"none"[39m
+            [33mfocusable[39m=[32m"false"[39m
+            [33mheight[39m=[32m"22"[39m
+            [33mstroke[39m=[32m"currentColor"[39m
+            [33mstroke-linecap[39m=[32m"round"[39m
+            [33mstroke-linejoin[39m=[32m"round"[39m
+            [33mstroke-width[39m=[32m"1.7"[39m
+            [33mviewBox[39m=[32m"0 0 24 24"[39m
+            [33mwidth[39m=[32m"22"[39m
+          [36m>[39m
+            [36m<path[39m
+              [33md[39m=[32m"M4 7h16M4 17h16M9 4v6M15 14v6"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+        [36m</span>[39m
+        [0mالإعدادات[0m
+      [36m</a>[39m
+    [36m</nav>[39m
+  [36m</div>[39m
+[36m</div>[39m
+ ❯ waitForWrapper node_modules/@testing-library/dom/dist/wait-for.js:163:27
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:86:33
+ ❯ test/provider-replacement.test.tsx:35:43
+     33|     const transport = createTransport('real');
+     34|     const wallet = render(<MemoryRouter><WalletApp gateway={createWall…
+     35|     expect(await within(wallet.container).findByRole('alert')).toBeInT…
+       |                                           ^
+     36|     const verifier = render(<MemoryRouter><VerifierApp gateway={create…
+     37|     expect(await within(verifier.container).findByRole('alert')).toBeI…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed | 7 passed (8)
+      Tests  2 failed | 62 passed (64)
+   Start at  14:27:36
+   Duration  3.72s (transform 1.30s, setup 282ms, import 1.87s, tests 6.15s, environment 1.05s)
+

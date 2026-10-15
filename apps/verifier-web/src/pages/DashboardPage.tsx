@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Card, EmptyState, ErrorState, LoadingState, PageHeader, useAsync } from '@iqdid/ui';
+import { FavoriteShortcut, Card, EmptyState, ErrorState, LoadingState, PageHeader, useAsync } from '@iqdid/ui';
 import { describeError } from '@iqdid/api-client';
 import { useOrg, useVerifier } from '../gateway.tsx';
 import { usePollMs } from '../poll.ts';
@@ -25,6 +25,7 @@ export function DashboardPage() {
   return (
     <>
       <PageHeader title="لوحة المتابعة" description={org.current ? `المؤسسة الحالية: ${org.current.name}` : undefined} actions={<Link className="btn btn--primary" to="/new">طلب تحقق جديد</Link>} />
+      <FavoriteShortcut app="verifier" options={[{ href: '/new', label: 'طلب تحقق جديد' }, { href: '/sessions', label: 'جلسات التحقق' }, { href: '/results', label: 'النتائج' }]} />
       <div className="grid" style={{ marginBottom: 'var(--sp-4)' }}>
         {stats.map((s) => (
           <section key={s.label} className="card" aria-label={s.label}>

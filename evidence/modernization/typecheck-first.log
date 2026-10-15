@@ -1,0 +1,30 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> iqdid-prototype@0.8.0 typecheck
+> npm run typecheck --workspaces --if-present && tsc -p test/tsconfig.json
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> @iqdid/api-client@0.8.0 typecheck
+> tsc -p tsconfig.json
+
+
+> @iqdid/mock-services@0.8.0 typecheck
+> tsc -p tsconfig.json
+
+
+> @iqdid/shared-types@0.8.0 typecheck
+> tsc -p tsconfig.json
+
+
+> @iqdid/ui@0.8.0 typecheck
+> tsc -p tsconfig.json
+
+
+> @iqdid/verifier-web@0.8.0 typecheck
+> tsc -p tsconfig.json
+
+
+> @iqdid/wallet-web@0.8.0 typecheck
+> tsc -p tsconfig.json
+

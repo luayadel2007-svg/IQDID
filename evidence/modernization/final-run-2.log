@@ -1,0 +1,33 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> iqdid-prototype@0.8.0 modernization:verify
+> node scripts/modernization-checks.mjs
+
+typecheck: PASS (exit 0)
+lint: PASS (exit 0)
+tests: PASS (exit 0)
+compatibility: PASS (exit 0)
+build: PASS (exit 0)
+browser-regression: PASS (exit 0)
+browser-ux: PASS (exit 0)
+secrets: FAIL (exit 2)
+    },
+    {
+      "path": "evidence/task8/e2e/screenshots/07-verifier-activity.png",
+      "code": "UNSUPPORTED_BINARY"
+    },
+    {
+      "path": "evidence/task8/e2e/screenshots/07-wallet-activity.png",
+      "code": "UNSUPPORTED_BINARY"
+    },
+    {
+      "path": "evidence/task8/e2e/screenshots/08-verifier-dark.png",
+      "code": "UNSUPPORTED_BINARY"
+    },
+    {
+      "path": "evidence/task8/e2e/screenshots/08-wallet-dark.png",
+      "code": "UNSUPPORTED_BINARY"
+    }
+  ]
+}
+

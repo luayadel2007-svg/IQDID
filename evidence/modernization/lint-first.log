@@ -1,0 +1,11 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> iqdid-prototype@0.8.0 lint
+> eslint . --max-warnings=0
+
+
+/workspace/scratch/3b8f7ffc5c8e/iqdid/packages/api-client/src/crypto-ports.ts
+  44:10  error  '_input' is defined but never used  @typescript-eslint/no-unused-vars
+
+✖ 1 problem (1 error, 0 warnings)
+

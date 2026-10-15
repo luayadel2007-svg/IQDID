@@ -1,0 +1,47 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> iqdid-prototype@0.8.0 typecheck
+> npm run typecheck --workspaces --if-present && tsc -p test/tsconfig.json
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> @iqdid/api-client@0.8.0 typecheck
+> tsc -p tsconfig.json
+
+../mock-services/src/server.ts(1,86): error TS2307: Cannot find module 'node:http' or its corresponding type declarations.
+../mock-services/src/server.ts(2,34): error TS2307: Cannot find module 'node:net' or its corresponding type declarations.
+../mock-services/src/server.ts(48,17): error TS2591: Cannot find name 'Buffer'. Do you need to install type definitions for node? Try `npm i --save-dev @types/node` and then add 'node' to the types field in your tsconfig.
+../mock-services/src/server.ts(51,23): error TS2591: Cannot find name 'Buffer'. Do you need to install type definitions for node? Try `npm i --save-dev @types/node` and then add 'node' to the types field in your tsconfig.
+../mock-services/src/server.ts(53,26): error TS2591: Cannot find name 'Buffer'. Do you need to install type definitions for node? Try `npm i --save-dev @types/node` and then add 'node' to the types field in your tsconfig.
+../mock-services/src/server.ts(56,23): error TS2591: Cannot find name 'Buffer'. Do you need to install type definitions for node? Try `npm i --save-dev @types/node` and then add 'node' to the types field in your tsconfig.
+../mock-services/src/server.ts(113,24): error TS7006: Parameter 'req' implicitly has an 'any' type.
+../mock-services/src/server.ts(113,29): error TS7006: Parameter 'res' implicitly has an 'any' type.
+../mock-services/src/server.ts(160,21): error TS7006: Parameter 'e' implicitly has an 'any' type.
+npm error Lifecycle script `typecheck` failed with error:
+npm error code 2
+npm error path /workspace/scratch/3b8f7ffc5c8e/iqdid/packages/api-client
+npm error workspace @iqdid/api-client@0.8.0
+npm error location /workspace/scratch/3b8f7ffc5c8e/iqdid/packages/api-client
+npm error command failed
+npm error command sh -c tsc -p tsconfig.json
+
+
+> @iqdid/mock-services@0.8.0 typecheck
+> tsc -p tsconfig.json
+
+
+> @iqdid/shared-types@0.8.0 typecheck
+> tsc -p tsconfig.json
+
+
+> @iqdid/ui@0.8.0 typecheck
+> tsc -p tsconfig.json
+
+
+> @iqdid/verifier-web@0.8.0 typecheck
+> tsc -p tsconfig.json
+
+
+> @iqdid/wallet-web@0.8.0 typecheck
+> tsc -p tsconfig.json
+

@@ -9,7 +9,7 @@ import { fileURLToPath } from 'node:url';
 import { startStack } from './stack.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const out = path.join(root, 'evidence', 'task8', 'e2e');
+const out = path.join(root, 'evidence', process.env.IQDID_EVIDENCE_DIR ?? 'modernization/e2e');
 await mkdir(path.join(out, 'screenshots'), { recursive: true });
 
 const TTL_MS = 15_000;
@@ -75,7 +75,10 @@ try {
     await nav(wallet, /الطلبات/).click();
     await wallet.getByRole('link', { name: 'مصرف تجريبي (أ)' }).first().click({ timeout: 10_000 });
     await wallet.getByText('فتح حساب مصرفي تجريبي').waitFor();
-    await wallet.getByText('العمر فوق 18 سنة').waitFor();
+    await wallet.getByText('العمر فوق 18 سنة', { exact: true }).waitFor();
+    await wallet.getByRole('heading', { name: 'معاينة القيم التي ستُشارك (اصطناعية)' }).waitFor();
+    await wallet.getByText('نعم', { exact: true }).waitFor();
+    if (await wallet.getByText('TEST-DOC-0001', { exact: true }).count()) throw new Error('age-only preview leaked another field');
     await shot(wallet, '03-wallet-request-detail');
   });
 

@@ -1,0 +1,262 @@
+[
+  {
+    "path": ".github/workflows/task8-ci.yml",
+    "beforeSha256": "f72dca15c36af6b5f6778dff5e914e88186044a79258db5d97b6d79965fa96f6",
+    "afterSha256": "cda159060642678262f52afb484551ff9c1afd2f0bf083d593539d60948e9b46"
+  },
+  {
+    "path": ".gitignore",
+    "beforeSha256": "c944b945a5d8e8a7e5299294fee97a963da56430c6df71b34fe125a5c06f0cbc",
+    "afterSha256": "fac13731501f705f4a601230a24d3e0c43a599944e3b1164b1e9491557fcdd1d"
+  },
+  {
+    "path": ".security/secret-scanner-rules.json",
+    "beforeSha256": null,
+    "afterSha256": "0667d64fd6b12c71f202fc2dd9a4c6b8858df34a771cc922548256feaae688d4"
+  },
+  {
+    "path": "apps/verifier-web/src/App.tsx",
+    "beforeSha256": "be9cbdc5f466bbd49c27a3ffe23fbb1aefde2adb3224d57dabd27db97159ba7f",
+    "afterSha256": "1a65c670eb3ebb7abb488e1231154d8c7dff6c314846fab5575f481afd70f4b4"
+  },
+  {
+    "path": "apps/verifier-web/src/gateway.tsx",
+    "beforeSha256": "4874ff824142a9025926a99302694ea1429ee11619dfbfc22f379f0ff51ba3d0",
+    "afterSha256": "d764419d30f988a2c02bf918dc7711564e624e1adfcf7c7995889b897df2ee02"
+  },
+  {
+    "path": "apps/verifier-web/src/pages/CreateRequestPage.tsx",
+    "beforeSha256": "d233bb1221990229a46111645571f229e38b1c8ffdc6df5d39f46454f3ed58be",
+    "afterSha256": "f25a19d5e36a4a94c82507abfa9444ff40f9f9619b5c3bba740a0d47f1fa7d03"
+  },
+  {
+    "path": "apps/verifier-web/src/pages/DashboardPage.tsx",
+    "beforeSha256": "e5ceabd8199040d597979422106e5281a08b775a550670701d885b537c620750",
+    "afterSha256": "4413a06641921718fe0cf9496eb903dbbe5e793a388d9eecf1df7fab144cd3b2"
+  },
+  {
+    "path": "apps/verifier-web/src/pages/SettingsPage.tsx",
+    "beforeSha256": "42cff88c4693d5de0a3132e747a9c7bbe2b639385118ffb405f9572b11a4fff7",
+    "afterSha256": "1ef3859c09117e1140110241aea22ac5c770695b3754f7164d2ad450c591d60e"
+  },
+  {
+    "path": "apps/wallet-web/src/App.tsx",
+    "beforeSha256": "ac247b9658b68e1e9645dcc7b0c28d088c5158f4fa9e6ad5312982f011b5d40f",
+    "afterSha256": "0d09c3e01e0ff118827250a23bde96e1dd88d9cbe80f44832e60745c49827a77"
+  },
+  {
+    "path": "apps/wallet-web/src/gateway.tsx",
+    "beforeSha256": "4f5f2ca30cc2114ee5de695a8003fe6889e1c3814f4d10bf28d0b27131778451",
+    "afterSha256": "d5adb47925b7545046f02a005768b78d1f54f1be9033291c9f35745226ac6008"
+  },
+  {
+    "path": "apps/wallet-web/src/pages/HomePage.tsx",
+    "beforeSha256": "04f27ed702aed8c074213c24fba91275ffde3f091c89b49659ab691f0d234b76",
+    "afterSha256": "6e8d46fda228d8457bf9b065c0cba1bb4cd21826a109a78153612de46f9f3400"
+  },
+  {
+    "path": "apps/wallet-web/src/pages/RequestDetailPage.tsx",
+    "beforeSha256": "45e27efb93f1a5fc00bb58c37b87a8730c1b443e862d0d3088212221f324fc21",
+    "afterSha256": "2653004679678947e1b28e245abe7534e7080caab1f2ad974a2d5f5ca5f62e20"
+  },
+  {
+    "path": "apps/wallet-web/src/pages/SettingsPage.tsx",
+    "beforeSha256": "138af9bb01705fe02931e82defbf9aff7d3beee3519fe2701f56660c10b4c79f",
+    "afterSha256": "64848e2a19a23bc7a73433ed14add1acf5a03b41a4834a1fc4c85a8fb93359e7"
+  },
+  {
+    "path": "docs/modernization/BASELINE_AND_SCOPE.md",
+    "beforeSha256": null,
+    "afterSha256": "1eb334bfc41380eee617745dbdc653890bffd7e2ffc380a7a8f0cf22a93097d0"
+  },
+  {
+    "path": "docs/modernization/CRYPTO_INTEGRATION_GUIDE.md",
+    "beforeSha256": null,
+    "afterSha256": "5577eab2e2ccc9be14d954d9476d6492056765f4dc1e84d167f241a561f0cc16"
+  },
+  {
+    "path": "docs/modernization/CRYPTO_READY_INTERFACE_MAP.md",
+    "beforeSha256": null,
+    "afterSha256": "ae2703e40410c975b49a7c35a049b38ab23adc6422b84495ac029b9dce8704c1"
+  },
+  {
+    "path": "docs/modernization/GOVERNMENT_CRYPTO_HANDOFF.md",
+    "beforeSha256": null,
+    "afterSha256": "4611ffdd39ef77e089a063c94fdcb2f00255605152de9585ff1279ff403ca525"
+  },
+  {
+    "path": "docs/modernization/KNOWN_LIMITATIONS_AND_OWNER_DECISIONS.md",
+    "beforeSha256": null,
+    "afterSha256": "f2d92d1f9372c0e6565f896fc57565f120026e702f3fbf2e20c0c51779294037"
+  },
+  {
+    "path": "docs/modernization/MANIFEST.sha256",
+    "beforeSha256": null,
+    "afterSha256": "2678632052dfec478b0fb57145537ff0cb1b2ebee130d4567478aae4be5ad05e"
+  },
+  {
+    "path": "docs/modernization/NO_REBUILD_MIGRATION_PLAN.md",
+    "beforeSha256": null,
+    "afterSha256": "30335568ca08356fb726c849c0bc346f8637e058ad1508e3b706c53f363ff852"
+  },
+  {
+    "path": "docs/modernization/TEST_EVIDENCE.md",
+    "beforeSha256": null,
+    "afterSha256": "482c433539052aabe9d5e5d6c39a61179ddfad1ce3c3042718b22f9b93b8c517"
+  },
+  {
+    "path": "docs/modernization/UI_UX_PDF_COMPLIANCE_MATRIX.md",
+    "beforeSha256": null,
+    "afterSha256": "9931cc93ec12e54e178e9589d165f24e70f2751f64f73cfd39546f9cf6891167"
+  },
+  {
+    "path": "docs/modernization/UPGRADE_IMPLEMENTATION_REPORT.md",
+    "beforeSha256": null,
+    "afterSha256": "e22e48a1e491fd9da04021535cb769d435b4afaa532193624706042b0c450189"
+  },
+  {
+    "path": "eslint.config.js",
+    "beforeSha256": "b5ba0e693b4aa222aebb496cfdfa64dd8f40dafb468bfbf247df3772be2b6317",
+    "afterSha256": "311baa2c208491e9ee1bbb0f8e93634f618c04d403f61b03e0d28d719fd8b2e4"
+  },
+  {
+    "path": "package-lock.json",
+    "beforeSha256": "517d588b5b1e4fe6e7d46ce362ee3a90ade7ed72874976eaf4e8b76e13813fed",
+    "afterSha256": "e693bb80d6ecc744ea733158ba81545309f67cf946a7c7b7faf7783846fbc0dd"
+  },
+  {
+    "path": "package.json",
+    "beforeSha256": "bfbe75392682e35c53799332848b4b7bb1ff3b33c77ca25aada2fee9c0c9269b",
+    "afterSha256": "f0a847147b5203a220faa9b3e377ad8ad337a9726038df87f1551fa578ed04e0"
+  },
+  {
+    "path": "packages/api-client/src/crypto-ports.ts",
+    "beforeSha256": null,
+    "afterSha256": "fea88591d4bec740bd169e26265aaa819485f11222f6383fa9ff0656e26243ff"
+  },
+  {
+    "path": "packages/api-client/src/index.ts",
+    "beforeSha256": "e5bcbffe1dd51e8e1a8a87df138f806ba8320cb3386bbbad692eb519979c73b5",
+    "afterSha256": "e5aad75eacb574b0227f932cde274fd83732edcc7e16389a3d3c26ef07c9be7b"
+  },
+  {
+    "path": "packages/api-client/src/server/compatibility/task3c-adapter.mjs",
+    "beforeSha256": null,
+    "afterSha256": "2ad0d3192bc2d37f373e37c6e75ae5de406d6226aaefae13c7be2298575dba65"
+  },
+  {
+    "path": "packages/api-client/src/transport.ts",
+    "beforeSha256": "e686c2bdecdaa1dad80560ae2f0f2a18ea1bb64d7c7fe4caa92cb7345e7ccf98",
+    "afterSha256": "b55783c5b60e307dac70e3b75879ae7eedee85ce76e3fcb1b3cd089986418c62"
+  },
+  {
+    "path": "packages/mock-services/src/store.ts",
+    "beforeSha256": "163e5ae686c47a72b12aa4780ffbc4d3dad07f2baf3f77c86cba41dcfb13131b",
+    "afterSha256": "c30cd91afc0c759dee012e8260c16bc0dda23318a974c70a5881bff453da9718"
+  },
+  {
+    "path": "packages/shared-types/src/index.ts",
+    "beforeSha256": "c7dd8847c20b06756be3b29be06518b84e9ac2328d261ad5b87235d8dba1b1a1",
+    "afterSha256": "cf0a6ad58daeb257a0edf3fee3992c36a6e257e44b9b2f9e8e696f753e569561"
+  },
+  {
+    "path": "packages/shared-types/src/verification.ts",
+    "beforeSha256": null,
+    "afterSha256": "380615f1f77498c799521c2004792da194e2eca705a09df77a386b41d5541920"
+  },
+  {
+    "path": "packages/ui/src/FavoriteShortcut.tsx",
+    "beforeSha256": null,
+    "afterSha256": "ce64a1349fe8c62a7e92d83eaed43d689e7566d3fdb70e7b2f54d0ae5da7097d"
+  },
+  {
+    "path": "packages/ui/src/Icon.tsx",
+    "beforeSha256": null,
+    "afterSha256": "8f4be8341389d95c97c6cbda352113a2a44501730c0069970b89f6931031e663"
+  },
+  {
+    "path": "packages/ui/src/components.tsx",
+    "beforeSha256": "318e6900f38ce8b500e4eae40df2da367a9081cb3a290a3ca6b5259c06adba5f",
+    "afterSha256": "26d4c8c325b7f138176577d505770803eeeddd74489b12a6f0fd916b89f6933c"
+  },
+  {
+    "path": "packages/ui/src/hooks.ts",
+    "beforeSha256": "b13f271b53fefaf3d8845a07efd1760f04d6133e0380d789d2f48e00922401e1",
+    "afterSha256": "0854a93edcb5eebd17913c323421849bc52136f73078da5846f34261d4083ef9"
+  },
+  {
+    "path": "packages/ui/src/index.ts",
+    "beforeSha256": "21bb3cb67ebfd394f0bd480e0779fd66053a9d8c08f6e3f3758d91ca7629df5d",
+    "afterSha256": "1207888fd3a94937bdc84a085b2b99cbc762cf25a3a4f1f8c1463930c689d83b"
+  },
+  {
+    "path": "packages/ui/src/preferences.test.tsx",
+    "beforeSha256": null,
+    "afterSha256": "b2cd2d996d1e4797109f557e463ec533540827e69f58fa2a4d6bb8a109fdcc07"
+  },
+  {
+    "path": "packages/ui/src/preferences.tsx",
+    "beforeSha256": null,
+    "afterSha256": "5ca9ec75c2aa6eba62bdb04fccc54b1213f90fb70a929d41ff4091971bed31d4"
+  },
+  {
+    "path": "packages/ui/src/shell.tsx",
+    "beforeSha256": "3162f40565da72b22752d736ae56f6b7c8916b68478f27f63d416e99dbe43b8d",
+    "afterSha256": "a2ec6f9d86030e5a6f152b98608b5ced840346089f17ae27b661b6dd3e5e3f88"
+  },
+  {
+    "path": "packages/ui/src/styles.css",
+    "beforeSha256": "d94609d1eae164c948f35ad064775ceb400c9774b67b9acf0cda4bec4c917f72",
+    "afterSha256": "595df56c39ecaa29a729660962aff4e5d834a32e9212d2ed1229ab0a77780e43"
+  },
+  {
+    "path": "scripts/compatibility-contract.mjs",
+    "beforeSha256": null,
+    "afterSha256": "0c9531ba646885336c36fffb54d6765c5f16863dfa05164e47db7872ea4ee3fe"
+  },
+  {
+    "path": "scripts/e2e.mjs",
+    "beforeSha256": "dcdfcbd430aedd496c55af71e80067a27ed7ceaaa7b4025d36229f26f7b92a4b",
+    "afterSha256": "db64e3f1da16b61beb951ac24b0c644c7eb3fc99d3e725cf07e5c402852fc6b9"
+  },
+  {
+    "path": "scripts/evidence.mjs",
+    "beforeSha256": "be76f33b061fca884f1e71078f879a6e3f8b8f790c15dd86ebcf7effed0fbe46",
+    "afterSha256": "22b50be6a95bb6c22472881438127aa0c801ed8d87ecda36136bbcd571e4d977"
+  },
+  {
+    "path": "scripts/modernization-checks.mjs",
+    "beforeSha256": null,
+    "afterSha256": "b665bf3a506c9a5e384412de8e3e6308262b49f3e97089eb7508685323dcdb2f"
+  },
+  {
+    "path": "scripts/ux-e2e.mjs",
+    "beforeSha256": null,
+    "afterSha256": "eb68500df91002d78b2b7cd657e17e50a2fb47231ac51bf638909045dd197ac0"
+  },
+  {
+    "path": "test/crypto-contract.test.ts",
+    "beforeSha256": null,
+    "afterSha256": "85251ff96e226f7871eb3fbb7cbd5c370429aa96e32b1a53e4a7ae48cfb783b9"
+  },
+  {
+    "path": "test/provider-replacement.test.tsx",
+    "beforeSha256": null,
+    "afterSha256": "9e287e07234c371093b13f7b40acc8ff04f88a9b7b1dec6f3a18ed544e74e620"
+  },
+  {
+    "path": "tools/lib/secret-scanner-engine.mjs",
+    "beforeSha256": null,
+    "afterSha256": "7756181a00866c7d9f9cc2615c1d02a42281b58638f0eb01bbe814f8711cb039"
+  },
+  {
+    "path": "tools/secret-scanner.mjs",
+    "beforeSha256": null,
+    "afterSha256": "89f58568159917a4320eaddf66c4cf679a40eaed39415c3d0bed738199c136c4"
+  },
+  {
+    "path": "vitest.config.ts",
+    "beforeSha256": "a129ec689ef6b40e0f60effbf7ea6efbc7dd7b27eec430080e789775f691f06b",
+    "afterSha256": "a5e18fafa738b7e19fd40ac4973192f40e72c459d7bba2153ce9e251dc6e5479"
+  }
+]

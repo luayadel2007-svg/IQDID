@@ -1,0 +1,18 @@
+{
+  "runId": 38730317746,
+  "url": "https://github.com/luayadel2007-svg/IQDID/actions/runs/38730317746",
+  "testedCommit": "da32c5e2924afb76cd8d84f4c876d81eb771541e",
+  "jobs": [
+    {
+      "id": 116406194499,
+      "name": "verify (windows-2022, C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe)",
+      "conclusion": "success"
+    },
+    {
+      "id": 116406194916,
+      "name": "verify (ubuntu-24.04, /usr/bin/google-chrome)",
+      "conclusion": "success"
+    }
+  ],
+  "scope": "Initial modernization commit; subsequent lint-boundary strengthening is tested locally and triggers another CI run."
+}

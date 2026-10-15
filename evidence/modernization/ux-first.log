@@ -1,0 +1,36 @@
+PASS wallet: primary service reached in one navigation interaction
+PASS wallet: settings synchronize header + persist after reload
+PASS wallet: automatic theme follows live operating-system changes
+PASS wallet: axe WCAG 2.2 AA settings (light) including contrast
+PASS wallet: axe WCAG 2.2 AA settings (dark) including contrast
+PASS wallet: reduced motion disables animated skeleton and transitions
+PASS wallet: RTL responsive reflow at 320, 390, 768, 1366 and 200% text
+PASS wallet: keyboard controls and visible skip-link target
+PASS wallet: offline API error is visible, retry offered
+PASS verifier: primary service reached in one navigation interaction
+PASS verifier: settings synchronize header + persist after reload
+PASS verifier: automatic theme follows live operating-system changes
+PASS verifier: axe WCAG 2.2 AA settings (light) including contrast
+FAIL verifier: axe WCAG 2.2 AA settings (dark) including contrast: color-contrast: .active
+PASS verifier: reduced motion disables animated skeleton and transitions
+PASS verifier: RTL responsive reflow at 320, 390, 768, 1366 and 200% text
+PASS verifier: keyboard controls and visible skip-link target
+FAIL verifier: offline API error is visible, retry offered: locator.waitFor: Timeout 20000ms exceeded.
+Call log:
+[2m  - waiting for getByRole('alert').first() to be visible[22m
+
+node:internal/fs/promises:697
+  return new FileHandle(await PromisePrototypeThen(
+                        ^
+
+Error: ENOENT: no such file or directory, open '/workspace/scratch/3b8f7ffc5c8e/iqdid/evidence/modernization/ux/results.json'
+    at async open (node:internal/fs/promises:697:25)
+    at async writeFile (node:internal/fs/promises:1317:14)
+    at async file:///workspace/scratch/3b8f7ffc5c8e/iqdid/scripts/ux-e2e.mjs:97:3 {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/workspace/scratch/3b8f7ffc5c8e/iqdid/evidence/modernization/ux/results.json'
+}
+
+Node.js v24.19.0

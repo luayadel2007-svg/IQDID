@@ -1,0 +1,6 @@
+{
+  "status": "PASS",
+  "scope": "YAML parse, pinned actions, read-only contents, no persisted credentials, PR trigger",
+  "actionlint": "NOT RUN (not installed)",
+  "windows_local": "NOT RUN"
+}

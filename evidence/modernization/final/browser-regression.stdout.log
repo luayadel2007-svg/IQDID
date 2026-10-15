@@ -1,0 +1,18 @@
+
+> iqdid-prototype@0.8.0 e2e
+> node scripts/e2e.mjs
+
+PASS  both apps load as Arabic RTL with the demo banner
+PASS  keyboard: first Tab reaches the skip link
+PASS  verifier creates an age request (org A)
+PASS  request appears in the wallet (other browser context) with org, purpose and fields
+PASS  wallet approves → verifier updates live to DEMO_ACCEPTED (no reload)
+PASS  identity request → wallet rejects → verifier shows rejection without values
+PASS  unanswered request expires after 15s on both sides
+PASS  activity logs on both sides record the decisions
+PASS  organisation B sees none of organisation A sessions
+PASS  dark mode toggles theme and colours in both apps
+PASS  demo reset clears data for both apps
+PASS  no browser console errors
+
+E2E: 12 PASS / 0 FAIL

@@ -1,0 +1,269 @@
+{
+  "baseline": "1f51b519ee18434ab15042c9da9124cef5a7353b",
+  "task2_ref": "150084192b1a6d3f68eed0f56d5c0e5b1248df30",
+  "frozen_manifest_sha256": "a4a0662f0816b9d7e66b02821e4e665b83bc2e551adc81f6442465a6a551a75b",
+  "frozen_reference_checks": [
+    {
+      "file": "README.md",
+      "sha256": "0d9f177e062678f24329533ac1a3f9e1d10d01d3926ee1cb09f1ac5756c79221",
+      "match": true
+    },
+    {
+      "file": "openapi/VALIDATION_RESULT.txt",
+      "sha256": "7d1c839aa91e6ae6967f303398d49c31fc9a7ad2d7023c3e0e4881eb3abf7692",
+      "match": true
+    },
+    {
+      "file": "openapi/issuer-internal.v1.yaml",
+      "sha256": "a7cd144d29d1fdf97c8575b1ca25c4aa80c8ac07f1a2542616a714cd95fcd2c2",
+      "match": true
+    },
+    {
+      "file": "openapi/status-internal.v1.yaml",
+      "sha256": "9468b46a826ddc042acda634be616c61684c45243a009d25fa82b024e0d61d53",
+      "match": true
+    },
+    {
+      "file": "openapi/trust.v1.yaml",
+      "sha256": "cf971b4cccbaaf587575cdb23ab4b2a44a1226df67f899803915b3febc84ca0d",
+      "match": true
+    },
+    {
+      "file": "openapi/verifier.v1.yaml",
+      "sha256": "1f64c21633af6b43ccc0872fe0344f5bd16f40a62108c0dd178cfddc0ce5cc50",
+      "match": true
+    },
+    {
+      "file": "tests_suite/evidence/mutation_skip-chain.log",
+      "sha256": "72ca7d799a858c8f6b2a6a75a25f0e77cbf88160685751c27f933e9c672d2a10",
+      "match": true
+    },
+    {
+      "file": "tests_suite/evidence/mutation_skip-role.log",
+      "sha256": "bcd59e8078c9fa19b6ca34971d0fbd229f2ad7b801163fbc680cb7186892b3f4",
+      "match": true
+    },
+    {
+      "file": "tests_suite/evidence/results.json",
+      "sha256": "1924fc697edcbb7bc347ca40afe4b55dff370f5e91434b440fdf39fdcf366c4f",
+      "match": true
+    },
+    {
+      "file": "tests_suite/evidence/results.md",
+      "sha256": "2938b45c6a3731f47555c22e96b58a2de55597164d048332be7c2b004c7a0250",
+      "match": true
+    },
+    {
+      "file": "tests_suite/evidence/run_main.log",
+      "sha256": "64626967a81136b2f908b86abe07bb636b3654bd6c2bee973c5fabe81746dc0e",
+      "match": true
+    },
+    {
+      "file": "tests_suite/lib/harness.mjs",
+      "sha256": "146381ad4b84f2ac2cf5f2930c33faa46928e7d813f8921db575d14d3c754b98",
+      "match": true
+    },
+    {
+      "file": "tests_suite/lib/pki.mjs",
+      "sha256": "b3b72216fb1cb5a0efa7ab0449caa3d87e2e70913fab4e46c7824a7196646da1",
+      "match": true
+    },
+    {
+      "file": "tests_suite/package-lock.json",
+      "sha256": "d3af25764d221d4bdca94dc49335deca8514a21e20d0611515aa297828fbe524",
+      "match": true
+    },
+    {
+      "file": "tests_suite/package.json",
+      "sha256": "65fb8c07ae8beddee9d240fbbdc35f6dbeb62223715d233435040f82ba02a792",
+      "match": true
+    },
+    {
+      "file": "tests_suite/run.mjs",
+      "sha256": "11d92edebd95ebe0552563fc73986da4512356200b90bb2976d237a7870c1c7a",
+      "match": true
+    },
+    {
+      "file": "tests_suite/tests/core.test.mjs",
+      "sha256": "51a2c25e7af42bf0a2a8c9f68eee439742f641e18bd4720ac2dd679add098649",
+      "match": true
+    },
+    {
+      "file": "tests_suite/tests/vp.test.mjs",
+      "sha256": "8c5b88cfbb47a3fc4c62bcc2a519536a13cf1c94eeddab1f7f16abd0f44701e8",
+      "match": true
+    }
+  ],
+  "intake_manifest": [
+    {
+      "path": "ARCHIVE_AUDIT.json",
+      "match": true
+    },
+    {
+      "path": "SOURCE_INDEX.json",
+      "match": true
+    },
+    {
+      "path": "docs/CRYPTO_READY_BLUEPRINT.md",
+      "match": true
+    },
+    {
+      "path": "docs/README_AR.md",
+      "match": true
+    },
+    {
+      "path": "docs/TASK8_GITHUB_REFERENCE.md",
+      "match": true
+    },
+    {
+      "path": "docs/TASK_STATUS_DIGEST.md",
+      "match": true
+    },
+    {
+      "path": "docs/UX_ACCEPTANCE.md",
+      "match": true
+    },
+    {
+      "path": "docs/WORK_PROMPT.md",
+      "match": true
+    },
+    {
+      "path": "originals/MISLABELLED/task 6.zip",
+      "match": true
+    },
+    {
+      "path": "originals/TASK1/G1_Test_Evidence_Package_v1.0.zip",
+      "match": true
+    },
+    {
+      "path": "originals/TASK1/G1_Test_Evidence_Report_v1.0.md",
+      "match": true
+    },
+    {
+      "path": "originals/TASK1/IQDID_Audit_and_Runner_Fix(6).zip",
+      "match": true
+    },
+    {
+      "path": "originals/TASK1/TASK1_Final_Verification(5).md",
+      "match": true
+    },
+    {
+      "path": "originals/TASK1/run-g1-suite.ps1",
+      "match": true
+    },
+    {
+      "path": "originals/TASK2/TASK2_Security_Scanner_Report(3).md",
+      "match": true
+    },
+    {
+      "path": "originals/TASK3/DR13_Before_After_Test_Matrix(1).md",
+      "match": true
+    },
+    {
+      "path": "originals/TASK3/DR13_Engineering_Closure_Report(3).md",
+      "match": true
+    },
+    {
+      "path": "originals/TASK3/DR13_Independent_Review(3).md",
+      "match": true
+    },
+    {
+      "path": "originals/TASK3/DR13_Reconstructed_Candidate_Register(3).md",
+      "match": true
+    },
+    {
+      "path": "originals/TASK3/DR13_Reconstructed_Standards_Review(3).md",
+      "match": true
+    },
+    {
+      "path": "originals/TASK3/DR13_Test_Execution_Report(3).md",
+      "match": true
+    },
+    {
+      "path": "originals/TASK3/TASK3C_Independent_Review(1).md",
+      "match": true
+    },
+    {
+      "path": "originals/TASK3/TASK3C_Remediation_Report(1).md",
+      "match": true
+    },
+    {
+      "path": "originals/TASK3/TASK3_G1a_Audit_Report(1).md",
+      "match": true
+    },
+    {
+      "path": "originals/TASK3/TASK3_Source_Intake_Update(2).md",
+      "match": true
+    },
+    {
+      "path": "originals/TASK4/TASK4_Threat_Model_Final_Report(2).md",
+      "match": true
+    },
+    {
+      "path": "originals/TASK4/TASK4_Threat_Model_Package(5).zip",
+      "match": true
+    },
+    {
+      "path": "originals/TASK5/TASK5_Test_Strategy_Package(2).zip",
+      "match": true
+    },
+    {
+      "path": "originals/TASK5/TASK5_Test_Strategy_Report(1).md",
+      "match": true
+    },
+    {
+      "path": "originals/TASK6/All_Work.zip",
+      "match": true
+    },
+    {
+      "path": "originals/TASK6/TASK6_Infrastructure_Package.zip",
+      "match": true
+    },
+    {
+      "path": "originals/TASK7/TASK7_Integration_Package (1).zip",
+      "match": true
+    },
+    {
+      "path": "reference/Decision_Register_v1.0.md",
+      "match": true
+    },
+    {
+      "path": "reference/G1_Test_Evidence_Report_v1.0.md",
+      "match": true
+    },
+    {
+      "path": "reference/Implementation_Baseline_v1.0.md",
+      "match": true
+    },
+    {
+      "path": "reference/Phase_2_Consolidated_Architecture_v1.1.md",
+      "match": true
+    },
+    {
+      "path": "reference/claude_review/G1_Blocker_Closure_Plan_v1.0.md",
+      "match": true
+    },
+    {
+      "path": "reference/claude_review/G1_Decision_Recommendations_v1.0.md",
+      "match": true
+    },
+    {
+      "path": "reference/claude_review/Phase_2_Enhanced_Architecture_v1.2.md",
+      "match": true
+    },
+    {
+      "path": "reference/claude_review/UX_UI_Design_System_v1.0.md",
+      "match": true
+    },
+    {
+      "path": "reference/claude_review/Wallet_and_Verifier_Screen_Specifications_v1.1.md",
+      "match": true
+    },
+    {
+      "path": "reference/\u0645\u0639\u0627\u064a\u064a\u0631 \u062a\u062c\u0645\u064a\u0644 \u0627\u0644\u062a\u0637\u0628\u064a\u0642\u0627\u062a \u0627\u0644\u062d\u0643\u0648\u0645\u064a\u0629.pdf",
+      "match": true
+    }
+  ],
+  "source_index_all_hashes_and_sizes_match": true,
+  "task3_ref": "120d626e1d6901935d738a51306086cc1bfec983"
+}

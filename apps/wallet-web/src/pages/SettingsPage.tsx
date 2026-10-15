@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Alert, Button, Card, Modal, PageHeader, useTheme } from '@iqdid/ui';
+import { Alert, Button, Card, Modal, PageHeader, AppearanceSettings } from '@iqdid/ui';
 import { describeError } from '@iqdid/api-client';
 import { useWallet } from '../gateway.tsx';
 import { readNotifyPref, writeNotifyPref } from '../prefs.ts';
@@ -7,7 +7,6 @@ import { readNotifyPref, writeNotifyPref } from '../prefs.ts';
 
 export function SettingsPage() {
   const wallet = useWallet();
-  const { theme, setTheme } = useTheme();
   const [notify, setNotify] = useState(readNotifyPref);
   const [confirmReset, setConfirmReset] = useState(false);
   const [busy, setBusy] = useState(false);
@@ -36,12 +35,7 @@ export function SettingsPage() {
     <>
       <PageHeader title="الإعدادات" />
       {message && <Alert tone={message.tone}>{message.text}</Alert>}
-      <Card title="المظهر">
-        <div className="row" role="group" aria-label="اختيار المظهر">
-          <Button variant={theme === 'light' ? 'primary' : 'secondary'} aria-pressed={theme === 'light'} onClick={() => setTheme('light')}>فاتح</Button>
-          <Button variant={theme === 'dark' ? 'primary' : 'secondary'} aria-pressed={theme === 'dark'} onClick={() => setTheme('dark')}>داكن</Button>
-        </div>
-      </Card>
+      <AppearanceSettings />
       <Card title="الإشعارات التجريبية">
         <div className="row row--between">
           <span>تنبيه داخل التطبيق عند وصول طلب جديد</span>

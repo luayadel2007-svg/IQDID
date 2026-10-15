@@ -1,0 +1,266 @@
+[
+  {
+    "route": "",
+    "mode": "light",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "targets": [
+          [
+            ".shell__brand-mark"
+          ],
+          [
+            ".shell__brand > span:nth-child(2)"
+          ],
+          [
+            "a[href$=\"settings\"]"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "route": "new",
+    "mode": "light",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "targets": [
+          [
+            ".shell__brand-mark"
+          ],
+          [
+            ".shell__brand > span:nth-child(2)"
+          ],
+          [
+            "a[href$=\"settings\"]"
+          ],
+          [
+            "#«r1»"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "route": "sessions",
+    "mode": "light",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "targets": [
+          [
+            ".shell__brand-mark"
+          ],
+          [
+            ".shell__brand > span:nth-child(2)"
+          ],
+          [
+            "a[href$=\"settings\"]"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "route": "sessions/1e298ae9-610a-488c-9de7-e519673b9968",
+    "mode": "light",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "targets": [
+          [
+            ".shell__brand-mark"
+          ],
+          [
+            ".shell__brand > span:nth-child(2)"
+          ],
+          [
+            "a[href$=\"settings\"]"
+          ],
+          [
+            "h1"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "route": "results",
+    "mode": "light",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "targets": [
+          [
+            ".shell__brand-mark"
+          ],
+          [
+            ".shell__brand > span:nth-child(2)"
+          ],
+          [
+            "a[href$=\"settings\"]"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "route": "activity",
+    "mode": "light",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "targets": [
+          [
+            ".shell__brand-mark"
+          ],
+          [
+            ".shell__brand > span:nth-child(2)"
+          ],
+          [
+            "a[href$=\"settings\"]"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "route": "",
+    "mode": "dark",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "targets": [
+          [
+            ".shell__brand-mark"
+          ],
+          [
+            ".shell__brand > span:nth-child(2)"
+          ],
+          [
+            "a[href$=\"settings\"]"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "route": "new",
+    "mode": "dark",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "targets": [
+          [
+            ".shell__brand-mark"
+          ],
+          [
+            ".shell__brand > span:nth-child(2)"
+          ],
+          [
+            "a[href$=\"settings\"]"
+          ],
+          [
+            "#«r1»"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "route": "sessions",
+    "mode": "dark",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "targets": [
+          [
+            ".shell__brand-mark"
+          ],
+          [
+            ".shell__brand > span:nth-child(2)"
+          ],
+          [
+            "a[href$=\"settings\"]"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "route": "sessions/1e298ae9-610a-488c-9de7-e519673b9968",
+    "mode": "dark",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "targets": [
+          [
+            ".shell__brand-mark"
+          ],
+          [
+            ".shell__brand > span:nth-child(2)"
+          ],
+          [
+            "a[href$=\"settings\"]"
+          ],
+          [
+            "h1"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "route": "results",
+    "mode": "dark",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "targets": [
+          [
+            ".shell__brand-mark"
+          ],
+          [
+            ".shell__brand > span:nth-child(2)"
+          ],
+          [
+            "a[href$=\"settings\"]"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "route": "activity",
+    "mode": "dark",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "targets": [
+          [
+            ".shell__brand-mark"
+          ],
+          [
+            ".shell__brand > span:nth-child(2)"
+          ],
+          [
+            "a[href$=\"settings\"]"
+          ]
+        ]
+      }
+    ]
+  }
+]

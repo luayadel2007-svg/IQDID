@@ -134,5 +134,6 @@ export class RealTransportPlaceholder implements Transport {
 export type TransportMode = 'demo' | 'real';
 
 export function createTransport(mode: TransportMode, options: DemoTransportOptions = {}): Transport {
-  return mode === 'real' ? new RealTransportPlaceholder() : new DemoHttpTransport(options);
+  if (mode === 'demo') return new DemoHttpTransport(options);
+  return new RealTransportPlaceholder();
 }
