@@ -40,7 +40,16 @@ try {
   const consoleErrors = [];
   for (const p of [wallet, verifier]) p.on('console', (m) => { if (m.type() === 'error') consoleErrors.push(m.text()); });
   const nav = (page, name) => page.getByRole('navigation', { name: 'التنقل الرئيسي' }).getByRole('link', { name });
-  const shot = (page, name) => page.screenshot({ path: path.join(out, 'screenshots', `${name}.png`), fullPage: true });
+  // Evidence capture only. Chrome on Windows CI once returned "Unable to capture screenshot" for a full-page
+  // capture right after load; retry that specific protocol error once. Assertions are never retried.
+  const shot = (page, name) => {
+    const opts = { path: path.join(out, 'screenshots', `${name}.png`), fullPage: true };
+    return page.screenshot(opts).catch(async (e) => {
+      if (!/Unable to capture screenshot/.test(String(e?.message))) throw e;
+      await page.waitForTimeout(500);
+      return page.screenshot(opts);
+    });
+  };
 
   await fetch(`${stack.urls.api}/demo-api/v1/demo/reset`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: '{}' });
 
