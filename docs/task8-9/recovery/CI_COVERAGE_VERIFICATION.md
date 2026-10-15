@@ -72,6 +72,6 @@ PR [luayadel2007-svg/IQDID#7](https://github.com/luayadel2007-svg/IQDID/pull/7).
 |---|---|---|---|
 | `5b31493` | cancelled | cancelled | superseded by the next push (`cancel-in-progress`) |
 | `6986b61` | **success** | **failure** | Windows: all e2e assertions passed, but the first full-page evidence screenshot threw Chrome "Unable to capture screenshot". `browser-regression` and `coverage-guard` correctly failed the job. Fix `6e9f202` retries that one screenshot error once; no assertion is retried. |
-| latest | see the PR checks | see the PR checks | recorded in the final reply |
+| `f71359c` | **success** ([job](https://github.com/luayadel2007-svg/IQDID/actions/runs/38763839147/job/116521783037)) | **success** ([job](https://github.com/luayadel2007-svg/IQDID/actions/runs/38763839147/job/116521782425)) | Windows log: typecheck, lint, tests, compatibility, build, browser-regression, browser-ux, browser-wallet, browser-pdf-ux, coverage-guard, secrets-diff all PASS (exit 0); secrets-all-index BLOCKED (optional, pre-existing PNGs). Later commits change docs only. |
 
 Windows was not run locally; it is covered only by hosted CI.
