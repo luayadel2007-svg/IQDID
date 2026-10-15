@@ -1,101 +1,76 @@
-import { useCallback, useState } from 'react';
+import { useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { previewDemoDisclosure } from '@iqdid/shared-types';
-import type { DemoConsentDecisionValue, DemoSessionStatus } from '@iqdid/shared-types';
-import { Alert, Button, Card, ErrorState, LoadingState, Modal, PageHeader, SessionStatusBadge, formatDateTime, useAsync, useCountdown } from '@iqdid/ui';
+import { DEMO_SESSION_TTL_MS, previewDemoDisclosure, primaryIdentityCredential } from '@iqdid/shared-types';
+import type { DemoSessionStatus } from '@iqdid/shared-types';
+import { Alert, Card, CountdownRing, ErrorState, Icon, LoadingState, PageHeader, SessionStatusBadge, formatDateTime, useAsync, useCountdown } from '@iqdid/ui';
 import { describeError } from '@iqdid/api-client';
 import { useWallet } from '../gateway.tsx';
 import { usePollMs } from '../poll.ts';
+import { DecisionPanel } from '../components/DecisionPanel.tsx';
+import { StaleNotice } from '../components/bits.tsx';
+import { useTrust } from '../trust.ts';
 
 export function RequestDetailPage() {
   const { id = '' } = useParams();
   const wallet = useWallet();
+  const trust = useTrust();
   const pollMs = usePollMs();
-  const { data, error, loading, reload } = useAsync((s) => wallet.request(id, { signal: s }), [wallet, id], { pollMs });
+  const { data, error, loading, stale, reload } = useAsync((s) => wallet.request(id, { signal: s }), [wallet, id], { pollMs });
   const credentials = useAsync((signal) => wallet.credentials({ signal }), [wallet]);
   const left = useCountdown(data?.status === 'PENDING' ? data.expiresAt : null);
-  const [confirm, setConfirm] = useState<DemoConsentDecisionValue | null>(null);
-  const [submitting, setSubmitting] = useState(false);
   const [actionError, setActionError] = useState<string | null>(null);
-  const close = useCallback(() => setConfirm(null), []);
+  const decided = (e: string | null) => { setActionError(e); reload(); };
 
-  const submit = async (decision: DemoConsentDecisionValue): Promise<void> => {
-    setSubmitting(true);
-    setActionError(null);
-    try {
-      await wallet.decide(id, decision);
-      setConfirm(null);
-      reload();
-    } catch (e) {
-      setConfirm(null);
-      setActionError(describeError(e));
-      reload();
-    } finally {
-      setSubmitting(false);
-    }
-  };
-
-  if (loading) return <LoadingState />;
-  if (error || !data) return <ErrorState message={describeError(error)} onRetry={reload} />;
-  const credential = credentials.data?.find((c) => c.holderRef === data.holderRef);
+  const refused = actionError && <Alert tone="danger" title="لم يُسجَّل القرار">{actionError}</Alert>;
+  if (loading) return <>{refused}<LoadingState /></>;
+  if (!data) return <>{refused}<ErrorState message={describeError(error)} onRetry={reload} /></>;
+  const credential = primaryIdentityCredential(credentials.data, data.holderRef);
   const preview = credential ? previewDemoDisclosure(data, credential) : null;
   const pending = data.status === 'PENDING' && left !== 0;
+  const total = Math.max(1, Math.round((Date.parse(data.expiresAt) - Date.parse(data.createdAt)) / 1000)) || DEMO_SESSION_TTL_MS / 1000;
+  const view = trust.describeSession(data);
 
   return (
     <>
-      <PageHeader title="طلب مشاركة بيانات" description={`رمز الطلب ${data.shortCode}`} actions={<SessionStatusBadge status={data.status} />} />
-      {actionError && <Alert tone="danger" title="لم يُسجَّل القرار">{actionError}</Alert>}
-      <Card title="الجهة الطالبة">
-        <dl className="kv">
-          <dt>المؤسسة</dt><dd>{data.organizationName}</dd>
-          <dt>الغرض</dt><dd>{data.purpose}</dd>
-          <dt>أُنشئ</dt><dd>{formatDateTime(data.createdAt)}</dd>
-          {pending && left !== null && (<><dt>المهلة المتبقية</dt><dd aria-live="polite">{left} ثانية</dd></>)}
-        </dl>
+      <PageHeader eyebrow="مراجعة الطلب" icon="inbox" title="طلب مشاركة بيانات" description={`رمز الطلب ${data.shortCode}`} actions={<SessionStatusBadge status={data.status} />} />
+      {stale && <StaleNotice onRetry={reload} />}
+      {refused}
+      <Card title="الجهة الطالبة" icon="building">
+        <div className="row row--between" style={{ alignItems: 'flex-start' }}>
+          <dl className="kv" style={{ flex: '1 1 220px' }}>
+            <dt>المؤسسة</dt><dd>{data.organizationName}</dd>
+            <dt>الغرض</dt><dd>{data.purpose}</dd>
+            <dt>أُنشئ</dt><dd>{formatDateTime(data.createdAt)}</dd>
+            {pending && left !== null && (<><dt>المهلة المتبقية</dt><dd aria-live="polite">{left} ثانية</dd></>)}
+          </dl>
+          {pending && left !== null && <CountdownRing seconds={left} total={total} />}
+        </div>
       </Card>
-      <Card title="البيانات المطلوبة">
+      <Card title="البيانات المطلوبة" icon="list">
         <ul>
           {data.requestedFields.map((f) => <li key={f.key}>{f.label}</li>)}
         </ul>
         <p className="small muted">ستُشارك هذه الحقول فقط إذا وافقت. يمكنك الرفض دائماً.</p>
+        <Link to={`/requests/${data.id}/disclosure`} className="btn btn--secondary btn--sm"><Icon name="eye" size={18} />معاينة الإفصاح الانتقائي</Link>
       </Card>
-      {pending && <Card title="معاينة القيم التي ستُشارك (اصطناعية)">
+      {pending && <Card title="معاينة القيم التي ستُشارك (اصطناعية)" icon="eye">
         {credentials.loading ? <LoadingState /> : credentials.error || !preview ? <ErrorState message="تعذرت معاينة البيانات؛ أعد المحاولة قبل الموافقة." onRetry={credentials.reload} /> :
           <dl className="kv">{preview.map((c) => <div key={c.key}><dt>{`قيمة: ${c.label}`}</dt><dd>{c.value}</dd></div>)}</dl>}
       </Card>}
       {pending ? (
-        <div className="row" style={{ marginTop: 'var(--sp-4)' }}>
-          <Button disabled={!preview || Boolean(credentials.error) || credential?.status !== 'ACTIVE'} onClick={() => setConfirm('ACCEPT')}>موافقة تجريبية</Button>
-          <Button variant="danger" onClick={() => setConfirm('REJECT')}>رفض</Button>
-        </div>
+        <DecisionPanel session={data} canAccept={Boolean(preview) && !credentials.error && credential?.status === 'ACTIVE'} onDecided={decided} />
       ) : (
-        <DecisionOutcome status={data.status} decidedAt={data.decidedAt} />
+        <>
+          <DecisionOutcome status={data.status} decidedAt={data.decidedAt} />
+          {view.kind === 'DEMO_UNVERIFIED' && <p className="small muted">{view.detail}</p>}
+        </>
       )}
       <p style={{ marginTop: 'var(--sp-5)' }}><Link to="/requests">العودة إلى الطلبات</Link></p>
-      <Modal
-        open={confirm !== null}
-        title={confirm === 'ACCEPT' ? 'تأكيد الموافقة التجريبية' : 'تأكيد الرفض'}
-        onClose={close}
-        footer={
-          <>
-            <Button variant="secondary" onClick={close} disabled={submitting}>تراجع</Button>
-            <Button variant={confirm === 'REJECT' ? 'danger' : 'primary'} disabled={!pending || (confirm === 'ACCEPT' && (!preview || Boolean(credentials.error) || credential?.status !== 'ACTIVE'))} loading={submitting} onClick={() => confirm && void submit(confirm)}>
-              {confirm === 'ACCEPT' ? 'تأكيد الموافقة' : 'تأكيد الرفض'}
-            </Button>
-          </>
-        }
-      >
-        {confirm === 'ACCEPT' ? (
-          <p>ستُرسل الحقول المطلوبة (قيم اصطناعية) إلى {data.organizationName}. هذه موافقة محاكاة داخل العرض التجريبي، ولا يجري أي توقيع أو تحقق تشفيري.</p>
-        ) : (
-          <p>لن تُشارك أي بيانات مع {data.organizationName}.</p>
-        )}
-      </Modal>
     </>
   );
 }
 
-function DecisionOutcome({ status, decidedAt }: { status: DemoSessionStatus; decidedAt: string | null }) {
+export function DecisionOutcome({ status, decidedAt }: { status: DemoSessionStatus; decidedAt: string | null }) {
   const when = decidedAt ? ` (${formatDateTime(decidedAt)})` : '';
   if (status === 'DEMO_ACCEPTED') return <Alert tone="success" title="سُجلت موافقتك التجريبية">{`شوركت القيم الاصطناعية مع المؤسسة${when}. لم يحدث تحقق بروتوكولي.`}</Alert>;
   if (status === 'DEMO_REJECTED') return <Alert tone="info" title="رفضت هذا الطلب">{`لم تُشارك أي بيانات${when}.`}</Alert>;

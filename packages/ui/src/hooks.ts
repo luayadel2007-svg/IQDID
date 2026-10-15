@@ -40,6 +40,8 @@ export interface AsyncState<T> {
   readonly data: T | undefined;
   readonly error: unknown;
   readonly loading: boolean;
+  /** True when a refresh failed but the last good data is still shown (weak connection). */
+  readonly stale: boolean;
   readonly reload: () => void;
 }
 
@@ -87,7 +89,9 @@ export function useAsync<T>(loader: (signal: AbortSignal) => Promise<T>, deps: r
   }, [...key, options.pollMs]);
 
   const current = sameKey(snap.key, key) && snap.settled;
-  return { data: current ? snap.data : undefined, error: current ? snap.error : null, loading: !current, reload };
+  const data = current ? snap.data : undefined;
+  const error = current ? snap.error : null;
+  return { data, error, loading: !current, stale: Boolean(error) && data !== undefined, reload };
 }
 
 /** Seconds remaining until an ISO timestamp, updated every second. */
@@ -101,4 +105,15 @@ export function useCountdown(untilIso: string | null | undefined): number | null
     return () => clearInterval(t);
   }, [untilIso, compute]);
   return left;
+}
+
+/** Browser connectivity (navigator.onLine + online/offline events). */
+export function useOnline(): boolean {
+  const [online, setOnline] = useState(() => (typeof navigator === 'undefined' ? true : navigator.onLine !== false));
+  useEffect(() => {
+    const up = () => setOnline(true), down = () => setOnline(false);
+    window.addEventListener('online', up); window.addEventListener('offline', down);
+    return () => { window.removeEventListener('online', up); window.removeEventListener('offline', down); };
+  }, []);
+  return online;
 }

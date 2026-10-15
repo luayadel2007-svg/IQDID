@@ -10,7 +10,7 @@ export function ThemeToggle() {
   return (
     <Button variant="ghost" size="sm" onClick={toggle} aria-pressed={dark} aria-label={dark ? 'تفعيل الوضع الفاتح' : 'تفعيل الوضع الداكن'}>
       <Icon name={dark ? 'sun' : 'moon'} />
-      <span>{dark ? 'فاتح' : 'داكن'}</span>
+      <span className="theme-toggle__label">{dark ? 'فاتح' : 'داكن'}</span>
     </Button>
   );
 }

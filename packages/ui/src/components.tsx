@@ -29,11 +29,12 @@ export function Button({ variant = 'primary', size = 'md', block = false, loadin
 
 export function Card({ title, actions, children, className, headingLevel = 2, icon, variant = 'default' }: { title?: ReactNode; actions?: ReactNode; children: ReactNode; className?: string; headingLevel?: 2 | 3; icon?: IconName; variant?: 'default' | 'flat' | 'accent' }) {
   const Heading = headingLevel === 2 ? 'h2' : 'h3';
+  const headingId = useId();
   return (
-    <section className={cx('card', variant !== 'default' && `card--${variant}`, className)}>
+    <section className={cx('card', variant !== 'default' && `card--${variant}`, className)} aria-labelledby={title ? headingId : undefined}>
       {(title || actions) && (
         <div className="card__head">
-          {title && <Heading className="card__title">{icon && <span className="card__icon"><Icon name={icon} size={20} /></span>}{title}</Heading>}
+          {title && <Heading className="card__title" id={headingId}>{icon && <span className="card__icon"><Icon name={icon} size={20} /></span>}{title}</Heading>}
           {actions}
         </div>
       )}

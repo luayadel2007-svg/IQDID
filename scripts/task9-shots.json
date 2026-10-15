@@ -1,0 +1,270 @@
+[
+ {
+  "app": "wallet",
+  "route": "/welcome",
+  "theme": "light",
+  "width": 390,
+  "name": "01-onboarding-light-390",
+  "seed": "mixed"
+ },
+ {
+  "app": "wallet",
+  "route": "/",
+  "theme": "light",
+  "width": 390,
+  "name": "02-home-light-390",
+  "seed": "mixed"
+ },
+ {
+  "app": "wallet",
+  "route": "/card",
+  "theme": "light",
+  "width": 390,
+  "name": "03-id-card-light-390",
+  "seed": "mixed"
+ },
+ {
+  "app": "wallet",
+  "route": "/credentials",
+  "theme": "light",
+  "width": 390,
+  "name": "04-credentials-light-390",
+  "seed": "mixed"
+ },
+ {
+  "app": "wallet",
+  "route": "/credentials/cred-test-002",
+  "theme": "light",
+  "width": 390,
+  "name": "05-credential-details-light-390",
+  "seed": "mixed"
+ },
+ {
+  "app": "wallet",
+  "route": "/requests",
+  "theme": "light",
+  "width": 390,
+  "name": "06-requests-light-390",
+  "seed": "mixed"
+ },
+ {
+  "app": "wallet",
+  "route": "/requests/:pending",
+  "theme": "light",
+  "width": 390,
+  "name": "07-request-review-light-390",
+  "seed": "mixed"
+ },
+ {
+  "app": "wallet",
+  "route": "/requests/:pending/disclosure",
+  "theme": "light",
+  "width": 390,
+  "name": "08-selective-disclosure-light-390",
+  "seed": "mixed"
+ },
+ {
+  "app": "wallet",
+  "route": "/qr",
+  "theme": "light",
+  "width": 390,
+  "name": "09-qr-demo-light-390",
+  "seed": "mixed"
+ },
+ {
+  "app": "wallet",
+  "route": "/activity",
+  "theme": "light",
+  "width": 390,
+  "name": "10-activity-light-390",
+  "seed": "mixed"
+ },
+ {
+  "app": "wallet",
+  "route": "/notifications",
+  "theme": "light",
+  "width": 390,
+  "name": "11-notifications-light-390",
+  "seed": "mixed"
+ },
+ {
+  "app": "wallet",
+  "route": "/settings",
+  "theme": "light",
+  "width": 390,
+  "name": "12-settings-light-390",
+  "seed": "mixed"
+ },
+ {
+  "app": "wallet",
+  "route": "/help",
+  "theme": "light",
+  "width": 390,
+  "name": "13-help-about-light-390",
+  "seed": "mixed"
+ },
+ {
+  "app": "wallet",
+  "route": "/requests/:accepted",
+  "theme": "light",
+  "width": 390,
+  "name": "14-request-accepted-light-390",
+  "seed": "mixed"
+ },
+ {
+  "app": "wallet",
+  "route": "/",
+  "theme": "dark",
+  "width": 390,
+  "name": "02-home-dark-390",
+  "seed": "mixed"
+ },
+ {
+  "app": "wallet",
+  "route": "/card",
+  "theme": "dark",
+  "width": 390,
+  "name": "03-id-card-dark-390",
+  "seed": "mixed"
+ },
+ {
+  "app": "wallet",
+  "route": "/credentials",
+  "theme": "dark",
+  "width": 390,
+  "name": "04-credentials-dark-390",
+  "seed": "mixed"
+ },
+ {
+  "app": "wallet",
+  "route": "/credentials/cred-test-002",
+  "theme": "dark",
+  "width": 390,
+  "name": "05-credential-details-dark-390",
+  "seed": "mixed"
+ },
+ {
+  "app": "wallet",
+  "route": "/requests",
+  "theme": "dark",
+  "width": 390,
+  "name": "06-requests-dark-390",
+  "seed": "mixed"
+ },
+ {
+  "app": "wallet",
+  "route": "/requests/:pending",
+  "theme": "dark",
+  "width": 390,
+  "name": "07-request-review-dark-390",
+  "seed": "mixed"
+ },
+ {
+  "app": "wallet",
+  "route": "/requests/:pending/disclosure",
+  "theme": "dark",
+  "width": 390,
+  "name": "08-selective-disclosure-dark-390",
+  "seed": "mixed"
+ },
+ {
+  "app": "wallet",
+  "route": "/qr",
+  "theme": "dark",
+  "width": 390,
+  "name": "09-qr-demo-dark-390",
+  "seed": "mixed"
+ },
+ {
+  "app": "wallet",
+  "route": "/notifications",
+  "theme": "dark",
+  "width": 390,
+  "name": "11-notifications-dark-390",
+  "seed": "mixed"
+ },
+ {
+  "app": "wallet",
+  "route": "/settings",
+  "theme": "dark",
+  "width": 390,
+  "name": "12-settings-dark-390",
+  "seed": "mixed"
+ },
+ {
+  "app": "wallet",
+  "route": "/",
+  "theme": "light",
+  "width": 768,
+  "name": "02-home-light-768",
+  "seed": "mixed"
+ },
+ {
+  "app": "wallet",
+  "route": "/credentials",
+  "theme": "light",
+  "width": 768,
+  "name": "04-credentials-light-768",
+  "seed": "mixed"
+ },
+ {
+  "app": "wallet",
+  "route": "/requests/:pending",
+  "theme": "light",
+  "width": 768,
+  "name": "07-request-review-light-768",
+  "seed": "mixed"
+ },
+ {
+  "app": "wallet",
+  "route": "/requests/:pending/disclosure",
+  "theme": "light",
+  "width": 768,
+  "name": "08-selective-disclosure-light-768",
+  "seed": "mixed"
+ },
+ {
+  "app": "wallet",
+  "route": "/",
+  "theme": "light",
+  "width": 320,
+  "height": 640,
+  "name": "02-home-light-320",
+  "seed": "mixed"
+ },
+ {
+  "app": "wallet",
+  "route": "/card",
+  "theme": "light",
+  "width": 320,
+  "height": 640,
+  "name": "03-id-card-light-320",
+  "seed": "mixed"
+ },
+ {
+  "app": "wallet",
+  "route": "/requests/:pending",
+  "theme": "light",
+  "width": 320,
+  "height": 640,
+  "name": "07-request-review-light-320",
+  "seed": "mixed"
+ },
+ {
+  "app": "wallet",
+  "route": "/",
+  "theme": "light",
+  "width": 390,
+  "name": "02-home-light-390-full",
+  "seed": "mixed",
+  "fullPage": true
+ },
+ {
+  "app": "verifier",
+  "route": "/",
+  "theme": "light",
+  "width": 1366,
+  "name": "20-verifier-dashboard-after-journey",
+  "seed": "mixed"
+ }
+]

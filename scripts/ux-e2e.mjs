@@ -61,7 +61,7 @@ try {
       const response = await fetch(`${stack.urls.api}/demo-api/v1/verifier/sessions`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ organizationId: 'org-test-a', templateId: 'AGE_OVER_18', purpose: 'اختبار معاينة البيانات' }) });
       const session = await response.json();
       check(typeof session.id === 'string', 'could not create QA session');
-      const routes = app === 'wallet' ? ['', 'card', 'credentials/cred-test-001', 'requests', `requests/${session.id}`, 'activity'] : ['', 'new', 'sessions', `sessions/${session.id}`, 'results', 'activity'];
+      const routes = app === 'wallet' ? ['', 'welcome', 'card', 'credentials', 'credentials/cred-test-001', 'credentials/cred-test-004', 'requests', `requests/${session.id}`, `requests/${session.id}/disclosure`, 'qr', 'activity', 'notifications', 'settings', 'help'] : ['', 'new', 'sessions', `sessions/${session.id}`, 'results', 'activity'];
       const audits = [];
       for (const mode of ['light', 'dark']) {
         for (const route of routes) {
@@ -96,10 +96,10 @@ try {
       await p.evaluate(() => { document.documentElement.style.fontSize = ''; });
     });
     await step(`${app}: keyboard controls and visible skip-link target`, async () => {
-      await p.goto(url); await p.keyboard.press('Tab');
+      await p.goto(url); await p.getByRole('heading', { level: 1 }).waitFor(); await p.keyboard.press('Tab');
       check((await p.evaluate(() => document.activeElement?.textContent ?? '')).includes('تخطَّ'), 'skip not first');
       await p.keyboard.press('Enter');
-      check(await p.evaluate(() => document.activeElement?.id) === 'main', 'skip not focusing main');
+      check(await p.waitForFunction(() => document.activeElement?.id === 'main', null, { timeout: 3000 }).then(() => true, () => false), 'skip not focusing main');
     });
     await step(`${app}: offline API error is visible, retry offered`, async () => {
       await ctx.route('**/demo-api/v1/**', (route) => route.abort('internetdisconnected'));
