@@ -113,6 +113,8 @@ export function useOnline(): boolean {
   useEffect(() => {
     const up = () => setOnline(true), down = () => setOnline(false);
     window.addEventListener('online', up); window.addEventListener('offline', down);
+    // Re-read after subscribing: a change between render and this effect would otherwise be missed.
+    setOnline(navigator.onLine !== false);
     return () => { window.removeEventListener('online', up); window.removeEventListener('offline', down); };
   }, []);
   return online;
