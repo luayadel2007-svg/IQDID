@@ -37,7 +37,7 @@
     "test/provider-replacement.test.tsx",
     "test/crypto-contract.test.ts"
   ],
-  "minVitestTests": 87,
+  "minVitestTests": 89,
   "minBrowserSteps": {
     "e2e": 12,
     "ux": 20,
