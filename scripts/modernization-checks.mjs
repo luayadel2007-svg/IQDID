@@ -15,6 +15,7 @@ const commands = [
   ['browser-regression', process.execPath, [npm, 'run', 'e2e']],
   ['browser-ux', process.execPath, [npm, 'run', 'test:ux']],
   ['browser-wallet', process.execPath, [npm, 'run', 'test:wallet']],
+  ['coverage-guard', process.execPath, ['scripts/ci-coverage-guard.mjs', `${out}/vitest-results.json`, String(Date.now() - 1000)]],
   ['secrets-diff', process.execPath, ['tools/secret-scanner.mjs', '--base', '1f51b519ee18434ab15042c9da9124cef5a7353b']],
   ['secrets-all-index', process.execPath, ['tools/secret-scanner.mjs', '--all-index'], false],
 ];
