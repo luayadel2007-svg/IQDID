@@ -34,7 +34,7 @@ dist/assets/noto-sans-arabic-arabic-400-normal-hsqIUL9Q.woff       79.08 kB
 dist/assets/noto-sans-arabic-arabic-700-normal-DXnsSW3z.woff       81.07 kB
 dist/assets/index-DMGhDhGC.css                                     21.45 kB │ gzip:  5.37 kB
 dist/assets/index-CQiw_4R3.js                                     256.88 kB │ gzip: 82.63 kB │ map: 1,430.56 kB
-✓ built in 1.10s
+✓ built in 1.18s
 
 > @iqdid/verifier-web@0.8.0 build
 > vite build
@@ -49,8 +49,8 @@ dist/assets/noto-sans-arabic-symbols-400-normal-BbP0vlM-.woff2      4.72 kB
 dist/assets/noto-sans-arabic-symbols-700-normal-D40a2DlB.woff2      4.75 kB
 dist/assets/noto-sans-arabic-symbols-700-normal-Ct3Gyvbr.woff       6.13 kB
 dist/assets/noto-sans-arabic-symbols-400-normal-BJzmBRSy.woff       6.18 kB
-dist/assets/noto-sans-arabic-latin-ext-700-normal-wF0ZdkCd.woff2    6.53 kB
 dist/assets/noto-sans-arabic-latin-ext-400-normal-CW3XQ4Yj.woff2    6.53 kB
+dist/assets/noto-sans-arabic-latin-ext-700-normal-wF0ZdkCd.woff2    6.53 kB
 dist/assets/noto-sans-arabic-math-700-normal-DhwRdyuq.woff2         7.75 kB
 dist/assets/noto-sans-arabic-math-400-normal-BxrVu-ji.woff2         7.76 kB
 dist/assets/noto-sans-arabic-latin-ext-700-normal-DX5dIs2j.woff     8.41 kB
@@ -67,4 +67,4 @@ dist/assets/noto-sans-arabic-arabic-400-normal-hsqIUL9Q.woff       79.08 kB
 dist/assets/noto-sans-arabic-arabic-700-normal-DXnsSW3z.woff       81.07 kB
 dist/assets/index-DMGhDhGC.css                                     21.45 kB │ gzip:  5.37 kB
 dist/assets/index-Cn7AYiMo.js                                     256.70 kB │ gzip: 82.61 kB │ map: 1,433.50 kB
-✓ built in 1.17s
+✓ built in 1.16s

@@ -49,16 +49,20 @@ describe('crypto-ready contracts', () => {
       }
     } finally { await srv.close(); }
   });
-  it('lint rejects direct SDK imports, re-exports, require and dynamic imports outside adapter', async () => {
+  it('lint rejects direct SDK imports, re-exports, require and computed imports outside adapter', async () => {
     const eslint = new ESLint();
     for (const code of [
       "import { x } from '@openid4vc/openid4vp'; void x;",
       "export { x } from '@sd-jwt/core';",
       "void import('@sd-jwt/sd-jwt-vc');",
       "void require('@owf/token-status-list');",
+      "const name = '@sd-jwt/core'; void import(name);",
+      "import { createRequire } from 'node:module'; void createRequire;",
     ]) {
-      const results = await eslint.lintText(code, { filePath: 'packages/api-client/src/bypass.ts' });
-      expect(results[0]?.messages.some((m) => m.ruleId === 'no-restricted-imports' || m.ruleId === 'no-restricted-syntax')).toBe(true);
+      for (const filePath of ['packages/api-client/src/bypass.ts', 'apps/wallet-web/src/bypass.ts']) {
+        const results = await eslint.lintText(code, { filePath });
+        expect(results[0]?.messages.some((m) => m.ruleId === 'no-restricted-imports' || m.ruleId === 'no-restricted-syntax')).toBe(true);
+      }
     }
   });
 });

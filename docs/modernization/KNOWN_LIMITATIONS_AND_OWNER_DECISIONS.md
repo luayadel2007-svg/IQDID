@@ -20,3 +20,5 @@ Security contracts are not a complete crypto implementation or independent certi
 No separate agent/independent reviewer was used. Limited self-review and recorded negative tests were performed. Windows CI results for this branch are reported only if a fresh remote run completes; local Linux results never stand in for them. Manual assistive technology, real low-end devices and full performance testing remain NOT RUN.
 
 The unmodified TASK-2 full-index scanner is BLOCKED by pre-existing historical PNG screenshots (unsupported binary). No binary exclusions were added to its policy. A separate baseline-diff scan covers every modernization change, including text evidence. This is scoped coverage, not an all-repository PASS.
+
+Fresh hosted Windows Server 2022 + Ubuntu 24.04 CI passed on initial commit da32c5e. The later lint-only boundary strengthening is fully re-tested locally; its hosted rerun is separate and must be checked by commit SHA. This remains no evidence of testing the user's physical Windows device.

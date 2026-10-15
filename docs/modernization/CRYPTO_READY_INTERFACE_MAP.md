@@ -20,7 +20,7 @@ All implementation contracts below are in `packages/api-client/src/crypto-ports.
 - `shared-types/src/verification.ts`: `DemoOutcome` and `VerifiedByProtocol` use different discriminants. A private type brand prevents normal TypeScript construction of the protocol result. There is deliberately no success factory today. A future reviewed server adapter must own creation after all protocol checks. Untrusted JSON must never be cast to this type.
 - `isDemoVerificationSession` rejects additional fields including mode/outcome/evidence/verified and rejects protocol statuses. Forged HTTP responses are tested through the real gateway decoder. Demo v1 DTO fields and paths stay compatible; a future schema extension needs explicit API versioning.
 - `previewDemoDisclosure` is used both before consent and during server decision. Consent still yields only DEMO_ACCEPTED / DEMO_REJECTED.
-- `server/compatibility/task3c-adapter.mjs` is an exact copy of the TASK-3C injected adapter from `120d626e1d6901935d738a51306086cc1bfec983`. It remains a limited guard, not a verifier. SDK imports/re-exports/dynamic imports are forbidden outside this server entry folder; require calls outside it are forbidden too. Browser imports of server/crypto implementation paths are restricted.
+- `server/compatibility/task3c-adapter.mjs` is an exact copy of the TASK-3C injected adapter from `120d626e1d6901935d738a51306086cc1bfec983`. It remains a limited guard, not a verifier. SDK imports/re-exports/dynamic imports are forbidden outside this server entry folder; require calls, computed dynamic imports and createRequire imports outside it are forbidden too. Browser imports of server/crypto implementation paths are restricted.
 
 ## Contract evidence
 

@@ -1,6 +1,6 @@
 # Test evidence — actual local execution
 
-Base HEAD: `1f51b519ee18434ab15042c9da9124cef5a7353b` with staged modernization changes. Tested source-file SHA-256 values are in `evidence/modernization/final/commands.json` (`sourceHashes`); the delivery commit must match them. This is a working-tree test, not a claim that the untouched base commit contained these changes. Platform: linux, Node v24.19.0, Chromium 141 through playwright-core 1.56.1. Test timestamp (UTC): 2026-10-15T11:40:58.199Z.
+Base HEAD: `6dcfffb6a6ac44572714dfdb7c125aad8efa8ad7` with staged modernization changes. Tested source-file SHA-256 values are in `evidence/modernization/final/commands.json` (`sourceHashes`); the delivery commit must match them. This is a working-tree test, not a claim that the untouched base commit contained these changes. Platform: linux, Node v24.19.0, Chromium 141 through playwright-core 1.56.1. Test timestamp (UTC): 2026-10-15T11:56:34.632Z.
 
 ## Actual commands and exits
 
@@ -49,3 +49,9 @@ Early logs preserve two incorrect replacement-test selectors and new test type c
 | G1a/G1b acceptance | BLOCKED / not passed; no gate claim |
 
 Independent review: no external reviewer or sub-agent; limited self-review only. Frozen references were read-only. Pending owner decisions remain pending.
+
+## Hosted CI and final boundary review
+
+[Hosted run 38730317746](https://github.com/luayadel2007-svg/IQDID/actions/runs/38730317746) passed on both Windows Server 2022 and Ubuntu 24.04 / Node 22 for commit `da32c5e2924afb76cd8d84f4c876d81eb771541e`. `hosted-ci-initial.json` records job IDs and success. Local HEAD `6dcfffb` has exactly the same tree as that published commit; different commit metadata does not change tested files.
+
+After that hosted run, final review strengthened ESLint against computed dynamic imports and aliased createRequire bypasses. Six mutation forms are now exercised in both API-client and Wallet file contexts (12 rejected mutations within the existing contract test). The entire local suite was re-run and passed, with full-index scanner still BLOCKED for the same inherited images. Current exact source hashes are in final/commands.json. A fresh hosted run is triggered by the follow-up commit; do not attribute the prior hosted PASS to later source without checking its SHA.

@@ -1,23 +1,22 @@
 
  RUN  v4.1.11 /workspace/scratch/3b8f7ffc5c8e/iqdid
 
- ✓ |node| packages/api-client/src/transport.test.ts (8 tests) 48ms
- ✓ |node| packages/mock-services/src/server.test.ts (6 tests) 142ms
- ✓ |node| packages/mock-services/src/store.test.ts (8 tests) 10ms
- ✓ |node| packages/shared-types/src/index.test.ts (4 tests) 6ms
- ✓ |dom| packages/ui/src/preferences.test.tsx (4 tests) 268ms
- ✓ |dom| packages/ui/src/ui.test.tsx (23 tests) 289ms
- ✓ |dom| test/provider-replacement.test.tsx (2 tests) 314ms
- ✓ |node| test/crypto-contract.test.ts (4 tests) 1072ms
-     ✓ lint rejects direct SDK imports, re-exports, require and dynamic imports outside adapter  999ms
- ✓ |dom| test/cross-app.test.tsx (9 tests) 2678ms
-     ✓ approve: request appears in wallet with org, purpose and fields; verifier shows DEMO_ACCEPTED; both logs record it  529ms
-     ✓ reject: verifier sees DEMO_REJECTED and no disclosed values  301ms
-     ✓ an expired request cannot be approved and both apps show the expiry  1330ms
+ ✓ |node| packages/api-client/src/transport.test.ts (8 tests) 60ms
+ ✓ |node| packages/mock-services/src/server.test.ts (6 tests) 125ms
+ ✓ |node| packages/mock-services/src/store.test.ts (8 tests) 11ms
+ ✓ |node| packages/shared-types/src/index.test.ts (4 tests) 8ms
+ ✓ |dom| packages/ui/src/preferences.test.tsx (4 tests) 286ms
+ ✓ |dom| packages/ui/src/ui.test.tsx (23 tests) 303ms
+ ✓ |dom| test/provider-replacement.test.tsx (2 tests) 311ms
+ ✓ |node| test/crypto-contract.test.ts (4 tests) 1114ms
+     ✓ lint rejects direct SDK imports, re-exports, require and computed imports outside adapter  1039ms
+ ✓ |dom| test/cross-app.test.tsx (9 tests) 2728ms
+     ✓ approve: request appears in wallet with org, purpose and fields; verifier shows DEMO_ACCEPTED; both logs record it  516ms
+     ✓ an expired request cannot be approved and both apps show the expiry  1344ms
 
  Test Files  9 passed (9)
       Tests  68 passed (68)
-   Start at  14:40:03
-   Duration  3.86s (transform 1.34s, setup 497ms, import 2.08s, tests 4.83s, environment 1.61s)
+   Start at  14:55:39
+   Duration  3.89s (transform 1.31s, setup 502ms, import 2.00s, tests 4.95s, environment 1.68s)
 
 JSON report written to /workspace/scratch/3b8f7ffc5c8e/iqdid/evidence/modernization/final/vitest-results.json

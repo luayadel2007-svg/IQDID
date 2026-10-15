@@ -1,12 +1,12 @@
 {
-  "at": "2026-10-15T11:40:58.199Z",
+  "at": "2026-10-15T11:56:34.632Z",
   "node": "v24.19.0",
   "platform": "linux",
-  "base": "1f51b519ee18434ab15042c9da9124cef5a7353b",
+  "base": "6dcfffb6a6ac44572714dfdb7c125aad8efa8ad7",
   "results": [
     {
       "name": "typecheck",
-      "at": "2026-10-15T11:39:52.034Z",
+      "at": "2026-10-15T11:55:28.062Z",
       "required": true,
       "command": [
         "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
@@ -17,13 +17,13 @@
       "exit": 0,
       "signal": null,
       "outcome": "PASS",
-      "ms": 9160,
+      "ms": 8808,
       "stdoutSha256": "031a1ee0b90afe53ab52ae2df0c547074e06d55d7ce98c3b99a5f9b1d20f2baa",
       "stderrSha256": "d829d0b399a760edea60c001d051836938a28d8fb33b019376efae7483db3eda"
     },
     {
       "name": "lint",
-      "at": "2026-10-15T11:40:01.196Z",
+      "at": "2026-10-15T11:55:36.872Z",
       "required": true,
       "command": [
         "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
@@ -34,13 +34,13 @@
       "exit": 0,
       "signal": null,
       "outcome": "PASS",
-      "ms": 1779,
+      "ms": 1670,
       "stdoutSha256": "e9fc7a6822ed9a83fb9ef3cc1f4d407ff26386df75f133d0d807f7038b15bf05",
       "stderrSha256": "7125f194612fcff2f454c05d848e7cb71facc1967b4d5017e25b34fdee3ba74f"
     },
     {
       "name": "tests",
-      "at": "2026-10-15T11:40:02.975Z",
+      "at": "2026-10-15T11:55:38.542Z",
       "required": true,
       "command": [
         "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
@@ -56,13 +56,13 @@
       "exit": 0,
       "signal": null,
       "outcome": "PASS",
-      "ms": 4360,
-      "stdoutSha256": "2f109eeb7c476b0078230cd15782b8ab494970e16375ec1b1a42470e2b362ea0",
+      "ms": 4375,
+      "stdoutSha256": "3c1c1e5c1d95a889b6269dc47c4a1798b68e1c3b4c2fc17531060620f06f3ccd",
       "stderrSha256": "7125f194612fcff2f454c05d848e7cb71facc1967b4d5017e25b34fdee3ba74f"
     },
     {
       "name": "compatibility",
-      "at": "2026-10-15T11:40:07.336Z",
+      "at": "2026-10-15T11:55:42.917Z",
       "required": true,
       "command": [
         "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
@@ -71,13 +71,13 @@
       "exit": 0,
       "signal": null,
       "outcome": "PASS",
-      "ms": 56,
+      "ms": 70,
       "stdoutSha256": "631e38327d72260e0de2f9e9d3eba23d1e68e98b29d09c20b5e1e93e19cffa4f",
       "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
     },
     {
       "name": "build",
-      "at": "2026-10-15T11:40:07.392Z",
+      "at": "2026-10-15T11:55:42.987Z",
       "required": true,
       "command": [
         "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
@@ -88,13 +88,13 @@
       "exit": 0,
       "signal": null,
       "outcome": "PASS",
-      "ms": 2833,
-      "stdoutSha256": "8ebebd658eb1ad8dbcc4de4e3cee0bdb0a632a757de64ffa7908f70a8228b86e",
+      "ms": 2946,
+      "stdoutSha256": "03cd3a2a9446157a9fe2a8b8389b7e6d6243e93ea23f7f2ba7b8cd985c15a686",
       "stderrSha256": "d829d0b399a760edea60c001d051836938a28d8fb33b019376efae7483db3eda"
     },
     {
       "name": "browser-regression",
-      "at": "2026-10-15T11:40:10.225Z",
+      "at": "2026-10-15T11:55:45.933Z",
       "required": true,
       "command": [
         "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
@@ -105,13 +105,13 @@
       "exit": 0,
       "signal": null,
       "outcome": "PASS",
-      "ms": 24535,
+      "ms": 24650,
       "stdoutSha256": "3f5679aff830bb7b91956a9cfd8130436a233f6d302e713f8713e6eced537cb5",
       "stderrSha256": "7125f194612fcff2f454c05d848e7cb71facc1967b4d5017e25b34fdee3ba74f"
     },
     {
       "name": "browser-ux",
-      "at": "2026-10-15T11:40:34.760Z",
+      "at": "2026-10-15T11:56:10.584Z",
       "required": true,
       "command": [
         "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
@@ -122,13 +122,13 @@
       "exit": 0,
       "signal": null,
       "outcome": "PASS",
-      "ms": 21724,
+      "ms": 21988,
       "stdoutSha256": "1dc0beb7e8e7bd00977b025170110533c911d21bd80eba5e533dbcc456802d52",
       "stderrSha256": "7125f194612fcff2f454c05d848e7cb71facc1967b4d5017e25b34fdee3ba74f"
     },
     {
       "name": "secrets-diff",
-      "at": "2026-10-15T11:40:56.484Z",
+      "at": "2026-10-15T11:56:32.572Z",
       "required": true,
       "command": [
         "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
@@ -139,13 +139,13 @@
       "exit": 0,
       "signal": null,
       "outcome": "PASS",
-      "ms": 731,
-      "stdoutSha256": "9f9fd212df9dc06d0b70afe1c84c6b823ff71b9403cef252ecbf42510aa2a54d",
+      "ms": 834,
+      "stdoutSha256": "3ac2ab0f6ec4a31f4036c2528ad5b5f4ae3acd410723b88da69b4f6dae26f034",
       "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
     },
     {
       "name": "secrets-all-index",
-      "at": "2026-10-15T11:40:57.215Z",
+      "at": "2026-10-15T11:56:33.412Z",
       "required": false,
       "command": [
         "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
@@ -155,8 +155,8 @@
       "exit": 2,
       "signal": null,
       "outcome": "BLOCKED",
-      "ms": 979,
-      "stdoutSha256": "db8a00b598d136054b770efd4883cf15cce35eb9f273edc1153fc972374c55ab",
+      "ms": 1215,
+      "stdoutSha256": "1353cd92b250bf35987d0241f72a05a45a2b10c5b6124857af61b6ca600bf1b4",
       "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
     }
   ],
