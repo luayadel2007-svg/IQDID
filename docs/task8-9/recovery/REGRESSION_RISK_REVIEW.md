@@ -27,4 +27,18 @@ Diff reviewed: `origin/task8-9/premium-wallet` (`5811691`) → `fix/task8-9-qual
 
 ## 4. Independent review
 
-_Recorded in the next commit once the reviewer finishes._
+A separate read-only reviewer agent (another Claude instance, not a human auditor) reviewed `5b31493`/`6986b61` with git diffs, blob hashes, test runs and bypass experiments on a copy of the repo. **Score given: 7.5/10.** It was not re-run after the fixes below, so that score stands as given.
+
+| # | Severity | Finding | Disposition |
+|---|---|---|---|
+| 1 | Medium | Guard counted skipped/todo tests toward the floor (`.skip` on 10 tests → PASS) | **Fixed** `b7d61ee`: floor on passed tests; pending and todo must be 0 (N6b, N6c) |
+| 2 | Medium | Text-matching holes: commented-out step, `, 0]`, `\|\| true`, `since=0` | **Fixed** `b7d61ee`: commands array parsed; exact verify line; no `if:`; start time required (N3b–N5b) |
+| 3 | Low | Negative tests predated the final guard | **Fixed**: re-run as v2 with 14 cases (`negative-tests-v2.txt`) |
+| 4 | Low | PDF checks were proxies (P8 hard-coded clicks; P6/P7 stylesheet; P12 one button) | **Fixed/relabelled**: P8 now clicks each service and checks the page changed; P12 checks every element; P6/P7 labelled "stylesheet rule present" |
+| 5 | Low | Local verify without env vars overwrote committed PDF evidence | **Fixed**: default output is now `evidence/modernization/pdf-audit` |
+| 6 | Nit | `--dur-fast` 160 → 200 ms changed to satisfy the audit | Kept: the PDF asks for 200–400 ms. Visual only |
+| 7 | Nit | `useOnline` test spy not restored on failure | **Fixed**: `try/finally` |
+
+Items the reviewer CONFIRMED: 7/8 files byte-identical; the rewritten duplicate-decision test is stricter and still tests its name; no skip/only/todo added; no weakened expectation; recent code (incl. the `5811691` `getAnimations` wait) preserved; crypto ports, `verification.ts` and `trust.ts` identical to the base; no path to `VERIFIED_BY_PROTOCOL` from a demo approval; evidence counts match (89/89, 12, 20, 13, 27, run-1 failure logs present); `useOnline` fix correct and its test fails without it.
+
+One more change after the review: Windows CI hit a Chrome screenshot error in `scripts/e2e.mjs`, fixed in `6e9f202` (retries the screenshot only). The restored `scripts/wallet-e2e.mjs` was deliberately left byte-identical.

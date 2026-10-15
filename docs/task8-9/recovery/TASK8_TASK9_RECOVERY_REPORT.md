@@ -29,7 +29,7 @@ Branch `fix/task8-9-quality-recovery` was created from `origin/task8-9/premium-w
 | docs/task8-9/TASK9_Test_Evidence.md | checkpoint/task9 | byte-identical (historical; its 87/87 and 13/13 are past results) |
 | docs/task8-9/TASK9_UI_UX_Compliance.md | checkpoint/task9 | byte-identical (historical; written before the PDF text was available) |
 | docs/task8-9/TASK9_Known_Limitations.md | checkpoint/task9 | byte-identical (historical) |
-| scripts/wallet-e2e.mjs | checkpoint/task9 | byte-identical |
+| scripts/wallet-e2e.mjs | checkpoint/task9 | byte-identical (still identical at the branch tip) |
 | test/wallet-premium.test.tsx | checkpoint/task9 | restored identical in `869187e`; one test later made deterministic in `88c83ae` (§5) |
 
 Wiring restored: npm `test:wallet`, required verify step `browser-wallet`, ESLint browser globals, and CI evidence upload. The CI fix from `5811691` (the axe audit waits for transitions to finish) is kept.
@@ -45,8 +45,9 @@ Wiring restored: npm `test:wallet`, required verify step `browser-wallet`, ESLin
 | `bf3a21b` | bug fix: `useOnline` missed an offline change (found by the fresh run) |
 | `88c83ae` | the restored stale-screen duplicate-decision test made deterministic |
 | `5b31493` | Vitest floor raised 87 → 89 |
-
-The reports commit follows these.
+| `6986b61` | reports + fresh evidence (runs 1–2) |
+| `b7d61ee` | guard v2 and stronger PDF checks, after the independent review |
+| `6e9f202` | e2e screenshot helper retries one Chrome capture error (Windows CI) |
 
 ## 5. Changes beyond restoring the files, and why
 
@@ -60,4 +61,4 @@ No application logic changed apart from the `useOnline` fix. `packages/api-clien
 
 - The original PDF file was not provided. The pasted text stops at §7.2, so §7.2 onward is **BLOCKED** (see `PDF_UI_UX_COMPLIANCE_REVIEW.md`).
 - No real screen reader, physical device, or Firefox/WebKit run.
-- Hosted CI result and the independent review are recorded in `CI_COVERAGE_VERIFICATION.md` and `REGRESSION_RISK_REVIEW.md`.
+- Hosted CI results are in `CI_COVERAGE_VERIFICATION.md` §5; the independent review (7.5/10, not re-run after the fixes) is in `REGRESSION_RISK_REVIEW.md` §4.

@@ -2,7 +2,7 @@
 
 All results below are from **fresh runs on this branch**. The historical 87/87 and 13/13 in `TASK9_Test_Evidence.md` are past results and are not reused here.
 
-Environment: Linux container, Node 22.22, npm 10.9.4, Chromium (`/opt/pw-browsers/chromium`) driven by playwright-core 1.56.1. Source commit tested: `5b31493` (code); the reports commit after it changes docs only.
+Environment: Linux container, Node 22.22, npm 10.9.4, Chromium (`/opt/pw-browsers/chromium`) driven by playwright-core 1.56.1. Source commits tested: `5b31493` (run 2) and `b7d61ee` (run 3). `6e9f202` changes only the e2e screenshot helper and is covered by hosted CI.
 
 ## 1. Runs
 
@@ -12,6 +12,7 @@ Environment: Linux container, Node 22.22, npm 10.9.4, Chromium (`/opt/pw-browser
 | Verify run 1 | `npm run modernization:verify` (evidence env vars → task8-9-recovery) | **FAIL**: Vitest 87/88 (duplicate-decision test failed); coverage guard FAIL "vitest reported failures" | `verify-run1.txt`, `final-run1-FAILED/` |
 | Fixes | `bf3a21b`, `88c83ae`, `5b31493` | see recovery report §5 | — |
 | Verify run 2 | same command | **PASS**, every required step exit 0 | `verify-run2.txt`, `final/commands.json` (exit codes + SHA-256 of every log) |
+| Verify run 3 | same, after the review fixes (`b7d61ee`, guard v2 + stronger PDF checks) | **PASS**, every required step exit 0; guard v2 PASS | `run3/verify-run3.txt`, `run3/final/commands.json`, `run3/*` |
 
 Stability after the fixes: offline test 15/15, duplicate-decision test 15/15, full Vitest suite 6/6 runs at 89/89.
 
@@ -31,7 +32,7 @@ Stability after the fixes: offline test 15/15, duplicate-decision test 15/15, fu
 | Existing cross-app browser E2E | PASS 12/12 | `e2e/e2e-results.json` |
 | Wallet browser E2E | PASS 13/13 | `wallet-e2e/wallet-e2e-results.json` |
 | UX + accessibility (axe WCAG 2.2 AA, keyboard, reflow, reduced motion) | PASS 20/20 | `ux/results.json`, `ux/*-axe.json` |
-| PDF criteria browser audit | PASS 27/27 (round 1: 25/27, see `pdf-audit-round1-FAILED.txt`) | `pdf-audit/audit.json` |
+| PDF criteria browser audit | PASS 27/27 (round 1: 25/27, see `pdf-audit-round1-FAILED.txt`). Run 3 uses the stronger checks (P8 measured clicks, P12 every element) | `pdf-audit/audit.json`, `run3/pdf-audit/audit.json` |
 | Coverage guard | PASS | `final/coverage-guard.stdout.log` |
 | Secrets (index vs base, 228 files) | PASS | `final/secrets-diff.*` |
 | Secrets (all index) | BLOCKED, non-required. Only the 12 `evidence/task8/e2e/*.png` already in the base branch | `final/secrets-all-index.*` |
@@ -67,3 +68,7 @@ Stability after the fixes: offline test 15/15, duplicate-decision test 15/15, fu
 ## 6. Not run
 
 Real screen readers (NVDA/VoiceOver/TalkBack); physical low-end devices; Firefox/WebKit; a Windows **local** run (Windows is covered by hosted CI only).
+
+## 7. Audit-script iteration not kept as evidence
+
+After the review I rewrote P8 to click each service. Its first run reported 26/27: the verifier "جلسات التحقق" link read the old heading before the route changed. That was a timing bug in the audit script, not the app; the script now waits for the URL. That scratch output was not kept. It is recorded here instead, and the two reruns and run 3 are 27/27.
