@@ -33,3 +33,16 @@ export function contrastRatio(a: string, b: string): number {
   const [hi, lo] = [lum(a), lum(b)].sort((x, y) => y - x) as [number, number];
   return (hi + 0.05) / (lo + 0.05);
 }
+
+/** Design System V3 credential-card palette (light / dark). Text colours are checked against both gradient stops in ui.test.tsx. */
+export const cardPalette = {
+  light: {
+    text: '#0a1630', muted: '#33415c',
+    id: ['#dbe7ff', '#bcd2ff'], licence: ['#d4f1ec', '#b3e4dc'], residence: ['#f6ead2', '#ebd6ac'], health: ['#fbe0e3', '#f4c3ca'], education: ['#e8defa', '#d4c2f4'],
+  },
+  dark: {
+    text: '#eaf0fb', muted: '#c3cde0',
+    id: ['#10264f', '#173a7a'], licence: ['#0c3532', '#12514b'], residence: ['#3a2c12', '#574119'], health: ['#3d1720', '#5a2230'], education: ['#2a1a4d', '#3d2870'],
+  },
+} as const;
+

@@ -1,7 +1,8 @@
 export type IconName =
   | 'home' | 'card' | 'inbox' | 'clock' | 'settings' | 'chart' | 'plus' | 'folder' | 'check' | 'sun' | 'moon'
   | 'shield' | 'qr' | 'bell' | 'help' | 'star' | 'search' | 'filter' | 'x' | 'alert' | 'info' | 'chevron'
-  | 'eye' | 'eye-off' | 'lock' | 'wifi-off' | 'refresh' | 'monitor' | 'user' | 'building' | 'file' | 'send' | 'list' | 'sparkle';
+  | 'eye' | 'eye-off' | 'lock' | 'wifi-off' | 'refresh' | 'monitor' | 'user' | 'building' | 'file' | 'send' | 'list' | 'sparkle'
+  | 'car' | 'graduation' | 'heart' | 'share' | 'wallet' | 'stack' | 'activity' | 'chevron-down';
 const paths: Record<IconName, string> = {
   home: 'M3 10 12 3l9 7v11h-6v-7H9v7H3Z', card: 'M3 5h18v14H3ZM3 10h18M7 15h4',
   inbox: 'M3 4h18v16H3ZM3 13h5l2 3h4l2-3h5', clock: 'M12 8v5l3 2M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0',
@@ -25,6 +26,14 @@ const paths: Record<IconName, string> = {
   monitor: 'M3 4h18v12H3ZM8 20h8M12 16v4', user: 'M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM4 21a8 8 0 0 1 16 0',
   building: 'M4 21V5l8-3 8 3v16ZM9 9h1M14 9h1M9 13h1M14 13h1M10 21v-4h4v4', file: 'M6 3h8l4 4v14H6ZM14 3v4h4M9 12h6M9 16h6',
   send: 'M21 3 10 14M21 3l-7 18-4-7-7-4Z', list: 'M8 6h12M8 12h12M8 18h12M4 6v.01M4 12v.01M4 18v.01',
+  car: 'M5 16V12l2-5h10l2 5v4M3 16h18v3H3ZM7 16v.01M17 16v.01M6 12h12',
+  graduation: 'M2 9l10-5 10 5-10 5ZM6 11v5c3 2 9 2 12 0v-5M22 9v6',
+  heart: 'M12 20s-7-4.5-9-9a4.6 4.6 0 0 1 9-3 4.6 4.6 0 0 1 9 3c-2 4.5-9 9-9 9Z',
+  share: 'M18 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM6 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM18 22a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM8.6 13.5l6.8 4M15.4 6.5l-6.8 4',
+  wallet: 'M3 7h16a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2ZM3 7l12-4v4M16 13h2',
+  stack: 'M4 6h16v4H4ZM4 12h16M4 16h16M4 20h16',
+  activity: 'M3 12h4l3-8 4 16 3-8h4',
+  'chevron-down': 'm6 9 6 6 6-6',
   sparkle: 'M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8ZM19 17l.8 2.2L22 20l-2.2.8L19 23l-.8-2.2L16 20l2.2-.8Z',
 };
 export function Icon({ name, size = 22 }: { name: IconName; size?: number }) {
