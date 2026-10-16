@@ -1,0 +1,86 @@
+{
+  "at": "2026-10-16T15:08:39.886Z",
+  "ttlMs": 20000,
+  "results": [
+    {
+      "name": "journey: verifier creates → wallet notified (bell + nav badge + home alert)",
+      "outcome": "PASS",
+      "ms": 2077
+    },
+    {
+      "name": "journey: wallet reviews request, selective disclosure shows 1 shared / 3 withheld",
+      "outcome": "PASS",
+      "ms": 1495
+    },
+    {
+      "name": "journey: page reload during review keeps the request and its countdown",
+      "outcome": "PASS",
+      "ms": 172
+    },
+    {
+      "name": "journey: approve → verifier updates live → both histories record it, no protocol claim",
+      "outcome": "PASS",
+      "ms": 2206
+    },
+    {
+      "name": "reject via request code (QR screen) for organisation B → verifier B sees rejection",
+      "outcome": "PASS",
+      "ms": 3398
+    },
+    {
+      "name": "multiple organisations: wallet filter isolates each organisation",
+      "outcome": "PASS",
+      "ms": 284
+    },
+    {
+      "name": "duplicate decision from a stale second tab is refused; tab shows real outcome",
+      "outcome": "PASS",
+      "ms": 4433
+    },
+    {
+      "name": "expired session (TTL 20s): wallet closes it, decision refused by server",
+      "outcome": "PASS",
+      "ms": 20415
+    },
+    {
+      "name": "network failure: error with retry, then recovery after retry",
+      "outcome": "PASS",
+      "ms": 1706
+    },
+    {
+      "name": "offline: banner shown and decisions disabled; restored when back online",
+      "outcome": "PASS",
+      "ms": 371
+    },
+    {
+      "name": "theme persists across reload and every wallet screen (dark)",
+      "outcome": "PASS",
+      "ms": 1108
+    },
+    {
+      "name": "responsive RTL: 11 routes at 320 (larger text), 390 and 768 without horizontal overflow",
+      "outcome": "PASS",
+      "ms": 4097
+    },
+    {
+      "name": "IQDI brand: titles and visible text use IQDI, never IQDID (both apps)",
+      "outcome": "PASS",
+      "ms": 368
+    },
+    {
+      "name": "card stack: tap brings a card to the front and expands it; details; Back restores it",
+      "outcome": "PASS",
+      "ms": 1139
+    },
+    {
+      "name": "card stack: keyboard + reduced motion + list view alternative",
+      "outcome": "PASS",
+      "ms": 735
+    },
+    {
+      "name": "no browser console errors in either app",
+      "outcome": "PASS",
+      "ms": 0
+    }
+  ]
+}
