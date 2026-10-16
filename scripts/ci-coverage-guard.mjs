@@ -38,7 +38,8 @@ const runLines = wf.split('\n').filter((l) => l.includes(floors.workflow.mustRun
 need(runLines.length === 1 && new RegExp(`^\\s*run: ${floors.workflow.mustRun}\\s*$`).test(runLines[0] ?? ''), `workflow must run exactly "run: ${floors.workflow.mustRun}" (no || true, no chaining)`);
 const verifyStep = wf.slice(Math.max(0, wf.lastIndexOf('- name:', wf.indexOf(floors.workflow.mustRun))), wf.indexOf(floors.workflow.mustRun));
 need(!/\n\s*if:/.test(verifyStep), 'the verify step must not be conditional');
-for (const os of floors.workflow.oses) need(wf.includes(os), `workflow matrix must include ${os}`);
+// A real matrix entry (`- os: ubuntu-…`), not a word in a comment.
+for (const os of floors.workflow.oses) need(new RegExp(`^\\s*-?\\s*os:\\s*${os}-`, 'm').test(wf.replace(/#.*$/gm, '')), `workflow matrix must include ${os}`);
 need(Number.isFinite(since) && since > 0 && Date.now() - since < 6 * 3600_000, 'guard must be given this run\'s start time');
 
 if (!vitestJson || !existsSync(vitestJson)) problems.push('vitest JSON report missing');

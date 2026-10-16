@@ -1,0 +1,313 @@
+{
+  "at": "2026-10-16T20:33:19.944Z",
+  "commit": "564f0628f9c4916cb26b6e7148e3bfbc41c5dcf2",
+  "node": "v22.22.0",
+  "platform": "linux",
+  "cpus": 4,
+  "bundles": {
+    "wallet-web": {
+      "js": {
+        "bytes": 329163,
+        "gzipBytes": 106119
+      },
+      "css": {
+        "bytes": 58446,
+        "gzipBytes": 12136
+      },
+      "files": [
+        {
+          "file": "index-C4kRH-xq.js",
+          "bytes": 329163,
+          "gzipBytes": 106119
+        },
+        {
+          "file": "index-DPLHGfJJ.css",
+          "bytes": 58446,
+          "gzipBytes": 12136
+        }
+      ]
+    },
+    "verifier-web": {
+      "js": {
+        "bytes": 285654,
+        "gzipBytes": 90777
+      },
+      "css": {
+        "bytes": 58446,
+        "gzipBytes": 12136
+      },
+      "files": [
+        {
+          "file": "index-CK5pGNF9.js",
+          "bytes": 285654,
+          "gzipBytes": 90777
+        },
+        {
+          "file": "index-DPLHGfJJ.css",
+          "bytes": 58446,
+          "gzipBytes": 12136
+        }
+      ]
+    }
+  },
+  "stackReadyMs": 600,
+  "pageLoads": [
+    {
+      "app": "wallet",
+      "route": "/",
+      "cpuThrottle": 1,
+      "runs": 3,
+      "medianMs": {
+        "fcp": 244,
+        "domContentLoaded": 94,
+        "load": 96,
+        "dataReady": 297
+      },
+      "maxCls": 0.171,
+      "transferKB": 242
+    },
+    {
+      "app": "wallet",
+      "route": "/cards",
+      "cpuThrottle": 1,
+      "runs": 3,
+      "medianMs": {
+        "fcp": 196,
+        "domContentLoaded": 83,
+        "load": 83,
+        "dataReady": 270
+      },
+      "maxCls": 0.003,
+      "transferKB": 240
+    },
+    {
+      "app": "wallet",
+      "route": "/requests",
+      "cpuThrottle": 1,
+      "runs": 3,
+      "medianMs": {
+        "fcp": 204,
+        "domContentLoaded": 82,
+        "load": 82,
+        "dataReady": 251
+      },
+      "maxCls": 0.011,
+      "transferKB": 238
+    },
+    {
+      "app": "wallet",
+      "route": "/requests/:id",
+      "cpuThrottle": 1,
+      "runs": 3,
+      "medianMs": {
+        "fcp": 204,
+        "domContentLoaded": 98,
+        "load": 98,
+        "dataReady": 299
+      },
+      "maxCls": 0.036,
+      "transferKB": 241
+    },
+    {
+      "app": "wallet",
+      "route": "/",
+      "cpuThrottle": 4,
+      "runs": 3,
+      "medianMs": {
+        "fcp": 732,
+        "domContentLoaded": 360,
+        "load": 364,
+        "dataReady": 1158
+      },
+      "maxCls": 0.142,
+      "transferKB": 242
+    },
+    {
+      "app": "wallet",
+      "route": "/cards",
+      "cpuThrottle": 4,
+      "runs": 3,
+      "medianMs": {
+        "fcp": 700,
+        "domContentLoaded": 302,
+        "load": 302,
+        "dataReady": 1130
+      },
+      "maxCls": 0.003,
+      "transferKB": 240
+    },
+    {
+      "app": "wallet",
+      "route": "/requests",
+      "cpuThrottle": 4,
+      "runs": 3,
+      "medianMs": {
+        "fcp": 688,
+        "domContentLoaded": 303,
+        "load": 304,
+        "dataReady": 1027
+      },
+      "maxCls": 0.014,
+      "transferKB": 238
+    },
+    {
+      "app": "wallet",
+      "route": "/requests/:id",
+      "cpuThrottle": 4,
+      "runs": 3,
+      "medianMs": {
+        "fcp": 664,
+        "domContentLoaded": 319,
+        "load": 319,
+        "dataReady": 1111
+      },
+      "maxCls": 0.036,
+      "transferKB": 241
+    },
+    {
+      "app": "verifier",
+      "route": "/",
+      "cpuThrottle": 1,
+      "runs": 3,
+      "medianMs": {
+        "fcp": 272,
+        "domContentLoaded": 100,
+        "load": 100,
+        "dataReady": 319
+      },
+      "maxCls": 0.011,
+      "transferKB": 223
+    },
+    {
+      "app": "verifier",
+      "route": "/new",
+      "cpuThrottle": 1,
+      "runs": 3,
+      "medianMs": {
+        "fcp": 264,
+        "domContentLoaded": 106,
+        "load": 106,
+        "dataReady": 335
+      },
+      "maxCls": 0.011,
+      "transferKB": 222
+    },
+    {
+      "app": "verifier",
+      "route": "/sessions",
+      "cpuThrottle": 1,
+      "runs": 3,
+      "medianMs": {
+        "fcp": 276,
+        "domContentLoaded": 96,
+        "load": 96,
+        "dataReady": 301
+      },
+      "maxCls": 0.011,
+      "transferKB": 222
+    },
+    {
+      "app": "verifier",
+      "route": "/sessions/:id",
+      "cpuThrottle": 1,
+      "runs": 3,
+      "medianMs": {
+        "fcp": 268,
+        "domContentLoaded": 99,
+        "load": 99,
+        "dataReady": 353
+      },
+      "maxCls": 0.018,
+      "transferKB": 222
+    },
+    {
+      "app": "verifier",
+      "route": "/",
+      "cpuThrottle": 4,
+      "runs": 3,
+      "medianMs": {
+        "fcp": 648,
+        "domContentLoaded": 290,
+        "load": 290,
+        "dataReady": 1054
+      },
+      "maxCls": 0.004,
+      "transferKB": 223
+    },
+    {
+      "app": "verifier",
+      "route": "/new",
+      "cpuThrottle": 4,
+      "runs": 3,
+      "medianMs": {
+        "fcp": 776,
+        "domContentLoaded": 311,
+        "load": 311,
+        "dataReady": 1118
+      },
+      "maxCls": 0.004,
+      "transferKB": 222
+    },
+    {
+      "app": "verifier",
+      "route": "/sessions",
+      "cpuThrottle": 4,
+      "runs": 3,
+      "medianMs": {
+        "fcp": 772,
+        "domContentLoaded": 277,
+        "load": 277,
+        "dataReady": 1043
+      },
+      "maxCls": 0.004,
+      "transferKB": 222
+    },
+    {
+      "app": "verifier",
+      "route": "/sessions/:id",
+      "cpuThrottle": 4,
+      "runs": 3,
+      "medianMs": {
+        "fcp": 764,
+        "domContentLoaded": 331,
+        "load": 332,
+        "dataReady": 1195
+      },
+      "maxCls": 0.011,
+      "transferKB": 222
+    }
+  ],
+  "consoleErrors": [],
+  "overflow": [],
+  "polling": [
+    {
+      "app": "wallet",
+      "route": "/",
+      "windowMs": 10000,
+      "requests": 20,
+      "byPath": {
+        "/wallet/requests": 10,
+        "/wallet/activity": 10
+      }
+    },
+    {
+      "app": "verifier",
+      "route": "/",
+      "windowMs": 10000,
+      "requests": 14,
+      "byPath": {
+        "/verifier/sessions": 7,
+        "/verifier/activity": 7
+      }
+    },
+    {
+      "app": "verifier",
+      "route": "/sessions/:id",
+      "windowMs": 10000,
+      "requests": 7,
+      "byPath": {
+        "/verifier/sessions/:id": 7
+      }
+    }
+  ]
+}

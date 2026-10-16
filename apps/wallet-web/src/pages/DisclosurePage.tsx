@@ -7,6 +7,9 @@ import { useWallet } from '../gateway.tsx';
 import { usePollMs } from '../poll.ts';
 import { DecisionPanel } from '../components/DecisionPanel.tsx';
 import { DecisionOutcome } from './RequestDetailPage.tsx';
+import { PrivateValue } from '../components/bits.tsx';
+import { useLocal } from '../components/useLocal.ts';
+import { isPrivacyMode } from '../local.ts';
 
 /** Shared vs withheld claims. Uses the same projection as the server (previewDemoDisclosure). */
 export function DisclosurePage() {
@@ -17,6 +20,7 @@ export function DisclosurePage() {
   const creds = useAsync((s) => wallet.credentials({ signal: s }), [wallet]);
   const left = useCountdown(req.data?.status === 'PENDING' ? req.data.expiresAt : null);
   const [actionError, setActionError] = useState<string | null>(null);
+  const privacy = useLocal(isPrivacyMode);
 
   const refused = actionError && <Alert tone="danger" title="لم يُسجَّل القرار">{actionError}</Alert>;
   if (req.loading || creds.loading) return <>{refused}<LoadingState /></>;
@@ -39,7 +43,7 @@ export function DisclosurePage() {
         <Card title={`سيُشارك (${shared.length})`} icon="send" headingLevel={2}>
           {shared.map((c) => (
             <div key={c.key} className="claim-chip claim-chip--shared">
-              <span>{c.label}</span><strong>{c.value}</strong>
+              <span>{c.label}</span><strong><PrivateValue value={c.value} privacy={privacy} /></strong>
             </div>
           ))}
         </Card>

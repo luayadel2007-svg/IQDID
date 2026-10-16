@@ -593,3 +593,14 @@ html[data-text="large"] .card-stack .cred-card, html[data-text="larger"] .card-s
   .shell--desktop .shell__actions { flex: 1 1 100%; justify-content: space-between; flex-wrap: nowrap; }
   .shell--desktop .shell__actions select { max-width: 62vw; }
 }
+
+/* ---------------------------------------------------------------- TASK-12 audit fixes */
+/* M4: a dialog taller than the viewport (phone landscape, large text) scrolls instead of clipping its actions. */
+.modal { max-height: calc(100dvh - 2 * var(--sp-4)); overflow-y: auto; overscroll-behavior: contain; }
+/* L6: the desktop sidebar scrolls when its items do not fit (short viewport, large text). */
+.shell--desktop .nav { overflow-y: auto; }
+/* Wallet home: reserve the height of sections that load later, so content below does not jump (measured CLS). */
+.home-reserve--summary { min-height: 132px; }
+.home-reserve--requests { min-height: 168px; }
+.home-reserve--cards { min-height: 104px; }
+html[data-text="large"] .home-reserve--summary, html[data-text="larger"] .home-reserve--summary { min-height: 160px; }

@@ -87,7 +87,7 @@ export function SessionDetailPage() {
             {data.status === 'PENDING' && left !== null && left > 0 && (
               <div className="row" style={{ marginTop: 'var(--sp-3)' }}>
                 <CountdownRing seconds={left} total={ttlSeconds(data)} size={56} />
-                <span aria-live="polite"><span className="small muted">المهلة المتبقية</span><br /><strong>{left} ثانية</strong></span>
+                <span><span className="small muted">المهلة المتبقية</span><br /><strong>{left} ثانية</strong></span>
               </div>
             )}
           </Card>

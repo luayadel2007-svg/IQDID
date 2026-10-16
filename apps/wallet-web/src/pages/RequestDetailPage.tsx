@@ -7,7 +7,9 @@ import { describeError } from '@iqdid/api-client';
 import { useWallet } from '../gateway.tsx';
 import { usePollMs } from '../poll.ts';
 import { DecisionPanel } from '../components/DecisionPanel.tsx';
-import { StaleNotice } from '../components/bits.tsx';
+import { PrivateValue, StaleNotice } from '../components/bits.tsx';
+import { useLocal } from '../components/useLocal.ts';
+import { isPrivacyMode } from '../local.ts';
 import { useTrust } from '../trust.ts';
 
 export function RequestDetailPage() {
@@ -23,6 +25,9 @@ export function RequestDetailPage() {
   const credentials = useAsync((signal) => wallet.credentials({ signal }), [wallet]);
   const left = useCountdown(data?.status === 'PENDING' ? data.expiresAt : null);
   const [actionError, setActionError] = useState<string | null>(null);
+  // A refusal belongs to one request; Back/Forward to another request must not show it.
+  useEffect(() => setActionError(null), [id]);
+  const privacy = useLocal(isPrivacyMode);
   const decided = (e: string | null) => { setActionError(e); reload(); };
 
   const refused = actionError && <Alert tone="danger" title="لم يُسجَّل القرار">{actionError}</Alert>;
@@ -45,7 +50,7 @@ export function RequestDetailPage() {
             <dt>المؤسسة</dt><dd>{data.organizationName}</dd>
             <dt>الغرض</dt><dd>{data.purpose}</dd>
             <dt>أُنشئ</dt><dd>{formatDateTime(data.createdAt)}</dd>
-            {pending && left !== null && (<><dt>المهلة المتبقية</dt><dd aria-live="polite">{left} ثانية</dd></>)}
+            {pending && left !== null && (<><dt>المهلة المتبقية</dt><dd>{left} ثانية</dd></>)}
           </dl>
           {pending && left !== null && <CountdownRing seconds={left} total={total} />}
         </div>
@@ -59,7 +64,7 @@ export function RequestDetailPage() {
       </Card>
       {pending && <Card title="معاينة القيم التي ستُشارك (اصطناعية)" icon="eye">
         {credentials.loading ? <LoadingState /> : credentials.error || !preview ? <ErrorState message="تعذرت معاينة البيانات؛ أعد المحاولة قبل الموافقة." onRetry={credentials.reload} /> :
-          <dl className="kv">{preview.map((c) => <div key={c.key}><dt>{`قيمة: ${c.label}`}</dt><dd>{c.value}</dd></div>)}</dl>}
+          <dl className="kv">{preview.map((c) => <div key={c.key}><dt>{`قيمة: ${c.label}`}</dt><dd><PrivateValue value={c.value} privacy={privacy} /></dd></div>)}</dl>}
       </Card>}
       {pending ? (
         <DecisionPanel session={data} canAccept={Boolean(preview) && !credentials.error && credential?.status === 'ACTIVE'} credentialStatus={credential?.status} onDecided={decided} initialConfirm={initialReject ? 'REJECT' : null} onInitialConfirmUsed={() => setInitialReject(false)} />

@@ -14,6 +14,9 @@ const FOCUSABLE = 'button:not([disabled]), [href], input:not([disabled]), select
 export function Modal({ open, title, onClose, children, footer }: ModalProps) {
   const titleId = useId();
   const ref = useRef<HTMLDivElement>(null);
+  // Callers pass inline handlers; a ref keeps the effect from re-running (and re-focusing) on every parent render.
+  const onCloseRef = useRef(onClose);
+  onCloseRef.current = onClose;
 
   useEffect(() => {
     if (!open) return undefined;
@@ -21,9 +24,11 @@ export function Modal({ open, title, onClose, children, footer }: ModalProps) {
     const node = ref.current;
     node?.querySelector<HTMLElement>(FOCUSABLE)?.focus();
     const onKey = (e: KeyboardEvent): void => {
+      // Focus left the dialog (e.g. a button became disabled): bring it back inside.
+      if (node && !node.contains(document.activeElement)) node.querySelector<HTMLElement>(FOCUSABLE)?.focus();
       if (e.key === 'Escape') {
         e.preventDefault();
-        onClose();
+        onCloseRef.current();
         return;
       }
       if (e.key !== 'Tab' || !node) return;
@@ -44,12 +49,12 @@ export function Modal({ open, title, onClose, children, footer }: ModalProps) {
       document.removeEventListener('keydown', onKey);
       previous?.focus();
     };
-  }, [open, onClose]);
+  }, [open]);
 
   if (!open) return null;
   return (
     <div className="modal-backdrop">
-      <div ref={ref} className="modal" role="dialog" aria-modal="true" aria-labelledby={titleId}>
+      <div ref={ref} className="modal" role="dialog" aria-modal="true" aria-labelledby={titleId} tabIndex={-1}>
         <h2 id={titleId} className="modal__title">{title}</h2>
         <div>{children}</div>
         {footer && <div className="modal__footer">{footer}</div>}

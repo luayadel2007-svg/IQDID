@@ -14,6 +14,15 @@ function typeBoundary(demo: DemoOutcome) {
 }
 void typeBoundary;
 
+// The brand itself is what stops forgery: a structurally complete, well-typed object without it must not compile.
+// If the `unique symbol` brand were ever removed, this @ts-expect-error would become unused and typecheck would fail.
+function brandBoundary() {
+  // @ts-expect-error complete evidence, but no server-owned brand
+  const forged: VerifiedByProtocol = { mode: 'protocol', outcome: 'VERIFIED_BY_PROTOCOL', evidence: { verificationId: 'v', policyVersion: 'p', verifiedAt: '2026-01-01T00:00:00Z', issuer: 'i', audience: 'a', nonce: 'n', keyId: 'k', trustVersion: 't', statusVersion: 's' } };
+  return forged;
+}
+void brandBoundary;
+
 describe('crypto-ready contracts', () => {
   it('unconfigured protocol provider rejects, with no network or mock fallback', async () => {
     const network = vi.spyOn(globalThis, 'fetch');
@@ -58,6 +67,8 @@ describe('crypto-ready contracts', () => {
       "void require('@owf/token-status-list');",
       "const name = '@sd-jwt/core'; void import(name);",
       "import { createRequire } from 'node:module'; void createRequire;",
+      "import type { VerifiedByProtocol } from '@iqdid/shared-types'; export const p = JSON.parse('{}') as VerifiedByProtocol;",
+      "import type { VerifiedByProtocol } from '@iqdid/shared-types'; export const p = <VerifiedByProtocol>JSON.parse('{}');",
     ]) {
       for (const filePath of ['packages/api-client/src/bypass.ts', 'apps/wallet-web/src/bypass.ts']) {
         const results = await eslint.lintText(code, { filePath });

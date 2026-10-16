@@ -53,7 +53,12 @@ try {
         const runs = [];
         for (let i = 0; i < 3; i++) {
           const ctx = await browser.newContext({ viewport: { width: cfg.width, height: 900 }, locale: 'ar' });
-          await ctx.addInitScript(() => { window.__cls = 0; new PerformanceObserver((l) => { for (const e of l.getEntries()) if (!e.hadRecentInput) window.__cls += e.value; }).observe({ type: 'layout-shift', buffered: true }); });
+          await ctx.addInitScript(() => {
+            window.__cls = 0; window.__lcp = 0; window.__long = 0;
+            new PerformanceObserver((l) => { for (const e of l.getEntries()) if (!e.hadRecentInput) window.__cls += e.value; }).observe({ type: 'layout-shift', buffered: true });
+            try { new PerformanceObserver((l) => { for (const e of l.getEntries()) window.__lcp = Math.max(window.__lcp, e.startTime); }).observe({ type: 'largest-contentful-paint', buffered: true }); } catch { /* engine without LCP */ }
+            try { new PerformanceObserver((l) => { for (const e of l.getEntries()) window.__long += Math.max(0, e.duration - 50); }).observe({ type: 'longtask', buffered: true }); } catch { /* engine without longtask */ }
+          });
           const p = await ctx.newPage();
           p.on('console', (m) => { if (m.type() === 'error' && !/Failed to load resource/.test(m.text())) result.consoleErrors.push(`${app}${route}: ${m.text()}`); });
           const cdp = await ctx.newCDPSession(p);
@@ -66,14 +71,43 @@ try {
           const nav = await p.evaluate(() => { const n = performance.getEntriesByType('navigation')[0]; const fcp = performance.getEntriesByName('first-contentful-paint')[0]; return { dcl: Math.round(n.domContentLoadedEventEnd), load: Math.round(n.loadEventEnd), fcp: fcp ? Math.round(fcp.startTime) : null, transferKB: Math.round(performance.getEntriesByType('resource').reduce((a, r) => a + (r.transferSize || 0), n.transferSize || 0) / 1024) }; });
           await p.waitForTimeout(300);
           const cls = await p.evaluate(() => Math.round(window.__cls * 1000) / 1000);
+          const lcp = await p.evaluate(() => Math.round(window.__lcp));
+          const tbt = await p.evaluate(() => Math.round(window.__long));
+          const heap = (await cdp.send('Performance.enable').then(() => cdp.send('Performance.getMetrics'))).metrics.find((m) => m.name === 'JSHeapUsedSize')?.value;
           if (throttle === 1 && i === 0 && !(await p.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1))) result.overflow.push(`${app}${route}`);
-          runs.push({ ...nav, dataReadyMs: ready, cls });
+          runs.push({ ...nav, dataReadyMs: ready, cls, lcp, tbt, heapMB: heap ? Math.round(heap / 1048576 * 10) / 10 : null });
           await ctx.close();
         }
         const pick = (k) => median(runs.map((r) => r[k]).filter((v) => v !== null));
-        result.pageLoads.push({ app, route: route.replace(/[0-9a-f-]{36}/, ':id'), cpuThrottle: throttle, runs: runs.length, medianMs: { fcp: pick('fcp'), domContentLoaded: pick('dcl'), load: pick('load'), dataReady: pick('dataReadyMs') }, maxCls: Math.max(...runs.map((r) => r.cls)), transferKB: pick('transferKB') });
-        console.log(`${app.padEnd(8)} ${route.replace(/[0-9a-f-]{36}/, ':id').padEnd(16)} cpu×${throttle}  FCP ${pick('fcp')} ms  data-ready ${pick('dataReadyMs')} ms  CLS ${Math.max(...runs.map((r) => r.cls))}`);
+        result.pageLoads.push({ app, route: route.replace(/[0-9a-f-]{36}/, ':id'), cpuThrottle: throttle, runs: runs.length, medianMs: { fcp: pick('fcp'), lcp: pick('lcp'), domContentLoaded: pick('dcl'), load: pick('load'), dataReady: pick('dataReadyMs'), totalBlocking: pick('tbt') }, maxCls: Math.max(...runs.map((r) => r.cls)), medianHeapMB: pick('heapMB'), transferKB: pick('transferKB') });
+        console.log(`${app.padEnd(8)} ${route.replace(/[0-9a-f-]{36}/, ':id').padEnd(16)} cpu×${throttle}  FCP ${pick('fcp')} LCP ${pick('lcp')} ms  data-ready ${pick('dataReadyMs')} ms  TBT ${pick('tbt')} ms  CLS ${Math.max(...runs.map((r) => r.cls))}  heap ${pick('heapMB')} MB`);
       }
+    }
+  }
+
+  // Interaction latency (INP proxy): Event Timing durations of real clicks/keys, cpu ×1 and ×4.
+  result.interactions = [];
+  for (const throttle of [1, 4]) {
+    for (const [app, route, act] of [
+      ['wallet', '/cards', async (p) => { await p.locator('.card-stack button').nth(1).click({ position: { x: 60, y: 30 } }); await p.locator('.card-stack button[aria-expanded="true"]').waitFor(); await p.keyboard.press('Escape'); }],
+      ['wallet', '/', async (p) => { await p.getByRole('button', { name: 'وضع الخصوصية' }).click(); await p.getByRole('button', { name: 'وضع الخصوصية' }).click(); }],
+      ['verifier', '/new', async (p) => { await p.getByRole('radio', { name: /الهوية الأساسية/ }).check(); await p.getByLabel('الغرض من الطلب').type('قياس'); }],
+      ['verifier', '/sessions', async (p) => { await p.getByLabel('الحالة').selectOption('DEMO_ACCEPTED'); await p.getByLabel('بحث في الجلسات').type('x'); }],
+    ]) {
+      const ctx = await browser.newContext({ viewport: { width: app === 'wallet' ? 390 : 1366, height: 900 }, locale: 'ar' });
+      await ctx.addInitScript(() => { window.__events = []; try { new PerformanceObserver((l) => { for (const e of l.getEntries()) if (e.interactionId) window.__events.push(Math.round(e.duration)); }).observe({ type: 'event', durationThreshold: 16, buffered: true }); } catch { /* none */ } });
+      const p = await ctx.newPage();
+      const cdp = await ctx.newCDPSession(p);
+      await cdp.send('Emulation.setCPUThrottlingRate', { rate: throttle });
+      await p.goto(pages[app].url + route);
+      await p.getByRole('heading', { level: 1 }).first().waitFor();
+      await p.waitForFunction(() => !document.querySelector('main .skeleton'));
+      await act(p);
+      await p.waitForTimeout(400);
+      const ev = await p.evaluate(() => window.__events);
+      result.interactions.push({ app, route, cpuThrottle: throttle, interactions: ev.length, maxEventMs: ev.length ? Math.max(...ev) : '<16 (none above threshold)' });
+      console.log(`interaction ${app}${route} cpu×${throttle}: ${ev.length ? `max ${Math.max(...ev)} ms over ${ev.length} events ≥16 ms` : 'all events < 16 ms'}`);
+      await ctx.close();
     }
   }
 

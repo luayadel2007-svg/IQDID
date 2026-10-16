@@ -279,8 +279,11 @@ describe('demo / protocol boundary', () => {
     for (const path of ['/', '/new', '/sessions', '/results', '/activity', '/settings', `/sessions/${a.id}`, `/sessions/${b.id}`, `/sessions/${c.id}`]) {
       const v = renderVerifier(path);
       await within(v.container).findByRole('heading', { level: 1 });
-      await new Promise((r) => setTimeout(r, 200));
-      expect(v.container.textContent).not.toMatch(PROTOCOL_CLAIM);
+      // Wait for the real rendered state (no skeleton left), then check visible text AND accessible names.
+      await waitFor(() => expect(v.container.querySelector('main .skeleton')).toBeNull(), { timeout: 4000 });
+      if (path.startsWith('/sessions/')) await within(v.container).findByRole('list', { name: 'طبقات الحالة والثقة' });
+      const labels = [...v.container.querySelectorAll('[aria-label]')].map((e) => e.getAttribute('aria-label')).join(' ');
+      expect(`${v.container.textContent} ${labels}`).not.toMatch(PROTOCOL_CLAIM);
       v.unmount();
     }
   });

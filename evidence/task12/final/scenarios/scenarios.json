@@ -1,0 +1,241 @@
+{
+  "at": "2026-10-16T20:52:11.016Z",
+  "commit": "564f0628f9c4916cb26b6e7148e3bfbc41c5dcf2",
+  "workingTreeDirty": true,
+  "ttlMs": 12000,
+  "node": "v22.22.0",
+  "platform": "linux",
+  "scenarios": [
+    {
+      "id": "A",
+      "title": "Approved demo request",
+      "syntheticData": "org-test-a «مصرف تجريبي (أ)»; template AGE_OVER_18; holder TEST-001; national ID cred-test-001 (ACTIVE)",
+      "start": "Demo reset. Verifier (1366 px) on organisation A. Wallet (390 px) on home.",
+      "steps": [
+        "Verifier creates the request through details → review → confirm",
+        "Wallet is notified and opens the request",
+        "Citizen reviews the selective-disclosure preview",
+        "Citizen approves and confirms",
+        "Verifier session page updates without reload",
+        "Both activity histories record the approval"
+      ],
+      "expected": "Session DEMO_ACCEPTED; verifier shows «موافقة تجريبية — DEMO_ACCEPTED», the crypto layer «غير متحقق منه تشفيرياً», only the age claim; no protocol claim anywhere.",
+      "traces": [
+        "traces/A-verifier.zip",
+        "traces/A-wallet.zip"
+      ],
+      "actual": [
+        "created 27832C (PENDING) via verifier UI",
+        "wallet home shows the pending request",
+        "disclosure preview: 1 shared, 3 withheld",
+        "verifier page updated live to DEMO_ACCEPTED",
+        "API: DEMO_ACCEPTED, disclosed keys = age_over_18",
+        "approval recorded in both activity histories"
+      ],
+      "outcome": "PASS",
+      "screenshots": [
+        "screenshots/A-verifier-created.png",
+        "screenshots/A-wallet-disclosure.png",
+        "screenshots/A-verifier-accepted.png",
+        "screenshots/A-wallet-activity.png"
+      ],
+      "commit": "564f0628f9c4916cb26b6e7148e3bfbc41c5dcf2",
+      "workingTreeDirty": true,
+      "ms": 6215
+    },
+    {
+      "id": "B",
+      "title": "Rejected request",
+      "syntheticData": "org-test-a; template IDENTITY_BASIC (3 fields); holder TEST-001",
+      "start": "Demo reset. Verifier on organisation A.",
+      "steps": [
+        "Verifier creates an identity request in the UI",
+        "Verifier keeps the session page open",
+        "Citizen rejects in the wallet and confirms",
+        "Verifier session and results update"
+      ],
+      "expected": "DEMO_REJECTED, disclosed = null, no values shown on the verifier, results «رفض» count 1, activity in both apps.",
+      "traces": [],
+      "actual": [
+        "citizen rejected in the wallet",
+        "verifier updated live; API DEMO_REJECTED, disclosed null",
+        "results and both activity histories show the rejection"
+      ],
+      "outcome": "PASS",
+      "screenshots": [
+        "screenshots/B-verifier-rejected.png"
+      ],
+      "commit": "564f0628f9c4916cb26b6e7148e3bfbc41c5dcf2",
+      "workingTreeDirty": true,
+      "ms": 3992
+    },
+    {
+      "id": "C",
+      "title": "Expired session",
+      "syntheticData": "org-test-a; AGE_OVER_18; demo API started with DEMO_SESSION_TTL_MS=12000",
+      "start": "Demo reset. Request created; both apps open on it.",
+      "steps": [
+        "Wallet and verifier keep the request open",
+        "TTL elapses without a decision",
+        "Citizen tries to decide late (API)"
+      ],
+      "expected": "Both apps show «انتهت مهلة الطلب»; the wallet offers no approval; a late decision gets 409 SESSION_EXPIRED; state EXPIRED.",
+      "traces": [],
+      "actual": [
+        "both apps show the expiry",
+        "late decision → 409 SESSION_EXPIRED"
+      ],
+      "outcome": "PASS",
+      "screenshots": [
+        "screenshots/C-wallet-expired.png",
+        "screenshots/C-verifier-expired.png"
+      ],
+      "commit": "564f0628f9c4916cb26b6e7148e3bfbc41c5dcf2",
+      "workingTreeDirty": true,
+      "ms": 14187
+    },
+    {
+      "id": "console",
+      "title": "No browser console errors in either app during all scenarios",
+      "outcome": "PASS",
+      "actual": [],
+      "commit": "564f0628f9c4916cb26b6e7148e3bfbc41c5dcf2",
+      "workingTreeDirty": true
+    },
+    {
+      "id": "D",
+      "title": "Duplicate decision",
+      "syntheticData": "org-test-a; AGE_OVER_18; two wallet tabs on the same request",
+      "start": "Demo reset. Tab 2 opened on the request, then its refresh is cut (stale view).",
+      "steps": [
+        "Tab 1 approves",
+        "Stale tab 2 tries to reject",
+        "A direct API second decision is attempted"
+      ],
+      "expected": "Tab 2 shows «لم يُسجَّل القرار»; the API returns 409 SESSION_ALREADY_DECIDED; the session stays DEMO_ACCEPTED with exactly one consent event.",
+      "traces": [],
+      "actual": [
+        "tab 1 approved",
+        "stale tab 2 reject refused and reported",
+        "API second decision → 409 SESSION_ALREADY_DECIDED; state DEMO_ACCEPTED; consent events 1"
+      ],
+      "outcome": "PASS",
+      "screenshots": [
+        "screenshots/D-wallet-duplicate-refused.png"
+      ],
+      "commit": "564f0628f9c4916cb26b6e7148e3bfbc41c5dcf2",
+      "workingTreeDirty": true,
+      "ms": 5528
+    },
+    {
+      "id": "E",
+      "title": "Multiple organisations",
+      "syntheticData": "org-test-a «مصرف تجريبي (أ)» and org-test-b «شركة اتصالات تجريبية (ب)»; one request each",
+      "start": "Demo reset.",
+      "steps": [
+        "Organisation A creates a request in the verifier UI",
+        "Organisation B creates one after switching organisation",
+        "Citizen approves A and rejects B",
+        "Each organisation views its sessions, results and activity"
+      ],
+      "expected": "The wallet lists both with their names; A sees only its own session and outcome, B only its own; reading A's session as B is «غير موجود».",
+      "traces": [],
+      "actual": [
+        "A=A90772 (org-test-a), B=0BD4FC (org-test-b)",
+        "org-test-a: own session only on sessions/results/activity; other session → not found",
+        "org-test-b: own session only on sessions/results/activity; other session → not found"
+      ],
+      "outcome": "PASS",
+      "screenshots": [
+        "screenshots/E-wallet-two-orgs.png",
+        "screenshots/E-verifier-b-isolated.png"
+      ],
+      "commit": "564f0628f9c4916cb26b6e7148e3bfbc41c5dcf2",
+      "workingTreeDirty": true,
+      "ms": 6622
+    },
+    {
+      "id": "F",
+      "title": "Network failure and recovery",
+      "syntheticData": "org-test-a; AGE_OVER_18; demo API calls blocked in the browser (route abort) and browser offline",
+      "start": "Demo reset. Request pending; verifier sessions list and wallet request open.",
+      "steps": [
+        "API becomes unreachable for both apps",
+        "Citizen tries to approve during the outage",
+        "Service returns",
+        "Citizen approves",
+        "Browser goes offline, then back"
+      ],
+      "expected": "Verifier keeps last data with a stale notice; the wallet decision fails visibly and the state stays PENDING; after recovery the decision succeeds and the verifier updates; offline disables decisions.",
+      "traces": [],
+      "actual": [
+        "verifier: stale notice, last data kept",
+        "wallet: decision during outage refused and reported",
+        "verifier recovered on its own",
+        "after recovery: approval recorded, verifier shows DEMO_ACCEPTED",
+        "browser offline: decisions disabled; restored when online"
+      ],
+      "outcome": "PASS",
+      "screenshots": [
+        "screenshots/F-verifier-stale.png",
+        "screenshots/F-wallet-decision-failed.png",
+        "screenshots/F-wallet-offline.png"
+      ],
+      "commit": "564f0628f9c4916cb26b6e7148e3bfbc41c5dcf2",
+      "workingTreeDirty": true,
+      "ms": 6741
+    },
+    {
+      "id": "G",
+      "title": "Credential restrictions",
+      "syntheticData": "Demo API started with DEMO_CREDENTIAL_STATUS=SUSPENDED (national ID cred-test-001 SUSPENDED); org-test-a; AGE_OVER_18",
+      "start": "Demo restarted with the suspended credential, then reset (the status survives reset).",
+      "steps": [
+        "Verifier creates a request",
+        "Citizen opens it in the wallet",
+        "Citizen (or a direct API call) tries to approve",
+        "Citizen rejects"
+      ],
+      "expected": "Wallet explains «اعتماد الهوية التجريبي موقوف» and disables approval; API approval → 409 CREDENTIAL_NOT_ACTIVE with state still PENDING; rejection works and reaches the verifier.",
+      "traces": [],
+      "actual": [
+        "wallet: restriction explained, approval disabled",
+        "API approve → 409 CREDENTIAL_NOT_ACTIVE; state PENDING",
+        "rejection recorded and shown to the verifier"
+      ],
+      "outcome": "PASS",
+      "screenshots": [
+        "screenshots/G-wallet-suspended.png"
+      ],
+      "commit": "564f0628f9c4916cb26b6e7148e3bfbc41c5dcf2",
+      "workingTreeDirty": true,
+      "ms": 2764
+    },
+    {
+      "id": "H",
+      "title": "Privacy preservation",
+      "syntheticData": "org-test-a; AGE_OVER_18 (1 of 4 national-ID claims); withheld synthetic values «1990-01-01», «TEST-DOC-0001», «مواطن تجريبي»",
+      "start": "Demo reset.",
+      "steps": [
+        "Verifier requests age only",
+        "Citizen opens the request and the disclosure preview",
+        "Citizen approves",
+        "Verifier and API responses are inspected"
+      ],
+      "expected": "The preview names withheld fields without their values; only «العمر فوق 18 سنة: نعم» reaches the verifier; no withheld value in the verifier page, session JSON or activity.",
+      "traces": [],
+      "actual": [
+        "preview: 1 shared value, 3 withheld fields named without values",
+        "verifier page, session JSON and activity contain only the age claim"
+      ],
+      "outcome": "PASS",
+      "screenshots": [
+        "screenshots/H-wallet-disclosure.png",
+        "screenshots/H-verifier-only-age.png"
+      ],
+      "commit": "564f0628f9c4916cb26b6e7148e3bfbc41c5dcf2",
+      "workingTreeDirty": true,
+      "ms": 3243
+    }
+  ]
+}

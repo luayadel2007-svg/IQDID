@@ -28,7 +28,7 @@ export function SessionsPage() {
 
   return (
     <>
-      <PageHeader eyebrow="الجلسات" icon="folder" title="جلسات التحقق" description="كل الطلبات التي أنشأتها مؤسستك التجريبية. لا تظهر جلسات المؤسسات الأخرى." />
+      <PageHeader eyebrow="الجلسات" icon="folder" title="جلسات التحقق" description="كل الطلبات التي أنشأتها المؤسسة المختارة. اختيار المؤسسة تصفية تجريبية في المحاكاة، وليس صلاحيات دخول." />
       <StaleNotice stale={stale} onRetry={reload} />
       <Card>
         <div className="vf-toolbar" role="search" aria-label="بحث وتصفية الجلسات">
