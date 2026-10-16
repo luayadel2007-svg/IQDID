@@ -44,5 +44,11 @@ export function startStack({ preview = false, env = {}, onLine = (l) => console.
     stop() {
       for (const p of procs) if (p.exitCode === null) p.kill('SIGTERM');
     },
+    /** Stops all processes and resolves once each has exited (ports are free again). */
+    stopped() {
+      const exits = procs.map((p) => (p.exitCode !== null || p.signalCode !== null ? Promise.resolve() : new Promise((r) => p.once('exit', r))));
+      this.stop();
+      return Promise.all(exits);
+    },
   };
 }

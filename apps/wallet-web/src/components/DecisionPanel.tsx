@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
-import type { DemoConsentDecisionValue, DemoVerificationSession } from '@iqdid/shared-types';
+import type { DemoConsentDecisionValue, DemoCredentialStatus, DemoVerificationSession } from '@iqdid/shared-types';
 import { Alert, Button, Icon, Modal, useOnline } from '@iqdid/ui';
 import { describeError } from '@iqdid/api-client';
 import { useWallet } from '../gateway.tsx';
@@ -9,7 +9,9 @@ import { useWallet } from '../gateway.tsx';
  * decision, an expired session or an inactive credential is rejected there and
  * the error is reported to the page (which keeps it visible) and the page reloads the server state.
  */
-export function DecisionPanel({ session, canAccept, onDecided, initialConfirm = null, onInitialConfirmUsed }: { session: DemoVerificationSession; canAccept: boolean; onDecided: (error: string | null) => void; initialConfirm?: DemoConsentDecisionValue | null; onInitialConfirmUsed?: () => void }) {
+const INACTIVE_TEXT: Record<Exclude<DemoCredentialStatus, 'ACTIVE'>, string> = { SUSPENDED: 'موقوف', REVOKED: 'ملغى' };
+
+export function DecisionPanel({ session, canAccept, credentialStatus, onDecided, initialConfirm = null, onInitialConfirmUsed }: { session: DemoVerificationSession; canAccept: boolean; credentialStatus?: DemoCredentialStatus; onDecided: (error: string | null) => void; initialConfirm?: DemoConsentDecisionValue | null; onInitialConfirmUsed?: () => void }) {
   const wallet = useWallet();
   const online = useOnline();
   // A deep link (?decide=reject) only pre-opens the confirmation; nothing is sent without «تأكيد».
@@ -36,6 +38,9 @@ export function DecisionPanel({ session, canAccept, onDecided, initialConfirm = 
   return (
     <>
       {!online && <Alert tone="warning" title="لا يوجد اتصال">لا يمكن إرسال القرار الآن. أعد المحاولة عند عودة الاتصال.</Alert>}
+      {credentialStatus && credentialStatus !== 'ACTIVE' && (
+        <Alert tone="warning" title={`اعتماد الهوية التجريبي ${INACTIVE_TEXT[credentialStatus]}`}>لا يمكن الموافقة على مشاركة البيانات من اعتماد غير فعال. يمكنك رفض الطلب.</Alert>
+      )}
       <div className="row" style={{ marginTop: 'var(--sp-4)' }}>
         <Button disabled={!canAccept || !online} onClick={() => setConfirm('ACCEPT')}><Icon name="check" size={18} />موافقة تجريبية</Button>
         <Button variant="danger" disabled={!online} onClick={() => setConfirm('REJECT')}><Icon name="x" size={18} />رفض</Button>

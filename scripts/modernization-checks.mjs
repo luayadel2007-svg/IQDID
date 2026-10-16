@@ -17,6 +17,8 @@ const commands = [
   ['browser-wallet', process.execPath, [npm, 'run', 'test:wallet']],
   ['browser-verifier', process.execPath, [npm, 'run', 'test:verifier']],
   ['browser-pdf-ux', process.execPath, [npm, 'run', 'test:pdf-ux']],
+  ['browser-scenarios', process.execPath, [npm, 'run', 'test:scenarios']],
+  ['perf-measure', process.execPath, [npm, 'run', 'perf:measure'], false],
   ['coverage-guard', process.execPath, ['scripts/ci-coverage-guard.mjs', `${out}/vitest-results.json`, String(Date.now() - 1000)]],
   ['secrets-diff', process.execPath, ['tools/secret-scanner.mjs', '--base', '1f51b519ee18434ab15042c9da9124cef5a7353b']],
   ['secrets-all-index', process.execPath, ['tools/secret-scanner.mjs', '--all-index'], false],

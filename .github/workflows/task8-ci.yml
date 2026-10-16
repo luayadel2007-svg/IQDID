@@ -20,7 +20,7 @@ jobs:
           - os: windows-2022
             chrome: C:\Program Files\Google\Chrome\Application\chrome.exe
     runs-on: ${{ matrix.os }}
-    timeout-minutes: 20
+    timeout-minutes: 30
     steps:
       - name: Checkout without persisted credentials
         uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
@@ -48,4 +48,6 @@ jobs:
             evidence/modernization
             evidence/task9/wallet-e2e
             evidence/task10/verifier-e2e
+            evidence/task11/scenarios
+            evidence/task11/perf
           retention-days: 30

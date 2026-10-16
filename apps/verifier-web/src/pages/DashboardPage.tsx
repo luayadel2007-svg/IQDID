@@ -70,6 +70,8 @@ export function DashboardPage() {
         </>
       )}
 
+      {/* Rendered only once data has settled, so nothing below the loading card jumps (layout shift). */}
+      {!sessions.loading && <>
       <Card title="كيف تُقرأ النتائج؟" icon="info" variant="flat">
         <ul className="vf-legend">
           <li><strong>موافقة تجريبية:</strong> ضغط المواطن التجريبي «موافقة» في المحفظة. لا تثبت هوية أحد.</li>
@@ -78,6 +80,7 @@ export function DashboardPage() {
         </ul>
       </Card>
       <FavoriteShortcut app="verifier" options={[{ href: '/new', label: 'طلب تحقق جديد' }, { href: '/sessions', label: 'جلسات التحقق' }, { href: '/results', label: 'النتائج' }]} />
+      </>}
     </>
   );
 }

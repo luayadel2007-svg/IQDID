@@ -62,7 +62,7 @@ export function RequestDetailPage() {
           <dl className="kv">{preview.map((c) => <div key={c.key}><dt>{`قيمة: ${c.label}`}</dt><dd>{c.value}</dd></div>)}</dl>}
       </Card>}
       {pending ? (
-        <DecisionPanel session={data} canAccept={Boolean(preview) && !credentials.error && credential?.status === 'ACTIVE'} onDecided={decided} initialConfirm={initialReject ? 'REJECT' : null} onInitialConfirmUsed={() => setInitialReject(false)} />
+        <DecisionPanel session={data} canAccept={Boolean(preview) && !credentials.error && credential?.status === 'ACTIVE'} credentialStatus={credential?.status} onDecided={decided} initialConfirm={initialReject ? 'REJECT' : null} onInitialConfirmUsed={() => setInitialReject(false)} />
       ) : (
         <>
           <DecisionOutcome status={data.status} decidedAt={data.decidedAt} />
