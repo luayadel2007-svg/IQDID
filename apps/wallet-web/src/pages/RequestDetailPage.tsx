@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useSearchParams } from 'react-router-dom';
 import { DEMO_SESSION_TTL_MS, previewDemoDisclosure, primaryIdentityCredential } from '@iqdid/shared-types';
 import type { DemoSessionStatus } from '@iqdid/shared-types';
 import { Alert, Card, CountdownRing, ErrorState, Icon, LoadingState, PageHeader, SessionStatusBadge, formatDateTime, useAsync, useCountdown } from '@iqdid/ui';
@@ -12,6 +12,7 @@ import { useTrust } from '../trust.ts';
 
 export function RequestDetailPage() {
   const { id = '' } = useParams();
+  const [search] = useSearchParams();
   const wallet = useWallet();
   const trust = useTrust();
   const pollMs = usePollMs();
@@ -58,7 +59,7 @@ export function RequestDetailPage() {
           <dl className="kv">{preview.map((c) => <div key={c.key}><dt>{`قيمة: ${c.label}`}</dt><dd>{c.value}</dd></div>)}</dl>}
       </Card>}
       {pending ? (
-        <DecisionPanel session={data} canAccept={Boolean(preview) && !credentials.error && credential?.status === 'ACTIVE'} onDecided={decided} />
+        <DecisionPanel session={data} canAccept={Boolean(preview) && !credentials.error && credential?.status === 'ACTIVE'} onDecided={decided} initialConfirm={search.get('decide') === 'reject' ? 'REJECT' : null} />
       ) : (
         <>
           <DecisionOutcome status={data.status} decidedAt={data.decidedAt} />

@@ -14,7 +14,7 @@ afterAll(async () => { await srv.close(); });
 const t = () => createTransport('demo', { baseUrl: srv.url, retries: 0, timeoutMs: 3000 });
 
 describe('IQDI branding', () => {
-  it.each(['/', '/credentials/cred-test-001', '/requests', '/qr', '/activity', '/notifications', '/settings', '/help', '/welcome'])('wallet %s shows IQDI and never IQDID', async (path) => {
+  it.each(['/', '/cards', '/credentials/cred-test-001', '/requests', '/qr', '/activity', '/notifications', '/settings', '/help', '/welcome'])('wallet %s shows IQDI and never IQDID', async (path) => {
     const w = render(<MemoryRouter initialEntries={[path]}><WalletApp gateway={createWalletGateway(t())} pollMs={500} /></MemoryRouter>);
     await within(w.container).findAllByRole('heading', { level: 1 });
     expect(w.container.textContent).toContain('IQDI Wallet');

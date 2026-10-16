@@ -291,7 +291,7 @@ html[data-glass="off"] .modal-backdrop { backdrop-filter: none; background: rgb(
 .ring { position: relative; display: inline-grid; place-items: center; flex-shrink: 0; }
 .ring svg { position: absolute; inset: 0; transform: rotate(-90deg); }
 .ring__track { fill: none; stroke: var(--c-surface-sunken); stroke-width: 6; }
-.ring__bar { fill: none; stroke: var(--c-info); stroke-width: 6; stroke-linecap: round; transition: stroke-dashoffset 1s linear; }
+.ring__bar { fill: none; stroke: var(--c-info); stroke-width: 6; stroke-linecap: round; transition: stroke-dashoffset var(--dur-slow) linear; }
 .ring--warning .ring__bar { stroke: var(--c-warning); } .ring--danger .ring__bar { stroke: var(--c-danger); }
 .ring__value { font-weight: 800; font-variant-numeric: tabular-nums; font-size: var(--fs-sm); }
 .stale-bar { display: flex; align-items: center; gap: var(--sp-2); padding: var(--sp-2) var(--sp-3); margin-bottom: var(--sp-4); border-radius: var(--r-md); background: var(--c-warning-bg); color: var(--c-warning); font-size: var(--fs-sm); font-weight: 700; }
@@ -482,14 +482,28 @@ html[data-glass="off"] .cred-card::before { opacity: .25; }
 
 /* Stack: cards overlap so each title stays readable; the selected card moves to the front and expands. */
 .stack { list-style: none; margin: 0; padding: 0 0 8px; }
-.stack__item { position: relative; transition: margin var(--dur-slow) var(--ease); }
-.stack__item + .stack__item { margin-top: -128px; }
-.stack[data-selected] .stack__item + .stack__item { margin-top: -168px; }
+.stack__item { position: relative; }
+.stack__item + .stack__item { margin-top: -168px; }
+/* A card covered by the next one shows only its header strip; hidden rows are also hidden from layout readers. */
+.stack__item:not(:last-child):not(.stack__item--selected) .cred-card__body, .stack__item:not(:last-child):not(.stack__item--selected) .cred-card__foot { visibility: hidden; }
+.stack[data-selected] .stack__item:not(.stack__item--selected) .cred-card__body, .stack[data-selected] .stack__item:not(.stack__item--selected) .cred-card__foot { visibility: hidden; }
+.stack[data-selected] .stack__item + .stack__item { margin-top: -214px; }
 .stack[data-selected] .stack__item--selected + .stack__item { margin-top: 16px; }
 .stack__item--selected { z-index: 2; }
 .stack__item:not(.stack__item--selected) .cred-card { min-height: 196px; }
 .stack[data-selected] .stack__item:not(.stack__item--selected) .cred-card { filter: saturate(.9); }
 .stack__panel { margin-top: 12px; }
 .view-switch { display: flex; justify-content: space-between; align-items: center; gap: var(--sp-3); flex-wrap: wrap; margin-bottom: var(--sp-4); }
-@media (max-width: 360px) { .stack__item + .stack__item { margin-top: -138px; } }
-html[data-text="large"] .stack__item + .stack__item, html[data-text="larger"] .stack__item + .stack__item { margin-top: -96px; }
+@media (max-width: 360px) { .stack__item + .stack__item { margin-top: -176px; } }
+html[data-text="large"] .stack__item + .stack__item, html[data-text="larger"] .stack__item + .stack__item { margin-top: -150px; }
+/* Home mini cards (title + status only; no credential values on the home page). */
+.mini-cards { list-style: none; margin: 0; padding: 0 0 4px; display: grid; grid-auto-flow: column; grid-auto-columns: minmax(200px, 72%); gap: var(--sp-3); overflow-x: auto; scroll-snap-type: x mandatory; }
+.mini-card.cred-card { min-height: 0; padding: 14px 16px; display: grid; gap: 8px; cursor: default; scroll-snap-align: start; position: relative; }
+.mini-card__title { font-weight: 800; color: var(--card-text); text-decoration: none; }
+.mini-card__title::after { content: ''; position: absolute; inset: 0; }
+.mini-card .badge { position: relative; z-index: 1; justify-self: start; }
+.stack__item--selected > .cred-card { animation: card-lift var(--dur-slow) var(--ease); }
+@keyframes card-lift { from { transform: scale(.97); } }
+/* Equal card heights in the stack so every header strip is the same size; text scaling falls back to auto height. */
+.stack .cred-card { height: 252px; min-height: 0; }
+html[data-text="large"] .stack .cred-card, html[data-text="larger"] .stack .cred-card { height: auto; min-height: 252px; }

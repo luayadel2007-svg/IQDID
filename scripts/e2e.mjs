@@ -131,7 +131,7 @@ try {
   });
 
   await step('activity logs on both sides record the decisions', async () => {
-    await nav(wallet, /السجل/).click();
+    await nav(wallet, /النشاط/).click();
     await wallet.getByText(/وافق المواطن التجريبي على مشاركة البيانات/).first().waitFor();
     await wallet.getByText(/رفض المواطن التجريبي طلب/).first().waitFor();
     await nav(verifier, /سجل العمليات/).click();

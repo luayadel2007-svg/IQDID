@@ -9,6 +9,16 @@ type Filter = 'all' | 'active' | 'attention';
 const ATTENTION: readonly Validity[] = ['EXPIRING', 'EXPIRED', 'SUSPENDED', 'REVOKED'];
 
 export function CredentialsPage() {
+  return (
+    <>
+      <PageHeader eyebrow="المحفظة" icon="folder" title="اعتماداتي" description="كل الاعتمادات الاصطناعية في محفظتك التجريبية." />
+      <CredentialsBrowser />
+    </>
+  );
+}
+
+/** Searchable, filterable list of credentials (list view of «بطاقاتي» and the /credentials page). */
+export function CredentialsBrowser() {
   const wallet = useWallet();
   const { data, error, loading, reload } = useAsync((s) => wallet.credentials({ signal: s }), [wallet]);
   const [q, setQ] = useState('');
@@ -22,7 +32,6 @@ export function CredentialsPage() {
   });
   return (
     <>
-      <PageHeader eyebrow="المحفظة" icon="folder" title="اعتماداتي" description="كل الاعتمادات الاصطناعية في محفظتك التجريبية." />
       <div className="toolbar">
         <div className="search">
           <span className="search__icon"><Icon name="search" size={18} /></span>

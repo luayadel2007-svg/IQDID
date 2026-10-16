@@ -24,8 +24,8 @@ try {
     const nav = (name) => p.getByRole('navigation', { name: 'التنقل الرئيسي' }).getByRole('link', { name });
     await p.goto(url); await p.getByRole('heading', { level: 1 }).waitFor();
     await step(`${app}: primary service reached in one navigation interaction`, async () => {
-      await nav(app === 'wallet' ? 'بطاقتي' : 'طلب تحقق جديد').click();
-      await p.getByRole('heading', { name: app === 'wallet' ? 'بطاقتي الرقمية' : 'إنشاء طلب تحقق تجريبي' }).waitFor();
+      await nav(app === 'wallet' ? 'بطاقاتي' : 'طلب تحقق جديد').click();
+      await p.getByRole('heading', { name: app === 'wallet' ? 'بطاقاتي' : 'إنشاء طلب تحقق تجريبي' }).waitFor();
     });
     await nav('الإعدادات').click();
     await step(`${app}: settings synchronize header + persist after reload`, async () => {
@@ -63,7 +63,7 @@ try {
       const response = await fetch(`${stack.urls.api}/demo-api/v1/verifier/sessions`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ organizationId: 'org-test-a', templateId: 'AGE_OVER_18', purpose: 'اختبار معاينة البيانات' }) });
       const session = await response.json();
       check(typeof session.id === 'string', 'could not create QA session');
-      const routes = app === 'wallet' ? ['', 'welcome', 'card', 'credentials', 'credentials/cred-test-001', 'credentials/cred-test-004', 'requests', `requests/${session.id}`, `requests/${session.id}/disclosure`, 'qr', 'activity', 'notifications', 'settings', 'help'] : ['', 'new', 'sessions', `sessions/${session.id}`, 'results', 'activity'];
+      const routes = app === 'wallet' ? ['', 'welcome', 'cards', 'cards?card=cred-test-002', 'cards?view=list', 'card', 'credentials', 'credentials/cred-test-001', 'credentials/cred-test-004', 'requests', `requests/${session.id}`, `requests/${session.id}/disclosure`, 'qr', 'activity', 'notifications', 'settings', 'help'] : ['', 'new', 'sessions', `sessions/${session.id}`, 'results', 'activity'];
       const audits = [];
       for (const mode of ['light', 'dark']) {
         for (const route of routes) {

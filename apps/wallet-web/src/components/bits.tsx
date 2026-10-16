@@ -4,10 +4,34 @@ import { Badge, CredentialStatusBadge, Icon, useOnline, type IconName } from '@i
 import { useFeed } from '../feed.tsx';
 
 export const CREDENTIAL_ICON: Record<DemoCredentialType, IconName> = {
-  DEMO_NATIONAL_ID: 'user', DEMO_DRIVING_LICENCE: 'card', DEMO_RESIDENCE_CARD: 'home', DEMO_HEALTH_CARD: 'shield',
+  DEMO_NATIONAL_ID: 'card', DEMO_DRIVING_LICENCE: 'car', DEMO_RESIDENCE_CARD: 'home', DEMO_HEALTH_CARD: 'heart', DEMO_EDUCATION: 'graduation',
 };
 export const CREDENTIAL_KIND: Record<DemoCredentialType, string> = {
-  DEMO_NATIONAL_ID: 'هوية', DEMO_DRIVING_LICENCE: 'مرور', DEMO_RESIDENCE_CARD: 'سكن', DEMO_HEALTH_CARD: 'صحة',
+  DEMO_NATIONAL_ID: 'هوية', DEMO_DRIVING_LICENCE: 'مرور', DEMO_RESIDENCE_CARD: 'سكن', DEMO_HEALTH_CARD: 'صحة', DEMO_EDUCATION: 'تعليم',
+};
+/** Card colour family (Design System V3 .cred-card--*). */
+export const CREDENTIAL_THEME: Record<DemoCredentialType, string> = {
+  DEMO_NATIONAL_ID: 'id', DEMO_DRIVING_LICENCE: 'licence', DEMO_RESIDENCE_CARD: 'residence', DEMO_HEALTH_CARD: 'health', DEMO_EDUCATION: 'education',
+};
+/** Only the national ID answers verification requests; every other credential is display-only in this demo. */
+export const isDisplayOnly = (c: DemoCredentialSummary): boolean => c.type !== 'DEMO_NATIONAL_ID';
+
+/**
+ * What the wallet may say about a credential. There is deliberately no "protocol verified" state:
+ * actual protocol verification is not available in this build.
+ */
+export type CredentialState = 'ACTIVE_DEMO' | 'DISPLAY_ONLY' | 'EXPIRED' | 'SUSPENDED' | 'REVOKED';
+export function credentialState(c: DemoCredentialSummary, now = Date.now()): CredentialState {
+  const v = validityOf(c, now);
+  if (v === 'SUSPENDED' || v === 'REVOKED' || v === 'EXPIRED') return v;
+  return isDisplayOnly(c) ? 'DISPLAY_ONLY' : 'ACTIVE_DEMO';
+}
+export const CREDENTIAL_STATE_TEXT: Record<CredentialState, { label: string; detail: string }> = {
+  ACTIVE_DEMO: { label: 'اعتماد تجريبي فعال', detail: 'يمكن استخدامه للرد على طلبات التحقق التجريبية. ليس تحققاً تشفيرياً.' },
+  DISPLAY_ONLY: { label: 'اعتماد تجريبي للعرض فقط', detail: 'يُعرض في المحفظة فقط ولا يُستخدم في أي طلب تحقق.' },
+  EXPIRED: { label: 'اعتماد تجريبي منتهي الصلاحية', detail: 'انتهت مدة صلاحيته ولا يمكن استخدامه.' },
+  SUSPENDED: { label: 'اعتماد تجريبي موقوف', detail: 'أوقفته الجهة المصدرة التجريبية.' },
+  REVOKED: { label: 'اعتماد تجريبي ملغى', detail: 'ألغته الجهة المصدرة التجريبية.' },
 };
 const DAY = 86_400_000;
 export const EXPIRING_DAYS = 14;

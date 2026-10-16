@@ -1,4 +1,4 @@
-import { NavLink, Route, Routes } from 'react-router-dom';
+import { Link, Route, Routes, useLocation } from 'react-router-dom';
 import { AppShell, EmptyState, Icon, type IconName } from '@iqdid/ui';
 import type { WalletGateway } from '@iqdid/api-client';
 import { GatewayProvider } from './gateway.tsx';
@@ -6,6 +6,7 @@ import { HomePage } from './pages/HomePage.tsx';
 import { OnboardingPage } from './pages/OnboardingPage.tsx';
 import { MyCardPage } from './pages/MyCardPage.tsx';
 import { CredentialsPage } from './pages/CredentialsPage.tsx';
+import { CardsPage } from './pages/CardsPage.tsx';
 import { CredentialDetailPage } from './pages/CredentialDetailPage.tsx';
 import { RequestsPage } from './pages/RequestsPage.tsx';
 import { RequestDetailPage } from './pages/RequestDetailPage.tsx';
@@ -20,22 +21,24 @@ import { FeedProvider, useFeed } from './feed.tsx';
 import { NotificationsButton, OfflineBar } from './components/bits.tsx';
 import { TrustContext, demoTrustAdapter, type WalletTrustAdapter } from './trust.ts';
 
-const NAV: ReadonlyArray<{ to: string; label: string; icon: IconName; end: boolean; badge?: 'pending' }> = [
-  { to: '/', label: 'الرئيسية', icon: 'home', end: true },
-  { to: '/card', label: 'بطاقتي', icon: 'card', end: false },
-  { to: '/requests', label: 'الطلبات', icon: 'inbox', end: false, badge: 'pending' },
-  { to: '/activity', label: 'السجل', icon: 'clock', end: false },
-  { to: '/settings', label: 'الإعدادات', icon: 'settings', end: false },
+/** Five primary sections (RTL order: first item is right-most). `match` marks the section active for its sub-pages. */
+const NAV: ReadonlyArray<{ to: string; label: string; icon: IconName; match: RegExp; badge?: 'pending' }> = [
+  { to: '/', label: 'الرئيسية', icon: 'home', match: /^\/$/ },
+  { to: '/cards', label: 'بطاقاتي', icon: 'wallet', match: /^\/(cards|card|credentials)(\/|$)/ },
+  { to: '/requests', label: 'الطلبات', icon: 'inbox', match: /^\/requests(\/|$)/, badge: 'pending' },
+  { to: '/activity', label: 'النشاط', icon: 'activity', match: /^\/activity(\/|$)/ },
+  { to: '/settings', label: 'الإعدادات', icon: 'settings', match: /^\/settings(\/|$)/ },
 ];
 
 function NavItems() {
   const { pending } = useFeed();
+  const { pathname } = useLocation();
   return NAV.map((n) => (
-    <NavLink key={n.to} to={n.to} end={n.end}>
+    <Link key={n.to} to={n.to} aria-current={n.match.test(pathname) ? 'page' : undefined}>
       <span className="nav__icon" aria-hidden="true"><Icon name={n.icon} /></span>
       {n.label}
       {n.badge && pending > 0 && <span className="nav__badge" aria-hidden="true">{pending > 9 ? '9+' : pending}</span>}
-    </NavLink>
+    </Link>
   ));
 }
 
@@ -57,6 +60,7 @@ export function WalletApp({ gateway, pollMs = 2000, trust = demoTrustAdapter }: 
                 <Route path="/" element={<HomePage />} />
                 <Route path="/welcome" element={<OnboardingPage />} />
                 <Route path="/card" element={<MyCardPage />} />
+                <Route path="/cards" element={<CardsPage />} />
                 <Route path="/credentials" element={<CredentialsPage />} />
                 <Route path="/credentials/:id" element={<CredentialDetailPage />} />
                 <Route path="/requests" element={<RequestsPage />} />

@@ -9,10 +9,11 @@ import { useWallet } from '../gateway.tsx';
  * decision, an expired session or an inactive credential is rejected there and
  * the error is reported to the page (which keeps it visible) and the page reloads the server state.
  */
-export function DecisionPanel({ session, canAccept, onDecided }: { session: DemoVerificationSession; canAccept: boolean; onDecided: (error: string | null) => void }) {
+export function DecisionPanel({ session, canAccept, onDecided, initialConfirm = null }: { session: DemoVerificationSession; canAccept: boolean; onDecided: (error: string | null) => void; initialConfirm?: DemoConsentDecisionValue | null }) {
   const wallet = useWallet();
   const online = useOnline();
-  const [confirm, setConfirm] = useState<DemoConsentDecisionValue | null>(null);
+  // A deep link (?decide=reject) only pre-opens the confirmation; nothing is sent without «تأكيد».
+  const [confirm, setConfirm] = useState<DemoConsentDecisionValue | null>(initialConfirm);
   const [submitting, setSubmitting] = useState(false);
   const close = useCallback(() => setConfirm(null), []);
 
