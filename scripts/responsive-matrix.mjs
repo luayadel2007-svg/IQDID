@@ -192,6 +192,34 @@ try {
       }
     }
 
+    // 1b. Header stability: a page that scrolls only slightly past the compact-header threshold must
+    // settle. With a single threshold the header flipped every frame (compact → page shrinks → expand …),
+    // so «رفض» never became stable for a click (Ubuntu Chrome CI, 1920x1200). Scroll ranges 6–40px.
+    {
+      const ctx = await browser.newContext({ viewport: { width: 1920, height: 1200 }, locale: 'ar' });
+      const page = await ctx.newPage();
+      await open(page, 'wallet', `/requests/${pending.id}`);
+      const full = await page.evaluate(() => document.documentElement.scrollHeight);
+      const problems = [], samples = [];
+      for (const range of [6, 10, 12, 14, 16, 20, 24, 30, 34, 40]) {
+        await page.setViewportSize({ width: 1920, height: full - range });
+        await page.evaluate(() => window.scrollTo({ top: 0, behavior: 'instant' }));
+        await page.waitForTimeout(350);
+        const r = await page.evaluate(async () => {
+          window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'instant' });
+          await new Promise((res) => setTimeout(res, 400)); // let the one legitimate change finish
+          const h = document.querySelector('.shell__header'); let flips = 0, last = h.dataset.scrolled;
+          const t0 = performance.now();
+          while (performance.now() - t0 < 1000) { await new Promise((res) => requestAnimationFrame(res)); if (h.dataset.scrolled !== last) { flips++; last = h.dataset.scrolled; } }
+          return { flips, y: Math.round(scrollY) };
+        });
+        samples.push({ range, ...r });
+        if (r.flips > 0) problems.push(`header oscillates at scroll range ${range}px (${r.flips} flips/s)`);
+      }
+      record({ app: 'wallet', route: '/requests/:pending', mode: 'header-stability', width: 1920, height: full, samples, problems, outcome: problems.length ? 'FAIL' : 'PASS' });
+      await ctx.close();
+    }
+
     // 2. Extra modes (fewer routes): landscape, short viewport, zoom reflow, large text, DPR.
     const MODES = [
       { mode: 'landscape-phone', width: 844, height: 390, touch: true },

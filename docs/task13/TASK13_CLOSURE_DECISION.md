@@ -2,9 +2,9 @@
 
 | Criterion (§22) | Result |
 |---|---|
-| Interfaces responsive on the target size matrix | Met: 285/285 checks across 15 widths and 11 modes. Two real defects found and fixed (nav labels, clipped subtitle) |
+| Interfaces responsive on the target size matrix | Met: 286/286 checks across 15 widths and 11 modes, including a header-stability check. Three real defects found and fixed (header jitter, nav labels, clipped subtitle) |
 | Browser and OS tests pass where environments existed | Chromium (local) PASS. Chrome on Ubuntu and Windows, plus Firefox and WebKit: CI on PR #13 |
-| Wallet and Verifier keep their functions | Met: every earlier suite passes unchanged (Vitest 183, e2e 12, UX 20, wallet 16, verifier 14, PDF 27, scenarios 9) |
+| Wallet and Verifier keep their functions | Met: every earlier suite passes unchanged (Vitest 184, e2e 12, UX 20, wallet 16, verifier 14, PDF 27, scenarios 9) |
 | RTL and basic automated accessibility pass | Met (axe 0 violations, reflow, zoom, reduced motion and transparency) |
 | Card stack works with touch, keyboard and assistive names | Met (touch and keyboard journeys, focus-visible state, aria tests). Manual screen reader: NOT RUN |
 | Verifiable performance results | Met (`PERFORMANCE_RESULTS.md`, budgets met) |

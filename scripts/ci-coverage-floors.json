@@ -65,7 +65,7 @@
     "packages/ui/src/ui.test.tsx",
     "test/secret-scanner-png.test.ts"
   ],
-  "minVitestTests": 183,
+  "minVitestTests": 184,
   "minBrowserSteps": {
     "e2e": 12,
     "ux": 20,
@@ -73,7 +73,7 @@
     "pdf": 27,
     "verifier": 14,
     "scenarios": 9,
-    "responsive": 285
+    "responsive": 286
   },
   "workflow": {
     "file": ".github/workflows/task8-ci.yml",

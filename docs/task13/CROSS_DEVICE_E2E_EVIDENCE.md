@@ -14,7 +14,7 @@
 
 The same journeys run on Firefox (mouse instead of touch; touch emulation is unsupported there) and WebKit (touch) in CI.
 
-## 2. Layout matrix (Chromium, local): 285/285 PASS
+## 2. Layout matrix (Chromium, local): 286/286 PASS
 
 | Group | Checks |
 |---|---|

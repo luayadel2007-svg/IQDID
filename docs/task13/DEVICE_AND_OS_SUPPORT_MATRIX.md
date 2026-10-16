@@ -14,7 +14,7 @@
 
 | Platform | Engine / browser | Evidence | Status |
 |---|---|---|---|
-| Linux desktop | Chromium 141 (Playwright build) | All suites + 285-check matrix (local) + CI ubuntu-24.04 with Google Chrome | **SUPPORTED AND TESTED** |
+| Linux desktop | Chromium 141 (Playwright build) | All suites + 286-check matrix (local) + CI ubuntu-24.04 with Google Chrome | **SUPPORTED AND TESTED** |
 | Windows desktop | Google Chrome (CI windows-2022) | All verify suites incl. matrix on hosted Windows | **SUPPORTED AND TESTED** (CI only; no local Windows run) |
 | Linux desktop | Firefox (Gecko, Playwright build) | Matrix + journeys on CI ubuntu-24.04 (`cross-browser` job) | See `BROWSER_COMPATIBILITY_TESTS.md` for the result on the TASK-13 commit |
 | Linux desktop | WebKit (Playwright build) | Matrix + journeys on CI ubuntu-24.04 | WebKit engine only. **Not Safari, not macOS, not iOS.** Result in `BROWSER_COMPATIBILITY_TESTS.md` |

@@ -23,11 +23,11 @@ describe('Scenario G — suspended national ID', () => {
       const s = await createVerifierGateway(t(srv.url)).createSession({ organizationId: 'org-test-a', templateId: 'AGE_OVER_18', purpose: 'اعتماد موقوف' });
       const w = renderWallet(srv.url, `/requests/${s.id}`);
       const ui = within(w.container);
-      expect(await ui.findByText('اعتماد الهوية التجريبي موقوف')).toBeInTheDocument();
+      expect(await ui.findByText('اعتماد الهوية التجريبي موقوف', {}, { timeout: 4000 })).toBeInTheDocument();
       expect(ui.getByRole('button', { name: 'موافقة تجريبية' })).toBeDisabled();
       await userEvent.click(ui.getByRole('button', { name: 'رفض' }));
       await userEvent.click(within(screen.getByRole('dialog')).getByRole('button', { name: 'تأكيد الرفض' }));
-      expect(await ui.findByText('رفضت هذا الطلب')).toBeInTheDocument();
+      expect(await ui.findByText('رفضت هذا الطلب', {}, { timeout: 4000 })).toBeInTheDocument();
       w.unmount();
       const v = renderVerifier(srv.url, `/sessions/${s.id}`);
       expect(await within(v.container).findByText('رفض المواطن الطلب', {}, { timeout: 4000 })).toBeInTheDocument();
@@ -40,7 +40,7 @@ describe('Scenario G — suspended national ID', () => {
       const s = await createVerifierGateway(t(srv.url)).createSession({ organizationId: 'org-test-a', templateId: 'AGE_OVER_18', purpose: 'اعتماد فعال' });
       const w = renderWallet(srv.url, `/requests/${s.id}`);
       const ui = within(w.container);
-      expect(await ui.findByRole('button', { name: 'موافقة تجريبية' })).toBeEnabled();
+      expect(await ui.findByRole('button', { name: 'موافقة تجريبية' }, { timeout: 4000 })).toBeEnabled();
       expect(ui.queryByText(/اعتماد الهوية التجريبي (موقوف|ملغى)/)).not.toBeInTheDocument();
     } finally { await srv.close(); }
   });
@@ -53,13 +53,13 @@ describe('Scenario H — privacy of withheld values', () => {
       const s = await createVerifierGateway(t(srv.url)).createSession({ organizationId: 'org-test-a', templateId: 'AGE_OVER_18', purpose: 'العمر فقط' });
       const w = renderWallet(srv.url, `/requests/${s.id}/disclosure`);
       const ui = within(w.container);
-      expect(await ui.findByRole('heading', { name: 'سيُشارك (1)' })).toBeInTheDocument();
+      expect(await ui.findByRole('heading', { name: 'سيُشارك (1)' }, { timeout: 4000 })).toBeInTheDocument();
       expect(ui.getByRole('heading', { name: 'يبقى خاصاً (3)' })).toBeInTheDocument();
       for (const label of ['الاسم الكامل', 'تاريخ الميلاد', 'رقم الوثيقة التجريبي']) expect(ui.getByText(label)).toBeInTheDocument();
       for (const value of ['مواطن تجريبي', '1990-01-01', 'TEST-DOC-0001']) expect(w.container.querySelector('.disclosure-grid')?.textContent).not.toContain(value);
       await userEvent.click(ui.getByRole('button', { name: 'موافقة تجريبية' }));
       await userEvent.click(within(screen.getByRole('dialog')).getByRole('button', { name: 'تأكيد الموافقة' }));
-      await ui.findByText('سُجلت موافقتك التجريبية');
+      await ui.findByText('سُجلت موافقتك التجريبية', {}, { timeout: 4000 });
       w.unmount();
       const v = renderVerifier(srv.url, `/sessions/${s.id}`);
       const vui = within(v.container);

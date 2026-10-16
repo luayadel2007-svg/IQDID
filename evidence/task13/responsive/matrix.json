@@ -1,6 +1,6 @@
 {
-  "at": "2026-10-16T21:24:52.129Z",
-  "commit": "8cb99f5dce6714f95fca40931aa94186871ee3d0",
+  "at": "2026-10-16T22:20:37.421Z",
+  "commit": "8cdded8266775ad21270c78a40ef2ecd2776b84c",
   "node": "v22.22.0",
   "platform": "linux 6.18.44-fc-v139 x64",
   "browsers": [
@@ -25,7 +25,7 @@
   ],
   "summary": {
     "chromium": {
-      "pass": 285,
+      "pass": 286,
       "fail": 0
     }
   },
@@ -58,7 +58,9 @@
       "width": 390,
       "height": 800,
       "detected": [
-        "overlap a.quick:مستمسكاتي × a.quick:QR تجريبي"
+        "overlap a.quick:مستمسكاتي × a.quick:QR تجريبي",
+        "overlap a.quick:مستمسكاتي × a.quick:مشاركة البيانات",
+        "overlap a.quick:QR تجريبي × a.quick:مشاركة البيانات"
       ],
       "problems": [],
       "outcome": "PASS",
@@ -2637,6 +2639,71 @@
       "browserVersion": "141.0.7390.37",
       "os": "linux 6.18.44-fc-v139",
       "app": "wallet",
+      "route": "/requests/:pending",
+      "mode": "header-stability",
+      "width": 1920,
+      "height": 1215,
+      "samples": [
+        {
+          "range": 6,
+          "flips": 0,
+          "y": 6
+        },
+        {
+          "range": 10,
+          "flips": 0,
+          "y": 10
+        },
+        {
+          "range": 12,
+          "flips": 0,
+          "y": 12
+        },
+        {
+          "range": 14,
+          "flips": 0,
+          "y": 14
+        },
+        {
+          "range": 16,
+          "flips": 0,
+          "y": 16
+        },
+        {
+          "range": 20,
+          "flips": 0,
+          "y": 20
+        },
+        {
+          "range": 24,
+          "flips": 0,
+          "y": 24
+        },
+        {
+          "range": 30,
+          "flips": 0,
+          "y": 30
+        },
+        {
+          "range": 34,
+          "flips": 0,
+          "y": 22
+        },
+        {
+          "range": 40,
+          "flips": 0,
+          "y": 28
+        }
+      ],
+      "problems": [],
+      "outcome": "PASS",
+      "kind": "layout"
+    },
+    {
+      "browser": "chromium",
+      "browserVersion": "141.0.7390.37",
+      "os": "linux 6.18.44-fc-v139",
+      "app": "wallet",
       "route": "/",
       "mode": "landscape-phone",
       "width": 844,
@@ -3754,13 +3821,13 @@
       "input": "touch",
       "decision": "ACCEPT",
       "steps": [
-        "verifier 768px created 94849635",
+        "verifier 768px created 49777b28",
         "wallet 360px opened the request (touch)",
         "wallet decided ACCEPT",
         "verifier updated live"
       ],
       "outcome": "PASS",
-      "ms": 2389,
+      "ms": 2260,
       "kind": "journey"
     },
     {
@@ -3770,13 +3837,13 @@
       "input": "touch",
       "decision": "REJECT",
       "steps": [
-        "verifier 1440px created 21ec326f",
+        "verifier 1440px created 6cce2f97",
         "wallet 820px opened the request (touch)",
         "wallet decided REJECT",
         "verifier updated live"
       ],
       "outcome": "PASS",
-      "ms": 3101,
+      "ms": 2819,
       "kind": "journey"
     },
     {
@@ -3786,13 +3853,13 @@
       "input": "keyboard",
       "decision": "ACCEPT",
       "steps": [
-        "verifier 390px created 5ca3babb",
+        "verifier 390px created 1f9dfeb4",
         "wallet 1440px opened the request (keyboard)",
         "wallet decided ACCEPT",
         "verifier updated live"
       ],
       "outcome": "PASS",
-      "ms": 3703,
+      "ms": 3810,
       "kind": "journey"
     }
   ]

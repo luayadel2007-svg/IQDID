@@ -4,7 +4,7 @@ Only engines that actually ran are listed with a result. Engine **versions** com
 
 | Platform | Browser | Version | Screens | Test type | Result | Limitations |
 |---|---|---|---|---|---|---|
-| Linux (container, kernel 6.18) | Chromium (Playwright build) | 141.0.7390.37 | 15 widths, 320–2560 + 11 modes | Full verify: 12 e2e, 20 UX/axe, 16 wallet, 14 verifier, 27 PDF audit, 9 scenarios, **285 matrix checks** | **PASS (all)** | Emulated devices; not a physical phone or tablet |
+| Linux (container, kernel 6.18) | Chromium (Playwright build) | 141.0.7390.37 | 15 widths, 320–2560 + 11 modes | Full verify: 12 e2e, 20 UX/axe, 16 wallet, 14 verifier, 27 PDF audit, 9 scenarios, **286 matrix checks** | **PASS (all)** | Emulated devices; not a physical phone or tablet |
 | Linux (GitHub ubuntu-24.04) | Google Chrome (runner) | Runner image version, in the CI log | Same as above | Same full verify, in CI | See the PR #13 checks for the TASK-13 commit | Hosted runner |
 | Windows Server 2022 (GitHub windows-2022) | Google Chrome (runner) | Runner image version, in the CI log | Same as above | Same full verify, in CI | See the PR #13 checks | Hosted runner; no local Windows run |
 | Linux (GitHub ubuntu-24.04) | **Firefox** (Playwright Gecko build) | In `task13-cross-browser` artifact | 15 widths + modes + journeys + PWA manifest | Matrix (`IQDI_BROWSERS=firefox`) | See the PR #13 check `cross-browser` | No touch or DPR emulation in Firefox (mouse journeys). Desktop Firefox does not install PWAs |
