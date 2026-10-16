@@ -21,7 +21,7 @@ export function CredentialFace({ credential: c, reveal = false, privacy = false 
         <dt>الحامل</dt><dd>{privacy ? '••••••' : c.holderDisplayName}</dd>
         {shown.map((cl) => (
           <div key={cl.key} style={{ display: 'contents' }}>
-            <dt>{cl.label}</dt><dd><span className={SENSITIVE.test(cl.key) ? 'mono' : undefined}>{SENSITIVE.test(cl.key) && (!reveal || privacy) ? mask(cl.value) : privacy && cl.key === 'full_name' ? '••••••' : cl.value}</span></dd>
+            <dt>{cl.label}</dt><dd><span className={SENSITIVE.test(cl.key) ? 'mono' : undefined}>{SENSITIVE.test(cl.key) && (!reveal || privacy) ? mask(cl.value) : cl.value}</span></dd>
           </div>
         ))}
         <dt>تنتهي</dt><dd>{formatDate(c.expiresAt)}</dd>

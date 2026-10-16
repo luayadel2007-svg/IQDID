@@ -10,6 +10,8 @@ import { isPrivacyMode } from '../local.ts';
 import { useTrust } from '../trust.ts';
 
 const SENSITIVE = /number|ref|document/;
+/** Hidden in privacy mode in addition to identifiers. */
+const PERSONAL = /full_name|birth_date/;
 
 export function CredentialDetailPage() {
   const { id = '' } = useParams();
@@ -50,15 +52,15 @@ export function CredentialDetailPage() {
         <dl className="kv">
           {data.claims.map((c) => (
             <div key={c.key} style={{ display: 'contents' }}>
-              <dt>{c.label}</dt><dd>{SENSITIVE.test(c.key) && !reveal ? '••••••' : c.value}</dd>
+              <dt>{c.label}</dt><dd>{privacy && (SENSITIVE.test(c.key) || PERSONAL.test(c.key)) ? 'مُخفى (وضع الخصوصية)' : SENSITIVE.test(c.key) && !reveal ? '••••••' : c.value}</dd>
             </div>
           ))}
         </dl>
-        <Switch label="إظهار القيم الحساسة" checked={reveal} onChange={setReveal} />
+        {privacy ? <p className="small muted" style={{ margin: 'var(--sp-3) 0 0' }}>وضع الخصوصية مفعّل: الاسم وتاريخ الميلاد والأرقام مخفية.</p> : <Switch label="إظهار القيم الحساسة" checked={reveal} onChange={setReveal} />}
       </Card>
       <Card title="حالة الاعتماد" icon="shield">
         <ul className="list" aria-label="حالات الاعتماد">
-          {(['ACTIVE_DEMO', 'DISPLAY_ONLY', 'EXPIRED', 'SUSPENDED'] as const satisfies readonly CredentialState[]).map((st) => {
+          {(['ACTIVE_DEMO', 'DISPLAY_ONLY', 'EXPIRED', 'SUSPENDED', 'REVOKED'] as const satisfies readonly CredentialState[]).map((st) => {
             const on = credentialState(data) === st;
             return (
               <li key={st} className="row row--between" aria-current={on ? 'true' : undefined}>

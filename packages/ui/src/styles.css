@@ -481,17 +481,17 @@ html[data-glass="off"] .card--glass { backdrop-filter: none; -webkit-backdrop-fi
 html[data-glass="off"] .cred-card::before { opacity: .25; }
 
 /* Stack: cards overlap so each title stays readable; the selected card moves to the front and expands. */
-.stack { list-style: none; margin: 0; padding: 0 0 8px; }
+.card-stack { list-style: none; margin: 0; padding: 0 0 8px; display: flex; flex-direction: column; gap: 16px; }
 .stack__item { position: relative; }
 .stack__item + .stack__item { margin-top: -168px; }
 /* A card covered by the next one shows only its header strip; hidden rows are also hidden from layout readers. */
 .stack__item:not(:last-child):not(.stack__item--selected) .cred-card__body, .stack__item:not(:last-child):not(.stack__item--selected) .cred-card__foot { visibility: hidden; }
-.stack[data-selected] .stack__item:not(.stack__item--selected) .cred-card__body, .stack[data-selected] .stack__item:not(.stack__item--selected) .cred-card__foot { visibility: hidden; }
-.stack[data-selected] .stack__item + .stack__item { margin-top: -214px; }
-.stack[data-selected] .stack__item--selected + .stack__item { margin-top: 16px; }
+.card-stack[data-selected] .stack__item:not(.stack__item--selected) .cred-card__body, .card-stack[data-selected] .stack__item:not(.stack__item--selected) .cred-card__foot { visibility: hidden; }
+.card-stack[data-selected] .stack__item + .stack__item { margin-top: -214px; }
+.card-stack[data-selected] .stack__item--selected + .stack__item { margin-top: 16px; }
 .stack__item--selected { z-index: 2; }
 .stack__item:not(.stack__item--selected) .cred-card { min-height: 196px; }
-.stack[data-selected] .stack__item:not(.stack__item--selected) .cred-card { filter: saturate(.9); }
+.card-stack[data-selected] .stack__item:not(.stack__item--selected) .cred-card { filter: saturate(.9); }
 .stack__panel { margin-top: 12px; }
 .view-switch { display: flex; justify-content: space-between; align-items: center; gap: var(--sp-3); flex-wrap: wrap; margin-bottom: var(--sp-4); }
 @media (max-width: 360px) { .stack__item + .stack__item { margin-top: -176px; } }
@@ -505,5 +505,5 @@ html[data-text="large"] .stack__item + .stack__item, html[data-text="larger"] .s
 .stack__item--selected > .cred-card { animation: card-lift var(--dur-slow) var(--ease); }
 @keyframes card-lift { from { transform: scale(.97); } }
 /* Equal card heights in the stack so every header strip is the same size; text scaling falls back to auto height. */
-.stack .cred-card { height: 252px; min-height: 0; }
-html[data-text="large"] .stack .cred-card, html[data-text="larger"] .stack .cred-card { height: auto; min-height: 252px; }
+.card-stack .cred-card { height: 252px; min-height: 0; }
+html[data-text="large"] .card-stack .cred-card, html[data-text="larger"] .card-stack .cred-card { height: auto; min-height: 252px; }

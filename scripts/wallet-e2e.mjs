@@ -187,7 +187,7 @@ try {
   });
 
   const ROUTES = ['', 'welcome', 'cards', 'cards?card=cred-test-001', 'card', 'credentials', 'credentials/cred-test-002', 'requests', 'qr', 'activity', 'notifications', 'settings', 'help'];
-  await step('responsive RTL: 11 routes at 320 (larger text), 390 and 768 without horizontal overflow', async () => {
+  await step('responsive RTL: 13 routes at 320 (larger text), 390 and 768 without horizontal overflow', async () => {
     const bad = [];
     for (const [w, text] of [[320, 'larger'], [390, 'normal'], [768, 'normal']]) {
       await wallet.setViewportSize({ width: w, height: 800 });

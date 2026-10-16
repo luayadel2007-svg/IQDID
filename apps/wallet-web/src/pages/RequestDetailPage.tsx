@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, useParams, useSearchParams } from 'react-router-dom';
 import { DEMO_SESSION_TTL_MS, previewDemoDisclosure, primaryIdentityCredential } from '@iqdid/shared-types';
 import type { DemoSessionStatus } from '@iqdid/shared-types';
@@ -12,7 +12,10 @@ import { useTrust } from '../trust.ts';
 
 export function RequestDetailPage() {
   const { id = '' } = useParams();
-  const [search] = useSearchParams();
+  const [search, setSearch] = useSearchParams();
+  // ?decide=reject pre-opens the confirmation once; it is then removed so a reload never reopens it.
+  const [initialReject, setInitialReject] = useState(() => search.get('decide') === 'reject');
+  useEffect(() => { if (search.has('decide')) setSearch((p) => { p.delete('decide'); return p; }, { replace: true }); }, [search, setSearch]);
   const wallet = useWallet();
   const trust = useTrust();
   const pollMs = usePollMs();
@@ -59,7 +62,7 @@ export function RequestDetailPage() {
           <dl className="kv">{preview.map((c) => <div key={c.key}><dt>{`قيمة: ${c.label}`}</dt><dd>{c.value}</dd></div>)}</dl>}
       </Card>}
       {pending ? (
-        <DecisionPanel session={data} canAccept={Boolean(preview) && !credentials.error && credential?.status === 'ACTIVE'} onDecided={decided} initialConfirm={search.get('decide') === 'reject' ? 'REJECT' : null} />
+        <DecisionPanel session={data} canAccept={Boolean(preview) && !credentials.error && credential?.status === 'ACTIVE'} onDecided={decided} initialConfirm={initialReject ? 'REJECT' : null} onInitialConfirmUsed={() => setInitialReject(false)} />
       ) : (
         <>
           <DecisionOutcome status={data.status} decidedAt={data.decidedAt} />

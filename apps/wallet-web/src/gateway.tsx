@@ -16,7 +16,7 @@ export function useWallet(): WalletGateway {
 /** Demo transport unless VITE_IQDI_TRANSPORT=real (placeholder that always reports "not implemented"). */
 export function defaultWalletGateway(): WalletGateway {
   // VITE_IQDI_TRANSPORT is the current name; VITE_IQDID_TRANSPORT (legacy) is still honoured.
-  const selected: unknown = import.meta.env.VITE_IQDI_TRANSPORT ?? import.meta.env.VITE_IQDID_TRANSPORT;
+  const selected: unknown = import.meta.env.VITE_IQDI_TRANSPORT || import.meta.env.VITE_IQDID_TRANSPORT;
   const mode = !selected || selected === 'demo' ? 'demo' : 'real';
   return createWalletGateway(createTransport(mode));
 }

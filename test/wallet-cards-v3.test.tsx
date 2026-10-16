@@ -155,3 +155,57 @@ describe('navigation and requests', () => {
     expect((await createWalletGateway(t()).request(s.id)).status).toBe('DEMO_REJECTED');
   });
 });
+
+describe('independent-review fixes', () => {
+  it('privacy mode also hides name, birth date and identifiers on credential details (no reveal switch)', async () => {
+    localStorage.setItem('iqdi-wallet-privacy', 'on');
+    const w = renderWallet('/credentials/cred-test-001');
+    const ui = within(w.container);
+    await ui.findByRole('list', { name: 'حالات الاعتماد' });
+    expect(w.container.textContent).not.toMatch(/مواطن تجريبي|1990-01-01|TEST-DOC-0001/);
+    expect(ui.queryByRole('switch', { name: 'إظهار القيم الحساسة' })).not.toBeInTheDocument();
+    expect(ui.getAllByText('مُخفى (وضع الخصوصية)').length).toBeGreaterThanOrEqual(3);
+  });
+
+  it('cards expose expiry, DEMO and display-only status to screen readers; the open card controls its actions', async () => {
+    const w = renderWallet('/cards?card=cred-test-005');
+    const ui = within(w.container);
+    await ui.findByRole('list', { name: 'مجموعة البطاقات' });
+    const first = cardButtons(w.container)[0] as HTMLElement;
+    expect(first).toHaveAccessibleDescription(/تنتهي .*للعرض فقط\. بيانات تجريبية DEMO\./);
+    expect(first).toHaveAttribute('aria-controls', 'card-actions');
+    expect(w.container.querySelector('#card-actions')).not.toBeNull();
+  });
+
+  it('«رجوع إلى المجموعة» returns focus to the card that was open', async () => {
+    const w = renderWallet('/cards?card=cred-test-003');
+    const ui = within(w.container);
+    await ui.findByRole('list', { name: 'مجموعة البطاقات' });
+    await userEvent.click(ui.getByRole('button', { name: 'رجوع إلى المجموعة' }));
+    expect(document.activeElement?.getAttribute('data-card-id')).toBe('cred-test-003');
+    expect(document.activeElement).toHaveAttribute('aria-expanded', 'false');
+  });
+
+  it('selecting a card keeps an explicit ?view=stack even when the saved preference is list', async () => {
+    localStorage.setItem('iqdi-wallet-cards-view', 'list');
+    const w = renderWallet('/cards?view=stack');
+    const ui = within(w.container);
+    await ui.findByRole('list', { name: 'مجموعة البطاقات' });
+    await userEvent.click(cardButtons(w.container)[1] as HTMLElement);
+    expect(screen.getByTestId('where')).toHaveTextContent('view=stack');
+    expect(screen.getByTestId('where')).toHaveTextContent('card=cred-test-002');
+    expect(ui.getByRole('list', { name: 'مجموعة البطاقات' })).toBeInTheDocument();
+  });
+
+  it('the reject deep link opens once: the param is removed and the dialog stays closed after «تراجع» and refreshes', async () => {
+    const s = await createVerifierGateway(t()).createSession({ organizationId: 'org-test-a', templateId: 'AGE_OVER_18', purpose: 'رابط رفض لمرة واحدة' });
+    renderWallet(`/requests/${s.id}?decide=reject`);
+    expect(await screen.findByRole('dialog')).toHaveTextContent('تأكيد الرفض');
+    expect(screen.getByTestId('where')).not.toHaveTextContent('decide=');
+    await userEvent.click(screen.getByRole('button', { name: 'تراجع' }));
+    await new Promise((r) => setTimeout(r, 700));
+    expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+    expect((await createWalletGateway(t()).request(s.id)).status).toBe('PENDING');
+  });
+});
+
