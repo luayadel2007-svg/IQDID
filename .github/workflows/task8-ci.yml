@@ -47,4 +47,5 @@ jobs:
           path: |
             evidence/modernization
             evidence/task9/wallet-e2e
+            evidence/task10/verifier-e2e
           retention-days: 30

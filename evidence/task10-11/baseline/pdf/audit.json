@@ -1,0 +1,349 @@
+{
+  "at": "2026-10-16T16:49:01.024Z",
+  "checks": [
+    {
+      "app": "wallet",
+      "id": "P1",
+      "criterion": "Arabic RTL (§6.5)",
+      "outcome": "PASS",
+      "measured": {
+        "dir": "rtl",
+        "lang": "ar"
+      }
+    },
+    {
+      "app": "wallet",
+      "id": "P2",
+      "criterion": "base text ≥ 16px (§6.1)",
+      "outcome": "PASS",
+      "measured": {
+        "bodyPx": 16,
+        "smallestPx": 13,
+        "secondaryUnder16": "34/54"
+      }
+    },
+    {
+      "app": "wallet",
+      "id": "P3",
+      "criterion": "functional motion 200–400 ms (§5)",
+      "outcome": "PASS",
+      "measured": {
+        "durationsMs": [
+          220,
+          320
+        ]
+      }
+    },
+    {
+      "app": "wallet",
+      "id": "P4",
+      "criterion": "consistent icon size (§4.4)",
+      "outcome": "PASS",
+      "measured": {
+        "navIconSizes": [
+          "22x22"
+        ]
+      }
+    },
+    {
+      "app": "wallet",
+      "id": "P5",
+      "criterion": "status not by colour alone (§5.3)",
+      "outcome": "PASS",
+      "measured": {
+        "emptyBadges": 0
+      }
+    },
+    {
+      "app": "wallet",
+      "id": "P6",
+      "criterion": "button press feedback (§5.5) — stylesheet rule present",
+      "outcome": "PASS",
+      "measured": {
+        "activeRule": true
+      }
+    },
+    {
+      "app": "wallet",
+      "id": "P7",
+      "criterion": "skeleton loading, not a bare spinner (§5.2) — stylesheet rule present",
+      "outcome": "PASS",
+      "measured": {
+        "shimmerSkeleton": true
+      }
+    },
+    {
+      "app": "wallet",
+      "id": "P8",
+      "criterion": "core services ≤ 3 clicks (§3) — measured",
+      "outcome": "PASS",
+      "measured": {
+        "reached": [
+          {
+            "service": "الرئيسية",
+            "clicks": 1,
+            "heading": "أهلاً بك",
+            "changed": true
+          },
+          {
+            "service": "مستمسكاتي",
+            "clicks": 1,
+            "heading": "مستمسكاتي",
+            "changed": true
+          },
+          {
+            "service": "الطلبات",
+            "clicks": 1,
+            "heading": "طلبات مشاركة البيانات",
+            "changed": true
+          },
+          {
+            "service": "النشاط",
+            "clicks": 1,
+            "heading": "سجل الاستخدام",
+            "changed": true
+          },
+          {
+            "service": "الإعدادات",
+            "clicks": 1,
+            "heading": "الإعدادات",
+            "changed": true
+          }
+        ]
+      }
+    },
+    {
+      "app": "wallet",
+      "id": "P9",
+      "criterion": "top bar adapts to scroll, nothing hidden (§5.4)",
+      "outcome": "PASS",
+      "measured": {
+        "state": "true",
+        "hidden": 0
+      }
+    },
+    {
+      "app": "wallet",
+      "id": "P10",
+      "criterion": "user can turn transparency off (§2)",
+      "outcome": "PASS",
+      "measured": {
+        "navBackdropFilter": "none"
+      }
+    },
+    {
+      "app": "wallet",
+      "id": "P11",
+      "criterion": "light and dark are complete themes (§6.4, §7.1)",
+      "outcome": "PASS",
+      "measured": {
+        "light": [
+          "rgb(243, 246, 252)",
+          "rgb(10, 22, 48)"
+        ],
+        "dark": [
+          "rgb(4, 11, 26)",
+          "rgb(234, 240, 251)"
+        ]
+      }
+    },
+    {
+      "app": "wallet",
+      "id": "P12",
+      "criterion": "motion can be reduced (§5) — every element",
+      "outcome": "PASS",
+      "measured": {
+        "elements": 189,
+        "moving": 0
+      }
+    },
+    {
+      "app": "wallet",
+      "id": "P13",
+      "criterion": "animated confirmation after an important action (§5.1)",
+      "outcome": "PASS",
+      "measured": {
+        "successIconAnimation": "confirm-pop"
+      }
+    },
+    {
+      "app": "wallet",
+      "id": "P14",
+      "criterion": "responsive 320/390/768/1366 + 200 % text, no horizontal scroll (§3, §6.6)",
+      "outcome": "PASS",
+      "measured": {
+        "overflow": []
+      }
+    },
+    {
+      "app": "verifier",
+      "id": "P1",
+      "criterion": "Arabic RTL (§6.5)",
+      "outcome": "PASS",
+      "measured": {
+        "dir": "rtl",
+        "lang": "ar"
+      }
+    },
+    {
+      "app": "verifier",
+      "id": "P2",
+      "criterion": "base text ≥ 16px (§6.1)",
+      "outcome": "PASS",
+      "measured": {
+        "bodyPx": 16,
+        "smallestPx": 13,
+        "secondaryUnder16": "22/33"
+      }
+    },
+    {
+      "app": "verifier",
+      "id": "P3",
+      "criterion": "functional motion 200–400 ms (§5)",
+      "outcome": "PASS",
+      "measured": {
+        "durationsMs": [
+          220
+        ]
+      }
+    },
+    {
+      "app": "verifier",
+      "id": "P4",
+      "criterion": "consistent icon size (§4.4)",
+      "outcome": "PASS",
+      "measured": {
+        "navIconSizes": [
+          "22x22"
+        ]
+      }
+    },
+    {
+      "app": "verifier",
+      "id": "P5",
+      "criterion": "status not by colour alone (§5.3)",
+      "outcome": "PASS",
+      "measured": {
+        "emptyBadges": 0
+      }
+    },
+    {
+      "app": "verifier",
+      "id": "P6",
+      "criterion": "button press feedback (§5.5) — stylesheet rule present",
+      "outcome": "PASS",
+      "measured": {
+        "activeRule": true
+      }
+    },
+    {
+      "app": "verifier",
+      "id": "P7",
+      "criterion": "skeleton loading, not a bare spinner (§5.2) — stylesheet rule present",
+      "outcome": "PASS",
+      "measured": {
+        "shimmerSkeleton": true
+      }
+    },
+    {
+      "app": "verifier",
+      "id": "P8",
+      "criterion": "core services ≤ 3 clicks (§3) — measured",
+      "outcome": "PASS",
+      "measured": {
+        "reached": [
+          {
+            "service": "لوحة المتابعة",
+            "clicks": 1,
+            "heading": "لوحة المتابعة",
+            "changed": true
+          },
+          {
+            "service": "طلب تحقق جديد",
+            "clicks": 1,
+            "heading": "إنشاء طلب تحقق تجريبي",
+            "changed": true
+          },
+          {
+            "service": "جلسات التحقق",
+            "clicks": 1,
+            "heading": "جلسات التحقق",
+            "changed": true
+          },
+          {
+            "service": "النتائج",
+            "clicks": 1,
+            "heading": "نتائج الطلبات",
+            "changed": true
+          },
+          {
+            "service": "سجل العمليات",
+            "clicks": 1,
+            "heading": "سجل العمليات",
+            "changed": true
+          },
+          {
+            "service": "الإعدادات",
+            "clicks": 1,
+            "heading": "الإعدادات",
+            "changed": true
+          }
+        ]
+      }
+    },
+    {
+      "app": "verifier",
+      "id": "P9",
+      "criterion": "top bar adapts to scroll, nothing hidden (§5.4)",
+      "outcome": "PASS",
+      "measured": {
+        "state": "true",
+        "hidden": 0
+      }
+    },
+    {
+      "app": "verifier",
+      "id": "P10",
+      "criterion": "user can turn transparency off (§2)",
+      "outcome": "PASS",
+      "measured": {
+        "navBackdropFilter": "none"
+      }
+    },
+    {
+      "app": "verifier",
+      "id": "P11",
+      "criterion": "light and dark are complete themes (§6.4, §7.1)",
+      "outcome": "PASS",
+      "measured": {
+        "light": [
+          "rgb(243, 246, 252)",
+          "rgb(10, 22, 48)"
+        ],
+        "dark": [
+          "rgb(4, 11, 26)",
+          "rgb(234, 240, 251)"
+        ]
+      }
+    },
+    {
+      "app": "verifier",
+      "id": "P12",
+      "criterion": "motion can be reduced (§5) — every element",
+      "outcome": "PASS",
+      "measured": {
+        "elements": 122,
+        "moving": 0
+      }
+    },
+    {
+      "app": "verifier",
+      "id": "P14",
+      "criterion": "responsive 320/390/768/1366 + 200 % text, no horizontal scroll (§3, §6.6)",
+      "outcome": "PASS",
+      "measured": {
+        "overflow": []
+      }
+    }
+  ]
+}

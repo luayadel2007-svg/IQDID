@@ -44,6 +44,7 @@ try {
     await nav(verifier, /طلب تحقق جديد/).click();
     await verifier.getByRole('radio', { name: /التحقق من العمر/ }).check();
     await verifier.getByLabel('الغرض من الطلب').fill('فتح حساب مصرفي تجريبي');
+    await verifier.getByRole('button', { name: 'مراجعة الطلب' }).click();
     await verifier.getByRole('button', { name: 'إرسال الطلب إلى المحفظة' }).click();
     await verifier.getByText('أُرسل الطلب إلى المحفظة التجريبية.').waitFor();
     await wallet.getByRole('link', { name: /الإشعارات \(1 غير مقروءة\)/ }).waitFor({ timeout: 10_000 });

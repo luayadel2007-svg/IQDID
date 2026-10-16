@@ -1,0 +1,98 @@
+[
+  {
+    "label": "light /",
+    "violations": []
+  },
+  {
+    "label": "light /new",
+    "violations": []
+  },
+  {
+    "label": "light /sessions",
+    "violations": []
+  },
+  {
+    "label": "light /sessions?status=PENDING",
+    "violations": []
+  },
+  {
+    "label": "light /results",
+    "violations": []
+  },
+  {
+    "label": "light /results?outcome=DEMO_REJECTED",
+    "violations": []
+  },
+  {
+    "label": "light /activity",
+    "violations": []
+  },
+  {
+    "label": "light /sessions/0ca8e8eb-6c9b-414f-b89d-c03f36f19463",
+    "violations": []
+  },
+  {
+    "label": "light /sessions/a12eada5-e988-48a0-953f-9e63d6e48470",
+    "violations": []
+  },
+  {
+    "label": "light /sessions/b17cb7f4-d0c8-43f9-8fe7-84a714bfcb25",
+    "violations": []
+  },
+  {
+    "label": "light /settings",
+    "violations": []
+  },
+  {
+    "label": "light /new (review step)",
+    "violations": []
+  },
+  {
+    "label": "dark /",
+    "violations": []
+  },
+  {
+    "label": "dark /new",
+    "violations": []
+  },
+  {
+    "label": "dark /sessions",
+    "violations": []
+  },
+  {
+    "label": "dark /sessions?status=PENDING",
+    "violations": []
+  },
+  {
+    "label": "dark /results",
+    "violations": []
+  },
+  {
+    "label": "dark /results?outcome=DEMO_REJECTED",
+    "violations": []
+  },
+  {
+    "label": "dark /activity",
+    "violations": []
+  },
+  {
+    "label": "dark /sessions/0ca8e8eb-6c9b-414f-b89d-c03f36f19463",
+    "violations": []
+  },
+  {
+    "label": "dark /sessions/a12eada5-e988-48a0-953f-9e63d6e48470",
+    "violations": []
+  },
+  {
+    "label": "dark /sessions/b17cb7f4-d0c8-43f9-8fe7-84a714bfcb25",
+    "violations": []
+  },
+  {
+    "label": "dark /settings",
+    "violations": []
+  },
+  {
+    "label": "dark /new (review step)",
+    "violations": []
+  }
+]
