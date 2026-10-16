@@ -154,7 +154,8 @@ try {
       const page = await ctx.newPage();
       const faults = [
         ['horizontal overflow', '/', '.home-block--summary { width: 640px !important; }', /^overflow-x/],
-        ['overlapping controls', '/', '.quick3 .quick:nth-child(2) { transform: translateX(60px); }', /^overlap/],
+        // Engine-independent: all three tiles stacked on the same spot (a spacing-dependent shift passed in WebKit).
+        ['overlapping controls', '/', '.quick3 { position: relative !important; display: block !important; height: 120px; } .quick3 .quick { position: absolute !important; top: 0; inset-inline-start: 0; width: 120px; }', /^overlap/],
         ['clipped text', '/', '.welcome__name { width: 30px; overflow: hidden; white-space: nowrap; }', /^clipped-x/],
         ['content under the fixed nav', '/credentials/cred-test-001?from=cards', '.shell--mobile .shell__main { padding-bottom: 0 !important; }', /under fixed nav/],
       ];
