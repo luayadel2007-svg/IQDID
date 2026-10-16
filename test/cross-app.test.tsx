@@ -121,7 +121,7 @@ describe('error handling and navigation', () => {
     const wallet = renderWallet('/');
     const wui = within(wallet.container);
     const nav = wui.getByRole('navigation', { name: 'التنقل الرئيسي' });
-    const expectations: Array<[string, string]> = [['بطاقتي', 'بطاقتي الرقمية'], ['الطلبات', 'طلبات مشاركة البيانات'], ['السجل', 'سجل الاستخدام'], ['الإعدادات', 'الإعدادات'], ['الرئيسية', 'أهلاً بك']];
+    const expectations: Array<[string, string]> = [['بطاقاتي', 'بطاقاتي'], ['الطلبات', 'طلبات مشاركة البيانات'], ['النشاط', 'سجل الاستخدام'], ['الإعدادات', 'الإعدادات'], ['الرئيسية', 'أهلاً بك']];
     for (const [link, heading] of expectations) {
       await userEvent.click(within(nav).getByRole('link', { name: new RegExp(link) }));
       expect(await wui.findByRole('heading', { level: 1, name: heading })).toBeInTheDocument();

@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import type { DemoConsentDecisionValue, DemoVerificationSession } from '@iqdid/shared-types';
 import { Alert, Button, Icon, Modal, useOnline } from '@iqdid/ui';
 import { describeError } from '@iqdid/api-client';
@@ -9,10 +9,13 @@ import { useWallet } from '../gateway.tsx';
  * decision, an expired session or an inactive credential is rejected there and
  * the error is reported to the page (which keeps it visible) and the page reloads the server state.
  */
-export function DecisionPanel({ session, canAccept, onDecided }: { session: DemoVerificationSession; canAccept: boolean; onDecided: (error: string | null) => void }) {
+export function DecisionPanel({ session, canAccept, onDecided, initialConfirm = null, onInitialConfirmUsed }: { session: DemoVerificationSession; canAccept: boolean; onDecided: (error: string | null) => void; initialConfirm?: DemoConsentDecisionValue | null; onInitialConfirmUsed?: () => void }) {
   const wallet = useWallet();
   const online = useOnline();
-  const [confirm, setConfirm] = useState<DemoConsentDecisionValue | null>(null);
+  // A deep link (?decide=reject) only pre-opens the confirmation; nothing is sent without «تأكيد».
+  const [confirm, setConfirm] = useState<DemoConsentDecisionValue | null>(initialConfirm);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(() => { if (initialConfirm) onInitialConfirmUsed?.(); }, []);
   const [submitting, setSubmitting] = useState(false);
   const close = useCallback(() => setConfirm(null), []);
 
@@ -44,7 +47,7 @@ export function DecisionPanel({ session, canAccept, onDecided }: { session: Demo
         footer={
           <>
             <Button variant="secondary" onClick={close} disabled={submitting}>تراجع</Button>
-            <Button variant={confirm === 'REJECT' ? 'danger' : 'primary'} disabled={confirm === 'ACCEPT' && !canAccept} loading={submitting} onClick={() => confirm && void submit(confirm)}>
+            <Button variant={confirm === 'REJECT' ? 'danger' : 'primary'} disabled={!online || (confirm === 'ACCEPT' && !canAccept)} loading={submitting} onClick={() => confirm && void submit(confirm)}>
               {confirm === 'ACCEPT' ? 'تأكيد الموافقة' : 'تأكيد الرفض'}
             </Button>
           </>

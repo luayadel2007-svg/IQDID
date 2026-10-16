@@ -4,12 +4,14 @@ import { Alert, Button, Card, Icon, Modal, PageHeader, AppearanceSettings, Switc
 import { describeError } from '@iqdid/api-client';
 import { useWallet } from '../gateway.tsx';
 import { readNotifyPref, writeNotifyPref } from '../prefs.ts';
-import { MAX_FAVORITES, SERVICES, readFavorites, setOnboarded, writeFavorites, type ServiceId } from '../local.ts';
+import { MAX_FAVORITES, SERVICES, isPrivacyMode, readFavorites, setOnboarded, setPrivacyMode, writeFavorites, type ServiceId } from '../local.ts';
+import { useLocal } from '../components/useLocal.ts';
 
 export function SettingsPage() {
   const wallet = useWallet();
   const [notify, setNotify] = useState(readNotifyPref);
   const [favorites, setFavorites] = useState(readFavorites);
+  const privacy = useLocal(isPrivacyMode);
   const [confirmReset, setConfirmReset] = useState(false);
   const [busy, setBusy] = useState(false);
   const [message, setMessage] = useState<{ tone: 'success' | 'danger'; text: string } | null>(null);
@@ -39,6 +41,9 @@ export function SettingsPage() {
       <PageHeader eyebrow="التفضيلات" icon="settings" title="الإعدادات" />
       {message && <Alert tone={message.tone}>{message.text}</Alert>}
       <AppearanceSettings />
+      <Card title="الخصوصية" icon="lock">
+        <Switch label="وضع الخصوصية" hint="يخفي الاسم والصورة والأرقام التعريفية على الشاشة. يُحفظ الاختيار فقط، لا أي بيانات شخصية." checked={privacy} onChange={setPrivacyMode} />
+      </Card>
       <Card title="الإشعارات التجريبية" icon="bell">
         <Switch label="تنبيه داخل التطبيق عند وصول طلب جديد" hint="إشعارات محلية فقط؛ لا يُرسل أي إشعار خارج هذا المتصفح." checked={notify} onChange={(on) => { setNotify(on); writeNotifyPref(on); }} />
         <Link to="/notifications" className="small">فتح مركز الإشعارات</Link>

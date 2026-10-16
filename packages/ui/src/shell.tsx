@@ -3,6 +3,7 @@ import { Button, DemoBanner } from './components.tsx';
 import { useTheme } from './hooks.ts';
 import { useAppearance } from './preferences.tsx';
 import { Icon } from './Icon.tsx';
+import { BrandMark } from './BrandMark.tsx';
 
 export function ThemeToggle() {
   const { resolvedTheme, toggle } = useTheme();
@@ -43,7 +44,7 @@ export function AppShell({ appName, appSubtitle, layout, nav, headerExtra, topSl
       <DemoBanner />
       <header className="shell__header" data-scrolled={scrolled}>
         <div className="shell__brand">
-          <span className="shell__brand-mark" aria-hidden="true">ID</span>
+          <BrandMark />
           <span>
             {appName}
             <div className="shell__sub">{appSubtitle}</div>

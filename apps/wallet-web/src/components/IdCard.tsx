@@ -5,7 +5,7 @@ import { ValidityBadge } from './bits.tsx';
 const mask = (v: string): string => (v.length <= 4 ? '••••' : `${'•'.repeat(Math.max(4, v.length - 4))}${v.slice(-4)}`);
 
 /** Visual rendering of a synthetic credential. Sensitive values are masked unless revealed. */
-export function IdCard({ card, reveal, mini = false }: { card: DemoCredentialSummary; reveal: boolean; mini?: boolean }) {
+export function IdCard({ card, reveal, mini = false, privacy = false }: { card: DemoCredentialSummary; reveal: boolean; mini?: boolean; privacy?: boolean }) {
   const claim = (k: string) => card.claims.find((c) => c.key === k)?.value ?? '—';
   const doc = claim('document_number');
   return (
@@ -19,8 +19,8 @@ export function IdCard({ card, reveal, mini = false }: { card: DemoCredentialSum
       </div>
       {!mini && <span className="id-card__chip" aria-hidden="true" />}
       <dl>
-        <dt>الاسم</dt><dd>{claim('full_name')}</dd>
-        {!mini && <><dt>المرجع</dt><dd><span className="mono">{card.holderRef}</span></dd></>}
+        <dt>الاسم</dt><dd>{privacy ? '••••••' : claim('full_name')}</dd>
+        {!mini && <><dt>المرجع</dt><dd><span className="mono">{privacy ? '••••' : card.holderRef}</span></dd></>}
         <dt>رقم الوثيقة</dt><dd><span className="mono">{reveal ? doc : mask(doc)}</span></dd>
         <dt>تنتهي في</dt><dd>{formatDate(card.expiresAt)}</dd>
       </dl>

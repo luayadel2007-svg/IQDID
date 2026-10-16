@@ -9,7 +9,9 @@
     "scripts/ux-e2e.mjs",
     "scripts/wallet-e2e.mjs",
     "scripts/compatibility-contract.mjs",
-    "scripts/pdf-ux-audit.mjs"
+    "scripts/pdf-ux-audit.mjs",
+    "test/wallet-cards-v3.test.tsx",
+    "test/iqdi-branding.test.tsx"
   ],
   "requiredNpmScripts": {
     "e2e": "scripts/e2e.mjs",
@@ -35,13 +37,15 @@
     "test/wallet-premium.test.tsx",
     "test/cross-app.test.tsx",
     "test/provider-replacement.test.tsx",
-    "test/crypto-contract.test.ts"
+    "test/crypto-contract.test.ts",
+    "test/wallet-cards-v3.test.tsx",
+    "test/iqdi-branding.test.tsx"
   ],
-  "minVitestTests": 89,
+  "minVitestTests": 124,
   "minBrowserSteps": {
     "e2e": 12,
     "ux": 20,
-    "wallet": 13,
+    "wallet": 16,
     "pdf": 27
   },
   "workflow": {

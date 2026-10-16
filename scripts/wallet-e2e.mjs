@@ -78,7 +78,7 @@ try {
     await wallet.getByText('سُجلت موافقتك التجريبية').waitFor();
     await verifier.getByText('موافقة تجريبية — DEMO_ACCEPTED').waitFor({ timeout: 10_000 });
     await noProtocolClaim(wallet); await noProtocolClaim(verifier);
-    await nav(wallet, /السجل/).click();
+    await nav(wallet, /النشاط/).click();
     await wallet.getByText(/وافق المواطن التجريبي على مشاركة البيانات/).first().waitFor();
     await nav(verifier, /سجل العمليات/).click();
     await verifier.getByText(/وافق المواطن التجريبي على مشاركة البيانات/).first().waitFor();
@@ -186,8 +186,8 @@ try {
     await wallet.getByRole('button', { name: 'فاتح', exact: true }).click();
   });
 
-  const ROUTES = ['', 'welcome', 'card', 'credentials', 'credentials/cred-test-002', 'requests', 'qr', 'activity', 'notifications', 'settings', 'help'];
-  await step('responsive RTL: 11 routes at 320 (larger text), 390 and 768 without horizontal overflow', async () => {
+  const ROUTES = ['', 'welcome', 'cards', 'cards?card=cred-test-001', 'card', 'credentials', 'credentials/cred-test-002', 'requests', 'qr', 'activity', 'notifications', 'settings', 'help'];
+  await step('responsive RTL: 13 routes at 320 (larger text), 390 and 768 without horizontal overflow', async () => {
     const bad = [];
     for (const [w, text] of [[320, 'larger'], [390, 'normal'], [768, 'normal']]) {
       await wallet.setViewportSize({ width: w, height: 800 });
@@ -202,6 +202,60 @@ try {
     await wallet.evaluate(() => localStorage.removeItem('iqdid-appearance-v1'));
     await wallet.setViewportSize({ width: 390, height: 844 });
     check(bad.length === 0, `overflow/RTL: ${bad.join(', ')}`);
+  });
+
+  await step('IQDI brand: titles and visible text use IQDI, never IQDID (both apps)', async () => {
+    for (const [p, url, name] of [[wallet, W, 'IQDI Wallet'], [verifier, V, 'IQDI Verifier']]) {
+      await p.goto(url); await p.getByRole('heading', { level: 1 }).first().waitFor();
+      const { title, text } = await p.evaluate(() => ({ title: document.title, text: document.body.innerText }));
+      check(title.startsWith(name) && !/IQDID/i.test(title + text) && text.includes(name), `brand wrong in ${name}: ${title}`);
+    }
+  });
+
+  await step('card stack: tap brings a card to the front and expands it; details; Back restores it', async () => {
+    await wallet.setViewportSize({ width: 390, height: 844 });
+    await wallet.goto(`${W}/cards`);
+    const stack = wallet.getByRole('list', { name: 'مجموعة البطاقات' });
+    await stack.waitFor();
+    check(await stack.getByRole('button').count() === 5, 'expected 5 cards');
+    // Tap the visible header strip of a covered card, as a person would (its centre is under the next card).
+    await stack.getByRole('button', { name: /^الوثيقة الدراسية/ }).click({ position: { x: 60, y: 30 } });
+    await wallet.waitForURL(/card=cred-test-005/);
+    // The URL changes before React re-renders; wait for the rendered state, then assert it.
+    await stack.getByRole('button', { name: /^الوثيقة الدراسية/ }).and(wallet.locator('[aria-expanded="true"]')).waitFor({ timeout: 10_000 });
+    const first = stack.getByRole('button').first();
+    check((await first.getAttribute('aria-label'))?.startsWith('الوثيقة الدراسية') && await first.getAttribute('aria-expanded') === 'true', 'selected card not in front/expanded');
+    const box = await first.boundingBox();
+    check(box !== null && box.height >= 180, `selected card not fully visible (${box?.height})`);
+    await wallet.waitForTimeout(400);
+    await shot(wallet, 'j14-card-selected');
+    await first.click();
+    await wallet.getByRole('heading', { level: 1, name: 'تفاصيل الاعتماد' }).waitFor();
+    await wallet.getByRole('list', { name: 'حالات الاعتماد' }).getByText('اعتماد تجريبي للعرض فقط').waitFor();
+    await wallet.goBack();
+    await wallet.waitForURL(/\/cards\?card=cred-test-005/);
+    await stack.getByRole('button', { name: /^الوثيقة الدراسية/ }).and(wallet.locator('[aria-expanded="true"]')).waitFor({ timeout: 10_000 }).catch(() => undefined);
+    check((await stack.getByRole('button').first().getAttribute('aria-label'))?.startsWith('الوثيقة الدراسية') && await stack.getByRole('button').first().getAttribute('aria-expanded') === 'true', 'selection lost after Back');
+  });
+
+  await step('card stack: keyboard + reduced motion + list view alternative', async () => {
+    await wallet.emulateMedia({ reducedMotion: 'reduce' });
+    await wallet.goto(`${W}/cards`);
+    const stack = wallet.getByRole('list', { name: 'مجموعة البطاقات' });
+    await stack.getByRole('button').first().focus();
+    await wallet.keyboard.press('ArrowDown');
+    await wallet.keyboard.press('Enter');
+    await wallet.waitForURL(/card=cred-test-002/);
+    const animating = await wallet.evaluate(() => document.getAnimations().filter((a) => a.playState === 'running').length);
+    check(animating === 0, `animations running under reduced motion: ${animating}`);
+    await wallet.keyboard.press('Escape');
+    await wallet.waitForURL((u) => !u.search.includes('card='));
+    await wallet.getByRole('button', { name: 'عرض القائمة' }).click();
+    await wallet.getByRole('list', { name: 'قائمة الاعتمادات' }).waitFor();
+    await wallet.reload();
+    await wallet.getByRole('list', { name: 'قائمة الاعتمادات' }).waitFor();
+    await wallet.getByRole('button', { name: 'عرض البطاقات' }).click();
+    await wallet.emulateMedia({ reducedMotion: 'no-preference' });
   });
 
   await step('no browser console errors in either app', async () => {

@@ -26,8 +26,8 @@ export function VerifierApp({ gateway, pollMs = 1500 }: { gateway: VerifierGatew
     <VerifierProviders gateway={gateway}>
       <PollContext.Provider value={pollMs}>
         <AppShell
-          appName="بوابة التحقق للمؤسسات"
-          appSubtitle="واجهة الموظف — نسخة تجريبية"
+          appName="IQDI Verifier"
+          appSubtitle="بوابة التحقق المؤسسي — تجريبية"
           layout="desktop"
           headerExtra={<OrgSwitcher />}
           nav={NAV.map((n) => (

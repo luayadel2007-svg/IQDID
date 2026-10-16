@@ -1,0 +1,276 @@
+stderr | test/wallet-cards-v3.test.tsx > independent-review fixes > the reject deep link opens once: the param is removed and the dialog stays closed after «تراجع» and refreshes
+An update to RequestDetailPage inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+
+stderr | test/wallet-cards-v3.test.tsx > independent-review fixes > the reject deep link opens once: the param is removed and the dialog stays closed after «تراجع» and refreshes
+An update to FeedProvider inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+
+stderr | test/wallet-cards-v3.test.tsx > independent-review fixes > the reject deep link opens once: the param is removed and the dialog stays closed after «تراجع» and refreshes
+An update to FeedProvider inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+
+stderr | test/wallet-cards-v3.test.tsx > independent-review fixes > the reject deep link opens once: the param is removed and the dialog stays closed after «تراجع» and refreshes
+An update to RequestDetailPage inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+
+stderr | test/wallet-cards-v3.test.tsx > independent-review fixes > the reject deep link opens once: the param is removed and the dialog stays closed after «تراجع» and refreshes
+An update to FeedProvider inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+
+stderr | test/wallet-cards-v3.test.tsx > independent-review fixes > the reject deep link opens once: the param is removed and the dialog stays closed after «تراجع» and refreshes
+An update to FeedProvider inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+
+stderr | test/wallet-cards-v3.test.tsx > independent-review fixes > the reject deep link opens once: the param is removed and the dialog stays closed after «تراجع» and refreshes
+An update to RequestDetailPage inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+
+stderr | test/wallet-cards-v3.test.tsx > independent-review fixes > the reject deep link opens once: the param is removed and the dialog stays closed after «تراجع» and refreshes
+An update to FeedProvider inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+
+stderr | test/wallet-cards-v3.test.tsx > independent-review fixes > the reject deep link opens once: the param is removed and the dialog stays closed after «تراجع» and refreshes
+An update to FeedProvider inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+
+stderr | test/wallet-premium.test.tsx > notifications, favorites, onboarding > every wallet screen renders with a level-1 heading and never claims protocol verification
+An update to HomePage inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+
+stderr | test/wallet-premium.test.tsx > notifications, favorites, onboarding > every wallet screen renders with a level-1 heading and never claims protocol verification
+An update to HomePage inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+
+stderr | test/wallet-premium.test.tsx > notifications, favorites, onboarding > every wallet screen renders with a level-1 heading and never claims protocol verification
+An update to HomePage inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+
+stderr | test/wallet-premium.test.tsx > notifications, favorites, onboarding > every wallet screen renders with a level-1 heading and never claims protocol verification
+An update to FeedProvider inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+
+stderr | test/wallet-premium.test.tsx > notifications, favorites, onboarding > every wallet screen renders with a level-1 heading and never claims protocol verification
+An update to FeedProvider inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+
+stderr | test/wallet-premium.test.tsx > notifications, favorites, onboarding > every wallet screen renders with a level-1 heading and never claims protocol verification
+An update to CredentialsBrowser inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+
+stderr | test/wallet-premium.test.tsx > notifications, favorites, onboarding > every wallet screen renders with a level-1 heading and never claims protocol verification
+An update to FeedProvider inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+
+stderr | test/wallet-premium.test.tsx > notifications, favorites, onboarding > every wallet screen renders with a level-1 heading and never claims protocol verification
+An update to FeedProvider inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+
+stderr | test/wallet-premium.test.tsx > notifications, favorites, onboarding > every wallet screen renders with a level-1 heading and never claims protocol verification
+An update to RequestsPage inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+
+stderr | test/wallet-premium.test.tsx > notifications, favorites, onboarding > every wallet screen renders with a level-1 heading and never claims protocol verification
+An update to FeedProvider inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+
+stderr | test/wallet-premium.test.tsx > notifications, favorites, onboarding > every wallet screen renders with a level-1 heading and never claims protocol verification
+An update to FeedProvider inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+
+stderr | test/wallet-premium.test.tsx > notifications, favorites, onboarding > every wallet screen renders with a level-1 heading and never claims protocol verification
+An update to ActivityPage inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+
+stderr | test/wallet-premium.test.tsx > notifications, favorites, onboarding > every wallet screen renders with a level-1 heading and never claims protocol verification
+An update to FeedProvider inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+
+stderr | test/wallet-premium.test.tsx > notifications, favorites, onboarding > every wallet screen renders with a level-1 heading and never claims protocol verification
+An update to FeedProvider inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+

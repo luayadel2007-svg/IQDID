@@ -1,0 +1,33 @@
+
+> iqdid-prototype@0.8.0 test:pdf-ux
+> node scripts/pdf-ux-audit.mjs
+
+PASS wallet P1 Arabic RTL (§6.5) — {"dir":"rtl","lang":"ar"}
+PASS wallet P2 base text ≥ 16px (§6.1) — {"bodyPx":16,"smallestPx":13,"secondaryUnder16":"34/54"}
+PASS wallet P3 functional motion 200–400 ms (§5) — {"durationsMs":[220,320]}
+PASS wallet P4 consistent icon size (§4.4) — {"navIconSizes":["22x22"]}
+PASS wallet P5 status not by colour alone (§5.3) — {"emptyBadges":0}
+PASS wallet P6 button press feedback (§5.5) — stylesheet rule present — {"activeRule":true}
+PASS wallet P7 skeleton loading, not a bare spinner (§5.2) — stylesheet rule present — {"shimmerSkeleton":true}
+PASS wallet P8 core services ≤ 3 clicks (§3) — measured — {"reached":[{"service":"الرئيسية","clicks":1,"heading":"أهلاً بك","changed":true},{"service":"بطاقاتي","clicks":1,"heading":"بطاقاتي","changed":true},{"service":"الطلبات","clicks":1,"heading":"طلبات مشاركة البيانات","changed":true},{"service":"النشاط","clicks":1,"heading":"سجل الاستخدام","changed":true},{"service":"الإعدادات","clicks":1,"heading":"الإعدادات","changed":true}]}
+PASS wallet P9 top bar adapts to scroll, nothing hidden (§5.4) — {"state":"true","hidden":0}
+PASS wallet P10 user can turn transparency off (§2) — {"navBackdropFilter":"none"}
+PASS wallet P11 light and dark are complete themes (§6.4, §7.1) — {"light":["rgb(243, 246, 252)","rgb(10, 22, 48)"],"dark":["rgb(4, 11, 26)","rgb(234, 240, 251)"]}
+PASS wallet P12 motion can be reduced (§5) — every element — {"elements":189,"moving":0}
+PASS wallet P13 animated confirmation after an important action (§5.1) — {"successIconAnimation":"confirm-pop"}
+PASS wallet P14 responsive 320/390/768/1366 + 200 % text, no horizontal scroll (§3, §6.6) — {"overflow":[]}
+PASS verifier P1 Arabic RTL (§6.5) — {"dir":"rtl","lang":"ar"}
+PASS verifier P2 base text ≥ 16px (§6.1) — {"bodyPx":16,"smallestPx":13,"secondaryUnder16":"22/33"}
+PASS verifier P3 functional motion 200–400 ms (§5) — {"durationsMs":[220]}
+PASS verifier P4 consistent icon size (§4.4) — {"navIconSizes":["22x22"]}
+PASS verifier P5 status not by colour alone (§5.3) — {"emptyBadges":0}
+PASS verifier P6 button press feedback (§5.5) — stylesheet rule present — {"activeRule":true}
+PASS verifier P7 skeleton loading, not a bare spinner (§5.2) — stylesheet rule present — {"shimmerSkeleton":true}
+PASS verifier P8 core services ≤ 3 clicks (§3) — measured — {"reached":[{"service":"لوحة المتابعة","clicks":1,"heading":"لوحة المتابعة","changed":true},{"service":"طلب تحقق جديد","clicks":1,"heading":"إنشاء طلب تحقق تجريبي","changed":true},{"service":"جلسات التحقق","clicks":1,"heading":"جلسات التحقق","changed":true},{"service":"النتائج","clicks":1,"heading":"نتائج الطلبات","changed":true},{"service":"سجل العمليات","clicks":1,"heading":"سجل العمليات","changed":true},{"service":"الإعدادات","clicks":1,"heading":"الإعدادات","changed":true}]}
+PASS verifier P9 top bar adapts to scroll, nothing hidden (§5.4) — {"state":"true","hidden":0}
+PASS verifier P10 user can turn transparency off (§2) — {"navBackdropFilter":"none"}
+PASS verifier P11 light and dark are complete themes (§6.4, §7.1) — {"light":["rgb(243, 246, 252)","rgb(10, 22, 48)"],"dark":["rgb(4, 11, 26)","rgb(234, 240, 251)"]}
+PASS verifier P12 motion can be reduced (§5) — every element — {"elements":122,"moving":0}
+PASS verifier P14 responsive 320/390/768/1366 + 200 % text, no horizontal scroll (§3, §6.6) — {"overflow":[]}
+
+PDF AUDIT: 27 PASS / 0 FAIL

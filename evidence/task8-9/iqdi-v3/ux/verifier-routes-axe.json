@@ -1,0 +1,266 @@
+[
+  {
+    "route": "",
+    "mode": "light",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "targets": [
+          [
+            ".demo-banner__tag"
+          ],
+          [
+            ".shell__brand > span"
+          ],
+          [
+            "a[href$=\"settings\"]"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "route": "new",
+    "mode": "light",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "targets": [
+          [
+            ".demo-banner__tag"
+          ],
+          [
+            ".shell__brand > span"
+          ],
+          [
+            "a[href$=\"settings\"]"
+          ],
+          [
+            "#«r2»"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "route": "sessions",
+    "mode": "light",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "targets": [
+          [
+            ".demo-banner__tag"
+          ],
+          [
+            ".shell__brand > span"
+          ],
+          [
+            "a[href$=\"settings\"]"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "route": "sessions/2dc77e6b-9d23-4fcc-9fbb-39ba4deed519",
+    "mode": "light",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "targets": [
+          [
+            ".demo-banner__tag"
+          ],
+          [
+            ".shell__brand > span"
+          ],
+          [
+            "a[href$=\"settings\"]"
+          ],
+          [
+            "h1"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "route": "results",
+    "mode": "light",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "targets": [
+          [
+            ".demo-banner__tag"
+          ],
+          [
+            ".shell__brand > span"
+          ],
+          [
+            "a[href$=\"settings\"]"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "route": "activity",
+    "mode": "light",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "targets": [
+          [
+            ".demo-banner__tag"
+          ],
+          [
+            ".shell__brand > span"
+          ],
+          [
+            "a[href$=\"settings\"]"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "route": "",
+    "mode": "dark",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "targets": [
+          [
+            ".demo-banner__tag"
+          ],
+          [
+            ".shell__brand > span"
+          ],
+          [
+            "a[href$=\"settings\"]"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "route": "new",
+    "mode": "dark",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "targets": [
+          [
+            ".demo-banner__tag"
+          ],
+          [
+            ".shell__brand > span"
+          ],
+          [
+            "a[href$=\"settings\"]"
+          ],
+          [
+            "#«r2»"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "route": "sessions",
+    "mode": "dark",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "targets": [
+          [
+            ".demo-banner__tag"
+          ],
+          [
+            ".shell__brand > span"
+          ],
+          [
+            "a[href$=\"settings\"]"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "route": "sessions/2dc77e6b-9d23-4fcc-9fbb-39ba4deed519",
+    "mode": "dark",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "targets": [
+          [
+            ".demo-banner__tag"
+          ],
+          [
+            ".shell__brand > span"
+          ],
+          [
+            "a[href$=\"settings\"]"
+          ],
+          [
+            "h1"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "route": "results",
+    "mode": "dark",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "targets": [
+          [
+            ".demo-banner__tag"
+          ],
+          [
+            ".shell__brand > span"
+          ],
+          [
+            "a[href$=\"settings\"]"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "route": "activity",
+    "mode": "dark",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "targets": [
+          [
+            ".demo-banner__tag"
+          ],
+          [
+            ".shell__brand > span"
+          ],
+          [
+            "a[href$=\"settings\"]"
+          ]
+        ]
+      }
+    ]
+  }
+]

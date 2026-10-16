@@ -1,4 +1,8 @@
-# IQDID Prototype
+# IQDI — Iraqi Digital Identity (Prototype)
+
+IQDI — الهوية الرقمية العراقية. Apps: **IQDI Wallet** (محفظة المواطن الرقمية) and **IQDI Verifier** (بوابة التحقق المؤسسي), part of the IQDI Digital Identity Ecosystem.
+
+> Naming: the product was renamed from IQDID to **IQDI**. Internal identifiers keep the legacy prefix for compatibility (npm scope `@iqdid/*`, local/session-storage keys and DOM event names `iqdid-*` (e.g. `iqdid-demo-theme`, `iqdid-appearance-v1`, `iqdid-demo-template`, `iqdid-theme-change`), evidence env vars `IQDID_*`, the GitHub repository name). See `docs/task8-9/iqdi-v3/IQDI_REBRANDING_REPORT.md`.
 
 **TEST ONLY — Iraqi digital identity prototype.** Synthetic data and test keys only. Not affiliated with, endorsed by, or representing any government body. Nothing in this repository performs real identity verification.
 

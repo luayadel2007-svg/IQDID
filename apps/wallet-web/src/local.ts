@@ -9,19 +9,30 @@ const ONBOARDED = 'iqdid-wallet-onboarded';
 export const isOnboarded = (): boolean => read(ONBOARDED) === 'yes';
 export const setOnboarded = (on: boolean): void => { write(ONBOARDED, on ? 'yes' : 'no'); emit(); };
 
+const PRIVACY = 'iqdi-wallet-privacy';
+/** Privacy mode hides name, photo and identifiers on screen. Only the on/off flag is stored. */
+export const isPrivacyMode = (): boolean => read(PRIVACY) === 'on';
+export const setPrivacyMode = (on: boolean): void => { write(PRIVACY, on ? 'on' : 'off'); emit(); };
+
+const CARDS_VIEW = 'iqdi-wallet-cards-view';
+export type CardsView = 'stack' | 'list';
+export const readCardsView = (): CardsView => (read(CARDS_VIEW) === 'list' ? 'list' : 'stack');
+export const writeCardsView = (v: CardsView): void => { write(CARDS_VIEW, v); emit(); };
+
 export const SERVICES = [
+  { id: 'cards', href: '/cards', label: 'بطاقاتي', icon: 'wallet' },
   { id: 'card', href: '/card', label: 'بطاقتي', icon: 'card' },
   { id: 'credentials', href: '/credentials', label: 'الاعتمادات', icon: 'folder' },
   { id: 'requests', href: '/requests', label: 'الطلبات', icon: 'inbox' },
   { id: 'qr', href: '/qr', label: 'رمز QR', icon: 'qr' },
-  { id: 'activity', href: '/activity', label: 'السجل', icon: 'clock' },
+  { id: 'activity', href: '/activity', label: 'النشاط', icon: 'activity' },
   { id: 'notifications', href: '/notifications', label: 'الإشعارات', icon: 'bell' },
   { id: 'help', href: '/help', label: 'المساعدة', icon: 'help' },
   { id: 'settings', href: '/settings', label: 'الإعدادات', icon: 'settings' },
 ] as const;
 export type ServiceId = (typeof SERVICES)[number]['id'];
 const FAVORITES = 'iqdid-wallet-favorites';
-const DEFAULT_FAVORITES: readonly ServiceId[] = ['card', 'credentials', 'requests', 'qr', 'activity', 'help'];
+const DEFAULT_FAVORITES: readonly ServiceId[] = ['card', 'credentials', 'activity', 'help'];
 export const MAX_FAVORITES = 6;
 export function readFavorites(): ServiceId[] {
   try {

@@ -51,11 +51,11 @@ afterAll(async () => { await srv.close(); });
 beforeEach(() => srv.store.reset(false));
 
 describe('credentials', () => {
-  it('lists four synthetic credentials; search and status filters narrow the list', async () => {
+  it('lists five synthetic credentials; search and status filters narrow the list', async () => {
     const w = renderWallet('/credentials');
     const ui = within(w.container);
     const list = await ui.findByRole('list', { name: 'قائمة الاعتمادات' });
-    expect(within(list).getAllByRole('listitem')).toHaveLength(4);
+    expect(within(list).getAllByRole('listitem')).toHaveLength(5);
     await userEvent.type(ui.getByLabelText('بحث في الاعتمادات'), 'سوق');
     expect(within(ui.getByRole('list', { name: 'قائمة الاعتمادات' })).getAllByRole('listitem')).toHaveLength(1);
     await userEvent.clear(ui.getByLabelText('بحث في الاعتمادات'));
@@ -77,7 +77,7 @@ describe('credentials', () => {
 
   it('only the national ID answers verification requests (wallet and server use the same rule)', () => {
     const list = srv.store.credentials();
-    expect(list).toHaveLength(4);
+    expect(list).toHaveLength(5);
     expect(primaryIdentityCredential(list)?.id).toBe('cred-test-001');
   });
 });
@@ -201,12 +201,12 @@ describe('notifications, favorites, onboarding', () => {
     const w = renderWallet('/settings');
     const ui = within(w.container);
     await userEvent.click(await ui.findByRole('checkbox', { name: 'رمز QR' }));
-    for (const name of ['بطاقتي', 'الاعتمادات', 'الطلبات', 'السجل']) await userEvent.click(ui.getByRole('checkbox', { name }));
+    for (const name of ['بطاقتي', 'الاعتمادات', 'الطلبات', 'النشاط']) await userEvent.click(ui.getByRole('checkbox', { name }));
     expect(ui.getByRole('checkbox', { name: 'الإشعارات' })).toBeDisabled();
     w.unmount();
     const home = renderWallet('/');
     const grid = await within(home.container).findByRole('navigation', { name: 'خدماتي المفضلة' });
-    expect(within(grid).getAllByRole('link').map((a) => a.textContent)).toEqual(['المساعدة', 'رمز QR', 'بطاقتي', 'الاعتمادات', 'الطلبات', 'السجل']);
+    expect(within(grid).getAllByRole('link').map((a) => a.textContent)).toEqual(['المساعدة', 'رمز QR', 'بطاقتي', 'الاعتمادات', 'الطلبات', 'النشاط']);
   });
 
   it('onboarding: home offers the tour until finished; finishing returns home without the prompt', async () => {

@@ -1,0 +1,22 @@
+
+> iqdid-prototype@0.8.0 test:wallet
+> node scripts/wallet-e2e.mjs
+
+PASS  journey: verifier creates → wallet notified (bell + nav badge + home alert)
+PASS  journey: wallet reviews request, selective disclosure shows 1 shared / 3 withheld
+PASS  journey: page reload during review keeps the request and its countdown
+PASS  journey: approve → verifier updates live → both histories record it, no protocol claim
+PASS  reject via request code (QR screen) for organisation B → verifier B sees rejection
+PASS  multiple organisations: wallet filter isolates each organisation
+PASS  duplicate decision from a stale second tab is refused; tab shows real outcome
+PASS  expired session (TTL 20s): wallet closes it, decision refused by server
+PASS  network failure: error with retry, then recovery after retry
+PASS  offline: banner shown and decisions disabled; restored when back online
+PASS  theme persists across reload and every wallet screen (dark)
+PASS  responsive RTL: 13 routes at 320 (larger text), 390 and 768 without horizontal overflow
+PASS  IQDI brand: titles and visible text use IQDI, never IQDID (both apps)
+PASS  card stack: tap brings a card to the front and expands it; details; Back restores it
+PASS  card stack: keyboard + reduced motion + list view alternative
+PASS  no browser console errors in either app
+
+WALLET E2E: 16 PASS / 0 FAIL

@@ -46,7 +46,7 @@ Rules enforced on the server (not only hidden in the UI): one decision per reque
 
 ## Switching to real services later
 
-Apps obtain their gateway from `createTransport(mode)`. `VITE_IQDID_TRANSPORT=real` selects `RealTransportPlaceholder`, which rejects every call with `not_implemented` and shows an explicit message. Replacing it means implementing `Transport` for the real services; pages and gateway interfaces stay the same.
+Apps obtain their gateway from `createTransport(mode)`. `VITE_IQDI_TRANSPORT=real` (legacy `VITE_IQDID_TRANSPORT` is still honoured) selects `RealTransportPlaceholder`, which rejects every call with `not_implemented` and shows an explicit message. Replacing it means implementing `Transport` for the real services; pages and gateway interfaces stay the same.
 
 ## Environment variables
 
@@ -57,7 +57,7 @@ Apps obtain their gateway from `createTransport(mode)`. `VITE_IQDID_TRANSPORT=re
 | `DEMO_SESSION_TTL_MS` | 120000 | demo API |
 | `DEMO_LATENCY_MS` | 250 | demo API (makes loading states visible) |
 | `DEMO_API_TARGET` | http://127.0.0.1:4010 | Vite proxy |
-| `VITE_IQDID_TRANSPORT` | demo | apps (`real` = disabled placeholder) |
+| `VITE_IQDI_TRANSPORT` (legacy: `VITE_IQDID_TRANSPORT`) | demo | apps (`real` = disabled placeholder) |
 | `CHROMIUM_PATH` | — | E2E (optional explicit Chromium binary) |
 
 ## Tests

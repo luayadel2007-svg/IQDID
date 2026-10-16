@@ -1,0 +1,60 @@
+
+> iqdid-prototype@0.8.0 modernization:verify
+> node scripts/modernization-checks.mjs
+
+typecheck: PASS (exit 0)
+lint: PASS (exit 0)
+tests: PASS (exit 0)
+compatibility: PASS (exit 0)
+build: PASS (exit 0)
+browser-regression: PASS (exit 0)
+browser-ux: PASS (exit 0)
+browser-wallet: FAIL (exit 1)
+PASS  journey: verifier creates → wallet notified (bell + nav badge + home alert)
+PASS  journey: wallet reviews request, selective disclosure shows 1 shared / 3 withheld
+PASS  journey: page reload during review keeps the request and its countdown
+PASS  journey: approve → verifier updates live → both histories record it, no protocol claim
+PASS  reject via request code (QR screen) for organisation B → verifier B sees rejection
+PASS  multiple organisations: wallet filter isolates each organisation
+PASS  duplicate decision from a stale second tab is refused; tab shows real outcome
+PASS  expired session (TTL 20s): wallet closes it, decision refused by server
+PASS  network failure: error with retry, then recovery after retry
+PASS  offline: banner shown and decisions disabled; restored when back online
+PASS  theme persists across reload and every wallet screen (dark)
+PASS  responsive RTL: 11 routes at 320 (larger text), 390 and 768 without horizontal overflow
+PASS  IQDI brand: titles and visible text use IQDI, never IQDID (both apps)
+FAIL  card stack: tap brings a card to the front and expands it; details; Back restores it
+      locator.click: Timeout 30000ms exceeded.
+PASS  card stack: keyboard + reduced motion + list view alternative
+PASS  no browser console errors in either app
+
+WALLET E2E: 15 PASS / 1 FAIL
+
+browser-pdf-ux: PASS (exit 0)
+coverage-guard: FAIL (exit 1)
+COVERAGE GUARD: FAIL
+- wallet: not every step passed
+
+secrets-diff: PASS (exit 0)
+secrets-all-index: BLOCKED (exit 2)
+    },
+    {
+      "path": "evidence/task8/e2e/screenshots/07-verifier-activity.png",
+      "code": "UNSUPPORTED_BINARY"
+    },
+    {
+      "path": "evidence/task8/e2e/screenshots/07-wallet-activity.png",
+      "code": "UNSUPPORTED_BINARY"
+    },
+    {
+      "path": "evidence/task8/e2e/screenshots/08-verifier-dark.png",
+      "code": "UNSUPPORTED_BINARY"
+    },
+    {
+      "path": "evidence/task8/e2e/screenshots/08-wallet-dark.png",
+      "code": "UNSUPPORTED_BINARY"
+    }
+  ]
+}
+
+verify exit=1

@@ -58,6 +58,11 @@ export function seedExtraCredentials(now: number): DemoCredentialSummary[] {
       claims: [{ key: 'governorate', label: 'المحافظة', value: 'محافظة تجريبية' }, { key: 'residence_ref', label: 'مرجع السكن التجريبي', value: 'TEST-RES-0003' }],
     },
     {
+      ...base, id: 'cred-test-005', type: 'DEMO_EDUCATION', title: 'الوثيقة الدراسية (تجريبية)', issuerName: 'جهة تعليمية تجريبية (محاكاة)', status: 'ACTIVE',
+      issuedAt: new Date(now - 900 * day).toISOString(), expiresAt: new Date(now + 3000 * day).toISOString(),
+      claims: [{ key: 'qualification', label: 'المؤهل', value: 'بكالوريوس (تجريبي)' }, { key: 'certificate_ref', label: 'رقم الوثيقة الدراسية التجريبي', value: 'TEST-ED-0005' }],
+    },
+    {
       ...base, id: 'cred-test-004', type: 'DEMO_HEALTH_CARD', title: 'بطاقة التأمين الصحي (تجريبية)', issuerName: 'جهة صحية تجريبية (محاكاة)', status: 'SUSPENDED',
       issuedAt: new Date(now - 200 * day).toISOString(), expiresAt: new Date(now + 165 * day).toISOString(),
       claims: [{ key: 'plan', label: 'الخطة', value: 'أساسية (تجريبية)' }, { key: 'member_ref', label: 'رقم العضوية التجريبي', value: 'TEST-HC-0004' }],

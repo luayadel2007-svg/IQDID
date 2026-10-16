@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { act, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { AppShell, Alert, Badge, Button, ErrorState, SegmentedControl, StatCard, Input, Modal, ThemeToggle, contrastRatio, tokens } from './index.ts';
+import { AppShell, Alert, Badge, Button, ErrorState, SegmentedControl, StatCard, Input, Modal, ThemeToggle, contrastRatio, tokens, cardPalette } from './index.ts';
 
 describe('ui primitives', () => {
   it('Button shows loading state and blocks clicks', async () => {
@@ -132,5 +132,17 @@ describe('PDF §5 adaptive top bar', () => {
     expect(screen.getByRole('button', { name: /تفعيل الوضع/ })).toBeVisible();
     act(() => { Object.defineProperty(window, 'scrollY', { value: 0, configurable: true }); window.dispatchEvent(new Event('scroll')); });
     expect(header).toHaveAttribute('data-scrolled', 'false');
+  });
+});
+
+describe('Design System V3 credential-card palette', () => {
+  it.each(['light', 'dark'] as const)('%s: card text and muted text meet WCAG AA on both gradient stops of every card', (mode) => {
+    const p = cardPalette[mode];
+    for (const kind of ['id', 'licence', 'residence', 'health', 'education'] as const) {
+      for (const stop of p[kind]) {
+        expect(contrastRatio(p.text, stop)).toBeGreaterThanOrEqual(7);
+        expect(contrastRatio(p.muted, stop)).toBeGreaterThanOrEqual(4.5);
+      }
+    }
   });
 });

@@ -12,7 +12,9 @@ export function useVerifier(): VerifierGateway {
 }
 
 export function defaultVerifierGateway(): VerifierGateway {
-  const mode = !import.meta.env.VITE_IQDID_TRANSPORT || import.meta.env.VITE_IQDID_TRANSPORT === 'demo' ? 'demo' : 'real';
+  // VITE_IQDI_TRANSPORT is the current name; VITE_IQDID_TRANSPORT (legacy) is still honoured.
+  const selected: unknown = import.meta.env.VITE_IQDI_TRANSPORT || import.meta.env.VITE_IQDID_TRANSPORT;
+  const mode = !selected || selected === 'demo' ? 'demo' : 'real';
   return createVerifierGateway(createTransport(mode));
 }
 

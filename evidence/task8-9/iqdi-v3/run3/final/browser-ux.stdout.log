@@ -1,0 +1,24 @@
+
+> iqdid-prototype@0.8.0 test:ux
+> node scripts/ux-e2e.mjs
+
+PASS wallet: primary service reached in one navigation interaction
+PASS wallet: settings synchronize header + persist after reload
+PASS wallet: automatic theme follows live operating-system changes
+PASS wallet: axe WCAG 2.2 AA settings (light) including contrast
+PASS wallet: axe WCAG 2.2 AA settings (dark) including contrast
+PASS wallet: axe audits all main routes in both themes
+PASS wallet: reduced motion disables animated skeleton and transitions
+PASS wallet: RTL responsive reflow at 320, 390, 768, 1366 and 200% text
+PASS wallet: keyboard controls and visible skip-link target
+PASS wallet: offline API error is visible, retry offered
+PASS verifier: primary service reached in one navigation interaction
+PASS verifier: settings synchronize header + persist after reload
+PASS verifier: automatic theme follows live operating-system changes
+PASS verifier: axe WCAG 2.2 AA settings (light) including contrast
+PASS verifier: axe WCAG 2.2 AA settings (dark) including contrast
+PASS verifier: axe audits all main routes in both themes
+PASS verifier: reduced motion disables animated skeleton and transitions
+PASS verifier: RTL responsive reflow at 320, 390, 768, 1366 and 200% text
+PASS verifier: keyboard controls and visible skip-link target
+PASS verifier: offline API error is visible, retry offered

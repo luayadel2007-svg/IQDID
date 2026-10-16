@@ -12,7 +12,7 @@ export const DEMO_SESSION_TTL_MS = 120_000;
 
 export const CREDENTIAL_STATUSES = ['ACTIVE', 'SUSPENDED', 'REVOKED'] as const;
 /** Synthetic credential kinds. Only DEMO_NATIONAL_ID answers verification requests. */
-export const CREDENTIAL_TYPES = ['DEMO_NATIONAL_ID', 'DEMO_DRIVING_LICENCE', 'DEMO_RESIDENCE_CARD', 'DEMO_HEALTH_CARD'] as const;
+export const CREDENTIAL_TYPES = ['DEMO_NATIONAL_ID', 'DEMO_DRIVING_LICENCE', 'DEMO_RESIDENCE_CARD', 'DEMO_HEALTH_CARD', 'DEMO_EDUCATION'] as const;
 export type DemoCredentialType = (typeof CREDENTIAL_TYPES)[number];
 export type DemoCredentialStatus = (typeof CREDENTIAL_STATUSES)[number];
 
