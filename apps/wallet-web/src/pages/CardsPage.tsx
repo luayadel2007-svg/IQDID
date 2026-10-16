@@ -27,6 +27,9 @@ export function CardsPage() {
   const listRef = useRef<HTMLUListElement>(null);
   const selectedRef = useRef<HTMLButtonElement>(null);
   const lastSelected = useRef<string | null>(null);
+  // Current selection, updated synchronously on select/deselect so a key pressed before the re-render still sees it.
+  const current = useRef<string | null>(selectedId);
+  current.current = selectedId;
   const cards = data ?? [];
   const selected = cards.find((c) => c.id === selectedId);
   const ordered = selected ? [selected, ...cards.filter((c) => c !== selected)] : cards;
@@ -46,12 +49,13 @@ export function CardsPage() {
   }, [selected]);
 
   // Only the card param changes; any ?view= stays, so selecting never flips the view.
-  const select = (id: string) => setParams((p) => { p.set('card', id); return p; }, { replace: true });
-  const deselect = () => setParams((p) => { p.delete('card'); return p; }, { replace: true });
+  const select = (id: string) => { current.current = id; setParams((p) => { p.set('card', id); return p; }, { replace: true }); };
+  const deselect = () => { current.current = null; setParams((p) => { p.delete('card'); return p; }, { replace: true }); };
   const escToStack = (e: KeyboardEvent<HTMLElement>) => { if (e.key === 'Escape') { e.preventDefault(); deselect(); } };
   const setView = (v: CardsView) => { writeCardsView(v); setParams({}, { replace: true }); };
   const onKey = (e: KeyboardEvent<HTMLButtonElement>) => {
-    if (e.key === 'Escape' && selected) { e.preventDefault(); deselect(); return; }
+    // Uses the synchronous ref, not this render's closure: a key can arrive between the URL change and the re-render.
+    if (e.key === 'Escape' && current.current) { e.preventDefault(); deselect(); return; }
     if (e.key !== 'ArrowDown' && e.key !== 'ArrowUp') return;
     const buttons = [...(listRef.current?.querySelectorAll<HTMLButtonElement>('button.cred-card') ?? [])];
     const i = buttons.indexOf(document.activeElement as HTMLButtonElement);
