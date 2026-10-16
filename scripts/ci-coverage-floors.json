@@ -16,7 +16,8 @@
     "test/verifier-task10.test.tsx",
     "scripts/demo-scenarios.mjs",
     "test/ecosystem-contract.test.ts",
-    "test/ecosystem-ui.test.tsx"
+    "test/ecosystem-ui.test.tsx",
+    "test/secret-scanner-png.test.ts"
   ],
   "requiredNpmScripts": {
     "e2e": "scripts/e2e.mjs",
@@ -40,7 +41,8 @@
     "browser-pdf-ux",
     "browser-scenarios",
     "coverage-guard",
-    "secrets-diff"
+    "secrets-diff",
+    "secrets-all-index"
   ],
   "requiredVitestFiles": [
     "test/wallet-premium.test.tsx",
@@ -51,9 +53,16 @@
     "test/iqdi-branding.test.tsx",
     "test/verifier-task10.test.tsx",
     "test/ecosystem-contract.test.ts",
-    "test/ecosystem-ui.test.tsx"
+    "test/ecosystem-ui.test.tsx",
+    "packages/api-client/src/transport.test.ts",
+    "packages/mock-services/src/server.test.ts",
+    "packages/mock-services/src/store.test.ts",
+    "packages/shared-types/src/index.test.ts",
+    "packages/ui/src/preferences.test.tsx",
+    "packages/ui/src/ui.test.tsx",
+    "test/secret-scanner-png.test.ts"
   ],
-  "minVitestTests": 168,
+  "minVitestTests": 183,
   "minBrowserSteps": {
     "e2e": 12,
     "ux": 20,

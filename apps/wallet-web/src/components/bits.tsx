@@ -80,3 +80,8 @@ export function NotificationsButton() {
 export function DemoTag({ children = 'DEMO' }: { children?: string }) {
   return <span className="badge badge--warning" style={{ letterSpacing: '.03em' }}>{children}</span>;
 }
+
+/** A synthetic claim value that privacy mode hides from people looking at the screen (screen readers hear «مخفي»). */
+export function PrivateValue({ value, privacy }: { value: string; privacy: boolean }) {
+  return privacy ? <><span aria-hidden="true">••••••</span><span className="visually-hidden">مخفي بوضع الخصوصية</span></> : <>{value}</>;
+}

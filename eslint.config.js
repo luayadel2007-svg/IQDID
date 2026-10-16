@@ -32,6 +32,8 @@ export default tseslint.config(
         { selector: "ImportExpression[source.type!='Literal']", message: 'Computed module imports can bypass the compatibility adapter; use a static reviewed import.' },
         { selector: "ImportExpression[source.value=/^(@openid4vc\\/|@sd-jwt\\/|@owf\\/token-status-list|jose$|pkijs$|@peculiar\\/x509)/]", message: 'Protocol SDK dynamic import bypasses compatibility adapter.' },
         { selector: "CallExpression[callee.name='require']", message: 'Use static imports; require bypasses adapter policy.' },
+        // A protocol proof is server-issued; a cast must never manufacture one (TASK-12 audit M3).
+        { selector: "TSAsExpression[typeAnnotation.typeName.name='VerifiedByProtocol'], TSTypeAssertion[typeAnnotation.typeName.name='VerifiedByProtocol'], TSSatisfiesExpression[typeAnnotation.typeName.name='VerifiedByProtocol']", message: 'VerifiedByProtocol can only come from the server verification provider, never from a cast.' },
       ],
     },
   },
@@ -40,5 +42,5 @@ export default tseslint.config(
   { files: ['tools/lib/secret-scanner-engine.mjs'], rules: { 'no-useless-escape': 'off', 'no-empty': ['error', { allowEmptyCatch: true }] } },
   { files: ['scripts/ux-e2e.mjs'], languageOptions: { globals: { ...globals.node, ...globals.browser } } },
   // page.evaluate() callbacks run in the browser
-  { files: ['scripts/e2e.mjs', 'scripts/wallet-e2e.mjs', 'scripts/screenshots.mjs', 'scripts/pdf-ux-audit.mjs', 'scripts/verifier-e2e.mjs', 'scripts/demo-scenarios.mjs', 'scripts/perf-measure.mjs'], languageOptions: { globals: { ...globals.node, ...globals.browser } } },
+  { files: ['scripts/e2e.mjs', 'scripts/wallet-e2e.mjs', 'scripts/screenshots.mjs', 'scripts/pdf-ux-audit.mjs', 'scripts/verifier-e2e.mjs', 'scripts/demo-scenarios.mjs', 'scripts/perf-measure.mjs', 'scripts/responsive-matrix.mjs'], languageOptions: { globals: { ...globals.node, ...globals.browser } } },
 );

@@ -1,6 +1,6 @@
 // IQDID TEST ONLY. No dependencies; Git blobs are read without checking out or changing the index.
 import { spawnSync } from 'node:child_process';
-import { inflateRawSync } from 'node:zlib';
+import { inflateRawSync, inflateSync } from 'node:zlib';
 import { TextDecoder } from 'node:util';
 import { resolve, basename } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -77,6 +77,31 @@ function unzip(b,policy,state,depth,path,inspect) {
  if(pos!==end)throw new Blocked('ARCHIVE_INVALID');
  let cursor=0;for(const [start,finish] of ranges.sort((a,b)=>a[0]-b[0])){if(start!==cursor||finish>cdStart)throw new Blocked('ARCHIVE_INVALID');cursor=finish;}if(cursor!==cdStart)throw new Blocked('ARCHIVE_INVALID');
 }
+// PNG (TASK-12): validated chunk walk. Every place a PNG can carry text (tEXt, zTXt, iTXt) is decoded and scanned
+// with the same rules; any unknown chunk, CRC mismatch, ordering error or trailing data stays BLOCKED.
+// Not covered: text rendered as pixels (needs human review). IDAT pixel data is CRC-checked, not decoded.
+const PNG_SIG=Buffer.from([0x89,0x50,0x4e,0x47,0x0d,0x0a,0x1a,0x0a]);
+const PNG_CHUNKS=new Set(['IHDR','PLTE','IDAT','IEND','tRNS','gAMA','cHRM','sRGB','iCCP','sBIT','pHYs','bKGD','tIME','tEXt','zTXt','iTXt']);
+export const isPng=b=>b.length>=8&&b.subarray(0,8).equals(PNG_SIG);
+export function inspectPng(path,b,maxOutputLength,find) {
+ let pos=8,n=0,ended=false;
+ const z=d=>{try{return inflateSync(d,{maxOutputLength});}catch{throw new Blocked('UNSUPPORTED_BINARY');}};
+ const nul=(d,from=0)=>{const i=d.indexOf(0,from);if(i<0)throw new Blocked('UNSUPPORTED_BINARY');return i;};
+ while(pos<b.length) {
+  if(ended||pos+12>b.length)throw new Blocked('UNSUPPORTED_BINARY');
+  const len=b.readUInt32BE(pos),type=b.toString('latin1',pos+4,pos+8);
+  if(len>0x7fffffff||pos+12+len>b.length||!/^[A-Za-z]{4}$/.test(type)||!PNG_CHUNKS.has(type))throw new Blocked('UNSUPPORTED_BINARY');
+  const data=b.subarray(pos+8,pos+8+len);
+  if(crc32(b.subarray(pos+4,pos+8+len))!==b.readUInt32BE(pos+8+len))throw new Blocked('UNSUPPORTED_BINARY');
+  if((n===0)!==(type==='IHDR'))throw new Blocked('UNSUPPORTED_BINARY');
+  if(type==='tEXt'){const k=nul(data);inspectText(path+'#tEXt',data.toString('latin1',0,k)+'\n'+data.toString('latin1',k+1),find);}
+  else if(type==='zTXt'){const k=nul(data);if(data[k+1]!==0)throw new Blocked('UNSUPPORTED_BINARY');inspectText(path+'#zTXt',data.toString('latin1',0,k)+'\n'+z(data.subarray(k+2)).toString('latin1'),find);}
+  else if(type==='iTXt'){const k=nul(data),flag=data[k+1],method=data[k+2];if(![0,1].includes(flag)||method!==0)throw new Blocked('UNSUPPORTED_BINARY');const l=nul(data,k+3),t=nul(data,l+1);const body=flag?z(data.subarray(t+1)):data.subarray(t+1);inspectText(path+'#iTXt',[data.toString('latin1',0,k),data.toString('utf8',k+3,l),data.toString('utf8',l+1,t),new TextDecoder('utf-8',{fatal:true}).decode(body)].join('\n'),find);}
+  else if(type==='IEND')ended=true;
+  pos+=12+len;n++;
+ }
+ if(!ended)throw new Blocked('UNSUPPORTED_BINARY');
+}
 function inspectText(path,text,find) {
  const line=i=>text.slice(0,i).split('\n').length;
  for(const m of text.matchAll(PRIVATE))find('PRIVATE_KEY',line(m.index));
@@ -126,6 +151,7 @@ export function scanRepository({repo,mode='staged',base,paths=[]}) {
    // Detect ASCII secret signatures even in an otherwise unsupported binary.
    const ascii=b.toString('latin1');const suspect=PRIVATE.test(ascii)||TOKENS.test(ascii);PRIVATE.lastIndex=0;TOKENS.lastIndex=0;
    if(suspect)inspectText(path,ascii,find);
+   if(isPng(b)){inspectPng(path,b,policy.maxBlobBytes,find);return;}
    if(/\.(?:zip|7z|rar|gz|tar)$/.test(leaf))throw new Blocked('ARCHIVE_UNSUPPORTED');
    try{inspectText(path,decode(b),find);}catch(e){if(!suspect)throw e;}
   }

@@ -5,6 +5,12 @@ import { DEMO_API_PREFIX, DEMO_ENVIRONMENT, validateConsentDecision, validateVer
 import { DemoStore, type DemoStoreOptions, type Result } from './store.ts';
 
 const MAX_BODY_BYTES = 16 * 1024;
+const LOOPBACK_HOSTS = new Set(['127.0.0.1', 'localhost', '[::1]']);
+/** A browser POST from a non-loopback page (cross-site request forgery) is refused; tools without Origin are unaffected. */
+const foreignOrigin = (origin: string | undefined): boolean => {
+  if (origin === undefined) return false;
+  try { return !LOOPBACK_HOSTS.has(new URL(origin).hostname); } catch { return true; }
+};
 const REQUEST_ID_RE = /^[A-Za-z0-9._-]{8,64}$/;
 const STATUS_BY_CODE: Record<DemoErrorCode, number> = {
   BAD_REQUEST: 400,
@@ -123,6 +129,7 @@ export function createDemoServer(store: DemoStore, options: DemoServerOptions = 
       if (matches.length === 0) throw new HttpError('NOT_FOUND', 'unknown endpoint');
       const route = matches.find((rt) => rt.method === req.method);
       if (!route) throw new HttpError('BAD_REQUEST', 'method not allowed');
+      if (req.method === 'POST' && foreignOrigin(req.headers.origin)) throw new HttpError('BAD_REQUEST', 'cross-origin request refused');
       const params = route.pattern.exec(url.pathname)?.slice(1) ?? [];
       if (options.latencyMs) await new Promise((r) => setTimeout(r, options.latencyMs));
       const body = await route.handler({ req, params, query: url.searchParams });

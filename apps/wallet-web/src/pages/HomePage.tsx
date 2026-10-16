@@ -45,7 +45,7 @@ export function HomePage() {
             <Icon name={privacy ? 'eye-off' : 'eye'} size={18} />وضع الخصوصية
           </button>
         </div>
-        {creds.loading ? <LoadingState /> : creds.error ? <ErrorState message={describeError(creds.error)} onRetry={creds.reload} /> : (
+        {creds.loading ? <div className="home-reserve home-reserve--summary"><LoadingState /></div> : creds.error ? <ErrorState message={describeError(creds.error)} onRetry={creds.reload} /> : (
           <div className="welcome">
             <span className={`avatar${privacy ? ' avatar--hidden' : ''}`} aria-hidden="true"><Icon name={privacy ? 'eye-off' : 'user'} size={30} /></span>
             <div style={{ minWidth: 0 }}>
@@ -74,14 +74,14 @@ export function HomePage() {
       </nav>
 
       <div className="section-title"><h2>طلبات التحقق</h2><Link to="/requests" className="small">عرض الكل</Link></div>
-      {pending.length === 0 ? <p className="empty-inline card card--flat" style={{ margin: 0 }}>لا توجد طلبات بانتظار قرارك.</p> : (
+      {reqs.loading ? <div className="home-reserve home-reserve--requests"><LoadingState /></div> : pending.length === 0 ? <p className="empty-inline card card--flat" style={{ margin: 0 }}>لا توجد طلبات بانتظار قرارك.</p> : (
         <ul className="item-list" aria-label="طلبات التحقق الحديثة">
           {pending.slice(0, 3).map((r) => <PendingRequest key={r.id} request={r} />)}
         </ul>
       )}
 
       <div className="section-title"><h2>مستمسكاتي</h2><Link to="/cards" className="small">كل المستمسكات</Link></div>
-      {creds.data && (
+      {!creds.data ? <div className="home-reserve home-reserve--cards" aria-hidden="true" /> : (
         <ul className="mini-cards" aria-label="المستمسكات">
           {creds.data.map((c) => (
             <li key={c.id} className={`${cardClass(c)} mini-card`}>

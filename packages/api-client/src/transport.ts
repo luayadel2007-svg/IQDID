@@ -37,6 +37,17 @@ const sleep = (ms: number, signal?: AbortSignal): Promise<void> =>
     }, { once: true });
   });
 
+/** AbortSignal.any where available (Safari ≥ 17.4, Chrome ≥ 116, Firefox ≥ 124); a linked controller otherwise. */
+export function anySignal(signals: readonly AbortSignal[]): AbortSignal {
+  if (typeof AbortSignal.any === 'function') return AbortSignal.any([...signals]);
+  const controller = new AbortController();
+  for (const s of signals) {
+    if (s.aborted) { controller.abort(s.reason); break; }
+    s.addEventListener('abort', () => controller.abort(s.reason), { once: true });
+  }
+  return controller.signal;
+}
+
 const isErrorCode = (v: unknown): v is DemoErrorCode => typeof v === 'string' && (DEMO_ERROR_CODES as readonly string[]).includes(v);
 
 export class DemoHttpTransport implements Transport {
@@ -78,7 +89,7 @@ export class DemoHttpTransport implements Transport {
   private async once<T>(spec: RequestSpec<T>, requestId: string): Promise<T> {
     if (spec.signal?.aborted) throw new ApiError({ kind: 'cancelled', message: 'request cancelled', requestId });
     const timeout = AbortSignal.timeout(this.timeoutMs);
-    const signal = spec.signal ? AbortSignal.any([spec.signal, timeout]) : timeout;
+    const signal = spec.signal ? anySignal([spec.signal, timeout]) : timeout;
     const qs = spec.query ? `?${new URLSearchParams(spec.query).toString()}` : '';
     const headers: Record<string, string> = { Accept: 'application/json', 'X-Request-Id': requestId };
     if (spec.body !== undefined) headers['Content-Type'] = 'application/json';

@@ -17,7 +17,7 @@ export function ActivityPage() {
   const events = (data ?? []).filter((e) => type === 'ALL' || e.type === type);
   return (
     <>
-      <PageHeader eyebrow="التدقيق" icon="clock" title="سجل العمليات" description="عمليات مؤسستك فقط (عزل بين المؤسسات). سجل محاكاة، وليس سجل تدقيق رسمياً." />
+      <PageHeader eyebrow="التدقيق" icon="clock" title="سجل العمليات" description="عمليات المؤسسة المختارة فقط. اختيار المؤسسة تصفية تجريبية وليس تسجيل دخول. سجل محاكاة، وليس سجل تدقيق رسمياً." />
       <StaleNotice stale={stale} onRetry={reload} />
       <Card>
         <div className="vf-toolbar__meta">

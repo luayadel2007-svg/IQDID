@@ -58,4 +58,16 @@ describe('demo HTTP server', () => {
     expect((await post('/demo/reset', {})).status).toBe(200);
     expect(await (await fetch(api('/wallet/requests'))).json()).toEqual([]);
   });
+
+  it('refuses a cross-site POST (foreign Origin) but accepts loopback origins and origin-less clients', async () => {
+    const before = srv.store.listSessionsForOrg('org-test-a').length;
+    const cross = await post('/verifier/sessions', { organizationId: 'org-test-a', templateId: 'AGE_OVER_18', purpose: 'عبر موقع آخر' }, { 'Content-Type': 'application/json', Origin: 'https://evil.example' });
+    expect(cross.status).toBe(400);
+    expect((await fetch(api('/demo/reset'), { method: 'POST', headers: { Origin: 'https://evil.example', 'Content-Type': 'text/plain' }, body: 'x' })).status).toBe(400);
+    expect(srv.store.listSessionsForOrg('org-test-a')).toHaveLength(before);
+    for (const origin of ['http://127.0.0.1:4173', 'http://localhost:5173', 'http://[::1]:4174']) {
+      expect((await post('/verifier/sessions', { organizationId: 'org-test-a', templateId: 'AGE_OVER_18', purpose: 'نفس الجهاز' }, { 'Content-Type': 'application/json', Origin: origin })).status).toBe(201);
+    }
+    expect((await post('/verifier/sessions', { organizationId: 'org-test-a', templateId: 'AGE_OVER_18', purpose: 'بلا Origin' })).status).toBe(201);
+  });
 });

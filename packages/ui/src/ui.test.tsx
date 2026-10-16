@@ -99,6 +99,44 @@ describe('useAsync', () => {
     expect(await screen.findByText('data-b')).toBeInTheDocument();
     expect(seen).not.toContain('data-a@b');
   });
+
+  it('polling never overlaps a slow request, so an older response cannot overwrite a newer one (TASK-12 M1)', async () => {
+    const { useAsync } = await import('./hooks.ts');
+    const resolvers: Array<(v: string) => void> = [];
+    let calls = 0;
+    function Probe() {
+      const { data } = useAsync(() => { calls += 1; return new Promise<string>((r) => resolvers.push(r)); }, [], { pollMs: 10 });
+      return <span>{data ?? 'none'}</span>;
+    }
+    render(<Probe />);
+    await act(async () => { await new Promise((r) => setTimeout(r, 80)); });
+    expect(calls).toBe(1);
+    await act(async () => { resolvers[0]?.('PENDING'); await new Promise((r) => setTimeout(r, 30)); });
+    expect(screen.getByText('PENDING')).toBeInTheDocument();
+    expect(calls).toBe(2);
+    await act(async () => { resolvers[1]?.('DEMO_ACCEPTED'); await new Promise((r) => setTimeout(r, 5)); });
+    expect(screen.getByText('DEMO_ACCEPTED')).toBeInTheDocument();
+  });
+});
+
+describe('Modal focus stability (TASK-12 H1)', () => {
+  it('keeps focus where the user put it while the parent re-renders with a new onClose each time', async () => {
+    function Ticking() {
+      const [n, setN] = useState(0);
+      return (
+        <>
+          <button type="button" onClick={() => setN((x) => x + 1)}>tick {n}</button>
+          <Modal open title="تأكيد" onClose={() => undefined} footer={<><Button>تراجع</Button><Button>تأكيد</Button></>}>نص</Modal>
+        </>
+      );
+    }
+    render(<Ticking />);
+    const confirm = screen.getByRole('button', { name: 'تأكيد' });
+    act(() => confirm.focus());
+    for (let i = 0; i < 3; i++) act(() => { screen.getByRole('button', { name: /^tick/ }).click(); });
+    expect(confirm).toHaveFocus();
+  });
+
 });
 
 describe('design system v2 components', () => {

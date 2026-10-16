@@ -71,12 +71,19 @@ export function useAsync<T>(loader: (signal: AbortSignal) => Promise<T>, deps: r
   useEffect(() => {
     const controller = new AbortController();
     const runKey = key;
+    // One request at a time: a poll tick never overlaps a slow request, so an older
+    // response can never overwrite a newer state (e.g. PENDING after DEMO_ACCEPTED).
+    let inFlight = false;
     const run = async (): Promise<void> => {
+      if (inFlight) return;
+      inFlight = true;
       try {
         const value = await loaderRef.current(controller.signal);
         if (!controller.signal.aborted) setSnap({ key: runKey, data: value, error: null, settled: true });
       } catch (e) {
         if (!controller.signal.aborted) setSnap((prev) => ({ key: runKey, data: sameKey(prev.key, runKey) ? prev.data : undefined, error: e, settled: true }));
+      } finally {
+        inFlight = false;
       }
     };
     void run();
