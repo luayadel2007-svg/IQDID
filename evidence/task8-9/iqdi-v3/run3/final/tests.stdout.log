@@ -1,0 +1,46 @@
+
+ RUN  v4.1.11 /home/user/IQDID
+
+ ✓ |dom| test/wallet-cards-v3.test.tsx (17 tests) 4348ms
+     ✓ shows all five cards with readable titles and status in their accessible names  373ms
+     ✓ selecting a card brings it to the front, expands it, keeps focus, and stores the selection in the URL  365ms
+     ✓ keyboard: Arrow keys move between cards, Enter selects, Escape returns to the stack  342ms
+     ✓ list view is a full alternative (search, filters) and the choice persists  306ms
+     ✓ privacy mode hides name, age and holder on cards; it persists and the settings switch reflects it  343ms
+     ✓ home «رفض الطلب» opens the reject confirmation without sending; only «تأكيد الرفض» rejects  567ms
+     ✓ the reject deep link opens once: the param is removed and the dialog stays closed after «تراجع» and refreshes  829ms
+ ✓ |dom| test/wallet-premium.test.tsx (14 tests) 5031ms
+     ✓ lists five synthetic credentials; search and status filters narrow the list  720ms
+     ✓ duplicate decision from a stale screen is refused by the server and the page shows the real outcome  437ms
+     ✓ network failure shows an error with retry; recovery loads data; a later drop keeps data with a weak-connection notice  516ms
+     ✓ request code entry on the QR screen opens the request; invalid and unknown codes are explained  641ms
+     ✓ favorite services: settings change the home grid, max six, tampered storage ignored  527ms
+     ✓ onboarding: home offers the tour until finished; finishing returns home without the prompt  307ms
+     ✓ every wallet screen renders with a level-1 heading and never claims protocol verification  907ms
+ ✓ |dom| test/cross-app.test.tsx (9 tests) 5621ms
+     ✓ approve: request appears in wallet with org, purpose and fields; verifier shows DEMO_ACCEPTED; both logs record it  1420ms
+     ✓ reject: verifier sees DEMO_REJECTED and no disclosed values  783ms
+     ✓ organisation isolation: org B does not see org A sessions  401ms
+     ✓ an expired request cannot be approved and both apps show the expiry  1652ms
+     ✓ wallet navigation reaches every screen  360ms
+     ✓ verifier navigation reaches every screen  326ms
+     ✓ demo reset from wallet settings clears requests for both apps  454ms
+ ✓ |dom| test/iqdi-branding.test.tsx (16 tests) 1198ms
+ ✓ |dom| test/provider-replacement.test.tsx (2 tests) 649ms
+     ✓ uses an alternate transport against a real server without page or UI API changes  533ms
+ ✓ |dom| packages/ui/src/preferences.test.tsx (7 tests) 598ms
+     ✓ synchronizes settings and header, persists text and transparency after remount  323ms
+ ✓ |node| packages/mock-services/src/server.test.ts (6 tests) 138ms
+ ✓ |node| packages/api-client/src/transport.test.ts (8 tests) 131ms
+ ✓ |dom| packages/ui/src/ui.test.tsx (29 tests) 510ms
+ ✓ |node| packages/mock-services/src/store.test.ts (8 tests) 16ms
+ ✓ |node| packages/shared-types/src/index.test.ts (4 tests) 7ms
+ ✓ |node| test/crypto-contract.test.ts (4 tests) 1809ms
+     ✓ lint rejects direct SDK imports, re-exports, require and computed imports outside adapter  1741ms
+
+ Test Files  12 passed (12)
+      Tests  124 passed (124)
+   Start at  15:16:59
+   Duration  11.97s (transform 3.17s, setup 1.73s, import 5.04s, tests 20.06s, environment 4.82s)
+
+JSON report written to /home/user/IQDID/evidence/task8-9/iqdi-v3/run3/final/vitest-results.json

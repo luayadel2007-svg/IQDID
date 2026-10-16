@@ -7,5 +7,6 @@
 5. **Bundle size.** Wallet bundle 105.7 kB gz; no route code-splitting yet.
 6. **Detail heading.** Card details keep the page heading «تفاصيل الاعتماد»; the card hero is an image-role summary.
 7. **Polling.** Cross-app updates use 2 s polling (unchanged).
-8. **Independent review.** The independent review is by an AI agent, not a human auditor.
-9. **Unchanged baselines.** G1a/G1b are NOT PASSED; OD-01…OD-09 are PENDING; no HSM/KMS; TASK-10 not started.
+8. **Privacy mode scope.** It does not mask the request preview: the citizen must see exactly what will be shared before deciding. Masked numbers keep their last 4 characters outside privacy mode.
+9. **Independent review.** The independent review is by an AI agent, not a human auditor.
+10. **Unchanged baselines.** G1a/G1b are NOT PASSED; OD-01…OD-09 are PENDING; no HSM/KMS; TASK-10 not started.

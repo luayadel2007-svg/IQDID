@@ -7,7 +7,8 @@
 | Run | Result |
 |---|---|
 | run 1 | **FAIL**. `browser-wallet` 15/16: the new card-stack step clicked the centre of a covered card, which the next card intercepts, so the click timed out. `coverage-guard` failed as designed. Logs: `final-run1-FAILED/`, `verify-run1.txt`. Fix: the step taps the visible header strip, as a user does. |
-| run 2 | **PASS**, every required step exit 0 (`final/commands.json`) |
+| run 2 | **PASS**, every required step exit 0 (`final/commands.json`), at `e593a3e` |
+| run 3 | **PASS**, every required step exit 0 (`run3/final/commands.json`), after the review fixes `437c65a`. Vitest 124/124 (+5 regression tests, floor 124); stable over 3 extra full Vitest runs |
 
 | Check | Run 2 |
 |---|---|
