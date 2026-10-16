@@ -23,7 +23,8 @@ async function createRequestInVerifier(purpose: string, template: RegExp = /ال
   const ui = within(v.container);
   await userEvent.click(await ui.findByRole('radio', { name: template }));
   await userEvent.type(ui.getByLabelText('الغرض من الطلب'), purpose);
-  await userEvent.click(ui.getByRole('button', { name: 'إرسال الطلب إلى المحفظة' }));
+  await userEvent.click(ui.getByRole('button', { name: 'مراجعة الطلب' }));
+  await userEvent.click(await ui.findByRole('button', { name: 'إرسال الطلب إلى المحفظة' }));
   await ui.findByText('أُرسل الطلب إلى المحفظة التجريبية.', {}, { timeout: 4000 });
   return v;
 }
@@ -90,7 +91,8 @@ describe('expiry', () => {
       const verifier = renderVerifier('/new', short.url);
       const vui = within(verifier.container);
       await userEvent.type(await vui.findByLabelText('الغرض من الطلب'), 'طلب ينتهي سريعاً');
-      await userEvent.click(vui.getByRole('button', { name: 'إرسال الطلب إلى المحفظة' }));
+      await userEvent.click(vui.getByRole('button', { name: 'مراجعة الطلب' }));
+      await userEvent.click(await vui.findByRole('button', { name: 'إرسال الطلب إلى المحفظة' }));
       expect(await vui.findByText('انتهت مهلة الطلب', {}, { timeout: 5000 })).toBeInTheDocument();
       const wallet = renderWallet('/requests', short.url);
       const wui = within(wallet.container);
@@ -154,8 +156,9 @@ describe('error handling and navigation', () => {
     const v = renderVerifier('/new');
     const vui = within(v.container);
     await userEvent.type(await vui.findByLabelText('الغرض من الطلب'), 'أ');
-    await userEvent.click(vui.getByRole('button', { name: 'إرسال الطلب إلى المحفظة' }));
+    await userEvent.click(vui.getByRole('button', { name: 'مراجعة الطلب' }));
     expect(await vui.findByText('اكتب غرضاً واضحاً (3 أحرف على الأقل).')).toBeInTheDocument();
+    expect(vui.queryByRole('button', { name: 'إرسال الطلب إلى المحفظة' })).not.toBeInTheDocument();
     expect(srv.store.listSessionsForOrg('org-test-a')).toHaveLength(0);
   });
 });

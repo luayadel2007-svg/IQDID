@@ -11,14 +11,17 @@
     "scripts/compatibility-contract.mjs",
     "scripts/pdf-ux-audit.mjs",
     "test/wallet-cards-v3.test.tsx",
-    "test/iqdi-branding.test.tsx"
+    "test/iqdi-branding.test.tsx",
+    "scripts/verifier-e2e.mjs",
+    "test/verifier-task10.test.tsx"
   ],
   "requiredNpmScripts": {
     "e2e": "scripts/e2e.mjs",
     "test:ux": "scripts/ux-e2e.mjs",
     "test:wallet": "scripts/wallet-e2e.mjs",
     "test:compatibility": "scripts/compatibility-contract.mjs",
-    "test:pdf-ux": "scripts/pdf-ux-audit.mjs"
+    "test:pdf-ux": "scripts/pdf-ux-audit.mjs",
+    "test:verifier": "scripts/verifier-e2e.mjs"
   },
   "requiredVerifySteps": [
     "typecheck",
@@ -29,6 +32,7 @@
     "browser-regression",
     "browser-ux",
     "browser-wallet",
+    "browser-verifier",
     "browser-pdf-ux",
     "coverage-guard",
     "secrets-diff"
@@ -39,14 +43,16 @@
     "test/provider-replacement.test.tsx",
     "test/crypto-contract.test.ts",
     "test/wallet-cards-v3.test.tsx",
-    "test/iqdi-branding.test.tsx"
+    "test/iqdi-branding.test.tsx",
+    "test/verifier-task10.test.tsx"
   ],
-  "minVitestTests": 132,
+  "minVitestTests": 147,
   "minBrowserSteps": {
     "e2e": 12,
     "ux": 20,
     "wallet": 16,
-    "pdf": 27
+    "pdf": 27,
+    "verifier": 14
   },
   "workflow": {
     "file": ".github/workflows/task8-ci.yml",

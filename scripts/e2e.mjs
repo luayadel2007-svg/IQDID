@@ -75,6 +75,7 @@ try {
     await nav(verifier, /طلب تحقق جديد/).click();
     await verifier.getByRole('radio', { name: /التحقق من العمر/ }).check();
     await verifier.getByLabel('الغرض من الطلب').fill('فتح حساب مصرفي تجريبي');
+    await verifier.getByRole('button', { name: 'مراجعة الطلب' }).click();
     await verifier.getByRole('button', { name: 'إرسال الطلب إلى المحفظة' }).click();
     await verifier.getByText('أُرسل الطلب إلى المحفظة التجريبية.').waitFor();
     await shot(verifier, '02-verifier-session-pending');
@@ -107,6 +108,7 @@ try {
     await nav(verifier, /طلب تحقق جديد/).click();
     await verifier.getByRole('radio', { name: /التحقق من الهوية الأساسية/ }).check();
     await verifier.getByLabel('الغرض من الطلب').fill('التحقق من الهوية لخدمة اتصالات تجريبية');
+    await verifier.getByRole('button', { name: 'مراجعة الطلب' }).click();
     await verifier.getByRole('button', { name: 'إرسال الطلب إلى المحفظة' }).click();
     await verifier.getByText('أُرسل الطلب إلى المحفظة التجريبية.').waitFor();
     await nav(wallet, /الطلبات/).click();
@@ -123,6 +125,7 @@ try {
   await step(`unanswered request expires after ${TTL_MS / 1000}s on both sides`, async () => {
     await nav(verifier, /طلب تحقق جديد/).click();
     await verifier.getByLabel('الغرض من الطلب').fill('طلب سينتهي دون قرار');
+    await verifier.getByRole('button', { name: 'مراجعة الطلب' }).click();
     await verifier.getByRole('button', { name: 'إرسال الطلب إلى المحفظة' }).click();
     await verifier.getByText('انتهت مهلة الطلب').waitFor({ timeout: TTL_MS + 10_000 });
     await nav(wallet, /الطلبات/).click();
