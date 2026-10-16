@@ -1,0 +1,76 @@
+{
+  "at": "2026-10-16T21:22:08.288Z",
+  "ttlMs": 15000,
+  "results": [
+    {
+      "name": "dashboard: empty state, no invented statistics before any data",
+      "outcome": "PASS",
+      "ms": 677
+    },
+    {
+      "name": "create flow: details → preview → review → confirm → session code",
+      "outcome": "PASS",
+      "ms": 1650
+    },
+    {
+      "name": "live update: wallet approval reaches the open session page as DEMO_ACCEPTED, five trust layers, no protocol claim",
+      "outcome": "PASS",
+      "ms": 1645
+    },
+    {
+      "name": "many sessions: KPI tile opens the filtered list; search, status filter and sort agree with the API",
+      "outcome": "PASS",
+      "ms": 2917
+    },
+    {
+      "name": "results: outcome summary and filter; pending sessions excluded",
+      "outcome": "PASS",
+      "ms": 456
+    },
+    {
+      "name": "cancel needs confirmation; a cancelled session refuses a late citizen decision",
+      "outcome": "PASS",
+      "ms": 1045
+    },
+    {
+      "name": "expiry: open session moves to EXPIRED on its own; a late decision is refused",
+      "outcome": "PASS",
+      "ms": 15587
+    },
+    {
+      "name": "organisation isolation: org B sees none of org A sessions, details, results or activity",
+      "outcome": "PASS",
+      "ms": 2425
+    },
+    {
+      "name": "network failure: last good data stays with a notice and retry; recovers when the API returns",
+      "outcome": "PASS",
+      "ms": 3580
+    },
+    {
+      "name": "keyboard: create flow completes without a mouse and focus moves to the review step",
+      "outcome": "PASS",
+      "ms": 564
+    },
+    {
+      "name": "axe WCAG 2.2 AA on every TASK-10 state, light and dark",
+      "outcome": "PASS",
+      "ms": 19697
+    },
+    {
+      "name": "responsive RTL: 320–1366 px and 200 % text without horizontal scroll",
+      "outcome": "PASS",
+      "ms": 10401
+    },
+    {
+      "name": "reduced motion: no element animates or transitions",
+      "outcome": "PASS",
+      "ms": 241
+    },
+    {
+      "name": "no browser console errors",
+      "outcome": "PASS",
+      "ms": 0
+    }
+  ]
+}

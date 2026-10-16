@@ -50,4 +50,38 @@ jobs:
             evidence/task10/verifier-e2e
             evidence/task11/scenarios
             evidence/task11/perf
+            evidence/task13/responsive
+          retention-days: 30
+  # TASK-13: the same multi-device matrix on Gecko and WebKit. These Playwright engine builds can be
+  # downloaded on hosted runners (not in the development container). Ubuntu only: WebKit here is the
+  # Playwright WebKit build, NOT Safari on macOS/iOS (see docs/task13/BROWSER_COMPATIBILITY_TESTS.md).
+  cross-browser:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    steps:
+      - name: Checkout without persisted credentials
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - name: Node 22 LTS
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '22'
+      - name: Clean install
+        run: npm ci --no-audit --no-fund
+      - name: Firefox and WebKit engines (Playwright builds) with system dependencies
+        run: npx playwright-core install --with-deps firefox webkit
+      - name: Build
+        run: npm run build
+      - name: Multi-device matrix on Firefox and WebKit
+        env:
+          IQDI_BROWSERS: firefox,webkit
+          IQDID_RESPONSIVE_DIR: task13/cross-browser
+        run: node scripts/responsive-matrix.mjs
+      - name: Keep evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: task13-cross-browser-${{ github.run_id }}
+          path: evidence/task13/cross-browser
           retention-days: 30

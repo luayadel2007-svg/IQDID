@@ -604,3 +604,59 @@ html[data-text="large"] .card-stack .cred-card, html[data-text="larger"] .card-s
 .home-reserve--requests { min-height: 168px; }
 .home-reserve--cards { min-height: 104px; }
 html[data-text="large"] .home-reserve--summary, html[data-text="larger"] .home-reserve--summary { min-height: 160px; }
+
+/* ---------------------------------------------------------------- TASK-13 universal experience */
+/* Arabic glyphs (dots, descenders) need more than 1.2 line-height inside an overflow-hidden line. */
+.shell__sub { line-height: 1.9; }
+
+/* Safe areas (notches, rounded corners, landscape): needs viewport-fit=cover (both index.html). */
+.shell__header, .shell__main { padding-left: max(var(--sp-5), env(safe-area-inset-left)); padding-right: max(var(--sp-5), env(safe-area-inset-right)); }
+@media (max-width: 600px) { .shell__header, .shell__main { padding-left: max(var(--sp-4), env(safe-area-inset-left)); padding-right: max(var(--sp-4), env(safe-area-inset-right)); } }
+.demo-banner { padding-left: max(var(--sp-4), env(safe-area-inset-left)); padding-right: max(var(--sp-4), env(safe-area-inset-right)); }
+.shell--mobile .nav { left: max(12px, calc(50% - 330px), calc(env(safe-area-inset-left) + 8px)); right: max(12px, calc(50% - 330px), calc(env(safe-area-inset-right) + 8px)); }
+
+/* Short viewports (phone landscape, 400 % zoom): the header scrolls away so content is not squeezed between two bars. */
+@media (max-height: 520px) { .shell__header { position: static; } }
+
+/* Wallet on tablets: wider frame for the home dashboard; reading pages keep a comfortable measure. */
+@media (min-width: 760px) {
+  .shell--mobile .shell__main { max-width: 1040px; }
+  .shell--mobile .shell__main > :not(.wide) { max-width: 720px; margin-inline: auto; }
+  /* Explicit rows keep both columns aligned: summary|requests, quick|favourites, «مستمسكاتي»|activity. DOM order (phone order) is unchanged. */
+  .home-grid { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); column-gap: var(--sp-5); align-items: start; }
+  .home-block { margin-bottom: var(--sp-5); min-width: 0; }
+  .home-block > .section-title:first-child { margin-top: 0; }
+  .home-block--alert { grid-column: 1 / -1; grid-row: 1; }
+  .home-block--alert .alert { margin: 0; }
+  .home-block--summary { grid-column: 1; grid-row: 2; }
+  .home-block--requests { grid-column: 2; grid-row: 2; }
+  .home-block--quick { grid-column: 1; grid-row: 3; }
+  .home-block--favorites { grid-column: 2; grid-row: 3; }
+  .home-block--cards { grid-column: 1; grid-row: 4; }
+  .home-block--activity { grid-column: 2; grid-row: 4; }
+  .home-block--activity .card { margin: 0; }
+  .home-block--summary.card { margin: 0; }
+  /* «مستمسكاتي» stack: a wallet-sized stack, not a stretched one; the list view uses the reading width. */
+  .shell--mobile .shell__main .card-stack { max-width: 460px; margin-inline: auto; }
+}
+
+/* Wallet on desktops: the floating phone bar becomes a navigation rail beside the content. */
+@media (min-width: 1100px) {
+  .shell--mobile .shell__body { padding-right: 260px; }
+  .shell--mobile .nav { left: auto; right: max(24px, env(safe-area-inset-right)); top: 128px; bottom: auto; width: 216px; max-height: calc(100vh - 152px); overflow-y: auto; flex-direction: column; justify-content: flex-start; padding: 8px; }
+  .shell--mobile .nav a { flex: 0 0 auto; flex-direction: row; justify-content: flex-start; gap: var(--sp-3); padding-inline: var(--sp-4); font-size: var(--fs-sm); }
+  .shell--mobile .nav a[aria-current="page"]::after { display: none; }
+  .shell--mobile .nav .nav__badge { position: static; margin-inline-start: auto; }
+  .shell--mobile .shell__main { padding-bottom: var(--sp-7); }
+}
+
+/* Verifier tables on small screens: every column stays available through horizontal scrolling; say so. */
+.vf-scroll-hint { display: none; margin: 0 0 var(--sp-2); }
+@media (max-width: 700px) { .vf-scroll-hint { display: block; } }
+@media (min-width: 760px) { .home-block--favorites .quick-grid { grid-template-columns: repeat(auto-fill, minmax(104px, 1fr)); } }
+/* Bottom nav: items size to their labels (no label runs into the next); if they still do not fit
+   (very narrow screens with larger text), the bar scrolls sideways instead of overlapping. */
+.shell--mobile .nav { overflow-x: auto; scrollbar-width: none; }
+.shell--mobile .nav::-webkit-scrollbar { display: none; }
+.shell--mobile .nav a { flex: 1 1 auto; min-width: max-content; padding-inline: 6px; }
+@media (max-width: 380px) { .shell--mobile .nav { gap: 0; padding: 4px; } .shell--mobile .nav a { padding-inline: 4px; } }

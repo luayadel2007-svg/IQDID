@@ -17,7 +17,8 @@
     "scripts/demo-scenarios.mjs",
     "test/ecosystem-contract.test.ts",
     "test/ecosystem-ui.test.tsx",
-    "test/secret-scanner-png.test.ts"
+    "test/secret-scanner-png.test.ts",
+    "scripts/responsive-matrix.mjs"
   ],
   "requiredNpmScripts": {
     "e2e": "scripts/e2e.mjs",
@@ -26,7 +27,8 @@
     "test:compatibility": "scripts/compatibility-contract.mjs",
     "test:pdf-ux": "scripts/pdf-ux-audit.mjs",
     "test:verifier": "scripts/verifier-e2e.mjs",
-    "test:scenarios": "scripts/demo-scenarios.mjs"
+    "test:scenarios": "scripts/demo-scenarios.mjs",
+    "test:responsive": "scripts/responsive-matrix.mjs"
   },
   "requiredVerifySteps": [
     "typecheck",
@@ -40,6 +42,7 @@
     "browser-verifier",
     "browser-pdf-ux",
     "browser-scenarios",
+    "browser-responsive",
     "coverage-guard",
     "secrets-diff",
     "secrets-all-index"
@@ -69,7 +72,8 @@
     "wallet": 16,
     "pdf": 27,
     "verifier": 14,
-    "scenarios": 9
+    "scenarios": 9,
+    "responsive": 285
   },
   "workflow": {
     "file": ".github/workflows/task8-ci.yml",
