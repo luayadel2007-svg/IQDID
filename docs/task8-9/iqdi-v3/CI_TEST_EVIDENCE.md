@@ -37,3 +37,10 @@ Test changes in existing files are label updates for the renamed tabs («بطا�
 - final fix, a selection ref set synchronously in `select()` / `deselect()`: **0/6**.
 
 The browser step stays strict: it presses Escape right after the URL change, with no extra wait, so it would catch a regression.
+
+## Hosted CI round 2 (`a7521cc`): FAIL; two causes
+
+- **Ubuntu: the Escape race.** The same as round 1. The app is fixed in `dc6f694`, which this run predates.
+- **Windows: a test-timing race.** The card-stack tap step read the first card's `aria-label`/`aria-expanded` immediately after the URL changed, before React re-rendered.
+  - Under 6× CPU throttling, the immediate read was wrong 6/6 times, and the UI reached the correct state 6/6 times.
+  - **Fix:** the step now waits for the rendered state (selected card expanded), then asserts it is first, expanded and ≥ 180 px tall. The assertions are unchanged; only the read is no longer premature. The post-Back check is handled the same way.

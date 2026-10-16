@@ -221,6 +221,8 @@ try {
     // Tap the visible header strip of a covered card, as a person would (its centre is under the next card).
     await stack.getByRole('button', { name: /^الوثيقة الدراسية/ }).click({ position: { x: 60, y: 30 } });
     await wallet.waitForURL(/card=cred-test-005/);
+    // The URL changes before React re-renders; wait for the rendered state, then assert it.
+    await stack.getByRole('button', { name: /^الوثيقة الدراسية/ }).and(wallet.locator('[aria-expanded="true"]')).waitFor({ timeout: 10_000 });
     const first = stack.getByRole('button').first();
     check((await first.getAttribute('aria-label'))?.startsWith('الوثيقة الدراسية') && await first.getAttribute('aria-expanded') === 'true', 'selected card not in front/expanded');
     const box = await first.boundingBox();
@@ -232,7 +234,8 @@ try {
     await wallet.getByRole('list', { name: 'حالات الاعتماد' }).getByText('اعتماد تجريبي للعرض فقط').waitFor();
     await wallet.goBack();
     await wallet.waitForURL(/\/cards\?card=cred-test-005/);
-    check(await stack.getByRole('button').first().getAttribute('aria-expanded') === 'true', 'selection lost after Back');
+    await stack.getByRole('button', { name: /^الوثيقة الدراسية/ }).and(wallet.locator('[aria-expanded="true"]')).waitFor({ timeout: 10_000 }).catch(() => undefined);
+    check((await stack.getByRole('button').first().getAttribute('aria-label'))?.startsWith('الوثيقة الدراسية') && await stack.getByRole('button').first().getAttribute('aria-expanded') === 'true', 'selection lost after Back');
   });
 
   await step('card stack: keyboard + reduced motion + list view alternative', async () => {
