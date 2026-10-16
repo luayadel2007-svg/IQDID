@@ -44,3 +44,11 @@ The browser step stays strict: it presses Escape right after the URL change, wit
 - **Windows: a test-timing race.** The card-stack tap step read the first card's `aria-label`/`aria-expanded` immediately after the URL changed, before React re-rendered.
   - Under 6× CPU throttling, the immediate read was wrong 6/6 times, and the UI reached the correct state 6/6 times.
   - **Fix:** the step now waits for the rendered state (selected card expanded), then asserts it is first, expanded and ≥ 180 px tall. The assertions are unchanged; only the read is no longer premature. The post-Back check is handled the same way.
+
+## Hosted CI round 3 (`191f3b1`): **PASS**
+
+Both jobs passed, with every required step green (including browser-wallet 16/16, browser-pdf-ux and coverage-guard):
+- Ubuntu 24.04: [job](https://github.com/luayadel2007-svg/IQDID/actions/runs/38924396460/job/117052773864)
+- Windows 2022: [job](https://github.com/luayadel2007-svg/IQDID/actions/runs/38924396460/job/117052773541)
+
+Later commits change docs only.
