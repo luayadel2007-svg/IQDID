@@ -24,8 +24,8 @@ try {
     const nav = (name) => p.getByRole('navigation', { name: 'التنقل الرئيسي' }).getByRole('link', { name });
     await p.goto(url); await p.getByRole('heading', { level: 1 }).waitFor();
     await step(`${app}: primary service reached in one navigation interaction`, async () => {
-      await nav(app === 'wallet' ? 'بطاقاتي' : 'طلب تحقق جديد').click();
-      await p.getByRole('heading', { name: app === 'wallet' ? 'بطاقاتي' : 'إنشاء طلب تحقق تجريبي' }).waitFor();
+      await nav(app === 'wallet' ? 'مستمسكاتي' : 'طلب تحقق جديد').click();
+      await p.getByRole('heading', { name: app === 'wallet' ? 'مستمسكاتي' : 'إنشاء طلب تحقق تجريبي' }).waitFor();
     });
     await nav('الإعدادات').click();
     await step(`${app}: settings synchronize header + persist after reload`, async () => {

@@ -54,15 +54,15 @@ describe('credentials', () => {
   it('lists five synthetic credentials; search and status filters narrow the list', async () => {
     const w = renderWallet('/credentials');
     const ui = within(w.container);
-    const list = await ui.findByRole('list', { name: 'قائمة الاعتمادات' });
+    const list = await ui.findByRole('list', { name: 'قائمة المستمسكات' });
     expect(within(list).getAllByRole('listitem')).toHaveLength(5);
-    await userEvent.type(ui.getByLabelText('بحث في الاعتمادات'), 'سوق');
-    expect(within(ui.getByRole('list', { name: 'قائمة الاعتمادات' })).getAllByRole('listitem')).toHaveLength(1);
-    await userEvent.clear(ui.getByLabelText('بحث في الاعتمادات'));
+    await userEvent.type(ui.getByLabelText('بحث في المستمسكات'), 'سوق');
+    expect(within(ui.getByRole('list', { name: 'قائمة المستمسكات' })).getAllByRole('listitem')).toHaveLength(1);
+    await userEvent.clear(ui.getByLabelText('بحث في المستمسكات'));
     await userEvent.click(ui.getByRole('button', { name: 'تحتاج انتباهاً' }));
-    const attention = within(ui.getByRole('list', { name: 'قائمة الاعتمادات' })).getAllByRole('link').map((a) => a.textContent);
+    const attention = within(ui.getByRole('list', { name: 'قائمة المستمسكات' })).getAllByRole('link').map((a) => a.textContent);
     expect(attention).toEqual(['إجازة سوق (تجريبية)', 'بطاقة التأمين الصحي (تجريبية)']);
-    await userEvent.type(ui.getByLabelText('بحث في الاعتمادات'), 'غير موجود');
+    await userEvent.type(ui.getByLabelText('بحث في المستمسكات'), 'غير موجود');
     expect(ui.getByText('لا توجد نتائج')).toBeInTheDocument();
   });
 
@@ -201,12 +201,12 @@ describe('notifications, favorites, onboarding', () => {
     const w = renderWallet('/settings');
     const ui = within(w.container);
     await userEvent.click(await ui.findByRole('checkbox', { name: 'رمز QR' }));
-    for (const name of ['بطاقتي', 'الاعتمادات', 'الطلبات', 'النشاط']) await userEvent.click(ui.getByRole('checkbox', { name }));
+    for (const name of ['بطاقتي', 'قائمة المستمسكات', 'الطلبات', 'النشاط']) await userEvent.click(ui.getByRole('checkbox', { name }));
     expect(ui.getByRole('checkbox', { name: 'الإشعارات' })).toBeDisabled();
     w.unmount();
     const home = renderWallet('/');
     const grid = await within(home.container).findByRole('navigation', { name: 'خدماتي المفضلة' });
-    expect(within(grid).getAllByRole('link').map((a) => a.textContent)).toEqual(['المساعدة', 'رمز QR', 'بطاقتي', 'الاعتمادات', 'الطلبات', 'النشاط']);
+    expect(within(grid).getAllByRole('link').map((a) => a.textContent)).toEqual(['المساعدة', 'رمز QR', 'بطاقتي', 'قائمة المستمسكات', 'الطلبات', 'النشاط']);
   });
 
   it('onboarding: home offers the tour until finished; finishing returns home without the prompt', async () => {
@@ -226,8 +226,8 @@ describe('notifications, favorites, onboarding', () => {
     const s = await createSession();
     await createWalletGateway(demo()).decide(s.id, 'ACCEPT');
     const routes: Array<[string, string]> = [
-      ['/', 'أهلاً بك'], ['/welcome', 'محفظتك الرقمية'], ['/card', 'بطاقتي الرقمية'], ['/credentials', 'اعتماداتي'],
-      ['/credentials/cred-test-001', 'تفاصيل الاعتماد'], ['/requests', 'طلبات مشاركة البيانات'], [`/requests/${s.id}`, 'طلب مشاركة بيانات'],
+      ['/', 'أهلاً بك'], ['/welcome', 'محفظتك الرقمية'], ['/card', 'بطاقتي الرقمية'], ['/credentials', 'مستمسكاتي'],
+      ['/credentials/cred-test-001', 'تفاصيل المستمسك'], ['/requests', 'طلبات مشاركة البيانات'], [`/requests/${s.id}`, 'طلب مشاركة بيانات'],
       [`/requests/${s.id}/disclosure`, 'ما الذي سيُشارك؟'], ['/qr', 'رمز QR التجريبي'], ['/activity', 'سجل الاستخدام'],
       ['/notifications', 'الإشعارات'], ['/settings', 'الإعدادات'], ['/help', 'المساعدة وحول التطبيق'],
     ];

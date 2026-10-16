@@ -13,7 +13,7 @@ let srv: RunningDemoServer;
 const t = () => createTransport('demo', { baseUrl: srv.url, retries: 0, timeoutMs: 3000 });
 function Where() { const l = useLocation(); return <output data-testid="where">{l.pathname + l.search}</output>; }
 const renderWallet = (path: string) => render(<MemoryRouter initialEntries={[path]}><WalletApp gateway={createWalletGateway(t())} pollMs={200} /><Where /></MemoryRouter>);
-const cardButtons = (root: HTMLElement) => within(within(root).getByRole('list', { name: 'مجموعة البطاقات' })).getAllByRole('button');
+const cardButtons = (root: HTMLElement) => within(within(root).getByRole('list', { name: 'مجموعة المستمسكات' })).getAllByRole('button');
 
 beforeAll(async () => { srv = await startDemoServer({ port: 0, ttlMs: 120_000 }); });
 afterAll(async () => { await srv.close(); });
@@ -23,10 +23,10 @@ describe('card stack', () => {
   it('shows all five cards with readable titles and status in their accessible names', async () => {
     const w = renderWallet('/cards');
     const ui = within(w.container);
-    await ui.findByRole('list', { name: 'مجموعة البطاقات' });
+    await ui.findByRole('list', { name: 'مجموعة المستمسكات' });
     const names = cardButtons(w.container).map((b) => b.getAttribute('aria-label') ?? '');
     expect(names).toHaveLength(5);
-    expect(names[0]).toMatch(/^بطاقة الهوية الرقمية \(تجريبية\)، اعتماد تجريبي فعال، البطاقة 1 من 5$/);
+    expect(names[0]).toMatch(/^بطاقة الهوية الرقمية \(تجريبية\)، اعتماد تجريبي فعال، المستمسك 1 من 5$/);
     expect(names.some((n) => n.includes('الوثيقة الدراسية (تجريبية)، اعتماد تجريبي للعرض فقط'))).toBe(true);
     expect(names.some((n) => n.includes('بطاقة التأمين الصحي (تجريبية)، اعتماد تجريبي موقوف'))).toBe(true);
     for (const title of ['بطاقة الهوية الرقمية (تجريبية)', 'إجازة سوق (تجريبية)', 'بطاقة السكن (تجريبية)', 'الوثيقة الدراسية (تجريبية)']) expect(ui.getByText(title)).toBeInTheDocument();
@@ -35,7 +35,7 @@ describe('card stack', () => {
   it('selecting a card brings it to the front, expands it, keeps focus, and stores the selection in the URL', async () => {
     const w = renderWallet('/cards');
     const ui = within(w.container);
-    await ui.findByRole('list', { name: 'مجموعة البطاقات' });
+    await ui.findByRole('list', { name: 'مجموعة المستمسكات' });
     const licence = cardButtons(w.container).find((b) => b.getAttribute('aria-label')?.startsWith('إجازة سوق'));
     expect(licence).toHaveAttribute('aria-expanded', 'false');
     await userEvent.click(licence as HTMLElement);
@@ -44,18 +44,18 @@ describe('card stack', () => {
     expect(after[0]).toHaveAttribute('aria-expanded', 'true');
     expect(after[0]).toHaveFocus();
     expect(screen.getByTestId('where')).toHaveTextContent('/cards?card=cred-test-002');
-    expect(ui.getByRole('link', { name: 'عرض التفاصيل' })).toHaveAttribute('href', '/credentials/cred-test-002?from=cards');
+    expect(ui.getByRole('link', { name: 'عرض المستمسك' })).toHaveAttribute('href', '/credentials/cred-test-002?from=cards');
   });
 
-  it('second press opens the details; «العودة إلى بطاقاتي» returns to the same selected card', async () => {
+  it('second press opens the details; «العودة إلى مستمسكاتي» returns to the same selected card', async () => {
     const w = renderWallet('/cards?card=cred-test-003');
     const ui = within(w.container);
-    await ui.findByRole('list', { name: 'مجموعة البطاقات' });
+    await ui.findByRole('list', { name: 'مجموعة المستمسكات' });
     await userEvent.click(cardButtons(w.container)[0] as HTMLElement);
-    expect(await ui.findByRole('heading', { level: 1, name: 'تفاصيل الاعتماد' })).toBeInTheDocument();
+    expect(await ui.findByRole('heading', { level: 1, name: 'تفاصيل المستمسك' })).toBeInTheDocument();
     expect(screen.getByTestId('where')).toHaveTextContent('/credentials/cred-test-003?from=cards');
-    await userEvent.click(await ui.findByRole('link', { name: 'العودة إلى بطاقاتي' }));
-    await ui.findByRole('list', { name: 'مجموعة البطاقات' });
+    await userEvent.click(await ui.findByRole('link', { name: 'العودة إلى مستمسكاتي' }));
+    await ui.findByRole('list', { name: 'مجموعة المستمسكات' });
     const first = cardButtons(w.container)[0];
     expect(first?.getAttribute('aria-label')).toMatch(/^بطاقة السكن/);
     expect(first).toHaveAttribute('aria-expanded', 'true');
@@ -64,7 +64,7 @@ describe('card stack', () => {
   it('keyboard: Arrow keys move between cards, Enter selects, Escape returns to the stack', async () => {
     const w = renderWallet('/cards');
     const ui = within(w.container);
-    await ui.findByRole('list', { name: 'مجموعة البطاقات' });
+    await ui.findByRole('list', { name: 'مجموعة المستمسكات' });
     (cardButtons(w.container)[0] as HTMLElement).focus();
     await userEvent.keyboard('{ArrowDown}{ArrowDown}');
     expect(document.activeElement?.getAttribute('aria-label')).toMatch(/^بطاقة السكن/);
@@ -78,14 +78,14 @@ describe('card stack', () => {
   it('list view is a full alternative (search, filters) and the choice persists', async () => {
     const w = renderWallet('/cards');
     const ui = within(w.container);
-    await ui.findByRole('list', { name: 'مجموعة البطاقات' });
+    await ui.findByRole('list', { name: 'مجموعة المستمسكات' });
     await userEvent.click(ui.getByRole('button', { name: 'عرض القائمة' }));
-    const list = await ui.findByRole('list', { name: 'قائمة الاعتمادات' });
+    const list = await ui.findByRole('list', { name: 'قائمة المستمسكات' });
     expect(within(list).getAllByRole('listitem')).toHaveLength(5);
-    expect(ui.getByLabelText('بحث في الاعتمادات')).toBeInTheDocument();
+    expect(ui.getByLabelText('بحث في المستمسكات')).toBeInTheDocument();
     w.unmount();
     const again = renderWallet('/cards');
-    expect(await within(again.container).findByRole('list', { name: 'قائمة الاعتمادات' })).toBeInTheDocument();
+    expect(await within(again.container).findByRole('list', { name: 'قائمة المستمسكات' })).toBeInTheDocument();
     expect(within(again.container).getByRole('button', { name: 'عرض القائمة' })).toHaveAttribute('aria-pressed', 'true');
   });
 });
@@ -98,7 +98,7 @@ describe('home, privacy and credential states', () => {
     expect(ui.getByText(/^العمر: \d+ سنة$/)).toBeInTheDocument();
     expect(w.container.textContent).not.toContain('TEST-DOC-0001');
     expect(w.container.textContent).not.toMatch(/موثق|تم التحقق|VERIFIED/);
-    expect(within(ui.getByRole('navigation', { name: 'الخدمات السريعة' })).getAllByRole('link').map((a) => a.textContent)).toEqual(['بطاقاتي', 'QR تجريبي', 'مشاركة البيانات']);
+    expect(within(ui.getByRole('navigation', { name: 'الخدمات السريعة' })).getAllByRole('link').map((a) => a.textContent)).toEqual(['مستمسكاتي', 'QR تجريبي', 'مشاركة البيانات']);
   });
 
   it('privacy mode hides name, age and holder on cards; it persists and the settings switch reflects it', async () => {
@@ -112,7 +112,7 @@ describe('home, privacy and credential states', () => {
     expect(localStorage.getItem('iqdi-wallet-privacy')).toBe('on');
     w.unmount();
     const cards = renderWallet('/cards');
-    await within(cards.container).findByRole('list', { name: 'مجموعة البطاقات' });
+    await within(cards.container).findByRole('list', { name: 'مجموعة المستمسكات' });
     expect(cards.container.textContent).not.toContain('مواطن تجريبي');
     cards.unmount();
     const settings = renderWallet('/settings');
@@ -136,11 +136,11 @@ describe('home, privacy and credential states', () => {
 });
 
 describe('navigation and requests', () => {
-  it('bottom nav has exactly five sections and keeps «بطاقاتي» active on card details', async () => {
+  it('bottom nav has exactly five sections and keeps «مستمسكاتي» active on card details', async () => {
     const w = renderWallet('/credentials/cred-test-002');
     const nav = within(w.container).getByRole('navigation', { name: 'التنقل الرئيسي' });
-    expect(within(nav).getAllByRole('link').map((a) => a.textContent)).toEqual(['الرئيسية', 'بطاقاتي', 'الطلبات', 'النشاط', 'الإعدادات']);
-    expect(within(nav).getByRole('link', { name: 'بطاقاتي' })).toHaveAttribute('aria-current', 'page');
+    expect(within(nav).getAllByRole('link').map((a) => a.textContent)).toEqual(['الرئيسية', 'مستمسكاتي', 'الطلبات', 'النشاط', 'الإعدادات']);
+    expect(within(nav).getByRole('link', { name: 'مستمسكاتي' })).toHaveAttribute('aria-current', 'page');
   });
 
   it('home «رفض الطلب» opens the reject confirmation without sending; only «تأكيد الرفض» rejects', async () => {
@@ -170,7 +170,7 @@ describe('independent-review fixes', () => {
   it('cards expose expiry, DEMO and display-only status to screen readers; the open card controls its actions', async () => {
     const w = renderWallet('/cards?card=cred-test-005');
     const ui = within(w.container);
-    await ui.findByRole('list', { name: 'مجموعة البطاقات' });
+    await ui.findByRole('list', { name: 'مجموعة المستمسكات' });
     const first = cardButtons(w.container)[0] as HTMLElement;
     expect(first).toHaveAccessibleDescription(/تنتهي .*للعرض فقط\. بيانات تجريبية DEMO\./);
     expect(first).toHaveAttribute('aria-controls', 'card-actions');
@@ -180,7 +180,7 @@ describe('independent-review fixes', () => {
   it('«رجوع إلى المجموعة» returns focus to the card that was open', async () => {
     const w = renderWallet('/cards?card=cred-test-003');
     const ui = within(w.container);
-    await ui.findByRole('list', { name: 'مجموعة البطاقات' });
+    await ui.findByRole('list', { name: 'مجموعة المستمسكات' });
     await userEvent.click(ui.getByRole('button', { name: 'رجوع إلى المجموعة' }));
     expect(document.activeElement?.getAttribute('data-card-id')).toBe('cred-test-003');
     expect(document.activeElement).toHaveAttribute('aria-expanded', 'false');
@@ -190,11 +190,11 @@ describe('independent-review fixes', () => {
     localStorage.setItem('iqdi-wallet-cards-view', 'list');
     const w = renderWallet('/cards?view=stack');
     const ui = within(w.container);
-    await ui.findByRole('list', { name: 'مجموعة البطاقات' });
+    await ui.findByRole('list', { name: 'مجموعة المستمسكات' });
     await userEvent.click(cardButtons(w.container)[1] as HTMLElement);
     expect(screen.getByTestId('where')).toHaveTextContent('view=stack');
     expect(screen.getByTestId('where')).toHaveTextContent('card=cred-test-002');
-    expect(ui.getByRole('list', { name: 'مجموعة البطاقات' })).toBeInTheDocument();
+    expect(ui.getByRole('list', { name: 'مجموعة المستمسكات' })).toBeInTheDocument();
   });
 
   it('the reject deep link opens once: the param is removed and the dialog stays closed after «تراجع» and refreshes', async () => {
@@ -209,3 +209,27 @@ describe('independent-review fixes', () => {
   });
 });
 
+
+describe('terminology «مستمسكاتي»', () => {
+  const OLD = /بطاقاتي/;
+  const textAndLabels = (root: HTMLElement) => [root.textContent ?? '', ...Array.from(root.querySelectorAll('[aria-label]'), (e) => e.getAttribute('aria-label') ?? '')].join('\n');
+
+  it.each([
+    ['/', 'أهلاً بك'], ['/cards', 'مستمسكاتي'], ['/cards?view=list', 'مستمسكاتي'], ['/credentials', 'مستمسكاتي'],
+    ['/credentials/cred-test-002?from=cards', 'تفاصيل المستمسك'], ['/card', 'بطاقتي الرقمية'], ['/settings', 'الإعدادات'],
+  ])('%s uses the new section name and never «بطاقاتي» in text or aria-labels', async (path, heading) => {
+    const w = renderWallet(path);
+    const ui = within(w.container);
+    expect(await ui.findByRole('heading', { level: 1, name: heading })).toBeInTheDocument();
+    if (path !== '/settings') await ui.findAllByText(/تجريبي/);
+    expect(within(ui.getByRole('navigation', { name: 'التنقل الرئيسي' })).getByRole('link', { name: 'مستمسكاتي' })).toHaveAttribute('href', '/cards');
+    expect(textAndLabels(w.container)).not.toMatch(OLD);
+  });
+
+  it('card details links back with «العودة إلى مستمسكاتي» and the stack panel opens with «عرض المستمسك»', async () => {
+    const w = renderWallet('/cards?card=cred-test-002');
+    const ui = within(w.container);
+    expect(await ui.findByRole('link', { name: 'عرض المستمسك' })).toHaveAttribute('href', '/credentials/cred-test-002?from=cards');
+    expect(textAndLabels(w.container)).not.toMatch(OLD);
+  });
+});

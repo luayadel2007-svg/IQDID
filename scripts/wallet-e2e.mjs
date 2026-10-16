@@ -157,7 +157,7 @@ try {
     await shot(wallet, 'j9-wallet-network-error');
     await walletCtx.unroute('**/demo-api/v1/**');
     await wallet.getByRole('button', { name: 'إعادة المحاولة' }).click();
-    await wallet.getByRole('list', { name: 'قائمة الاعتمادات' }).waitFor();
+    await wallet.getByRole('list', { name: 'قائمة المستمسكات' }).waitFor();
   });
 
   await step('offline: banner shown and decisions disabled; restored when back online', async () => {
@@ -215,7 +215,7 @@ try {
   await step('card stack: tap brings a card to the front and expands it; details; Back restores it', async () => {
     await wallet.setViewportSize({ width: 390, height: 844 });
     await wallet.goto(`${W}/cards`);
-    const stack = wallet.getByRole('list', { name: 'مجموعة البطاقات' });
+    const stack = wallet.getByRole('list', { name: 'مجموعة المستمسكات' });
     await stack.waitFor();
     check(await stack.getByRole('button').count() === 5, 'expected 5 cards');
     // Tap the visible header strip of a covered card, as a person would (its centre is under the next card).
@@ -230,7 +230,7 @@ try {
     await wallet.waitForTimeout(400);
     await shot(wallet, 'j14-card-selected');
     await first.click();
-    await wallet.getByRole('heading', { level: 1, name: 'تفاصيل الاعتماد' }).waitFor();
+    await wallet.getByRole('heading', { level: 1, name: 'تفاصيل المستمسك' }).waitFor();
     await wallet.getByRole('list', { name: 'حالات الاعتماد' }).getByText('اعتماد تجريبي للعرض فقط').waitFor();
     await wallet.goBack();
     await wallet.waitForURL(/\/cards\?card=cred-test-005/);
@@ -241,7 +241,7 @@ try {
   await step('card stack: keyboard + reduced motion + list view alternative', async () => {
     await wallet.emulateMedia({ reducedMotion: 'reduce' });
     await wallet.goto(`${W}/cards`);
-    const stack = wallet.getByRole('list', { name: 'مجموعة البطاقات' });
+    const stack = wallet.getByRole('list', { name: 'مجموعة المستمسكات' });
     await stack.getByRole('button').first().focus();
     await wallet.keyboard.press('ArrowDown');
     await wallet.keyboard.press('Enter');
@@ -251,9 +251,9 @@ try {
     await wallet.keyboard.press('Escape');
     await wallet.waitForURL((u) => !u.search.includes('card='));
     await wallet.getByRole('button', { name: 'عرض القائمة' }).click();
-    await wallet.getByRole('list', { name: 'قائمة الاعتمادات' }).waitFor();
+    await wallet.getByRole('list', { name: 'قائمة المستمسكات' }).waitFor();
     await wallet.reload();
-    await wallet.getByRole('list', { name: 'قائمة الاعتمادات' }).waitFor();
+    await wallet.getByRole('list', { name: 'قائمة المستمسكات' }).waitFor();
     await wallet.getByRole('button', { name: 'عرض البطاقات' }).click();
     await wallet.emulateMedia({ reducedMotion: 'no-preference' });
   });
