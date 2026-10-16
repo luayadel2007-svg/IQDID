@@ -13,18 +13,18 @@ const nonce = (): string => {
   return [...b].map((x) => x.toString(16).padStart(2, '0')).join('');
 };
 /** Payload carries no claims and no personal data: a DEMO marker, the synthetic holder ref, a random nonce and expiry. */
-const makePayload = () => {
+export const makeDemoQrPayload = () => {
   const exp = new Date(Date.now() + LIFETIME_S * 1000).toISOString();
-  return { exp, text: `IQDID-DEMO:${JSON.stringify({ v: 1, kind: 'DEMO_ONLY_NOT_A_CREDENTIAL', holder: DEMO_HOLDER_REF, nonce: nonce(), exp })}` };
+  return { exp, text: `IQDI-DEMO:${JSON.stringify({ v: 1, kind: 'DEMO_ONLY_NOT_A_CREDENTIAL', holder: DEMO_HOLDER_REF, nonce: nonce(), exp })}` };
 };
 const CODE_RE = /^[A-Z0-9]{6}$/;
 
 export function QrPage() {
   const wallet = useWallet();
   const navigate = useNavigate();
-  const [payload, setPayload] = useState(makePayload);
+  const [payload, setPayload] = useState(makeDemoQrPayload);
   const left = useCountdown(payload.exp);
-  useEffect(() => { if (left === 0) setPayload(makePayload()); }, [left]);
+  useEffect(() => { if (left === 0) setPayload(makeDemoQrPayload()); }, [left]);
   const [code, setCode] = useState('');
   const [error, setError] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
@@ -50,7 +50,7 @@ export function QrPage() {
         <div className="qr-box">{qr}<span className="qr-box__stamp" aria-hidden="true">DEMO</span></div>
         <div className="row" style={{ justifyContent: 'center', marginTop: 'var(--sp-4)' }}>
           {left !== null && <CountdownRing seconds={left} total={LIFETIME_S} size={52} />}
-          <Button variant="secondary" size="sm" onClick={() => setPayload(makePayload())}><Icon name="refresh" size={18} />تجديد الرمز</Button>
+          <Button variant="secondary" size="sm" onClick={() => setPayload(makeDemoQrPayload())}><Icon name="refresh" size={18} />تجديد الرمز</Button>
         </div>
       </Card>
       <Card title="فتح طلب برمزه" icon="search">

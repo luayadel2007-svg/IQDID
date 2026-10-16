@@ -46,8 +46,8 @@ export function WalletApp({ gateway, pollMs = 2000, trust = demoTrustAdapter }: 
         <TrustContext.Provider value={trust}>
           <FeedProvider>
             <AppShell
-              appName="محفظتي الرقمية"
-              appSubtitle="تطبيق المواطن — نسخة تجريبية"
+              appName="IQDI Wallet"
+              appSubtitle="محفظة المواطن الرقمية — تجريبية"
               layout="mobile"
               headerExtra={<NotificationsButton />}
               topSlot={<OfflineBar />}

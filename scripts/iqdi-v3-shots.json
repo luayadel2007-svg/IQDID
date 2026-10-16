@@ -1,0 +1,15 @@
+[
+ {"app":"wallet","route":"/","theme":"light","width":390,"name":"01-home-light","seed":"mixed"},
+ {"app":"wallet","route":"/","theme":"dark","width":390,"name":"02-home-dark","seed":"mixed"},
+ {"app":"wallet","route":"/cards","theme":"light","width":390,"name":"03-cards-stack-light","seed":"mixed"},
+ {"app":"wallet","route":"/cards","theme":"dark","width":390,"name":"04-cards-stack-dark","seed":"mixed"},
+ {"app":"wallet","route":"/cards?card=cred-test-001","theme":"light","width":390,"name":"05-card-selected","seed":"mixed"},
+ {"app":"wallet","route":"/cards?view=list","theme":"light","width":390,"name":"06-cards-list","seed":"mixed"},
+ {"app":"wallet","route":"/credentials/cred-test-001","theme":"light","width":390,"name":"07-credential-details","seed":"mixed"},
+ {"app":"wallet","route":"/requests/:pending","theme":"light","width":390,"name":"08-sharing-request","seed":"mixed"},
+ {"app":"wallet","route":"/requests/:pending/disclosure","theme":"dark","width":390,"name":"09-disclosure-dark","seed":"mixed"},
+ {"app":"wallet","route":"/qr","theme":"light","width":390,"name":"10-qr-demo","seed":"mixed"},
+ {"app":"wallet","route":"/settings","theme":"light","width":390,"name":"11-settings","seed":"mixed"},
+ {"app":"verifier","route":"/","theme":"light","width":1366,"name":"12-verifier-dashboard-light","seed":"mixed"},
+ {"app":"verifier","route":"/","theme":"dark","width":1366,"name":"13-verifier-dashboard-dark","seed":"mixed"}
+]

@@ -10,3 +10,4 @@ export { AppearanceSettings } from './preferences.tsx';
 export { Icon, type IconName } from './Icon.tsx';
 export { FavoriteShortcut } from './FavoriteShortcut.tsx';
 export { CountdownRing } from './CountdownRing.tsx';
+export { BrandMark } from './BrandMark.tsx';

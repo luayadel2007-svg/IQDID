@@ -48,7 +48,8 @@ try {
     await ctx.addInitScript(([theme, extra]) => { try { localStorage.setItem('iqdid-demo-theme', theme); for (const [k, v] of Object.entries(extra)) localStorage.setItem(k, v); } catch { /* ignore */ } }, [s.theme, s.storage ?? {}]);
     const p = await ctx.newPage();
     await p.goto(stack.urls[s.app] + s.route.replace(':pending', ids.pending ?? '').replace(':accepted', ids.accepted ?? ''));
-    await p.getByRole('heading', { level: 1 }).first().waitFor();
+    await p.locator('main').waitFor();
+    await p.waitForFunction(() => !document.querySelector('.skeleton'), null, { timeout: 15000 }).catch(() => undefined);
     await p.waitForTimeout(s.settle ?? 600);
     await p.screenshot({ path: path.join(out, `${s.name}.png`), fullPage: s.fullPage === true });
     console.log(`shot ${s.name}`);
