@@ -20,9 +20,9 @@ export const readCardsView = (): CardsView => (read(CARDS_VIEW) === 'list' ? 'li
 export const writeCardsView = (v: CardsView): void => { write(CARDS_VIEW, v); emit(); };
 
 export const SERVICES = [
-  { id: 'cards', href: '/cards', label: 'بطاقاتي', icon: 'wallet' },
+  { id: 'cards', href: '/cards', label: 'مستمسكاتي', icon: 'wallet' },
   { id: 'card', href: '/card', label: 'بطاقتي', icon: 'card' },
-  { id: 'credentials', href: '/credentials', label: 'الاعتمادات', icon: 'folder' },
+  { id: 'credentials', href: '/credentials', label: 'قائمة المستمسكات', icon: 'folder' },
   { id: 'requests', href: '/requests', label: 'الطلبات', icon: 'inbox' },
   { id: 'qr', href: '/qr', label: 'رمز QR', icon: 'qr' },
   { id: 'activity', href: '/activity', label: 'النشاط', icon: 'activity' },

@@ -5,7 +5,7 @@
 3. **No real verification.** No real screen-reader, device or cross-browser runs. Approvals are DEMO only; there is no SD-JWT, signature or trust chain. QR is DEMO and has no claims.
 4. **Display-only credentials.** Licence, residence, education and health are display-only. No seeded credential is expired: EXPIRED is implemented and covered by the state model, but not shown in demo data.
 5. **Bundle size.** Wallet bundle 105.7 kB gz; no route code-splitting yet.
-6. **Detail heading.** Card details keep the page heading «تفاصيل الاعتماد»; the card hero is an image-role summary.
+6. **Detail heading.** Card details keep the page heading «تفاصيل المستمسك»; the card hero is an image-role summary.
 7. **Polling.** Cross-app updates use 2 s polling (unchanged).
 8. **Privacy mode scope.** It does not mask the request preview: the citizen must see exactly what will be shared before deciding. Masked numbers keep their last 4 characters outside privacy mode.
 9. **Independent review.** The independent review is by an AI agent, not a human auditor.

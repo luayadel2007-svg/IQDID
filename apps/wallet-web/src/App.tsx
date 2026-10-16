@@ -24,7 +24,7 @@ import { TrustContext, demoTrustAdapter, type WalletTrustAdapter } from './trust
 /** Five primary sections (RTL order: first item is right-most). `match` marks the section active for its sub-pages. */
 const NAV: ReadonlyArray<{ to: string; label: string; icon: IconName; match: RegExp; badge?: 'pending' }> = [
   { to: '/', label: 'الرئيسية', icon: 'home', match: /^\/$/ },
-  { to: '/cards', label: 'بطاقاتي', icon: 'wallet', match: /^\/(cards|card|credentials)(\/|$)/ },
+  { to: '/cards', label: 'مستمسكاتي', icon: 'wallet', match: /^\/(cards|card|credentials)(\/|$)/ },
   { to: '/requests', label: 'الطلبات', icon: 'inbox', match: /^\/requests(\/|$)/, badge: 'pending' },
   { to: '/activity', label: 'النشاط', icon: 'activity', match: /^\/activity(\/|$)/ },
   { to: '/settings', label: 'الإعدادات', icon: 'settings', match: /^\/settings(\/|$)/ },

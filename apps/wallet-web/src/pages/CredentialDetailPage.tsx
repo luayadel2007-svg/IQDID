@@ -30,7 +30,7 @@ export function CredentialDetailPage() {
   const view = trust.describeCredential(data);
   return (
     <>
-      <PageHeader eyebrow="اعتماد" icon="file" title="تفاصيل الاعتماد" description={data.title} />
+      <PageHeader eyebrow="مستمسك" icon="file" title="تفاصيل المستمسك" description={data.title} />
       <div className={cardClass(data)} style={{ cursor: 'default', marginBottom: 'var(--sp-4)' }} role="img" aria-label={`صورة البطاقة التجريبية: ${data.title}`}>
         <CredentialFace credential={data} privacy={privacy} />
       </div>
@@ -81,7 +81,7 @@ export function CredentialDetailPage() {
         <p style={{ margin: 0 }}><strong>{view.kind === 'DEMO_UNVERIFIED' ? view.label : 'تحقق بروتوكولي'}</strong></p>
         {view.kind === 'DEMO_UNVERIFIED' && <p className="small muted" style={{ margin: 0 }}>{view.detail}</p>}
       </Card>
-      <p style={{ marginTop: 'var(--sp-4)' }}>{fromCards ? <Link to={`/cards?card=${data.id}`}>العودة إلى بطاقاتي</Link> : <Link to="/credentials">العودة إلى الاعتمادات</Link>}</p>
+      <p style={{ marginTop: 'var(--sp-4)' }}>{fromCards ? <Link to={`/cards?card=${data.id}`}>العودة إلى مستمسكاتي</Link> : <Link to="/credentials">العودة إلى قائمة المستمسكات</Link>}</p>
     </>
   );
 }

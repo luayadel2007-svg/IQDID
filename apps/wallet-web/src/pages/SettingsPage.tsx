@@ -64,7 +64,7 @@ export function SettingsPage() {
         </fieldset>
       </section>
       <Card title="العرض التجريبي" icon="refresh">
-        <p className="muted">إعادة الضبط تحذف كل الطلبات والسجل وتعيد الاعتمادات الاصطناعية، وتؤثر في تطبيق المتحقق أيضاً.</p>
+        <p className="muted">إعادة الضبط تحذف كل الطلبات والسجل وتعيد المستمسكات الاصطناعية، وتؤثر في تطبيق المتحقق أيضاً.</p>
         <div className="row">
           <Button variant="danger" onClick={() => setConfirmReset(true)}>إعادة ضبط البيانات التجريبية</Button>
           <Link className="btn btn--secondary" to="/welcome" onClick={() => setOnboarded(false)}>إعادة الجولة التعريفية</Link>

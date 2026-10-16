@@ -41,7 +41,7 @@
     "test/wallet-cards-v3.test.tsx",
     "test/iqdi-branding.test.tsx"
   ],
-  "minVitestTests": 124,
+  "minVitestTests": 132,
   "minBrowserSteps": {
     "e2e": 12,
     "ux": 20,

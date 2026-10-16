@@ -29,8 +29,8 @@ export function MyCardPage() {
       </Card>
       <div className="row" style={{ marginTop: 'var(--sp-4)' }}>
         <Link className="btn btn--primary" to="/qr"><Icon name="qr" size={18} />عرض رمز QR التجريبي</Link>
-        <Link className="btn btn--secondary" to={`/credentials/${card.id}`}><Icon name="file" size={18} />تفاصيل الاعتماد</Link>
-        <Link className="btn btn--ghost" to="/cards"><Icon name="wallet" size={18} />كل البطاقات</Link>
+        <Link className="btn btn--secondary" to={`/credentials/${card.id}`}><Icon name="file" size={18} />تفاصيل المستمسك</Link>
+        <Link className="btn btn--ghost" to="/cards"><Icon name="wallet" size={18} />كل المستمسكات</Link>
       </div>
       {view.kind === 'DEMO_UNVERIFIED' && <div style={{ marginTop: 'var(--sp-4)' }}><Alert tone="warning" title={view.label}>{view.detail}</Alert></div>}
       <p className="small muted">الجهة المصدرة: {card.issuerName}.</p>

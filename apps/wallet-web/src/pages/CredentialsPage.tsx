@@ -11,13 +11,13 @@ const ATTENTION: readonly Validity[] = ['EXPIRING', 'EXPIRED', 'SUSPENDED', 'REV
 export function CredentialsPage() {
   return (
     <>
-      <PageHeader eyebrow="المحفظة" icon="folder" title="اعتماداتي" description="كل الاعتمادات الاصطناعية في محفظتك التجريبية." />
+      <PageHeader eyebrow="المحفظة" icon="folder" title="مستمسكاتي" description="كل المستمسكات الرقمية الاصطناعية في محفظتك التجريبية." />
       <CredentialsBrowser />
     </>
   );
 }
 
-/** Searchable, filterable list of credentials (list view of «بطاقاتي» and the /credentials page). */
+/** Searchable, filterable list of credentials (list view of «مستمسكاتي» and the /credentials page). */
 export function CredentialsBrowser() {
   const wallet = useWallet();
   const { data, error, loading, reload } = useAsync((s) => wallet.credentials({ signal: s }), [wallet]);
@@ -35,7 +35,7 @@ export function CredentialsBrowser() {
       <div className="toolbar">
         <div className="search">
           <span className="search__icon"><Icon name="search" size={18} /></span>
-          <label htmlFor="cred-search" className="visually-hidden">بحث في الاعتمادات</label>
+          <label htmlFor="cred-search" className="visually-hidden">بحث في المستمسكات</label>
           <input id="cred-search" className="input" type="search" placeholder="ابحث بالاسم أو الجهة المصدرة" value={q} onChange={(e) => setQ(e.target.value.slice(0, 60))} />
         </div>
         <SegmentedControl label="تصفية حسب الحالة" value={filter} onChange={setFilter} options={[{ value: 'all', label: 'الكل' }, { value: 'active', label: 'فعالة' }, { value: 'attention', label: 'تحتاج انتباهاً' }]} />
@@ -43,7 +43,7 @@ export function CredentialsBrowser() {
       {loading ? <LoadingState /> : error ? <ErrorState message={describeError(error)} onRetry={reload} /> : list.length === 0 ? (
         <EmptyState icon="search" title="لا توجد نتائج" description={term ? `لا يوجد اعتماد يطابق «${term}».` : 'لا توجد اعتمادات بهذه الحالة.'} />
       ) : (
-        <ul className="item-list" aria-label="قائمة الاعتمادات">
+        <ul className="item-list" aria-label="قائمة المستمسكات">
           {list.map((c) => (
             <li key={c.id} className="item item--link">
               <span className="item__icon"><Icon name={CREDENTIAL_ICON[c.type]} /></span>

@@ -11,7 +11,7 @@ import { cardClass } from '../components/CredentialCard.tsx';
 import { CREDENTIAL_ICON, ValidityBadge } from '../components/bits.tsx';
 
 const QUICK = [
-  { href: '/cards', label: 'بطاقاتي', icon: 'wallet' },
+  { href: '/cards', label: 'مستمسكاتي', icon: 'wallet' },
   { href: '/qr', label: 'QR تجريبي', icon: 'qr' },
   { href: '/requests', label: 'مشاركة البيانات', icon: 'share' },
 ] as const;
@@ -55,7 +55,7 @@ export function HomePage() {
                 <span>محفظة تجريبية نشطة</span>
                 <span className="badge badge--demo">DEMO</span>
               </div>
-              <Link to="/card" className="btn btn--secondary btn--sm" style={{ marginTop: 'var(--sp-3)' }}><Icon name="card" size={18} />عرض بطاقتي</Link>
+              <Link to="/card" className="btn btn--secondary btn--sm" style={{ marginTop: 'var(--sp-3)' }}><Icon name="card" size={18} />عرض الهوية الرقمية</Link>
             </div>
           </div>
         )}
@@ -80,9 +80,9 @@ export function HomePage() {
         </ul>
       )}
 
-      <div className="section-title"><h2>بطاقاتي</h2><Link to="/cards" className="small">كل البطاقات</Link></div>
+      <div className="section-title"><h2>مستمسكاتي</h2><Link to="/cards" className="small">كل المستمسكات</Link></div>
       {creds.data && (
-        <ul className="mini-cards" aria-label="البطاقات">
+        <ul className="mini-cards" aria-label="المستمسكات">
           {creds.data.map((c) => (
             <li key={c.id} className={`${cardClass(c)} mini-card`}>
               <span className="cred-card__icon"><Icon name={CREDENTIAL_ICON[c.type]} size={20} /></span>

@@ -1,0 +1,9 @@
+[
+ {"app":"wallet","route":"/","theme":"light","width":390,"name":"01-home-light","seed":"mixed"},
+ {"app":"wallet","route":"/cards","theme":"light","width":390,"name":"02-mustamsakati-stack-light","seed":"mixed"},
+ {"app":"wallet","route":"/cards","theme":"dark","width":390,"name":"03-mustamsakati-stack-dark","seed":"mixed"},
+ {"app":"wallet","route":"/cards?card=cred-test-002","theme":"light","width":390,"name":"04-mustamsak-selected","seed":"mixed"},
+ {"app":"wallet","route":"/cards?view=list","theme":"light","width":390,"name":"05-mustamsakati-list","seed":"mixed"},
+ {"app":"wallet","route":"/credentials/cred-test-002?from=cards","theme":"light","width":390,"name":"06-mustamsak-details","seed":"mixed"},
+ {"app":"wallet","route":"/credentials/cred-test-002?from=cards","theme":"dark","width":390,"name":"07-mustamsak-details-dark","seed":"mixed"}
+]
