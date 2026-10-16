@@ -1,0 +1,20 @@
+{
+  "id": "/",
+  "name": "IQDI Wallet — محفظة المواطن الرقمية (تجريبية)",
+  "short_name": "IQDI Wallet",
+  "description": "نسخة تجريبية ببيانات وهمية (TEST ONLY). لا تمثل أي جهة حكومية ولا يجري أي تحقق تشفيري.",
+  "lang": "ar",
+  "dir": "rtl",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#f2f5fb",
+  "theme_color": "#0a2350",
+  "categories": ["utilities"],
+  "icons": [
+    { "src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

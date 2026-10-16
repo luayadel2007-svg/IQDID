@@ -61,6 +61,7 @@ const browser = [
   ['pdf', ev('IQDID_PDF_AUDIT_DIR', 'modernization/pdf-audit', 'audit.json'), (j) => j.checks],
   ['verifier', ev('IQDID_VERIFIER_EVIDENCE_DIR', 'task10/verifier-e2e', 'verifier-e2e-results.json'), (j) => j.results],
   ['scenarios', ev('IQDID_SCENARIO_EVIDENCE_DIR', 'task11/scenarios', 'scenarios.json'), (j) => j.scenarios],
+  ['responsive', ev('IQDID_RESPONSIVE_DIR', 'task13/responsive', 'matrix.json'), (j) => j.results],
 ];
 for (const [name, file, pick] of browser) {
   if (!existsSync(file)) { problems.push(`${name}: results missing (${file})`); continue; }

@@ -32,7 +32,10 @@ export function AppShell({ appName, appSubtitle, layout, nav, headerExtra, topSl
   useAppearance();
   const [scrolled, setScrolled] = useState(false);
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
+    // Hysteresis: the compact header is up to 12px shorter, so a single threshold makes a page that
+    // scrolls only a little past it oscillate (compact → page shrinks → scrollY drops → expand → …).
+    // The 24px gap between the two thresholds is wider than that height change.
+    const onScroll = () => setScrolled((was) => (was ? window.scrollY > 8 : window.scrollY > 32));
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);

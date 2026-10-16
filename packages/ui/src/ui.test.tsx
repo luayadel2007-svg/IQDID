@@ -171,6 +171,24 @@ describe('PDF §5 adaptive top bar', () => {
     act(() => { Object.defineProperty(window, 'scrollY', { value: 0, configurable: true }); window.dispatchEvent(new Event('scroll')); });
     expect(header).toHaveAttribute('data-scrolled', 'false');
   });
+
+  it('uses hysteresis so a page scrollable just past the threshold cannot make the header oscillate', () => {
+    render(<AppShell appName="محفظة" appSubtitle="تجريبي" layout="mobile" nav={<a href="/">الرئيسية</a>}><h1>عنوان</h1></AppShell>);
+    const header = screen.getByRole('banner');
+    const scrollTo = (y: number) => act(() => { Object.defineProperty(window, 'scrollY', { value: y, configurable: true }); window.dispatchEvent(new Event('scroll')); });
+    // The compact header is up to 12px shorter: each position it can bounce between stays in one state.
+    scrollTo(20);
+    expect(header).toHaveAttribute('data-scrolled', 'false');
+    scrollTo(33);
+    expect(header).toHaveAttribute('data-scrolled', 'true');
+    scrollTo(21);
+    expect(header).toHaveAttribute('data-scrolled', 'true');
+    scrollTo(8);
+    expect(header).toHaveAttribute('data-scrolled', 'false');
+    scrollTo(20);
+    expect(header).toHaveAttribute('data-scrolled', 'false');
+    scrollTo(0);
+  });
 });
 
 describe('Design System V3 credential-card palette', () => {

@@ -6,8 +6,10 @@ import { TEMPLATE_LABEL } from './model.ts';
 /** Wide session table. The wrapper scrolls on narrow screens and is keyboard-focusable. */
 export function SessionTable({ sessions, caption, timeColumn = 'created', compact = false }: { sessions: readonly DemoVerificationSession[]; caption: string; timeColumn?: 'created' | 'decided'; compact?: boolean }) {
   return (
-    // A scrollable region must be keyboard-reachable (WCAG 2.1.1, axe scrollable-region-focusable).
-    // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
+    <>
+    {!compact && <p className="vf-scroll-hint small muted" aria-hidden="true">مرّر الجدول أفقياً لعرض كل الأعمدة.</p>}
+    {/* A scrollable region must be keyboard-reachable (WCAG 2.1.1, axe scrollable-region-focusable). */}
+    {/* eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex */}
     <div className="table-wrap vf-table-wrap" role="region" aria-label={caption} tabIndex={0}>
       <table className="table vf-table">
         <caption className="visually-hidden">{caption}</caption>
@@ -35,5 +37,6 @@ export function SessionTable({ sessions, caption, timeColumn = 'created', compac
         </tbody>
       </table>
     </div>
+    </>
   );
 }

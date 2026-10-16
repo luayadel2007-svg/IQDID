@@ -37,8 +37,8 @@ export function HomePage() {
   const age = ageFrom(id?.claims.find((c) => c.key === 'birth_date')?.value);
 
   return (
-    <>
-      <section className="card" aria-labelledby="home-title">
+    <div className="home-grid wide">
+      <section className="card home-block home-block--summary" aria-labelledby="home-title">
         <div className="row row--between" style={{ alignItems: 'flex-start', marginBottom: 'var(--sp-3)' }}>
           <h1 id="home-title" style={{ margin: 0, fontSize: 'var(--fs-xl)' }}>أهلاً بك</h1>
           <button type="button" className="btn btn--ghost btn--sm" aria-pressed={privacy} onClick={() => setPrivacyMode(!privacy)}>
@@ -63,23 +63,30 @@ export function HomePage() {
       </section>
 
       {pending.length > 0 && readNotifyPref() && (
-        <Alert tone="info" title={`لديك ${pending.length} طلب مشاركة بيانات بانتظار قرارك`}>
-          <Link to="/requests">عرض الطلبات</Link>
-        </Alert>
+        <div className="home-block home-block--alert">
+          <Alert tone="info" title={`لديك ${pending.length} طلب مشاركة بيانات بانتظار قرارك`}>
+            <Link to="/requests">عرض الطلبات</Link>
+          </Alert>
+        </div>
       )}
 
+      <div className="home-block home-block--quick">
       <div className="section-title"><h2>الخدمات السريعة</h2></div>
       <nav className="quick3" aria-label="الخدمات السريعة">
         {QUICK.map((q) => <Link key={q.href} to={q.href} className="quick"><span className="quick__icon"><Icon name={q.icon} /></span>{q.label}</Link>)}
       </nav>
+      </div>
 
+      <div className="home-block home-block--requests">
       <div className="section-title"><h2>طلبات التحقق</h2><Link to="/requests" className="small">عرض الكل</Link></div>
       {reqs.loading ? <div className="home-reserve home-reserve--requests"><LoadingState /></div> : pending.length === 0 ? <p className="empty-inline card card--flat" style={{ margin: 0 }}>لا توجد طلبات بانتظار قرارك.</p> : (
         <ul className="item-list" aria-label="طلبات التحقق الحديثة">
           {pending.slice(0, 3).map((r) => <PendingRequest key={r.id} request={r} />)}
         </ul>
       )}
+      </div>
 
+      <div className="home-block home-block--cards">
       <div className="section-title"><h2>مستمسكاتي</h2><Link to="/cards" className="small">كل المستمسكات</Link></div>
       {!creds.data ? <div className="home-reserve home-reserve--cards" aria-hidden="true" /> : (
         <ul className="mini-cards" aria-label="المستمسكات">
@@ -92,7 +99,9 @@ export function HomePage() {
           ))}
         </ul>
       )}
+      </div>
 
+      <div className="home-block home-block--favorites">
       <div className="section-title"><h2>خدماتي المفضلة</h2><Link to="/settings#favorites" className="small">تخصيص</Link></div>
       <nav className="quick-grid" aria-label="خدماتي المفضلة">
         {favorites.map((fid) => {
@@ -100,11 +109,14 @@ export function HomePage() {
           return s ? <Link key={s.id} to={s.href} className="quick"><span className="quick__icon"><Icon name={s.icon} /></span>{s.label}</Link> : null;
         })}
       </nav>
+      </div>
 
+      <div className="home-block home-block--activity">
       <Card title="آخر النشاطات" icon="activity" actions={<Link to="/activity">السجل الكامل</Link>}>
         {activity.loading ? <LoadingState /> : activity.error && !activity.data ? <ErrorState message={describeError(activity.error)} onRetry={activity.reload} /> : <ActivityList events={(activity.data ?? []).slice(0, 3)} />}
       </Card>
-    </>
+      </div>
+    </div>
   );
 }
 
