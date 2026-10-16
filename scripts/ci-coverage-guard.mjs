@@ -59,6 +59,7 @@ const browser = [
   ['wallet', ev('IQDID_WALLET_EVIDENCE_DIR', 'task9/wallet-e2e', 'wallet-e2e-results.json'), (j) => j.results],
   ['pdf', ev('IQDID_PDF_AUDIT_DIR', 'modernization/pdf-audit', 'audit.json'), (j) => j.checks],
   ['verifier', ev('IQDID_VERIFIER_EVIDENCE_DIR', 'task10/verifier-e2e', 'verifier-e2e-results.json'), (j) => j.results],
+  ['scenarios', ev('IQDID_SCENARIO_EVIDENCE_DIR', 'task11/scenarios', 'scenarios.json'), (j) => j.scenarios],
 ];
 for (const [name, file, pick] of browser) {
   if (!existsSync(file)) { problems.push(`${name}: results missing (${file})`); continue; }

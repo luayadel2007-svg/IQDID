@@ -30,7 +30,10 @@
     "test:wallet": "node scripts/wallet-e2e.mjs",
     "test:pdf-ux": "node scripts/pdf-ux-audit.mjs",
     "screenshots": "node scripts/screenshots.mjs",
-    "test:verifier": "node scripts/verifier-e2e.mjs"
+    "test:verifier": "node scripts/verifier-e2e.mjs",
+    "test:scenarios": "node scripts/demo-scenarios.mjs",
+    "demo:reset": "node scripts/demo-reset.mjs",
+    "perf:measure": "node scripts/perf-measure.mjs"
   },
   "devDependencies": {
     "@eslint/js": "9.39.5",

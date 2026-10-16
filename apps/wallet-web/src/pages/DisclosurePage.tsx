@@ -52,7 +52,7 @@ export function DisclosurePage() {
         </Card>
       </div>
       {pending
-        ? <DecisionPanel session={req.data} canAccept={credential.status === 'ACTIVE' && !creds.error} onDecided={(e) => { setActionError(e); req.reload(); }} />
+        ? <DecisionPanel session={req.data} canAccept={credential.status === 'ACTIVE' && !creds.error} credentialStatus={credential.status} onDecided={(e) => { setActionError(e); req.reload(); }} />
         : <div style={{ marginTop: 'var(--sp-4)' }}><DecisionOutcome status={req.data.status} decidedAt={req.data.decidedAt} /></div>}
       <p style={{ marginTop: 'var(--sp-5)' }}><Link to={`/requests/${req.data.id}`}>العودة إلى تفاصيل الطلب</Link></p>
     </>
