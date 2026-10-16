@@ -103,11 +103,12 @@ try {
       await page.waitForFunction(() => !document.querySelector('main .skeleton'), null, { timeout: 15_000 });
       await page.evaluate(() => document.fonts.ready);
     };
-    const record = (r) => { rows.push({ browser: engine, browserVersion: version, os: `${os.platform()} ${os.release()}`, ...r }); if (r.outcome !== 'PASS') console.log(`FAIL ${engine} ${r.app} ${r.mode} ${r.width}x${r.height} ${r.route}: ${r.problems.slice(0, 3).join(' | ')}`); };
+    const record = (r) => { rows.push({ browser: engine, browserVersion: version, os: `${os.platform()} ${os.release()}`, ...r }); if (r.outcome !== 'PASS') console.log(`FAIL ${engine} ${r.app} ${r.mode} ${r.width}x${r.height} ${r.route}: ${r.problems.slice(0, 3).join(' | ')}`); for (const l of r.callLog ?? []) console.log(`  | ${l}`); };
 
     /** One page check: probe at top, probe after scrolling to the bottom, consent + dialog checks on request pages. */
     const check = async (page, app, route, mode, width, height, shot) => {
       const problems = [];
+      let callLog = null;
       try {
         await open(page, app, route);
         const top = await page.evaluate(PROBE);
@@ -144,8 +145,13 @@ try {
           await dlg.waitFor({ state: 'detached' });
         }
         if (shot) { await page.evaluate(() => window.scrollTo({ top: 0, behavior: 'instant' })); await page.waitForTimeout(80); await page.screenshot({ path: path.join(out, 'screenshots', `${shot}.png`), fullPage: false }); }
-      } catch (e) { problems.push(`error ${String(e.message).split('\n')[0]}`); }
-      record({ app, route: routeName(route), mode, width, height, problems, outcome: problems.length ? 'FAIL' : 'PASS' });
+      } catch (e) {
+        problems.push(`error ${String(e.message).split('\n')[0]}`);
+        // Keep Playwright's call log (why an action did not happen) and a capture, so a CI-only failure is diagnosable.
+        callLog = String(e.message).replace(new RegExp(`${String.fromCharCode(27)}\\[[0-9;]*m`, 'g'), '').split('\n').slice(1).map((l) => l.trim()).filter(Boolean).slice(-16);
+        await page.screenshot({ path: path.join(out, 'screenshots', `fail-${engine}-${app}-${mode}-${width}x${height}-${routeName(route).replace(/[^a-z0-9]+/gi, '_')}.png`) }).catch(() => {});
+      }
+      record({ app, route: routeName(route), mode, width, height, problems, ...(callLog ? { callLog } : {}), outcome: problems.length ? 'FAIL' : 'PASS' });
     };
 
     // 0. Probe self-test: injected faults MUST be detected, so a green matrix is not vacuous.
