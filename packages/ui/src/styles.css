@@ -660,3 +660,14 @@ html[data-text="large"] .home-reserve--summary, html[data-text="larger"] .home-r
 .shell--mobile .nav::-webkit-scrollbar { display: none; }
 .shell--mobile .nav a { flex: 1 1 auto; min-width: max-content; padding-inline: 6px; }
 @media (max-width: 380px) { .shell--mobile .nav { gap: 0; padding: 4px; } .shell--mobile .nav a { padding-inline: 4px; } }
+
+/* ---------------------------------------------------------------- IQDI brand (assets/branding, IQDIBrand)
+   One component renders the vector artwork; these rules only size and place it. Gold is never used for
+   small text (contrast), and the header keeps the compact symbol, not the full logo. */
+:root { --iqdi-navy: #0B2450; --iqdi-blue: #1E5AA8; --iqdi-tile: #1A4590; --iqdi-gold: #D4AF37; --iqdi-gold-on-dark: #E3BE55; --iqdi-ivory: #F8F6F1; --iqdi-night: #0D1B33; }
+.iqdi-brand { display: block; max-width: 100%; height: auto; user-select: none; }
+.brand-mark.iqdi-brand { display: inline-block; }
+.onboard__brand { margin: 0 auto var(--sp-4); }
+.about-brand { display: flex; align-items: center; gap: var(--sp-4); flex-wrap: wrap; }
+.about-brand > .iqdi-brand { flex: 0 0 auto; }
+.about-brand > div { flex: 1 1 220px; min-width: 0; }

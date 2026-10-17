@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Alert, Button, Card, Modal, PageHeader, Select, AppearanceSettings } from '@iqdid/ui';
+import { Alert, AppearanceSettings, Button, Card, IQDIBrand, Modal, PageHeader, Select } from '@iqdid/ui';
 import { describeError } from '@iqdid/api-client';
 import { useOrg, useVerifier } from '../gateway.tsx';
 
@@ -34,6 +34,12 @@ export function SettingsPage() {
       <Card title="العرض التجريبي" icon="refresh">
         <p className="muted">تحذف إعادة الضبط كل الجلسات والسجل في التطبيقين.</p>
         <Button variant="danger" onClick={() => setConfirmReset(true)}>إعادة ضبط البيانات التجريبية</Button>
+      </Card>
+      <Card title="حول" icon="info">
+        <div className="about-brand">
+          <IQDIBrand variant="mark" size={112} />
+          <p className="small">IQDI Verifier ضمن منظومة IQDI التجريبية (الهوية الرقمية العراقية). بوابة تحقق تجريبية ببيانات اصطناعية، غير مرتبطة بأي جهة حكومية ولا تحمل أي اعتماد رسمي، ولا تجري أي تحقق تشفيري.</p>
+        </div>
       </Card>
       <Modal open={confirmReset} title="إعادة ضبط العرض؟" onClose={() => setConfirmReset(false)}
         footer={<><Button variant="secondary" onClick={() => setConfirmReset(false)}>تراجع</Button><Button variant="danger" loading={busy} onClick={() => void reset()}>إعادة الضبط</Button></>}>

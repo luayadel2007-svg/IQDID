@@ -1,0 +1,82 @@
+[
+  {
+    "name": "wallet: primary service reached in one navigation interaction",
+    "outcome": "PASS"
+  },
+  {
+    "name": "wallet: settings synchronize header + persist after reload",
+    "outcome": "PASS"
+  },
+  {
+    "name": "wallet: automatic theme follows live operating-system changes",
+    "outcome": "PASS"
+  },
+  {
+    "name": "wallet: axe WCAG 2.2 AA settings (light) including contrast",
+    "outcome": "PASS"
+  },
+  {
+    "name": "wallet: axe WCAG 2.2 AA settings (dark) including contrast",
+    "outcome": "PASS"
+  },
+  {
+    "name": "wallet: axe audits all main routes in both themes",
+    "outcome": "PASS"
+  },
+  {
+    "name": "wallet: reduced motion disables animated skeleton and transitions",
+    "outcome": "PASS"
+  },
+  {
+    "name": "wallet: RTL responsive reflow at 320, 390, 768, 1366 and 200% text",
+    "outcome": "PASS"
+  },
+  {
+    "name": "wallet: keyboard controls and visible skip-link target",
+    "outcome": "PASS"
+  },
+  {
+    "name": "wallet: offline API error is visible, retry offered",
+    "outcome": "PASS"
+  },
+  {
+    "name": "verifier: primary service reached in one navigation interaction",
+    "outcome": "PASS"
+  },
+  {
+    "name": "verifier: settings synchronize header + persist after reload",
+    "outcome": "PASS"
+  },
+  {
+    "name": "verifier: automatic theme follows live operating-system changes",
+    "outcome": "PASS"
+  },
+  {
+    "name": "verifier: axe WCAG 2.2 AA settings (light) including contrast",
+    "outcome": "PASS"
+  },
+  {
+    "name": "verifier: axe WCAG 2.2 AA settings (dark) including contrast",
+    "outcome": "PASS"
+  },
+  {
+    "name": "verifier: axe audits all main routes in both themes",
+    "outcome": "PASS"
+  },
+  {
+    "name": "verifier: reduced motion disables animated skeleton and transitions",
+    "outcome": "PASS"
+  },
+  {
+    "name": "verifier: RTL responsive reflow at 320, 390, 768, 1366 and 200% text",
+    "outcome": "PASS"
+  },
+  {
+    "name": "verifier: keyboard controls and visible skip-link target",
+    "outcome": "PASS"
+  },
+  {
+    "name": "verifier: offline API error is visible, retry offered",
+    "outcome": "PASS"
+  }
+]

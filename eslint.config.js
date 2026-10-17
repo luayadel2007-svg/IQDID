@@ -42,5 +42,5 @@ export default tseslint.config(
   { files: ['tools/lib/secret-scanner-engine.mjs'], rules: { 'no-useless-escape': 'off', 'no-empty': ['error', { allowEmptyCatch: true }] } },
   { files: ['scripts/ux-e2e.mjs'], languageOptions: { globals: { ...globals.node, ...globals.browser } } },
   // page.evaluate() callbacks run in the browser
-  { files: ['scripts/e2e.mjs', 'scripts/wallet-e2e.mjs', 'scripts/screenshots.mjs', 'scripts/pdf-ux-audit.mjs', 'scripts/verifier-e2e.mjs', 'scripts/demo-scenarios.mjs', 'scripts/perf-measure.mjs', 'scripts/responsive-matrix.mjs'], languageOptions: { globals: { ...globals.node, ...globals.browser } } },
+  { files: ['scripts/e2e.mjs', 'scripts/wallet-e2e.mjs', 'scripts/screenshots.mjs', 'scripts/pdf-ux-audit.mjs', 'scripts/verifier-e2e.mjs', 'scripts/demo-scenarios.mjs', 'scripts/perf-measure.mjs', 'scripts/responsive-matrix.mjs', 'scripts/brand-assets.mjs', 'scripts/brand-visual.mjs', 'scripts/brand-check.mjs'], languageOptions: { globals: { ...globals.node, ...globals.browser } } },
 );

@@ -51,6 +51,7 @@ jobs:
             evidence/task11/scenarios
             evidence/task11/perf
             evidence/task13/responsive
+            evidence/branding/check
           retention-days: 30
   # TASK-13: the same multi-device matrix on Gecko and WebKit. These Playwright engine builds can be
   # downloaded on hosted runners (not in the development container). Ubuntu only: WebKit here is the

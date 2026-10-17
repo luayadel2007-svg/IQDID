@@ -18,7 +18,9 @@
     "test/ecosystem-contract.test.ts",
     "test/ecosystem-ui.test.tsx",
     "test/secret-scanner-png.test.ts",
-    "scripts/responsive-matrix.mjs"
+    "scripts/responsive-matrix.mjs",
+    "scripts/brand-check.mjs",
+    "test/brand-assets.test.ts"
   ],
   "requiredNpmScripts": {
     "e2e": "scripts/e2e.mjs",
@@ -28,7 +30,8 @@
     "test:pdf-ux": "scripts/pdf-ux-audit.mjs",
     "test:verifier": "scripts/verifier-e2e.mjs",
     "test:scenarios": "scripts/demo-scenarios.mjs",
-    "test:responsive": "scripts/responsive-matrix.mjs"
+    "test:responsive": "scripts/responsive-matrix.mjs",
+    "test:brand": "scripts/brand-check.mjs"
   },
   "requiredVerifySteps": [
     "typecheck",
@@ -43,6 +46,7 @@
     "browser-pdf-ux",
     "browser-scenarios",
     "browser-responsive",
+    "browser-brand",
     "coverage-guard",
     "secrets-diff",
     "secrets-all-index"
@@ -63,9 +67,10 @@
     "packages/shared-types/src/index.test.ts",
     "packages/ui/src/preferences.test.tsx",
     "packages/ui/src/ui.test.tsx",
-    "test/secret-scanner-png.test.ts"
+    "test/secret-scanner-png.test.ts",
+    "test/brand-assets.test.ts"
   ],
-  "minVitestTests": 184,
+  "minVitestTests": 205,
   "minBrowserSteps": {
     "e2e": 12,
     "ux": 20,
@@ -73,7 +78,8 @@
     "pdf": 27,
     "verifier": 14,
     "scenarios": 9,
-    "responsive": 286
+    "responsive": 286,
+    "brand": 68
   },
   "workflow": {
     "file": ".github/workflows/task8-ci.yml",
