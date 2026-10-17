@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { act, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { AppShell, Alert, Badge, Button, ErrorState, SegmentedControl, StatCard, Input, Modal, ThemeToggle, contrastRatio, tokens, cardPalette } from './index.ts';
+import { AppShell, Alert, Badge, Button, ErrorState, SegmentedControl, StatCard, Input, Modal, ThemeToggle, contrastRatio, tokens, cardPalette, IQDIBrand, IQDI_BRAND_LABEL } from './index.ts';
 
 describe('ui primitives', () => {
   it('Button shows loading state and blocks clicks', async () => {
@@ -200,5 +200,50 @@ describe('Design System V3 credential-card palette', () => {
         expect(contrastRatio(p.muted, stop)).toBeGreaterThanOrEqual(4.5);
       }
     }
+  });
+});
+
+describe('IQDIBrand — one brand component for both apps', () => {
+  afterEach(() => { try { localStorage.removeItem('iqdid-demo-theme'); } catch { /* ignore */ } });
+
+  it('names the logo for screen readers and keeps the aspect ratio', () => {
+    render(<IQDIBrand variant="logo" size={232} />);
+    const img = screen.getByRole('img', { name: IQDI_BRAND_LABEL });
+    expect(img).toHaveAttribute('width', '232');
+    expect(img).toHaveAttribute('height', String(Math.round(232 * 1372 / 1040)));
+    expect(IQDI_BRAND_LABEL).toMatch(/نموذج تجريبي/);
+    expect(IQDI_BRAND_LABEL).not.toMatch(/وزارة|جمهورية|رسمي/);
+  });
+
+  it('follows the theme: Original artwork in light, Dark artwork in dark (same accessible name)', () => {
+    localStorage.setItem('iqdid-demo-theme', 'light');
+    const { unmount } = render(<IQDIBrand variant="mark" />);
+    const light = screen.getByRole('img', { name: IQDI_BRAND_LABEL });
+    expect(light.getAttribute('src')).toMatch(/iqdi-mark-original/);
+    expect(light).toHaveAttribute('data-tone', 'light');
+    unmount();
+    localStorage.setItem('iqdid-demo-theme', 'dark');
+    render(<IQDIBrand variant="mark" />);
+    const dark = screen.getByRole('img', { name: IQDI_BRAND_LABEL });
+    expect(dark.getAttribute('src')).toMatch(/iqdi-mark-dark/);
+    expect(dark).toHaveAttribute('data-tone', 'dark');
+  });
+
+  it('a fixed tone overrides the theme', () => {
+    localStorage.setItem('iqdid-demo-theme', 'dark');
+    render(<IQDIBrand variant="logo" tone="light" />);
+    expect(screen.getByRole('img').getAttribute('src')).toMatch(/iqdi-logo-original/);
+  });
+
+  it('the header symbol is decorative, so the app name is announced once', () => {
+    render(<AppShell appName="IQDI Wallet" appSubtitle="تجريبي" layout="mobile" nav={<a href="/">الرئيسية</a>}><h1>عنوان</h1></AppShell>);
+    const header = screen.getByRole('banner');
+    const img = header.querySelector('img.iqdi-brand');
+    expect(img).not.toBeNull();
+    expect(img).toHaveAttribute('alt', '');
+    expect(img).toHaveAttribute('aria-hidden', 'true');
+    expect(img?.getAttribute('src')).toMatch(/iqdi-app-icon/);
+    expect(screen.queryAllByRole('img', { name: /IQDI/ })).toHaveLength(0);
+    expect(header.textContent?.split('IQDI Wallet').length).toBe(2);
   });
 });

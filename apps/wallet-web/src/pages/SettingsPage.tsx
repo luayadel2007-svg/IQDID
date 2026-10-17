@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Alert, Button, Card, Icon, Modal, PageHeader, AppearanceSettings, Switch } from '@iqdid/ui';
+import { Alert, Button, Card, Icon, IQDIBrand, Modal, PageHeader, AppearanceSettings, Switch } from '@iqdid/ui';
 import { describeError } from '@iqdid/api-client';
 import { useWallet } from '../gateway.tsx';
 import { readNotifyPref, writeNotifyPref } from '../prefs.ts';
@@ -71,8 +71,13 @@ export function SettingsPage() {
         </div>
       </Card>
       <Card title="حول" icon="info">
-        <p className="small">نموذج تجريبي لمحفظة هوية رقمية. غير مرتبط بأي جهة حكومية. البيانات اصطناعية، ولا يجري أي تحقق تشفيري في هذه النسخة.</p>
-        <Link to="/help">المساعدة وحول التطبيق</Link>
+        <div className="about-brand">
+          <IQDIBrand variant="mark" size={112} />
+          <div>
+            <p className="small">IQDI Wallet ضمن منظومة IQDI التجريبية (الهوية الرقمية العراقية). نموذج تجريبي لمحفظة هوية رقمية، غير مرتبط بأي جهة حكومية ولا يحمل أي اعتماد رسمي. البيانات اصطناعية، ولا يجري أي تحقق تشفيري في هذه النسخة.</p>
+            <Link to="/help">المساعدة وحول التطبيق</Link>
+          </div>
+        </div>
       </Card>
       <Modal open={confirmReset} title="إعادة ضبط العرض؟" onClose={() => setConfirmReset(false)}
         footer={<><Button variant="secondary" onClick={() => setConfirmReset(false)}>تراجع</Button><Button variant="danger" loading={busy} onClick={() => void reset()}>إعادة الضبط</Button></>}>

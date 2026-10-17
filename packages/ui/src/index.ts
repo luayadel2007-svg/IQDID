@@ -11,3 +11,4 @@ export { Icon, type IconName } from './Icon.tsx';
 export { FavoriteShortcut } from './FavoriteShortcut.tsx';
 export { CountdownRing } from './CountdownRing.tsx';
 export { BrandMark } from './BrandMark.tsx';
+export { IQDIBrand, IQDI_BRAND_LABEL, type IQDIBrandVariant } from './IQDIBrand.tsx';

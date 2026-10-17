@@ -1,0 +1,1145 @@
+[
+  {
+    "route": "",
+    "mode": "light",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "targets": [
+          [
+            ".demo-banner__tag"
+          ],
+          [
+            ".shell__brand > span"
+          ],
+          [
+            ".btn--icon > .nav__badge[aria-hidden=\"true\"]"
+          ],
+          [
+            ".badge--demo"
+          ],
+          [
+            ".ring__value"
+          ],
+          [
+            ".btn--primary"
+          ],
+          [
+            ".cred-card--health > .badge--warning.badge"
+          ],
+          [
+            "a[href$=\"requests\"][data-discover=\"true\"] > .nav__badge[aria-hidden=\"true\"]"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "route": "welcome",
+    "mode": "light",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "targets": [
+          [
+            ".demo-banner__tag"
+          ],
+          [
+            ".shell__brand > span"
+          ],
+          [
+            ".page-head__eyebrow"
+          ],
+          [
+            ".muted"
+          ],
+          [
+            "a[href$=\"settings\"]"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "route": "cards",
+    "mode": "light",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "targets": [
+          [
+            ".demo-banner__tag"
+          ],
+          [
+            ".shell__brand > span"
+          ],
+          [
+            ".btn--icon > .nav__badge[aria-hidden=\"true\"]"
+          ],
+          [
+            ".small"
+          ],
+          [
+            ".cred-card--id > .cred-card__watermark[aria-hidden=\"true\"]"
+          ],
+          [
+            ".cred-card--licence > .cred-card__watermark[aria-hidden=\"true\"]"
+          ],
+          [
+            ".cred-card--residence > .cred-card__watermark[aria-hidden=\"true\"]"
+          ],
+          [
+            ".cred-card--education > .cred-card__watermark[aria-hidden=\"true\"]"
+          ],
+          [
+            ".cred-card--health > dl > dt:nth-child(1)"
+          ],
+          [
+            ".cred-card--health > dl > div:nth-child(4) > dd > .mono"
+          ],
+          [
+            ".cred-card--health > dl > dd:nth-child(6)"
+          ],
+          [
+            ".cred-card--health > .cred-card__foot > .badge--warning.badge"
+          ],
+          [
+            ".cred-card--health > .cred-card__foot > .row > .badge--demo.badge"
+          ],
+          [
+            ".cred-card--health > .cred-card__watermark[aria-hidden=\"true\"]"
+          ],
+          [
+            "a[href$=\"requests\"] > .nav__badge[aria-hidden=\"true\"]"
+          ],
+          [
+            "a[href$=\"settings\"]"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "route": "cards?card=cred-test-002",
+    "mode": "light",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "targets": [
+          [
+            ".demo-banner__tag"
+          ],
+          [
+            ".shell__brand > span"
+          ],
+          [
+            ".btn--icon > .nav__badge[aria-hidden=\"true\"]"
+          ],
+          [
+            ".small"
+          ],
+          [
+            ".cred-card--licence > dl > dt:nth-child(1)"
+          ],
+          [
+            ".cred-card--licence > dl > div:nth-child(4) > dd > .mono"
+          ],
+          [
+            ".cred-card--licence > dl > dd:nth-child(6)"
+          ],
+          [
+            ".cred-card--licence > .cred-card__foot > .row > .badge--demo.badge"
+          ],
+          [
+            ".cred-card--licence > .cred-card__watermark[aria-hidden=\"true\"]"
+          ],
+          [
+            ".cred-card--id > .cred-card__watermark[aria-hidden=\"true\"]"
+          ],
+          [
+            ".cred-card--residence > .cred-card__watermark[aria-hidden=\"true\"]"
+          ],
+          [
+            ".cred-card--education > .cred-card__watermark[aria-hidden=\"true\"]"
+          ],
+          [
+            ".cred-card--health > .cred-card__watermark[aria-hidden=\"true\"]"
+          ],
+          [
+            "a[href$=\"requests\"] > .nav__badge[aria-hidden=\"true\"]"
+          ],
+          [
+            "a[href$=\"settings\"]"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "route": "cards?view=list",
+    "mode": "light",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "targets": [
+          [
+            ".demo-banner__tag"
+          ],
+          [
+            ".shell__brand > span"
+          ],
+          [
+            ".btn--icon > .nav__badge[aria-hidden=\"true\"]"
+          ],
+          [
+            "li:nth-child(5) > .item__end > .badge--warning.badge"
+          ],
+          [
+            ".small"
+          ],
+          [
+            "a[href$=\"requests\"] > .nav__badge[aria-hidden=\"true\"]"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "route": "card",
+    "mode": "light",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "targets": [
+          [
+            ".demo-banner__tag"
+          ],
+          [
+            ".shell__brand > span"
+          ],
+          [
+            ".btn--icon > .nav__badge"
+          ],
+          [
+            "dt:nth-child(3)"
+          ],
+          [
+            "dd:nth-child(4) > .mono"
+          ],
+          [
+            "dd:nth-child(6) > .mono"
+          ],
+          [
+            "dd:nth-child(8)"
+          ],
+          [
+            ".id-card__watermark"
+          ],
+          [
+            ".small"
+          ],
+          [
+            "a[href$=\"requests\"] > .nav__badge"
+          ],
+          [
+            "a[href$=\"settings\"]"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "route": "credentials",
+    "mode": "light",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "targets": [
+          [
+            ".demo-banner__tag"
+          ],
+          [
+            ".shell__brand > span"
+          ],
+          [
+            ".btn--icon > .nav__badge[aria-hidden=\"true\"]"
+          ],
+          [
+            "li:nth-child(5) > .item__end > .badge--warning.badge"
+          ],
+          [
+            ".small"
+          ],
+          [
+            "a[href$=\"requests\"] > .nav__badge[aria-hidden=\"true\"]"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "route": "credentials/cred-test-001",
+    "mode": "light",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "targets": [
+          [
+            ".demo-banner__tag"
+          ],
+          [
+            ".shell__brand > span"
+          ],
+          [
+            ".btn--icon > .nav__badge[aria-hidden=\"true\"]"
+          ],
+          [
+            ".cred-card__body > dt:nth-child(1)"
+          ],
+          [
+            "div:nth-child(3) > dd > .mono"
+          ],
+          [
+            ".cred-card__body > dd:nth-child(6)"
+          ],
+          [
+            ".badge--demo"
+          ],
+          [
+            ".cred-card__watermark"
+          ],
+          [
+            "a[href$=\"requests\"][data-discover=\"true\"] > .nav__badge[aria-hidden=\"true\"]"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "route": "credentials/cred-test-004",
+    "mode": "light",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "targets": [
+          [
+            ".demo-banner__tag"
+          ],
+          [
+            ".shell__brand > span"
+          ],
+          [
+            ".btn--icon > .nav__badge[aria-hidden=\"true\"]"
+          ],
+          [
+            ".cred-card__body > dt:nth-child(1)"
+          ],
+          [
+            "div:nth-child(4) > dd > .mono"
+          ],
+          [
+            ".cred-card__body > dd:nth-child(6)"
+          ],
+          [
+            ".cred-card__foot > .badge--warning.badge"
+          ],
+          [
+            ".badge--demo"
+          ],
+          [
+            ".cred-card__watermark"
+          ],
+          [
+            ".card__head > .badge--warning.badge"
+          ],
+          [
+            "a[href$=\"requests\"] > .nav__badge[aria-hidden=\"true\"]"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "route": "requests",
+    "mode": "light",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "targets": [
+          [
+            ".demo-banner__tag"
+          ],
+          [
+            ".shell__brand > span"
+          ],
+          [
+            ".btn--icon > .nav__badge"
+          ],
+          [
+            "div > p"
+          ],
+          [
+            ".ring__value"
+          ],
+          [
+            "a[aria-current=\"page\"] > .nav__badge"
+          ],
+          [
+            "a[href$=\"settings\"]"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "route": "requests/7b9c8bcc-9025-446b-bb88-6be419c5487a",
+    "mode": "light",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "targets": [
+          [
+            ".demo-banner__tag"
+          ],
+          [
+            ".shell__brand > span"
+          ],
+          [
+            ".btn--icon > .nav__badge"
+          ],
+          [
+            ".page-head__eyebrow"
+          ],
+          [
+            "div:nth-child(1) > p"
+          ],
+          [
+            ".ring__value"
+          ],
+          [
+            "a[aria-current=\"page\"] > .nav__badge"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "route": "requests/7b9c8bcc-9025-446b-bb88-6be419c5487a/disclosure",
+    "mode": "light",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "targets": [
+          [
+            ".demo-banner__tag"
+          ],
+          [
+            ".shell__brand > span"
+          ],
+          [
+            ".btn--icon > .nav__badge"
+          ],
+          [
+            "a[aria-current=\"page\"] > .nav__badge"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "route": "qr",
+    "mode": "light",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "targets": [
+          [
+            ".demo-banner__tag"
+          ],
+          [
+            ".shell__brand > span"
+          ],
+          [
+            "h1"
+          ],
+          [
+            ".qr-box__stamp"
+          ],
+          [
+            ".ring__value"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "route": "activity",
+    "mode": "light",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "targets": [
+          [
+            ".demo-banner__tag"
+          ],
+          [
+            ".shell__brand > span"
+          ],
+          [
+            ".nav__badge"
+          ],
+          [
+            "a[href$=\"settings\"]"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "route": "notifications",
+    "mode": "light",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "targets": [
+          [
+            ".demo-banner__tag"
+          ],
+          [
+            ".shell__brand > span"
+          ],
+          [
+            "a[href$=\"settings\"]"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "route": "settings",
+    "mode": "light",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "targets": [
+          [
+            ".demo-banner__tag"
+          ],
+          [
+            ".shell__brand > span"
+          ],
+          [
+            "h1"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "route": "help",
+    "mode": "light",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "targets": [
+          [
+            ".demo-banner__tag"
+          ],
+          [
+            ".shell__brand > span"
+          ],
+          [
+            ".page-head__eyebrow"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "route": "",
+    "mode": "dark",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "targets": [
+          [
+            ".demo-banner__tag"
+          ],
+          [
+            ".shell__brand > span"
+          ],
+          [
+            ".btn--icon > .nav__badge[aria-hidden=\"true\"]"
+          ],
+          [
+            ".badge--demo"
+          ],
+          [
+            ".ring__value"
+          ],
+          [
+            ".cred-card--health > .badge--warning.badge"
+          ],
+          [
+            "a[href$=\"requests\"][data-discover=\"true\"] > .nav__badge[aria-hidden=\"true\"]"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "route": "welcome",
+    "mode": "dark",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "targets": [
+          [
+            ".demo-banner__tag"
+          ],
+          [
+            ".shell__brand > span"
+          ],
+          [
+            ".page-head__eyebrow"
+          ],
+          [
+            ".muted"
+          ],
+          [
+            "a[href$=\"settings\"]"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "route": "cards",
+    "mode": "dark",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "targets": [
+          [
+            ".demo-banner__tag"
+          ],
+          [
+            ".shell__brand > span"
+          ],
+          [
+            ".btn--icon > .nav__badge[aria-hidden=\"true\"]"
+          ],
+          [
+            ".small"
+          ],
+          [
+            ".cred-card--id > .cred-card__watermark[aria-hidden=\"true\"]"
+          ],
+          [
+            ".cred-card--licence > .cred-card__watermark[aria-hidden=\"true\"]"
+          ],
+          [
+            ".cred-card--residence > .cred-card__watermark[aria-hidden=\"true\"]"
+          ],
+          [
+            ".cred-card--education > .cred-card__watermark[aria-hidden=\"true\"]"
+          ],
+          [
+            ".cred-card--health > dl > dt:nth-child(1)"
+          ],
+          [
+            ".cred-card--health > dl > div:nth-child(4) > dd > .mono"
+          ],
+          [
+            ".cred-card--health > dl > dd:nth-child(6)"
+          ],
+          [
+            ".cred-card--health > .cred-card__foot > .badge--warning.badge"
+          ],
+          [
+            ".cred-card--health > .cred-card__foot > .row > .badge--demo.badge"
+          ],
+          [
+            ".cred-card--health > .cred-card__watermark[aria-hidden=\"true\"]"
+          ],
+          [
+            "a[href$=\"requests\"] > .nav__badge[aria-hidden=\"true\"]"
+          ],
+          [
+            "a[href$=\"settings\"]"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "route": "cards?card=cred-test-002",
+    "mode": "dark",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "targets": [
+          [
+            ".demo-banner__tag"
+          ],
+          [
+            ".shell__brand > span"
+          ],
+          [
+            ".btn--icon > .nav__badge[aria-hidden=\"true\"]"
+          ],
+          [
+            ".small"
+          ],
+          [
+            ".cred-card--licence > dl > dt:nth-child(1)"
+          ],
+          [
+            ".cred-card--licence > dl > div:nth-child(4) > dd > .mono"
+          ],
+          [
+            ".cred-card--licence > dl > dd:nth-child(6)"
+          ],
+          [
+            ".cred-card--licence > .cred-card__foot > .row > .badge--demo.badge"
+          ],
+          [
+            ".cred-card--licence > .cred-card__watermark[aria-hidden=\"true\"]"
+          ],
+          [
+            ".cred-card--id > .cred-card__watermark[aria-hidden=\"true\"]"
+          ],
+          [
+            ".cred-card--residence > .cred-card__watermark[aria-hidden=\"true\"]"
+          ],
+          [
+            ".cred-card--education > .cred-card__watermark[aria-hidden=\"true\"]"
+          ],
+          [
+            ".cred-card--health > .cred-card__watermark[aria-hidden=\"true\"]"
+          ],
+          [
+            "a[href$=\"requests\"] > .nav__badge[aria-hidden=\"true\"]"
+          ],
+          [
+            "a[href$=\"settings\"]"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "route": "cards?view=list",
+    "mode": "dark",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "targets": [
+          [
+            ".demo-banner__tag"
+          ],
+          [
+            ".shell__brand > span"
+          ],
+          [
+            ".btn--icon > .nav__badge[aria-hidden=\"true\"]"
+          ],
+          [
+            "li:nth-child(5) > .item__end > .badge--warning.badge"
+          ],
+          [
+            ".small"
+          ],
+          [
+            "a[href$=\"requests\"] > .nav__badge[aria-hidden=\"true\"]"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "route": "card",
+    "mode": "dark",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "targets": [
+          [
+            ".demo-banner__tag"
+          ],
+          [
+            ".shell__brand > span"
+          ],
+          [
+            ".btn--icon > .nav__badge"
+          ],
+          [
+            "dt:nth-child(3)"
+          ],
+          [
+            "dd:nth-child(4) > .mono"
+          ],
+          [
+            "dd:nth-child(6) > .mono"
+          ],
+          [
+            "dd:nth-child(8)"
+          ],
+          [
+            ".id-card__watermark"
+          ],
+          [
+            ".small"
+          ],
+          [
+            "a[href$=\"requests\"] > .nav__badge"
+          ],
+          [
+            "a[href$=\"settings\"]"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "route": "credentials",
+    "mode": "dark",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "targets": [
+          [
+            ".demo-banner__tag"
+          ],
+          [
+            ".shell__brand > span"
+          ],
+          [
+            ".btn--icon > .nav__badge[aria-hidden=\"true\"]"
+          ],
+          [
+            "li:nth-child(5) > .item__end > .badge--warning.badge"
+          ],
+          [
+            ".small"
+          ],
+          [
+            "a[href$=\"requests\"] > .nav__badge[aria-hidden=\"true\"]"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "route": "credentials/cred-test-001",
+    "mode": "dark",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "targets": [
+          [
+            ".demo-banner__tag"
+          ],
+          [
+            ".shell__brand > span"
+          ],
+          [
+            ".btn--icon > .nav__badge[aria-hidden=\"true\"]"
+          ],
+          [
+            ".cred-card__body > dt:nth-child(1)"
+          ],
+          [
+            "div:nth-child(3) > dd > .mono"
+          ],
+          [
+            ".cred-card__body > dd:nth-child(6)"
+          ],
+          [
+            ".badge--demo"
+          ],
+          [
+            ".cred-card__watermark"
+          ],
+          [
+            "a[href$=\"requests\"][data-discover=\"true\"] > .nav__badge[aria-hidden=\"true\"]"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "route": "credentials/cred-test-004",
+    "mode": "dark",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "targets": [
+          [
+            ".demo-banner__tag"
+          ],
+          [
+            ".shell__brand > span"
+          ],
+          [
+            ".btn--icon > .nav__badge[aria-hidden=\"true\"]"
+          ],
+          [
+            ".cred-card__body > dt:nth-child(1)"
+          ],
+          [
+            "div:nth-child(4) > dd > .mono"
+          ],
+          [
+            ".cred-card__body > dd:nth-child(6)"
+          ],
+          [
+            ".cred-card__foot > .badge--warning.badge"
+          ],
+          [
+            ".badge--demo"
+          ],
+          [
+            ".cred-card__watermark"
+          ],
+          [
+            ".card__head > .badge--warning.badge"
+          ],
+          [
+            "a[href$=\"requests\"] > .nav__badge[aria-hidden=\"true\"]"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "route": "requests",
+    "mode": "dark",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "targets": [
+          [
+            ".demo-banner__tag"
+          ],
+          [
+            ".shell__brand > span"
+          ],
+          [
+            ".btn--icon > .nav__badge"
+          ],
+          [
+            "div > p"
+          ],
+          [
+            ".ring__value"
+          ],
+          [
+            "a[aria-current=\"page\"] > .nav__badge"
+          ],
+          [
+            "a[href$=\"settings\"]"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "route": "requests/7b9c8bcc-9025-446b-bb88-6be419c5487a",
+    "mode": "dark",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "targets": [
+          [
+            ".demo-banner__tag"
+          ],
+          [
+            ".shell__brand > span"
+          ],
+          [
+            ".btn--icon > .nav__badge"
+          ],
+          [
+            ".page-head__eyebrow"
+          ],
+          [
+            "div:nth-child(1) > p"
+          ],
+          [
+            ".ring__value"
+          ],
+          [
+            "a[aria-current=\"page\"] > .nav__badge"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "route": "requests/7b9c8bcc-9025-446b-bb88-6be419c5487a/disclosure",
+    "mode": "dark",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "targets": [
+          [
+            ".demo-banner__tag"
+          ],
+          [
+            ".shell__brand > span"
+          ],
+          [
+            ".btn--icon > .nav__badge"
+          ],
+          [
+            "a[aria-current=\"page\"] > .nav__badge"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "route": "qr",
+    "mode": "dark",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "targets": [
+          [
+            ".demo-banner__tag"
+          ],
+          [
+            ".shell__brand > span"
+          ],
+          [
+            "h1"
+          ],
+          [
+            ".qr-box__stamp"
+          ],
+          [
+            ".ring__value"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "route": "activity",
+    "mode": "dark",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "targets": [
+          [
+            ".demo-banner__tag"
+          ],
+          [
+            ".shell__brand > span"
+          ],
+          [
+            ".nav__badge"
+          ],
+          [
+            "a[href$=\"settings\"]"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "route": "notifications",
+    "mode": "dark",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "targets": [
+          [
+            ".demo-banner__tag"
+          ],
+          [
+            ".shell__brand > span"
+          ],
+          [
+            "a[href$=\"settings\"]"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "route": "settings",
+    "mode": "dark",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "targets": [
+          [
+            ".demo-banner__tag"
+          ],
+          [
+            ".shell__brand > span"
+          ],
+          [
+            "h1"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "route": "help",
+    "mode": "dark",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "targets": [
+          [
+            ".demo-banner__tag"
+          ],
+          [
+            ".shell__brand > span"
+          ],
+          [
+            ".page-head__eyebrow"
+          ]
+        ]
+      }
+    ]
+  }
+]

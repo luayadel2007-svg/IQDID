@@ -19,6 +19,7 @@ const commands = [
   ['browser-pdf-ux', process.execPath, [npm, 'run', 'test:pdf-ux']],
   ['browser-scenarios', process.execPath, [npm, 'run', 'test:scenarios']],
   ['browser-responsive', process.execPath, [npm, 'run', 'test:responsive']],
+  ['browser-brand', process.execPath, [npm, 'run', 'test:brand']],
   ['perf-measure', process.execPath, [npm, 'run', 'perf:measure'], false],
   ['coverage-guard', process.execPath, ['scripts/ci-coverage-guard.mjs', `${out}/vitest-results.json`, String(Date.now() - 1000)]],
   ['secrets-diff', process.execPath, ['tools/secret-scanner.mjs', '--base', '1f51b519ee18434ab15042c9da9124cef5a7353b']],

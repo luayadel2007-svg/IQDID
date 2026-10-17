@@ -1,0 +1,419 @@
+{
+  "at": "2026-10-16T23:55:32.765Z",
+  "commit": "9a5a137ec3cd02098702dcdb1fe6d5deee792167",
+  "node": "v22.22.0",
+  "platform": "linux",
+  "cpus": 4,
+  "bundles": {
+    "wallet-web": {
+      "js": {
+        "bytes": 331103,
+        "gzipBytes": 106748
+      },
+      "css": {
+        "bytes": 61993,
+        "gzipBytes": 12918
+      },
+      "files": [
+        {
+          "file": "index-BaFdk51V.css",
+          "bytes": 61993,
+          "gzipBytes": 12918
+        },
+        {
+          "file": "index-xBA-hkID.js",
+          "bytes": 331103,
+          "gzipBytes": 106748
+        }
+      ]
+    },
+    "verifier-web": {
+      "js": {
+        "bytes": 286971,
+        "gzipBytes": 91209
+      },
+      "css": {
+        "bytes": 61993,
+        "gzipBytes": 12918
+      },
+      "files": [
+        {
+          "file": "index-BaFdk51V.css",
+          "bytes": 61993,
+          "gzipBytes": 12918
+        },
+        {
+          "file": "index-D96xaXJl.js",
+          "bytes": 286971,
+          "gzipBytes": 91209
+        }
+      ]
+    }
+  },
+  "stackReadyMs": 312,
+  "pageLoads": [
+    {
+      "app": "wallet",
+      "route": "/",
+      "cpuThrottle": 1,
+      "runs": 3,
+      "medianMs": {
+        "fcp": 224,
+        "lcp": 180,
+        "domContentLoaded": 66,
+        "load": 67,
+        "dataReady": 212,
+        "totalBlocking": 0
+      },
+      "maxCls": 0.047,
+      "medianHeapMB": 3.7,
+      "transferKB": 246
+    },
+    {
+      "app": "wallet",
+      "route": "/cards",
+      "cpuThrottle": 1,
+      "runs": 3,
+      "medianMs": {
+        "fcp": 172,
+        "lcp": 172,
+        "domContentLoaded": 83,
+        "load": 83,
+        "dataReady": 209,
+        "totalBlocking": 0
+      },
+      "maxCls": 0.004,
+      "medianHeapMB": 3.4,
+      "transferKB": 244
+    },
+    {
+      "app": "wallet",
+      "route": "/requests",
+      "cpuThrottle": 1,
+      "runs": 3,
+      "medianMs": {
+        "fcp": 156,
+        "lcp": 156,
+        "domContentLoaded": 62,
+        "load": 62,
+        "dataReady": 196,
+        "totalBlocking": 0
+      },
+      "maxCls": 0.015,
+      "medianHeapMB": 3.3,
+      "transferKB": 242
+    },
+    {
+      "app": "wallet",
+      "route": "/requests/:id",
+      "cpuThrottle": 1,
+      "runs": 3,
+      "medianMs": {
+        "fcp": 156,
+        "lcp": 188,
+        "domContentLoaded": 79,
+        "load": 79,
+        "dataReady": 212,
+        "totalBlocking": 0
+      },
+      "maxCls": 0.036,
+      "medianHeapMB": 3.5,
+      "transferKB": 245
+    },
+    {
+      "app": "wallet",
+      "route": "/",
+      "cpuThrottle": 4,
+      "runs": 3,
+      "medianMs": {
+        "fcp": 584,
+        "lcp": 584,
+        "domContentLoaded": 237,
+        "load": 237,
+        "dataReady": 838,
+        "totalBlocking": 272
+      },
+      "maxCls": 0.048,
+      "medianHeapMB": 3.6,
+      "transferKB": 246
+    },
+    {
+      "app": "wallet",
+      "route": "/cards",
+      "cpuThrottle": 4,
+      "runs": 3,
+      "medianMs": {
+        "fcp": 584,
+        "lcp": 584,
+        "domContentLoaded": 251,
+        "load": 251,
+        "dataReady": 816,
+        "totalBlocking": 297
+      },
+      "maxCls": 0.003,
+      "medianHeapMB": 3.4,
+      "transferKB": 244
+    },
+    {
+      "app": "wallet",
+      "route": "/requests",
+      "cpuThrottle": 4,
+      "runs": 3,
+      "medianMs": {
+        "fcp": 504,
+        "lcp": 504,
+        "domContentLoaded": 224,
+        "load": 224,
+        "dataReady": 706,
+        "totalBlocking": 196
+      },
+      "maxCls": 0.015,
+      "medianHeapMB": 3.3,
+      "transferKB": 242
+    },
+    {
+      "app": "wallet",
+      "route": "/requests/:id",
+      "cpuThrottle": 4,
+      "runs": 3,
+      "medianMs": {
+        "fcp": 500,
+        "lcp": 780,
+        "domContentLoaded": 248,
+        "load": 248,
+        "dataReady": 831,
+        "totalBlocking": 214
+      },
+      "maxCls": 0.036,
+      "medianHeapMB": 3.5,
+      "transferKB": 245
+    },
+    {
+      "app": "verifier",
+      "route": "/",
+      "cpuThrottle": 1,
+      "runs": 3,
+      "medianMs": {
+        "fcp": 216,
+        "lcp": 216,
+        "domContentLoaded": 62,
+        "load": 63,
+        "dataReady": 242,
+        "totalBlocking": 0
+      },
+      "maxCls": 0.011,
+      "medianHeapMB": 3.5,
+      "transferKB": 226
+    },
+    {
+      "app": "verifier",
+      "route": "/new",
+      "cpuThrottle": 1,
+      "runs": 3,
+      "medianMs": {
+        "fcp": 228,
+        "lcp": 228,
+        "domContentLoaded": 69,
+        "load": 69,
+        "dataReady": 258,
+        "totalBlocking": 0
+      },
+      "maxCls": 0.011,
+      "medianHeapMB": 3.4,
+      "transferKB": 226
+    },
+    {
+      "app": "verifier",
+      "route": "/sessions",
+      "cpuThrottle": 1,
+      "runs": 3,
+      "medianMs": {
+        "fcp": 236,
+        "lcp": 220,
+        "domContentLoaded": 75,
+        "load": 75,
+        "dataReady": 239,
+        "totalBlocking": 0
+      },
+      "maxCls": 0.011,
+      "medianHeapMB": 3.4,
+      "transferKB": 226
+    },
+    {
+      "app": "verifier",
+      "route": "/sessions/:id",
+      "cpuThrottle": 1,
+      "runs": 3,
+      "medianMs": {
+        "fcp": 196,
+        "lcp": 196,
+        "domContentLoaded": 65,
+        "load": 65,
+        "dataReady": 244,
+        "totalBlocking": 0
+      },
+      "maxCls": 0.018,
+      "medianHeapMB": 3.4,
+      "transferKB": 226
+    },
+    {
+      "app": "verifier",
+      "route": "/",
+      "cpuThrottle": 4,
+      "runs": 3,
+      "medianMs": {
+        "fcp": 616,
+        "lcp": 880,
+        "domContentLoaded": 233,
+        "load": 233,
+        "dataReady": 937,
+        "totalBlocking": 237
+      },
+      "maxCls": 0.004,
+      "medianHeapMB": 3.5,
+      "transferKB": 226
+    },
+    {
+      "app": "verifier",
+      "route": "/new",
+      "cpuThrottle": 4,
+      "runs": 3,
+      "medianMs": {
+        "fcp": 644,
+        "lcp": 712,
+        "domContentLoaded": 222,
+        "load": 222,
+        "dataReady": 842,
+        "totalBlocking": 216
+      },
+      "maxCls": 0.004,
+      "medianHeapMB": 3.3,
+      "transferKB": 226
+    },
+    {
+      "app": "verifier",
+      "route": "/sessions",
+      "cpuThrottle": 4,
+      "runs": 3,
+      "medianMs": {
+        "fcp": 596,
+        "lcp": 752,
+        "domContentLoaded": 247,
+        "load": 247,
+        "dataReady": 853,
+        "totalBlocking": 255
+      },
+      "maxCls": 0.004,
+      "medianHeapMB": 3.4,
+      "transferKB": 226
+    },
+    {
+      "app": "verifier",
+      "route": "/sessions/:id",
+      "cpuThrottle": 4,
+      "runs": 3,
+      "medianMs": {
+        "fcp": 628,
+        "lcp": 888,
+        "domContentLoaded": 257,
+        "load": 258,
+        "dataReady": 932,
+        "totalBlocking": 283
+      },
+      "maxCls": 0.011,
+      "medianHeapMB": 3.4,
+      "transferKB": 226
+    }
+  ],
+  "consoleErrors": [],
+  "overflow": [],
+  "interactions": [
+    {
+      "app": "wallet",
+      "route": "/cards",
+      "cpuThrottle": 1,
+      "interactions": 2,
+      "maxEventMs": 40
+    },
+    {
+      "app": "wallet",
+      "route": "/",
+      "cpuThrottle": 1,
+      "interactions": 6,
+      "maxEventMs": 40
+    },
+    {
+      "app": "verifier",
+      "route": "/new",
+      "cpuThrottle": 1,
+      "interactions": 3,
+      "maxEventMs": 16
+    },
+    {
+      "app": "verifier",
+      "route": "/sessions",
+      "cpuThrottle": 1,
+      "interactions": 3,
+      "maxEventMs": 64
+    },
+    {
+      "app": "wallet",
+      "route": "/cards",
+      "cpuThrottle": 4,
+      "interactions": 5,
+      "maxEventMs": 40
+    },
+    {
+      "app": "wallet",
+      "route": "/",
+      "cpuThrottle": 4,
+      "interactions": 6,
+      "maxEventMs": 112
+    },
+    {
+      "app": "verifier",
+      "route": "/new",
+      "cpuThrottle": 4,
+      "interactions": 3,
+      "maxEventMs": 56
+    },
+    {
+      "app": "verifier",
+      "route": "/sessions",
+      "cpuThrottle": 4,
+      "interactions": 3,
+      "maxEventMs": 32
+    }
+  ],
+  "polling": [
+    {
+      "app": "wallet",
+      "route": "/",
+      "windowMs": 10000,
+      "requests": 20,
+      "byPath": {
+        "/wallet/requests": 10,
+        "/wallet/activity": 10
+      }
+    },
+    {
+      "app": "verifier",
+      "route": "/",
+      "windowMs": 10000,
+      "requests": 14,
+      "byPath": {
+        "/verifier/sessions": 7,
+        "/verifier/activity": 7
+      }
+    },
+    {
+      "app": "verifier",
+      "route": "/sessions/:id",
+      "windowMs": 10000,
+      "requests": 7,
+      "byPath": {
+        "/verifier/sessions/:id": 7
+      }
+    }
+  ]
+}
