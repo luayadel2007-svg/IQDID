@@ -36,7 +36,7 @@
     "perf:measure": "node scripts/perf-measure.mjs",
     "test:responsive": "node scripts/responsive-matrix.mjs",
     "test:brand": "node scripts/brand-check.mjs",
-    "brand:generate": "python3 tools/branding/generate_brand.py",
+    "brand:generate": "python3 tools/branding/people_first.py",
     "brand:render": "node scripts/brand-assets.mjs --png"
   },
   "devDependencies": {

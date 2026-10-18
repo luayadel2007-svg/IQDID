@@ -72,9 +72,9 @@ export function SettingsPage() {
       </Card>
       <Card title="حول" icon="info">
         <div className="about-brand">
-          <IQDIBrand variant="mark" size={112} />
+          <IQDIBrand variant="horizontal" size={248} />
           <div>
-            <p className="small">IQDI Wallet ضمن منظومة IQDI التجريبية (الهوية الرقمية العراقية). نموذج تجريبي لمحفظة هوية رقمية، غير مرتبط بأي جهة حكومية ولا يحمل أي اعتماد رسمي. البيانات اصطناعية، ولا يجري أي تحقق تشفيري في هذه النسخة.</p>
+            <p className="small">IQDI Wallet ضمن منظومة IQDI التجريبية (الهوية الرقمية العراقية) — «المواطن أولاً». نموذج تجريبي لمحفظة هوية رقمية، غير مرتبط بأي جهة حكومية ولا يحمل أي اعتماد رسمي. البيانات اصطناعية، ولا يجري أي تحقق تشفيري في هذه النسخة.</p>
             <Link to="/help">المساعدة وحول التطبيق</Link>
           </div>
         </div>

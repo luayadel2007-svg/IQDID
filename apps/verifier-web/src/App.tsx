@@ -1,6 +1,6 @@
 import { Fragment } from 'react';
 import { NavLink, Route, Routes } from 'react-router-dom';
-import { AppShell, EmptyState, Icon, useOnline, type IconName } from '@iqdid/ui';
+import { AppShell, EmptyState, Icon, IQDIBrand, useOnline, type IconName } from '@iqdid/ui';
 import type { VerifierGateway } from '@iqdid/api-client';
 import { VerifierProviders, OrgBoundary } from './gateway.tsx';
 import { PollContext } from './poll.ts';
@@ -39,15 +39,18 @@ export function VerifierApp({ gateway, pollMs = 1500 }: { gateway: VerifierGatew
           layout="desktop"
           headerExtra={<OrgSwitcher />}
           topSlot={<ConnectionBar />}
-          nav={NAV.map((n) => (
-            <Fragment key={n.to}>
-              {n.group && <span className="vf-nav__group" aria-hidden="true">{n.group}</span>}
-              <NavLink to={n.to} end={n.end}>
-                <span className="nav__icon" aria-hidden="true"><Icon name={n.icon as IconName} /></span>
-                {n.label}
-              </NavLink>
-            </Fragment>
-          ))}
+          nav={<>
+            {NAV.map((n) => (
+              <Fragment key={n.to}>
+                {n.group && <span className="vf-nav__group" aria-hidden="true">{n.group}</span>}
+                <NavLink to={n.to} end={n.end}>
+                  <span className="nav__icon" aria-hidden="true"><Icon name={n.icon as IconName} /></span>
+                  {n.label}
+                </NavLink>
+              </Fragment>
+            ))}
+            <div className="vf-nav__brand"><IQDIBrand variant="horizontal" size={184} decorative /></div>
+          </>}
         >
           <OrgBoundary><Routes>
             <Route path="/" element={<DashboardPage />} />

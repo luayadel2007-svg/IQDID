@@ -18,7 +18,7 @@ export function OnboardingPage() {
   if (!s) return null;
   return (
     <section className="onboard" aria-labelledby="onboard-title">
-      {step === 0 && <IQDIBrand variant="logo" size={232} className="onboard__brand" />}
+      {step === 0 && <IQDIBrand variant="logo" size={248} className="onboard__brand" />}
       <p className="page-head__eyebrow" style={{ justifyContent: 'center' }}>{`الخطوة ${step + 1} من ${STEPS.length}`}</p>
       <div className="onboard__art" aria-hidden="true"><Icon name={s.icon} size={56} /></div>
       <h1 id="onboard-title" tabIndex={-1}>{s.title}</h1>

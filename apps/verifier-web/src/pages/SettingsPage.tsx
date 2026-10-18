@@ -37,8 +37,8 @@ export function SettingsPage() {
       </Card>
       <Card title="حول" icon="info">
         <div className="about-brand">
-          <IQDIBrand variant="mark" size={112} />
-          <p className="small">IQDI Verifier ضمن منظومة IQDI التجريبية (الهوية الرقمية العراقية). بوابة تحقق تجريبية ببيانات اصطناعية، غير مرتبطة بأي جهة حكومية ولا تحمل أي اعتماد رسمي، ولا تجري أي تحقق تشفيري.</p>
+          <IQDIBrand variant="horizontal" size={248} />
+          <p className="small">IQDI Verifier ضمن منظومة IQDI التجريبية (الهوية الرقمية العراقية) — «المواطن أولاً». بوابة تحقق تجريبية ببيانات اصطناعية، غير مرتبطة بأي جهة حكومية ولا تحمل أي اعتماد رسمي، ولا تجري أي تحقق تشفيري.</p>
         </div>
       </Card>
       <Modal open={confirmReset} title="إعادة ضبط العرض؟" onClose={() => setConfirmReset(false)}

@@ -33,8 +33,8 @@ from fontTools.pens.svgPathPen import SVGPathPen
 from fontTools.pens.transformPen import TransformPen
 from fontTools.ttLib import TTFont
 
-ROOT = Path(__file__).resolve().parents[2]
-OUT = ROOT / 'assets' / 'branding'
+ROOT = Path(__file__).resolve().parents[3]
+OUT = ROOT / 'assets' / 'branding' / 'archive' / 'palm-arch-v1'  # ARCHIVED: superseded by the People First brand
 ARABIC_FONT = ROOT / 'node_modules/@fontsource/noto-sans-arabic/files/noto-sans-arabic-arabic-700-normal.woff'
 
 # ------------------------------------------------------------------ palettes (design tokens)

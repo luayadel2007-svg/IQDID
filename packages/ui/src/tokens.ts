@@ -12,8 +12,8 @@ export const tokens = {
       success: '#5fd394', warning: '#f4c26b', danger: '#ff8f86', info: '#8eb2ff', focus: '#f2b705',
     },
   },
-  /** IQDI brand palette (assets/branding). Gold is for artwork and large display text only: it fails WCAG AA as small text on light backgrounds. */
-  brand: { navy: '#0B2450', blue: '#1E5AA8', tile: '#1A4590', gold: '#D4AF37', goldOnDark: '#E3BE55', ivory: '#F8F6F1', night: '#0D1B33' },
+  /** IQDI «People First» brand palette (assets/branding/people-first). Gold is for artwork and large display text only: it fails WCAG AA as small text on light backgrounds. */
+  brand: { navy: '#0B2A4A', blue: '#1565C0', gold: '#D4A853', goldOnDark: '#E0B867', offWhite: '#F8F7F4', night: '#0B1F38' },
   gradient: { brand: 'linear-gradient(135deg, #0a2350 0%, #1a46b8 55%, #2d6ae0 100%)' },
   font: { family: '"Noto Sans Arabic", "Segoe UI", Tahoma, Arial, system-ui, sans-serif', size: { xs: 13, sm: 14, md: 16, lg: 18, xl: 22, xxl: 30 } },
   space: { 1: 4, 2: 8, 3: 12, 4: 16, 5: 24, 6: 32, 7: 48 },
