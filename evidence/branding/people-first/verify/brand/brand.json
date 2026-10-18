@@ -1,0 +1,371 @@
+{
+  "generatedAt": "2026-10-18T13:44:09.923Z",
+  "os": "linux 6.18.44-fc-v139",
+  "results": [
+    {
+      "name": "wallet: index.html links the SVG favicon and a 32px PNG fallback",
+      "outcome": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "wallet: no inline data-URI favicon left",
+      "outcome": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "wallet: /favicon.svg served as SVG",
+      "outcome": "PASS",
+      "detail": "200 image/svg+xml"
+    },
+    {
+      "name": "wallet: /favicon-32.png is a 32×32 PNG",
+      "outcome": "PASS",
+      "detail": "{\"w\":32,\"h\":32}"
+    },
+    {
+      "name": "verifier: index.html links the SVG favicon and a 32px PNG fallback",
+      "outcome": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "verifier: no inline data-URI favicon left",
+      "outcome": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "verifier: /favicon.svg served as SVG",
+      "outcome": "PASS",
+      "detail": "200 image/svg+xml"
+    },
+    {
+      "name": "verifier: /favicon-32.png is a 32×32 PNG",
+      "outcome": "PASS",
+      "detail": "{\"w\":32,\"h\":32}"
+    },
+    {
+      "name": "wallet manifest icon /icons/icon-192.png (any) matches 192x192",
+      "outcome": "PASS",
+      "detail": "{\"w\":192,\"h\":192}"
+    },
+    {
+      "name": "wallet manifest icon /icons/icon-512.png (any) matches 512x512",
+      "outcome": "PASS",
+      "detail": "{\"w\":512,\"h\":512}"
+    },
+    {
+      "name": "wallet manifest icon /icons/icon-maskable-512.png (maskable) matches 512x512",
+      "outcome": "PASS",
+      "detail": "{\"w\":512,\"h\":512}"
+    },
+    {
+      "name": "wallet manifest has a maskable icon and the IQDI theme colour",
+      "outcome": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "wallet apple-touch-icon is 180×180",
+      "outcome": "PASS",
+      "detail": "{\"w\":180,\"h\":180}"
+    },
+    {
+      "name": "wallet 320px light: header symbol loaded, 40px, inside header, not over the app name, decorative",
+      "outcome": "PASS",
+      "detail": "{\"count\":1,\"loaded\":true,\"w\":40,\"h\":41,\"inside\":true,\"overlapsName\":false,\"alt\":\"\",\"hidden\":\"true\"}"
+    },
+    {
+      "name": "wallet 320px light: app name announced once in the header",
+      "outcome": "PASS",
+      "detail": "count=1"
+    },
+    {
+      "name": "wallet 320px dark: header symbol loaded, 40px, inside header, not over the app name, decorative",
+      "outcome": "PASS",
+      "detail": "{\"count\":1,\"loaded\":true,\"w\":40,\"h\":41,\"inside\":true,\"overlapsName\":false,\"alt\":\"\",\"hidden\":\"true\"}"
+    },
+    {
+      "name": "wallet 320px dark: app name announced once in the header",
+      "outcome": "PASS",
+      "detail": "count=1"
+    },
+    {
+      "name": "wallet 768px light: header symbol loaded, 40px, inside header, not over the app name, decorative",
+      "outcome": "PASS",
+      "detail": "{\"count\":1,\"loaded\":true,\"w\":40,\"h\":41,\"inside\":true,\"overlapsName\":false,\"alt\":\"\",\"hidden\":\"true\"}"
+    },
+    {
+      "name": "wallet 768px light: app name announced once in the header",
+      "outcome": "PASS",
+      "detail": "count=1"
+    },
+    {
+      "name": "wallet 768px dark: header symbol loaded, 40px, inside header, not over the app name, decorative",
+      "outcome": "PASS",
+      "detail": "{\"count\":1,\"loaded\":true,\"w\":40,\"h\":41,\"inside\":true,\"overlapsName\":false,\"alt\":\"\",\"hidden\":\"true\"}"
+    },
+    {
+      "name": "wallet 768px dark: app name announced once in the header",
+      "outcome": "PASS",
+      "detail": "count=1"
+    },
+    {
+      "name": "wallet 1440px light: header symbol loaded, 40px, inside header, not over the app name, decorative",
+      "outcome": "PASS",
+      "detail": "{\"count\":1,\"loaded\":true,\"w\":40,\"h\":41,\"inside\":true,\"overlapsName\":false,\"alt\":\"\",\"hidden\":\"true\"}"
+    },
+    {
+      "name": "wallet 1440px light: app name announced once in the header",
+      "outcome": "PASS",
+      "detail": "count=1"
+    },
+    {
+      "name": "wallet 1440px dark: header symbol loaded, 40px, inside header, not over the app name, decorative",
+      "outcome": "PASS",
+      "detail": "{\"count\":1,\"loaded\":true,\"w\":40,\"h\":41,\"inside\":true,\"overlapsName\":false,\"alt\":\"\",\"hidden\":\"true\"}"
+    },
+    {
+      "name": "wallet 1440px dark: app name announced once in the header",
+      "outcome": "PASS",
+      "detail": "count=1"
+    },
+    {
+      "name": "verifier 320px light: header symbol loaded, 40px, inside header, not over the app name, decorative",
+      "outcome": "PASS",
+      "detail": "{\"count\":1,\"loaded\":true,\"w\":40,\"h\":41,\"inside\":true,\"overlapsName\":false,\"alt\":\"\",\"hidden\":\"true\"}"
+    },
+    {
+      "name": "verifier 320px light: app name announced once in the header",
+      "outcome": "PASS",
+      "detail": "count=1"
+    },
+    {
+      "name": "verifier 320px dark: header symbol loaded, 40px, inside header, not over the app name, decorative",
+      "outcome": "PASS",
+      "detail": "{\"count\":1,\"loaded\":true,\"w\":40,\"h\":41,\"inside\":true,\"overlapsName\":false,\"alt\":\"\",\"hidden\":\"true\"}"
+    },
+    {
+      "name": "verifier 320px dark: app name announced once in the header",
+      "outcome": "PASS",
+      "detail": "count=1"
+    },
+    {
+      "name": "verifier 768px light: header symbol loaded, 40px, inside header, not over the app name, decorative",
+      "outcome": "PASS",
+      "detail": "{\"count\":1,\"loaded\":true,\"w\":40,\"h\":41,\"inside\":true,\"overlapsName\":false,\"alt\":\"\",\"hidden\":\"true\"}"
+    },
+    {
+      "name": "verifier 768px light: app name announced once in the header",
+      "outcome": "PASS",
+      "detail": "count=1"
+    },
+    {
+      "name": "verifier 768px dark: header symbol loaded, 40px, inside header, not over the app name, decorative",
+      "outcome": "PASS",
+      "detail": "{\"count\":1,\"loaded\":true,\"w\":40,\"h\":41,\"inside\":true,\"overlapsName\":false,\"alt\":\"\",\"hidden\":\"true\"}"
+    },
+    {
+      "name": "verifier 768px dark: app name announced once in the header",
+      "outcome": "PASS",
+      "detail": "count=1"
+    },
+    {
+      "name": "verifier 1440px light: header symbol loaded, 40px, inside header, not over the app name, decorative",
+      "outcome": "PASS",
+      "detail": "{\"count\":1,\"loaded\":true,\"w\":40,\"h\":41,\"inside\":true,\"overlapsName\":false,\"alt\":\"\",\"hidden\":\"true\"}"
+    },
+    {
+      "name": "verifier 1440px light: app name announced once in the header",
+      "outcome": "PASS",
+      "detail": "count=1"
+    },
+    {
+      "name": "verifier 1440px dark: header symbol loaded, 40px, inside header, not over the app name, decorative",
+      "outcome": "PASS",
+      "detail": "{\"count\":1,\"loaded\":true,\"w\":40,\"h\":41,\"inside\":true,\"overlapsName\":false,\"alt\":\"\",\"hidden\":\"true\"}"
+    },
+    {
+      "name": "verifier 1440px dark: app name announced once in the header",
+      "outcome": "PASS",
+      "detail": "count=1"
+    },
+    {
+      "name": "wallet /welcome 320px: logo loads (People First, Light), named for screen readers, inside the viewport, no overflow",
+      "outcome": "PASS",
+      "detail": "{\"loaded\":true,\"src\":\"/assets/iqdi-primary-light-CMdWjuHc.svg\",\"tone\":\"light\",\"alt\":\"IQDI — الهوية الرقمية العراقية (نموذج تجريبي)\",\"w\":248,\"right\":284,\"left\":36,\"vw\":320,\"overflow\":false}"
+    },
+    {
+      "name": "wallet /welcome 390px: logo loads (People First, Light), named for screen readers, inside the viewport, no overflow",
+      "outcome": "PASS",
+      "detail": "{\"loaded\":true,\"src\":\"/assets/iqdi-primary-light-CMdWjuHc.svg\",\"tone\":\"light\",\"alt\":\"IQDI — الهوية الرقمية العراقية (نموذج تجريبي)\",\"w\":248,\"right\":319,\"left\":71,\"vw\":390,\"overflow\":false}"
+    },
+    {
+      "name": "wallet /welcome: live theme toggle swaps to the Dark artwork",
+      "outcome": "PASS",
+      "detail": "{\"tone\":\"dark\",\"src\":\"/assets/iqdi-primary-dark-BtEVOZLq.svg\"}"
+    },
+    {
+      "name": "wallet /welcome 820px: logo loads (People First, Light), named for screen readers, inside the viewport, no overflow",
+      "outcome": "PASS",
+      "detail": "{\"loaded\":true,\"src\":\"/assets/iqdi-primary-light-CMdWjuHc.svg\",\"tone\":\"light\",\"alt\":\"IQDI — الهوية الرقمية العراقية (نموذج تجريبي)\",\"w\":248,\"right\":534,\"left\":286,\"vw\":820,\"overflow\":false}"
+    },
+    {
+      "name": "wallet /welcome 1440px: logo loads (People First, Light), named for screen readers, inside the viewport, no overflow",
+      "outcome": "PASS",
+      "detail": "{\"loaded\":true,\"src\":\"/assets/iqdi-primary-light-CMdWjuHc.svg\",\"tone\":\"light\",\"alt\":\"IQDI — الهوية الرقمية العراقية (نموذج تجريبي)\",\"w\":248,\"right\":714,\"left\":466,\"vw\":1440,\"overflow\":false}"
+    },
+    {
+      "name": "wallet /settings 320px: horizontal loads (People First, Light), named for screen readers, inside the viewport, no overflow",
+      "outcome": "PASS",
+      "detail": "{\"loaded\":true,\"src\":\"ssets/iqdi-horizontal-light-CfrZPuHG.svg\",\"tone\":\"light\",\"alt\":\"IQDI — الهوية الرقمية العراقية (نموذج تجريبي)\",\"w\":248,\"right\":287,\"left\":39,\"vw\":320,\"overflow\":false}"
+    },
+    {
+      "name": "wallet /settings 390px: horizontal loads (People First, Light), named for screen readers, inside the viewport, no overflow",
+      "outcome": "PASS",
+      "detail": "{\"loaded\":true,\"src\":\"ssets/iqdi-horizontal-light-CfrZPuHG.svg\",\"tone\":\"light\",\"alt\":\"IQDI — الهوية الرقمية العراقية (نموذج تجريبي)\",\"w\":248,\"right\":357,\"left\":109,\"vw\":390,\"overflow\":false}"
+    },
+    {
+      "name": "wallet /settings: live theme toggle swaps to the Dark artwork",
+      "outcome": "PASS",
+      "detail": "{\"tone\":\"dark\",\"src\":\"assets/iqdi-horizontal-dark-CFWiTAkb.svg\"}"
+    },
+    {
+      "name": "wallet /settings 820px: horizontal loads (People First, Light), named for screen readers, inside the viewport, no overflow",
+      "outcome": "PASS",
+      "detail": "{\"loaded\":true,\"src\":\"ssets/iqdi-horizontal-light-CfrZPuHG.svg\",\"tone\":\"light\",\"alt\":\"IQDI — الهوية الرقمية العراقية (نموذج تجريبي)\",\"w\":248,\"right\":745,\"left\":497,\"vw\":820,\"overflow\":false}"
+    },
+    {
+      "name": "wallet /settings 1440px: horizontal loads (People First, Light), named for screen readers, inside the viewport, no overflow",
+      "outcome": "PASS",
+      "detail": "{\"loaded\":true,\"src\":\"ssets/iqdi-horizontal-light-CfrZPuHG.svg\",\"tone\":\"light\",\"alt\":\"IQDI — الهوية الرقمية العراقية (نموذج تجريبي)\",\"w\":248,\"right\":925,\"left\":677,\"vw\":1440,\"overflow\":false}"
+    },
+    {
+      "name": "verifier /settings 320px: horizontal loads (People First, Light), named for screen readers, inside the viewport, no overflow",
+      "outcome": "PASS",
+      "detail": "{\"loaded\":true,\"src\":\"ssets/iqdi-horizontal-light-CfrZPuHG.svg\",\"tone\":\"light\",\"alt\":\"IQDI — الهوية الرقمية العراقية (نموذج تجريبي)\",\"w\":248,\"right\":287,\"left\":39,\"vw\":320,\"overflow\":false}"
+    },
+    {
+      "name": "verifier /settings 390px: horizontal loads (People First, Light), named for screen readers, inside the viewport, no overflow",
+      "outcome": "PASS",
+      "detail": "{\"loaded\":true,\"src\":\"ssets/iqdi-horizontal-light-CfrZPuHG.svg\",\"tone\":\"light\",\"alt\":\"IQDI — الهوية الرقمية العراقية (نموذج تجريبي)\",\"w\":248,\"right\":357,\"left\":109,\"vw\":390,\"overflow\":false}"
+    },
+    {
+      "name": "verifier /settings: live theme toggle swaps to the Dark artwork",
+      "outcome": "PASS",
+      "detail": "{\"tone\":\"dark\",\"src\":\"assets/iqdi-horizontal-dark-CFWiTAkb.svg\"}"
+    },
+    {
+      "name": "verifier /settings 820px: horizontal loads (People First, Light), named for screen readers, inside the viewport, no overflow",
+      "outcome": "PASS",
+      "detail": "{\"loaded\":true,\"src\":\"ssets/iqdi-horizontal-light-CfrZPuHG.svg\",\"tone\":\"light\",\"alt\":\"IQDI — الهوية الرقمية العراقية (نموذج تجريبي)\",\"w\":248,\"right\":771,\"left\":523,\"vw\":820,\"overflow\":false}"
+    },
+    {
+      "name": "verifier /settings 1440px: horizontal loads (People First, Light), named for screen readers, inside the viewport, no overflow",
+      "outcome": "PASS",
+      "detail": "{\"loaded\":true,\"src\":\"ssets/iqdi-horizontal-light-CfrZPuHG.svg\",\"tone\":\"light\",\"alt\":\"IQDI — الهوية الرقمية العراقية (نموذج تجريبي)\",\"w\":248,\"right\":1137,\"left\":889,\"vw\":1440,\"overflow\":false}"
+    },
+    {
+      "name": "verifier 1440x900: sidebar lockup fully visible inside the sidebar, decorative, no overflow",
+      "outcome": "PASS",
+      "detail": "{\"present\":true,\"shown\":true,\"loaded\":true,\"alt\":\"\",\"hidden\":\"true\",\"inside\":true,\"overflow\":false}"
+    },
+    {
+      "name": "verifier 1920x1200: sidebar lockup fully visible inside the sidebar, decorative, no overflow",
+      "outcome": "PASS",
+      "detail": "{\"present\":true,\"shown\":true,\"loaded\":true,\"alt\":\"\",\"hidden\":\"true\",\"inside\":true,\"overflow\":false}"
+    },
+    {
+      "name": "verifier 1280x720: sidebar lockup hidden (tab bar or short window), decorative, no overflow",
+      "outcome": "PASS",
+      "detail": "{\"present\":true,\"shown\":false,\"loaded\":true,\"alt\":\"\",\"hidden\":\"true\",\"inside\":false,\"overflow\":false}"
+    },
+    {
+      "name": "verifier 1024x640: sidebar lockup hidden (tab bar or short window), decorative, no overflow",
+      "outcome": "PASS",
+      "detail": "{\"present\":true,\"shown\":false,\"loaded\":true,\"alt\":\"\",\"hidden\":\"true\",\"inside\":false,\"overflow\":false}"
+    },
+    {
+      "name": "verifier 820x1180: sidebar lockup hidden (tab bar or short window), decorative, no overflow",
+      "outcome": "PASS",
+      "detail": "{\"present\":true,\"shown\":false,\"loaded\":true,\"alt\":\"\",\"hidden\":\"true\",\"inside\":true,\"overflow\":false}"
+    },
+    {
+      "name": "wallet /: no broken images",
+      "outcome": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "wallet /welcome: no broken images",
+      "outcome": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "wallet /cards: no broken images",
+      "outcome": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "wallet /credentials/cred-test-001?from=cards: no broken images",
+      "outcome": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "wallet /requests: no broken images",
+      "outcome": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "wallet /requests/:pending: no broken images",
+      "outcome": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "wallet /settings: no broken images",
+      "outcome": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "wallet /help: no broken images",
+      "outcome": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "wallet: no failed same-origin requests across routes",
+      "outcome": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "verifier /: no broken images",
+      "outcome": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "verifier /new: no broken images",
+      "outcome": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "verifier /sessions: no broken images",
+      "outcome": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "verifier /sessions/:pending: no broken images",
+      "outcome": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "verifier /results: no broken images",
+      "outcome": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "verifier /settings: no broken images",
+      "outcome": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "verifier: no failed same-origin requests across routes",
+      "outcome": "PASS",
+      "detail": ""
+    }
+  ]
+}

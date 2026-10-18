@@ -20,7 +20,9 @@
     "test/secret-scanner-png.test.ts",
     "scripts/responsive-matrix.mjs",
     "scripts/brand-check.mjs",
-    "test/brand-assets.test.ts"
+    "test/brand-assets.test.ts",
+    "test/brand-people-first.test.ts",
+    "tools/branding/people_first.py"
   ],
   "requiredNpmScripts": {
     "e2e": "scripts/e2e.mjs",
@@ -68,9 +70,10 @@
     "packages/ui/src/preferences.test.tsx",
     "packages/ui/src/ui.test.tsx",
     "test/secret-scanner-png.test.ts",
-    "test/brand-assets.test.ts"
+    "test/brand-assets.test.ts",
+    "test/brand-people-first.test.ts"
   ],
-  "minVitestTests": 205,
+  "minVitestTests": 244,
   "minBrowserSteps": {
     "e2e": 12,
     "ux": 20,
@@ -79,7 +82,7 @@
     "verifier": 14,
     "scenarios": 9,
     "responsive": 286,
-    "brand": 68
+    "brand": 73
   },
   "workflow": {
     "file": ".github/workflows/task8-ci.yml",

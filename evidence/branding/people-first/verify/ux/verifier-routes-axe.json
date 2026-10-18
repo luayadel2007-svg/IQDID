@@ -1,0 +1,423 @@
+[
+  {
+    "route": "",
+    "mode": "light",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "targets": [
+          [
+            ".demo-banner__tag"
+          ],
+          [
+            ".shell__brand > span"
+          ],
+          [
+            ".vf-nav__group[aria-hidden=\"true\"]:nth-child(8)"
+          ],
+          [
+            "a[href$=\"settings\"]"
+          ],
+          [
+            ".badge--neutral"
+          ],
+          [
+            "time[datetime=\"2026-10-18T13:39:28.973Z\"]"
+          ],
+          [
+            ".vf-kpi--neutral > .vf-kpi__top > .vf-kpi__label"
+          ],
+          [
+            "span[aria-label=\"97 ثانية متبقية\"] > .ring__value[aria-hidden=\"true\"]"
+          ],
+          [
+            "span[aria-label=\"120 ثانية متبقية\"] > .ring__value[aria-hidden=\"true\"]"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "route": "new",
+    "mode": "light",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "targets": [
+          [
+            ".demo-banner__tag"
+          ],
+          [
+            ".shell__brand > span"
+          ],
+          [
+            ".vf-nav__group:nth-child(8)"
+          ],
+          [
+            "a[href$=\"settings\"]"
+          ],
+          [
+            "li[aria-current=\"step\"] > .vf-steps__n"
+          ],
+          [
+            "li:nth-child(2) > .vf-steps__n"
+          ],
+          [
+            "li:nth-child(3) > .vf-steps__n"
+          ],
+          [
+            "#«r3»"
+          ],
+          [
+            ".btn--primary"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "route": "sessions",
+    "mode": "light",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "targets": [
+          [
+            ".demo-banner__tag"
+          ],
+          [
+            ".shell__brand > span"
+          ],
+          [
+            ".vf-nav__group:nth-child(8)"
+          ],
+          [
+            "a[href$=\"settings\"]"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "route": "sessions/dd718ecb-02ef-462a-9ceb-7034316e89d6",
+    "mode": "light",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "aria-prohibited-attr",
+        "targets": [
+          [
+            ".vf-bigcode"
+          ]
+        ]
+      },
+      {
+        "id": "color-contrast",
+        "targets": [
+          [
+            ".demo-banner__tag"
+          ],
+          [
+            ".shell__brand > span"
+          ],
+          [
+            ".vf-nav__group[aria-hidden=\"true\"]:nth-child(8)"
+          ],
+          [
+            "a[href$=\"settings\"]"
+          ],
+          [
+            "h1"
+          ],
+          [
+            ".card--accent > p:nth-child(3)"
+          ],
+          [
+            "p:nth-child(3) > .mono"
+          ],
+          [
+            ".ring__value"
+          ],
+          [
+            "span:nth-child(2) > strong"
+          ],
+          [
+            "li[data-layer=\"app\"] > .vf-trust__n[aria-hidden=\"true\"]"
+          ],
+          [
+            "li[data-layer=\"credential\"] > .vf-trust__n[aria-hidden=\"true\"]"
+          ],
+          [
+            "li[data-layer=\"consent\"] > .vf-trust__n[aria-hidden=\"true\"]"
+          ],
+          [
+            "li[data-layer=\"session\"] > .vf-trust__n[aria-hidden=\"true\"]"
+          ],
+          [
+            "li[data-layer=\"crypto\"] > .vf-trust__n[aria-hidden=\"true\"]"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "route": "results",
+    "mode": "light",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "targets": [
+          [
+            ".demo-banner__tag"
+          ],
+          [
+            ".shell__brand > span"
+          ],
+          [
+            ".vf-nav__group:nth-child(8)"
+          ],
+          [
+            "a[href$=\"settings\"]"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "route": "activity",
+    "mode": "light",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "targets": [
+          [
+            ".demo-banner__tag"
+          ],
+          [
+            ".shell__brand > span"
+          ],
+          [
+            ".vf-nav__group:nth-child(8)"
+          ],
+          [
+            "a[href$=\"settings\"]"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "route": "",
+    "mode": "dark",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "targets": [
+          [
+            ".demo-banner__tag"
+          ],
+          [
+            ".shell__brand > span"
+          ],
+          [
+            ".vf-nav__group[aria-hidden=\"true\"]:nth-child(8)"
+          ],
+          [
+            "a[href$=\"settings\"]"
+          ],
+          [
+            ".badge--neutral"
+          ],
+          [
+            "time[datetime=\"2026-10-18T13:39:34.261Z\"]"
+          ],
+          [
+            ".vf-kpi--neutral > .vf-kpi__top > .vf-kpi__label"
+          ],
+          [
+            "span[aria-label=\"91 ثانية متبقية\"] > .ring__value[aria-hidden=\"true\"]"
+          ],
+          [
+            "span[aria-label=\"115 ثانية متبقية\"] > .ring__value[aria-hidden=\"true\"]"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "route": "new",
+    "mode": "dark",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "targets": [
+          [
+            ".demo-banner__tag"
+          ],
+          [
+            ".shell__brand > span"
+          ],
+          [
+            ".vf-nav__group:nth-child(8)"
+          ],
+          [
+            "a[href$=\"settings\"]"
+          ],
+          [
+            "li[aria-current=\"step\"] > .vf-steps__n"
+          ],
+          [
+            "li:nth-child(2) > .vf-steps__n"
+          ],
+          [
+            "li:nth-child(3) > .vf-steps__n"
+          ],
+          [
+            "#«r3»"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "route": "sessions",
+    "mode": "dark",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "targets": [
+          [
+            ".demo-banner__tag"
+          ],
+          [
+            ".shell__brand > span"
+          ],
+          [
+            ".vf-nav__group:nth-child(8)"
+          ],
+          [
+            "a[href$=\"settings\"]"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "route": "sessions/dd718ecb-02ef-462a-9ceb-7034316e89d6",
+    "mode": "dark",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "aria-prohibited-attr",
+        "targets": [
+          [
+            ".vf-bigcode"
+          ]
+        ]
+      },
+      {
+        "id": "color-contrast",
+        "targets": [
+          [
+            ".demo-banner__tag"
+          ],
+          [
+            ".shell__brand > span"
+          ],
+          [
+            ".vf-nav__group[aria-hidden=\"true\"]:nth-child(8)"
+          ],
+          [
+            "a[href$=\"settings\"]"
+          ],
+          [
+            "h1"
+          ],
+          [
+            ".card--accent > p:nth-child(3)"
+          ],
+          [
+            "p:nth-child(3) > .mono"
+          ],
+          [
+            ".ring__value"
+          ],
+          [
+            "span:nth-child(2) > strong"
+          ],
+          [
+            "li[data-layer=\"app\"] > .vf-trust__n[aria-hidden=\"true\"]"
+          ],
+          [
+            "li[data-layer=\"credential\"] > .vf-trust__n[aria-hidden=\"true\"]"
+          ],
+          [
+            "li[data-layer=\"consent\"] > .vf-trust__n[aria-hidden=\"true\"]"
+          ],
+          [
+            "li[data-layer=\"session\"] > .vf-trust__n[aria-hidden=\"true\"]"
+          ],
+          [
+            "li[data-layer=\"crypto\"] > .vf-trust__n[aria-hidden=\"true\"]"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "route": "results",
+    "mode": "dark",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "targets": [
+          [
+            ".demo-banner__tag"
+          ],
+          [
+            ".shell__brand > span"
+          ],
+          [
+            ".vf-nav__group:nth-child(8)"
+          ],
+          [
+            "a[href$=\"settings\"]"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "route": "activity",
+    "mode": "dark",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "targets": [
+          [
+            ".demo-banner__tag"
+          ],
+          [
+            ".shell__brand > span"
+          ],
+          [
+            ".vf-nav__group:nth-child(8)"
+          ],
+          [
+            "a[href$=\"settings\"]"
+          ]
+        ]
+      }
+    ]
+  }
+]

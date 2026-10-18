@@ -1,4 +1,7 @@
 import { useState } from 'react';
+import symbolLightUrl from '../../../assets/branding/people-first/iqdi-symbol-light.svg?url';
+import symbolDarkUrl from '../../../assets/branding/people-first/iqdi-symbol-dark.svg?url';
+import compactLightUrl from '../../../assets/branding/people-first/iqdi-symbol-compact.svg?url';
 import { act, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { AppShell, Alert, Badge, Button, ErrorState, SegmentedControl, StatCard, Input, Modal, ThemeToggle, contrastRatio, tokens, cardPalette, IQDIBrand, IQDI_BRAND_LABEL } from './index.ts';
@@ -210,7 +213,7 @@ describe('IQDIBrand — one brand component for both apps', () => {
     render(<IQDIBrand variant="logo" size={232} />);
     const img = screen.getByRole('img', { name: IQDI_BRAND_LABEL });
     expect(img).toHaveAttribute('width', '232');
-    expect(img).toHaveAttribute('height', String(Math.round(232 * 1372 / 1040)));
+    expect(img).toHaveAttribute('height', String(Math.round(232 * 1080 / 1000)));
     expect(IQDI_BRAND_LABEL).toMatch(/نموذج تجريبي/);
     expect(IQDI_BRAND_LABEL).not.toMatch(/وزارة|جمهورية|رسمي/);
   });
@@ -219,20 +222,20 @@ describe('IQDIBrand — one brand component for both apps', () => {
     localStorage.setItem('iqdid-demo-theme', 'light');
     const { unmount } = render(<IQDIBrand variant="mark" />);
     const light = screen.getByRole('img', { name: IQDI_BRAND_LABEL });
-    expect(light.getAttribute('src')).toMatch(/iqdi-mark-original/);
+    expect(light.getAttribute('src')).toBe(symbolLightUrl);
     expect(light).toHaveAttribute('data-tone', 'light');
     unmount();
     localStorage.setItem('iqdid-demo-theme', 'dark');
     render(<IQDIBrand variant="mark" />);
     const dark = screen.getByRole('img', { name: IQDI_BRAND_LABEL });
-    expect(dark.getAttribute('src')).toMatch(/iqdi-mark-dark/);
+    expect(dark.getAttribute('src')).toBe(symbolDarkUrl);
     expect(dark).toHaveAttribute('data-tone', 'dark');
   });
 
   it('a fixed tone overrides the theme', () => {
     localStorage.setItem('iqdid-demo-theme', 'dark');
     render(<IQDIBrand variant="logo" tone="light" />);
-    expect(screen.getByRole('img').getAttribute('src')).toMatch(/iqdi-logo-original/);
+    expect(screen.getByRole('img').getAttribute('src')).toMatch(/people-first\/iqdi-primary-light/);
   });
 
   it('the header symbol is decorative, so the app name is announced once', () => {
@@ -242,8 +245,28 @@ describe('IQDIBrand — one brand component for both apps', () => {
     expect(img).not.toBeNull();
     expect(img).toHaveAttribute('alt', '');
     expect(img).toHaveAttribute('aria-hidden', 'true');
-    expect(img?.getAttribute('src')).toMatch(/iqdi-app-icon/);
+    expect([symbolLightUrl, symbolDarkUrl]).toContain(img?.getAttribute('src'));
     expect(screen.queryAllByRole('img', { name: /IQDI/ })).toHaveLength(0);
     expect(header.textContent?.split('IQDI Wallet').length).toBe(2);
+  });
+});
+
+describe('IQDIBrand — People First variants', () => {
+  afterEach(() => { try { localStorage.removeItem('iqdid-demo-theme'); } catch { /* ignore */ } });
+
+  it('horizontal and compact variants pick their own artwork and keep the artwork aspect ratio', () => {
+    localStorage.setItem('iqdid-demo-theme', 'light');
+    render(<><IQDIBrand variant="horizontal" size={248} label="h" /><IQDIBrand variant="compact" size={24} label="c" /></>);
+    const h = screen.getByRole('img', { name: 'h' });
+    expect(h.getAttribute('src')).toMatch(/people-first\/iqdi-horizontal-light/);
+    expect(h).toHaveAttribute('height', String(Math.round(248 * 310 / 891)));
+    expect(screen.getByRole('img', { name: 'c' }).getAttribute('src')).toBe(compactLightUrl);
+  });
+
+  it('monochrome tone uses the one-colour master in any theme; "mark" stays an alias of the symbol', () => {
+    localStorage.setItem('iqdid-demo-theme', 'dark');
+    render(<><IQDIBrand variant="logo" tone="monochrome" label="m" /><IQDIBrand variant="mark" label="k" /></>);
+    expect(screen.getByRole('img', { name: 'm' }).getAttribute('src')).toMatch(/people-first\/iqdi-primary-monochrome/);
+    expect(screen.getByRole('img', { name: 'k' }).getAttribute('src')).toBe(symbolDarkUrl);
   });
 });

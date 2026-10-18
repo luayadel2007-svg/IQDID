@@ -664,9 +664,11 @@ html[data-text="large"] .home-reserve--summary, html[data-text="larger"] .home-r
 /* ---------------------------------------------------------------- IQDI brand (assets/branding, IQDIBrand)
    One component renders the vector artwork; these rules only size and place it. Gold is never used for
    small text (contrast), and the header keeps the compact symbol, not the full logo. */
-:root { --iqdi-navy: #0B2450; --iqdi-blue: #1E5AA8; --iqdi-tile: #1A4590; --iqdi-gold: #D4AF37; --iqdi-gold-on-dark: #E3BE55; --iqdi-ivory: #F8F6F1; --iqdi-night: #0D1B33; }
+:root { --iqdi-navy: #0B2A4A; --iqdi-blue: #1565C0; --iqdi-gold: #D4A853; --iqdi-gold-on-dark: #E0B867; --iqdi-off-white: #F8F7F4; --iqdi-night: #0B1F38; }
 .iqdi-brand { display: block; max-width: 100%; height: auto; user-select: none; }
-.brand-mark.iqdi-brand { display: inline-block; }
+.brand-mark.iqdi-brand { display: inline-block; border-radius: 0; box-shadow: none; } /* transparent symbol: no tile shadow */
+.vf-nav__brand { margin-top: var(--sp-6); padding: var(--sp-4) var(--sp-3) 0; border-top: 1px solid var(--c-border); }
+@media (max-width: 860px), (max-height: 760px) { .vf-nav__brand { display: none; } } /* tab-bar layout or short window: the header symbol is enough */
 .onboard__brand { margin: 0 auto var(--sp-4); }
 .about-brand { display: flex; align-items: center; gap: var(--sp-4); flex-wrap: wrap; }
 .about-brand > .iqdi-brand { flex: 0 0 auto; }

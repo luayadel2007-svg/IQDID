@@ -1,7 +1,7 @@
 <p align="center">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="assets/branding/png/iqdi-logo-dark-512.png">
-    <img src="assets/branding/png/iqdi-logo-original-512.png" width="240" alt="IQDI — الهوية الرقمية العراقية (نموذج تجريبي)">
+    <source media="(prefers-color-scheme: dark)" srcset="assets/branding/people-first/png/iqdi-primary-dark-512.png">
+    <img src="assets/branding/people-first/png/iqdi-primary-light-512.png" width="240" alt="IQDI — الهوية الرقمية العراقية (نموذج تجريبي)">
   </picture>
 </p>
 
@@ -11,7 +11,7 @@ IQDI — الهوية الرقمية العراقية. Apps: **IQDI Wallet** (م
 
 > Naming: the product was renamed from IQDID to **IQDI**. Internal identifiers keep the legacy prefix for compatibility (npm scope `@iqdid/*`, local/session-storage keys and DOM event names `iqdid-*` (e.g. `iqdid-demo-theme`, `iqdid-appearance-v1`, `iqdid-demo-template`, `iqdid-theme-change`), evidence env vars `IQDID_*`, the GitHub repository name). See `docs/task8-9/iqdi-v3/IQDI_REBRANDING_REPORT.md`.
 
-**Brand:** one IQDI visual identity for the whole prototype ecosystem — vector masters, app icon and usage rules in `assets/branding/` and `docs/branding/iqdi-final/`. It is the project's own visual identity, not a government emblem.
+**Brand:** one IQDI visual identity for the whole prototype ecosystem, «People First — Human Centered» — vector masters, app icons and usage rules in `assets/branding/people-first/` and `docs/branding/people-first/` (the earlier palm/arch identity is archived under `assets/branding/archive/`). It is the project's own visual identity, not a government emblem.
 
 **TEST ONLY — Iraqi digital identity prototype.** Synthetic data and test keys only. Not affiliated with, endorsed by, or representing any government body. Nothing in this repository performs real identity verification.
 

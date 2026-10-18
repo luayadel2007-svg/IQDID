@@ -42,7 +42,7 @@ try {
     const s = pngSize(buf);
     step(`wallet manifest icon ${icon.src} (${icon.purpose}) matches ${icon.sizes}`, s !== null && `${s.w}x${s.h}` === icon.sizes, JSON.stringify(s));
   }
-  step('wallet manifest has a maskable icon and the IQDI theme colour', manifest.icons.some((i) => i.purpose === 'maskable') && manifest.theme_color === '#0B2450');
+  step('wallet manifest has a maskable icon and the IQDI theme colour', manifest.icons.some((i) => i.purpose === 'maskable') && manifest.theme_color === '#0B2A4A');
   const apple = pngSize(Buffer.from(await (await fetch(stack.urls.wallet + '/icons/apple-touch-icon.png')).arrayBuffer()));
   step('wallet apple-touch-icon is 180×180', apple?.w === 180 && apple?.h === 180, JSON.stringify(apple));
 
@@ -69,7 +69,7 @@ try {
             inside: b.left >= h.left - 0.5 && b.right <= h.right + 0.5 && b.top >= h.top - 0.5 && b.bottom <= h.bottom + 0.5,
             overlapsName, alt: img.getAttribute('alt'), hidden: img.getAttribute('aria-hidden') };
         });
-        const ok = r.count === 1 && r.loaded && r.inside && !r.overlapsName && r.w >= 32 && r.w <= 44 && r.w === r.h && r.alt === '' && r.hidden === 'true';
+        const ok = r.count === 1 && r.loaded && r.inside && !r.overlapsName && r.w >= 32 && r.w <= 44 && Math.abs(r.h - Math.round(r.w * 660 / 640)) <= 1 && r.alt === '' && r.hidden === 'true';
         step(`${app} ${width}px ${theme}: header symbol loaded, ${r.w}px, inside header, not over the app name, decorative`, ok, JSON.stringify(r));
         // The app name is announced once: the header's accessible text holds it exactly once.
         // Text plus every exposed alt/aria-label in the header: the product name must occur exactly once.
@@ -85,7 +85,7 @@ try {
   }
 
   // 3. Original / Dark artwork follows the theme, including a live toggle.
-  for (const [app, route, variant] of [['wallet', '/welcome', 'logo'], ['wallet', '/settings', 'mark'], ['verifier', '/settings', 'mark']]) {
+  for (const [app, route, variant] of [['wallet', '/welcome', 'logo'], ['wallet', '/settings', 'horizontal'], ['verifier', '/settings', 'horizontal']]) {
     for (const width of [320, 390, 820, 1440]) {
       const ctx = await browser.newContext({ viewport: { width, height: 900 }, locale: 'ar' });
       await ctx.addInitScript(() => { try { localStorage.setItem('iqdid-demo-theme', 'light'); } catch { /* ignore */ } });
@@ -97,17 +97,38 @@ try {
       const read = () => img.evaluate((e) => ({ loaded: e.complete && e.naturalWidth > 0, src: e.getAttribute('src') ?? '', tone: e.dataset.tone, alt: e.getAttribute('alt'), w: e.getBoundingClientRect().width, right: e.getBoundingClientRect().right, left: e.getBoundingClientRect().left, vw: innerWidth, overflow: document.documentElement.scrollWidth > innerWidth }));
       await page.waitForFunction((v) => { const e = document.querySelector(`main img.iqdi-brand--${v}`); return e && e.complete && e.naturalWidth > 0; }, variant);
       const light = await read();
-      step(`${app} ${route} ${width}px: ${variant} loads (Original), named for screen readers, inside the viewport, no overflow`,
-        light.loaded && light.tone === 'light' && /original/.test(light.src) && /IQDI/.test(light.alt ?? '') && light.left >= 0 && light.right <= light.vw && !light.overflow, JSON.stringify({ ...light, src: light.src.slice(-40) }));
+      step(`${app} ${route} ${width}px: ${variant} loads (People First, Light), named for screen readers, inside the viewport, no overflow`,
+        light.loaded && light.tone === 'light' && /people-first|iqdi-(primary|horizontal)-light-/.test(light.src) && /-light-[^/]*\.svg$/.test(light.src) && /IQDI/.test(light.alt ?? '') && light.left >= 0 && light.right <= light.vw && !light.overflow, JSON.stringify({ ...light, src: light.src.slice(-40) }));
       if (width === 390) {
         await page.locator('header').getByRole('button', { name: /الوضع|داكن|فاتح/ }).first().click();
         await page.waitForFunction((v) => document.querySelector(`main img.iqdi-brand--${v}`)?.getAttribute('data-tone') === 'dark', variant);
         await page.waitForFunction((v) => { const e = document.querySelector(`main img.iqdi-brand--${v}`); return e && e.complete && e.naturalWidth > 0; }, variant);
         const dark = await read();
-        step(`${app} ${route}: live theme toggle swaps to the Dark artwork`, dark.loaded && /dark/.test(dark.src) && dark.alt === light.alt, JSON.stringify({ tone: dark.tone, src: dark.src.slice(-40) }));
+        step(`${app} ${route}: live theme toggle swaps to the Dark artwork`, dark.loaded && /-dark-[^/]*\.svg$/.test(dark.src) && dark.alt === light.alt, JSON.stringify({ tone: dark.tone, src: dark.src.slice(-40) }));
       }
       await ctx.close();
     }
+  }
+
+  // 3b. Verifier sidebar lockup: decorative, inside the sidebar on desktop; hidden when the sidebar turns into a tab bar.
+  for (const [width, height] of [[1440, 900], [1920, 1200], [1280, 720], [1024, 640], [820, 1180]]) {
+    const ctx = await browser.newContext({ viewport: { width, height }, locale: 'ar' });
+    const page = await ctx.newPage();
+    await page.goto(stack.urls.verifier + '/');
+    await page.locator('main h1').first().waitFor();
+    await page.waitForFunction(() => [...document.images].every((i) => i.complete));
+    const r = await page.evaluate(() => {
+      const img = document.querySelector('nav .vf-nav__brand img.iqdi-brand--horizontal');
+      if (!img) return { present: false };
+      const shown = getComputedStyle(img.parentElement).display !== 'none';
+      const b = img.getBoundingClientRect(), n = img.closest('nav').getBoundingClientRect();
+      return { present: true, shown, loaded: img.complete && img.naturalWidth > 0, alt: img.getAttribute('alt'), hidden: img.getAttribute('aria-hidden'),
+        inside: b.left >= n.left - 0.5 && b.right <= n.right + 0.5 && b.bottom <= Math.min(n.bottom, innerHeight) + 0.5, overflow: document.documentElement.scrollWidth > innerWidth };
+    });
+    const expectShown = width > 860 && height > 760;
+    const ok = r.present && r.alt === '' && r.hidden === 'true' && !r.overflow && (expectShown ? r.shown && r.loaded && r.inside : !r.shown);
+    step(`verifier ${width}x${height}: sidebar lockup ${expectShown ? 'fully visible inside the sidebar' : 'hidden (tab bar or short window)'}, decorative, no overflow`, ok, JSON.stringify(r));
+    await ctx.close();
   }
 
   // 4. No broken image or failed same-origin asset on any main route.
