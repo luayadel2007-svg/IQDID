@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from 'vitest';
 import { ApiError, describeError } from './errors.ts';
-import { DemoHttpTransport, RealTransportPlaceholder, createTransport } from './transport.ts';
+import { DemoHttpTransport, RealTransportPlaceholder, createTransport, randomRequestId } from './transport.ts';
 import { createWalletGateway } from './gateways.ts';
 
 const json = (status: number, body: unknown) => new Response(JSON.stringify(body), { status, headers: { 'Content-Type': 'application/json' } });
@@ -76,5 +76,39 @@ describe('real transport placeholder', () => {
     const err = await createWalletGateway(t).credentials().catch((e: unknown) => e);
     expect(err).toMatchObject({ kind: 'not_implemented' });
     expect(describeError(err)).toContain('غير متاحة');
+  });
+});
+
+describe('randomRequestId — works outside secure contexts (iPhone over plain-HTTP LAN)', () => {
+  const SERVER_RE = /^[A-Za-z0-9._-]{8,64}$/; // the demo API's accepted X-Request-Id format
+  const V4 = /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/;
+
+  it('falls back to getRandomValues when crypto.randomUUID is missing, producing a valid v4 id', () => {
+    const insecure = { getRandomValues: <T extends ArrayBufferView>(a: T): T => globalThis.crypto.getRandomValues(a) };
+    const ids = new Set(Array.from({ length: 50 }, () => randomRequestId(insecure)));
+    expect(ids.size).toBe(50);
+    for (const id of ids) { expect(id).toMatch(V4); expect(id).toMatch(SERVER_RE); }
+  });
+
+  it('uses crypto.randomUUID when it exists', () => {
+    expect(randomRequestId({ getRandomValues: (a) => a, randomUUID: () => 'from-random-uuid' })).toBe('from-random-uuid');
+  });
+
+  it('the transport sends a request id even when randomUUID is unavailable', async () => {
+    const original = Object.getOwnPropertyDescriptor(globalThis.crypto, 'randomUUID');
+    const proto = Object.getPrototypeOf(globalThis.crypto) as object;
+    const protoDesc = Object.getOwnPropertyDescriptor(proto, 'randomUUID');
+    Object.defineProperty(proto, 'randomUUID', { value: undefined, configurable: true });
+    if (original) Object.defineProperty(globalThis.crypto, 'randomUUID', { value: undefined, configurable: true });
+    try {
+      let seen = '';
+      const fetchImpl = vi.fn(async (_u: RequestInfo | URL, init?: RequestInit) => { seen = new Headers(init?.headers).get('X-Request-Id') ?? ''; return new Response('{"ok":true}', { status: 200, headers: { 'content-type': 'application/json' } }); });
+      const t = new DemoHttpTransport({ fetchImpl });
+      await t.request({ method: 'GET', path: '/x', decode: (j) => j });
+      expect(seen).toMatch(V4);
+    } finally {
+      if (protoDesc) Object.defineProperty(proto, 'randomUUID', protoDesc);
+      if (original) Object.defineProperty(globalThis.crypto, 'randomUUID', original);
+    }
   });
 });

@@ -1,1 +1,1 @@
-{ "extends": "../../tsconfig.base.json", "compilerOptions": { "types": ["vite/client", "vitest/globals", "@testing-library/jest-dom", "node"] }, "include": ["src", "vite.config.ts"] }
+{ "extends": "../../tsconfig.base.json", "compilerOptions": { "types": ["vite/client", "vitest/globals", "@testing-library/jest-dom", "node"] }, "include": ["src", "vite.config.ts", "dev-server.ts"] }

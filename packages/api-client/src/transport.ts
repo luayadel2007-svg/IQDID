@@ -50,6 +50,22 @@ export function anySignal(signals: readonly AbortSignal[]): AbortSignal {
 
 const isErrorCode = (v: unknown): v is DemoErrorCode => typeof v === 'string' && (DEMO_ERROR_CODES as readonly string[]).includes(v);
 
+/**
+ * A random RFC 4122 v4 id for the X-Request-Id header.
+ * `crypto.randomUUID` only exists in secure contexts (HTTPS or localhost) and in Safari 15.4+; when the
+ * wallet is opened over plain HTTP on a LAN address (e.g. an iPhone on http://192.168.x.x:5173) it is
+ * undefined and every API call failed with «حدث خطأ غير متوقع». `crypto.getRandomValues` is available in
+ * every context, so it is the fallback. Not used for anything security-sensitive.
+ */
+export function randomRequestId(c: { getRandomValues<T extends ArrayBufferView>(a: T): T; randomUUID?: () => string } = globalThis.crypto): string {
+  if (typeof c.randomUUID === 'function') return c.randomUUID();
+  const b = c.getRandomValues(new Uint8Array(16));
+  b[6] = ((b[6] ?? 0) & 0x0f) | 0x40;
+  b[8] = ((b[8] ?? 0) & 0x3f) | 0x80;
+  const h = Array.from(b, (x) => x.toString(16).padStart(2, '0')).join('');
+  return `${h.slice(0, 8)}-${h.slice(8, 12)}-${h.slice(12, 16)}-${h.slice(16, 20)}-${h.slice(20)}`;
+}
+
 export class DemoHttpTransport implements Transport {
   readonly mode = 'demo' as const;
   private readonly baseUrl: string;
@@ -65,7 +81,7 @@ export class DemoHttpTransport implements Transport {
     this.timeoutMs = options.timeoutMs ?? 8_000;
     this.retries = options.retries ?? 2;
     this.retryDelayMs = options.retryDelayMs ?? 300;
-    this.newRequestId = options.newRequestId ?? (() => crypto.randomUUID());
+    this.newRequestId = options.newRequestId ?? (() => randomRequestId());
   }
 
   async request<T>(spec: RequestSpec<T>): Promise<T> {
